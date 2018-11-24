@@ -1,0 +1,152 @@
+<div class="table-content">
+  <h3 style="font-family: sans-serif;"> CURSOS
+    <span class="btn-options pull-right">
+      <button type="button" class="btn btn-sm btn-info" (click)="openModal(modalEstudiante)">Crear curso</button>
+    </span>
+  </h3>
+  <div class="table-box">
+    <app-table
+      [data]="estudiantes"
+      [headers]="headersColumns"
+      [total]="totalEstudiantes"
+      [pageSize]="pageSize"
+      [filtersColumns]="filtersColumns"
+      [page]="page"
+      (clickPagination)="clickPagination($event)"
+      (clickSort)="clickSort($event)"
+      (clickButton)="clickButtonRow($event)">
+    </app-table>
+  </div>
+</div>
+<div class="filter-content">
+
+</div>
+
+
+<ng-template #modalEstudiante>
+  <div class="modal-header">
+    <h4 class="modal-title">Crear Curso</h4>
+  </div>
+
+  <form (ngSubmit)="submitEstudiante(form)" #form="ngForm">
+
+    <div class="row container">
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="cronograma">Cronograma</label>
+          <input id="cronograma"
+                 name="cronograma"
+                 type="text"
+                 class="form-control"
+                 ngModel/>
+        </div>
+
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="descripcion">Descripcion</label>
+          <input id="descripcion"
+                 name="descripcion"
+                 type="text"
+                 class="form-control"
+                 ngModel/>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="fecha">Fecha</label>
+          <input id="fecha"
+                 name="fecha"
+                 type="text"
+                 class="form-control"
+                 ngModel/>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="nombre">Nombre</label>
+          <input id="nombre"
+                 name="nombre"
+                 type="string"
+                 class="form-control"
+                 ngModel/>
+
+        </div>
+      </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal();">
+          Cancelar
+        </button>
+        <button type="submit" class="btn btn-primary">
+          Guardar
+        </button>
+      </div>
+
+    </div>
+
+  </form>
+</ng-template>
+
+<ng-template #modalHorario>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">HORARIO</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <table align="center" border="1" cellpadding="10" cellspacing="5">
+      <tr>
+        <th bgcolor="#185c6d" style="color: white;">HORA</th>
+        <th bgcolor="#185c6d" style="color: white;">LUNES</th>
+        <th bgcolor="#185c6d" style="color: white;">MARTES</th>
+        <th bgcolor="#185c6d" style="color: white;">MIERCOLES</th>
+        <th bgcolor="#185c6d" style="color: white;">JUEVES</th>
+        <th bgcolor="#185c6d" style="color: white;">VIERNES</th>
+        <th bgcolor="#185c6d" style="color: white;">SABADO</th>
+      </tr>
+      <tr>
+        <td>8-10</td>
+        <td>Matematicas</td>
+        <td>Computacion</td>
+        <td>Matematicas</td>
+        <td>Matematicas</td>
+        <td>Matematicas</td>
+        <td>Matematicas</td>
+      </tr>
+      <tr>
+        <td>10-12</td>
+        <td>Geografia</td>
+        <td>Historia</td>
+        <td>Geografía</td>
+        <td>Historia</td>
+        <td>Geografia</td>
+        <td>Matematicas</td>
+      </tr>
+      <tr>
+        <td>12-14</td>
+        <td>Física</td>
+        <td>Ingles</td>
+        <td>Fisica</td>
+        <td>Inglés</td>
+        <td>Fisica</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>15-17</td>
+        <td>Frances</td>
+        <td>Ingles</td>
+        <td>Ingles</td>
+        <td>Ingles</td>
+        <td>Ingles</td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+
+</ng-template>

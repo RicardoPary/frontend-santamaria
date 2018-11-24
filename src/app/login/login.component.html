@@ -1,0 +1,245 @@
+<div id="wrap">
+  <div>
+    <img src="../../assets/images/logo.png" alt="" title="" border="1" width="130" height="130" style="float: left;"/>
+    <span style="float: left; font-family: Arial, Helvetica, sans-serif; margin-top: 40px;">
+
+      <h1>UNIDAD EDUCATIVA SIMON BOLIVAR "A"</h1>
+      </span>
+  </div>
+
+  <div class="top_corner"></div>
+  <div id="main_container" style="margin-top: 120px;">
+
+
+    <div id="header" style="background-color: #292f6d;">
+      <div id="logo"></div>
+
+      <a href="make-a-donation.html" class="make_donation"></a>
+      <a href="make-a-donation.html" class="make_donation"></a>
+
+      <div id="menu">
+        <ul style="margin-right: 40px;">
+          <li style="background-color: green;"><a href="javascript:void()" title="" (click)="openModal()"
+                                                  routerLinkActive="current">Iniciar</a></li>
+
+
+        </ul>
+      </div>
+
+
+    </div>
+
+
+    <div class="middle_banner">
+
+      <div class="featured_slider">
+        <!-- begin: sliding featured banner -->
+        <div>
+          <div>
+            <div>
+              <div class="row">
+                <div class="col-md-12">
+                  <ngb-carousel>
+                    <ng-template ngbSlide *ngFor="let slider of sliders">
+                      <img class="img-fluid mx-auto d-block" [src]="slider.imagePath" alt="Random first slide"
+                           width="100%" height="300px;">
+                      <div class="carousel-caption">
+                        <h3>{{slider.label}}</h3>
+                        <p>{{slider.text}}</p>
+                      </div>
+                    </ng-template>
+                  </ngb-carousel>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <!-- end: sliding featured banner -->
+      </div>
+
+
+    </div><!---------------------------------end of middle banner-------------------------------->
+
+
+    <div class="center_content row">
+
+      <div class="home_section_left col-5">
+
+        <div class="chat-panel card card-default" style="width: 400px;">
+          <div class="card-header">
+            <i class="fa fa-comments fa-fw"></i>
+            Reuniones
+            <div class=" pull-right" ngbDropdown>
+              <button class="btn btn-secondary btn-sm" ngbDropdownToggle>
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li role="menuitem"><a class="dropdown-item" href="#">
+                  <i class="fa fa-refresh fa-fw"></i> Refresh</a>
+                </li>
+                <li role="menuitem"><a class="dropdown-item" href="#">
+                  <i class="fa fa-check-circle fa-fw"></i> Available</a>
+                </li>
+                <li role="menuitem"><a class="dropdown-item" href="#">
+                  <i class="fa fa-times fa-fw"></i> Busy</a>
+                </li>
+                <li class="divider dropdown-divider"></li>
+                <li role="menuitem">
+                  <a href="#" class="dropdown-item">
+                    <i class="fa fa-times fa-fw"></i> Busy
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item">
+                    <i class="fa fa-clock-o fa-fw"></i> Away
+                  </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="#" class="dropdown-item">
+                    <i class="fa fa-sign-out fa-fw"></i> Sign Out
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- /.panel-heading -->
+          <div class="card-body">
+            <ul class="chat">
+              <li class="left clearfix" *ngFor="let reunion of reuniones">
+                <span class="chat-img pull-left">
+                    <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle">
+                </span>
+                <div class="chat-body clearfix">
+                  <div class="header">
+                    <strong class="primary-font">{{reunion.nombre}}</strong>
+                    <small class="pull-right text-muted">
+                      <i class="fa fa-clock-o fa-fw"></i> {{reunion.fecha}}
+                    </small>
+                  </div>
+                  <p>
+                    {{reunion.descripcion}}
+                  </p>
+                  <p>
+                    {{reunion.orderDia}}
+                  </p>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+
+        </div>
+
+
+        <div class="clear"></div>
+      </div>
+
+
+      <div class="home_section_left col-5">
+
+        <div class="chat-panel card card-default" style="width: 400px;">
+          <div class="card-header">
+            <i class="fa fa-comments fa-fw"></i>
+            Actividades Civicas
+            <div class=" pull-right" ngbDropdown>
+              <button class="btn btn-secondary btn-sm" ngbDropdownToggle>
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li role="menuitem"><a class="dropdown-item" href="#">
+                  <i class="fa fa-refresh fa-fw"></i> Refresh</a>
+                </li>
+                <li role="menuitem"><a class="dropdown-item" href="#">
+                  <i class="fa fa-check-circle fa-fw"></i> Available</a>
+                </li>
+                <li role="menuitem"><a class="dropdown-item" href="#">
+                  <i class="fa fa-times fa-fw"></i> Busy</a>
+                </li>
+                <li class="divider dropdown-divider"></li>
+                <li role="menuitem">
+                  <a href="#" class="dropdown-item">
+                    <i class="fa fa-times fa-fw"></i> Busy
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item">
+                    <i class="fa fa-clock-o fa-fw"></i> Away
+                  </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="#" class="dropdown-item">
+                    <i class="fa fa-sign-out fa-fw"></i> Sign Out
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- /.panel-heading -->
+          <div class="card-body">
+            <ul class="chat">
+
+              <li class="right clearfix" *ngFor="let actividadCivica of actividadesCivicas">
+                <span class="chat-img pull-right">
+                    <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle">
+                </span>
+                <div class="chat-body clearfix">
+                  <div class="header">
+                    <small class=" text-muted">
+                      <i class="fa fa-clock-o fa-fw"></i> {{actividadCivica.fecha}}
+                    </small>
+                    <strong class="pull-right primary-font">{{actividadCivica.nombre}}</strong>
+                  </div>
+                  <p>
+                    {{actividadCivica.descripcion}}
+                  </p>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+      <div class="clear"></div>
+    </div>
+
+    <footer style="background-color: #292f6d; color: white; margin-bottom: 30px;">
+      <div class="container">
+        <div class="row" style="padding: 10px;">
+          <div class="col-md-4 mb-5 mb-lg-0">
+            <h6>Ubicacion</h6>
+            <p class="lead mb-0" style="font-size: 14px;">se encuentra ubicada en El Alto en la zona Villa
+              Mercedes Anexo en la cuarta sección.</p>
+          </div>
+          <div class="col-md-4 mb-5 mb-lg-0">
+            <h6>Mision</h6>
+            <p class="lead mb-0" style="font-size: 14px;">
+            <p class="lead mb-0" style="font-size: 14px;">
+              Potenciar las capacidades critico
+              reflexivas, creativas, participativas y productivas, fortaleciendo los valores y
+              actitudes de la comunidad a través de una educación con propuestas innovadoras,
+              promoviendo el consumo de alimentos saludables para vivir bien.</p>
+          </div>
+          <div class="col-md-4">
+            <h6>Vision</h6>
+            <p class="lead mb-0" style="font-size: 14px;">Ser una unidad educativa referente en continuo crecimiento en
+              la formación
+              integral de los estudiantes, rescatando nuestros valores y saberes locales, para
+              coadyuvar a la solución de problemas, a fin de mejorar la calidad de vida en la
+              comunidad.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+  </div>
+</div>

@@ -1,12 +1,12 @@
-import {Injectable, Injector} from '@angular/core';
-import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
-import {Router} from '@angular/router';
-import {Observable, throwError} from 'rxjs/index';
+import { Injectable, Injector } from '@angular/core';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs/index';
 
-import {environment} from '../../../environments/environment';
-import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
-import {LoginService} from '../service/login.service';
-import {catchError, map} from 'rxjs/internal/operators';
+import { environment } from '../../../environments/environment';
+import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
+import { LoginService } from '../services/login.service';
+import {catchError, map} from 'rxjs/operators';
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
@@ -25,7 +25,7 @@ export class RequestInterceptor implements HttpInterceptor {
 
     if (token) {
       req = req.clone({
-        setHeaders: {Authorization: `Bearer ${token}`},
+        setHeaders: { Authorization: `Bearer ${token}` },
         url: fullUrl
       });
     } else {
@@ -45,10 +45,9 @@ export class RequestInterceptor implements HttpInterceptor {
             const loginService: LoginService = this.injector.get(LoginService);
             loginService.logout();
             const router: Router = this.injector.get(Router);
-            router.navigate(['login']).then(() => {
-            });
+            router.navigate(['login']).then(() => {});
           }
-          return throwError(err);
+          return Observable.throw(err);
         }
       }));
   }

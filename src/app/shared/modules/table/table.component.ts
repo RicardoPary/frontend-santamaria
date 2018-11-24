@@ -21,9 +21,7 @@ export class TableComponent implements OnChanges {
   @Input() page: number;
   @Input() total: number;
   @Input() filtersColumns: any;
-  @Input() minHeight: any = '250px';
-
-  @Input() idUser: any;
+  @Input() minHeight: any = '500px';
 
   @Output() clickRow = new EventEmitter<any>();
   @Output() clickButton = new EventEmitter<any>();
@@ -76,11 +74,10 @@ export class TableComponent implements OnChanges {
     }
 
     if (this.pager.totalItems <= 0) {
-      const currentPage = this.pager.currentPage;
-      this.pager = this.getPager(this.total, currentPage, this.listPerPage);
-      if (this.pager.totalItems > 0) {
+      const page = this.pager.currentPage;
+      this.pager = this.getPager(this.total, page, this.listPerPage);
+      if (this.pager.totalItems > 0)
         this.pager.currentPage = 1;
-      }
     }
 
     const page = this.pager.currentPage = this.page + 1;

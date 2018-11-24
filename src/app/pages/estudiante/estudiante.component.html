@@ -1,0 +1,173 @@
+<div class="table-content">
+  <h3 style="font-family: sans-serif;"> REGISTRO DE ESTUDIANTES
+    <span class="btn-options pull-right">
+      <a class="btn btn-sm btn-outline-secondary btn-icon-space"
+         (click)="openModal(modalEstudiante, 'Crear Nuevo Estudiante', 'Crear')"><i
+        class="icon-user-plus"></i> Nuevo Estudiante</a>
+    </span>
+  </h3>
+  <div class="table-box" [ngBusy]="{busy: subscriptionTable, message: 'Cargando...'}">
+    <app-table
+      [data]="estudiantes"
+      [headers]="headersColumns"
+      [total]="totalEstudiantes"
+      [pageSize]="pageSize"
+      [filtersColumns]="filtersColumns"
+      [page]="page"
+      (clickPagination)="clickPagination($event)"
+      (clickSort)="clickSort($event)"
+      (clickButton)="clickButtonRow($event)">
+    </app-table>
+  </div>
+</div>
+<div class="filter-content">
+
+</div>
+
+
+<ng-template #modalEstudiante>
+  <div class="modal-header">
+    <h4 class="modal-title">{{titleModal}}</h4>
+  </div>
+
+  <form (ngSubmit)="submitEstudiante(form)" #form="ngForm">
+
+    <div class="row container">
+      <div class="col-md-4">
+        <div class="form-group mb-3">
+          <label for="ci">CI</label>
+          <input id="ci"
+                 name="ci"
+                 type="text"
+                 class="form-control"
+                 #ci
+                 [ngModel]="estudiante?.ci"/>
+        </div>
+
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group mb-3">
+          <label for="nombre">Nombre</label>
+          <input id="nombre"
+                 name="nombre"
+                 type="text"
+                 class="form-control"
+                 [ngModel]="estudiante?.nombre"/>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group mb-3">
+          <label for="paterno">Paterno</label>
+          <input id="paterno"
+                 name="paterno"
+                 type="text"
+                 class="form-control"
+                 [ngModel]="estudiante?.paterno"/>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group mb-3">
+          <label for="materno">Materno</label>
+          <input id="materno"
+                 name="materno"
+                 type="string"
+                 class="form-control"
+                 [ngModel]="estudiante?.materno"/>
+
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group mb-3">
+          <label for="genero">Genero</label>
+          <input id="genero"
+                 name="genero"
+                 type="text"
+                 class="form-control"
+                 [ngModel]="estudiante?.genero"/>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group mb-3">
+          <label for="fechaNacimiento">Fecha Nacimiento</label>
+          <input id="fechaNacimiento"
+                 name="fechaNacimiento"
+                 type="text"
+                 class="form-control"
+                 [ngModel]="estudiante?.fechaNacimiento"/>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group mb-3">
+          <label for="nacionalidad">Nacionalidad</label>
+          <input id="nacionalidad"
+                 name="nacionalidad"
+                 type="text"
+                 class="form-control"
+                 [ngModel]="estudiante?.nacionalidad"/>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group mb-3">
+          <label for="direccion">Direccion</label>
+          <input id="direccion"
+                 name="direccion"
+                 type="text"
+                 class="form-control"
+                 [ngModel]="estudiante?.direccion"/>
+        </div>
+      </div>
+
+
+      <div class="col-md-4">
+        <div class="form-group mb-3">
+          <label for="telefono">Telefono</label>
+          <input id="telefono"
+                 name="telefono"
+                 type="text"
+                 class="form-control"
+                 [ngModel]="estudiante?.telefono"/>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group mb-3">
+          <label for="matricula">Matricula</label>
+          <input id="matricula"
+                 name="matricula"
+                 type="text"
+                 class="form-control"
+                 [ngModel]="estudiante?.matricula"/>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group mb-3">
+          <label for="tipo">Tipo</label>
+          <input id="tipo"
+                 name="tipo"
+                 type="text"
+                 class="form-control"
+                 [ngModel]="estudiante?.tipo"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="closeModal();">
+        Cancelar
+      </button>
+      <button type="submit" class="btn btn-primary">
+        {{textButton}}
+      </button>
+    </div>
+
+  </form>
+</ng-template>
+

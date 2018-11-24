@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/index';
 import { Subject } from 'rxjs/index';
+
 import { AccountService } from './account.service';
 
 @Injectable()
 export class Principal {
+
   private userIdentity: any;
   private authenticated = false;
   private authenticationState = new Subject<any>();
 
-  constructor(private account: AccountService) {
-  }
+  constructor(private account: AccountService) { }
 
   authenticate(identity) {
     this.userIdentity = identity;

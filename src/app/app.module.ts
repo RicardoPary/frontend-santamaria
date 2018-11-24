@@ -1,40 +1,44 @@
-import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgModule} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {registerLocaleData} from '@angular/common';
 import {AppComponent} from './app.component';
-import {routing} from './app.routing';
-import {PagesModule} from './pages/pages.module';
-import {VulLoaderComponent} from './shared/components/loader/vul-loader.component';
-import {VulLoaderService} from './shared/components/loader/vul-loader.service';
-import {LoaderBarModule} from './layout/loader-bar';
-import localeBO from '@angular/common/locales/es-BO';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
+import {environment} from '../environments/environment';
+import {CommonModule} from '@angular/common';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {AppRoutingModule} from './app-routing.module';
+import {AuthGuard} from './shared';
 import {NgxWebstorageModule} from 'ngx-webstorage';
-registerLocaleData(localeBO);
+import {httpFactoryProvider, RequestInterceptor} from './shared/interceptor';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {AlertService} from './shared/components/alert/alert.service';
+
+// AoT requires an exported function for factories
+
 
 @NgModule({
+  declarations: [
+    AppComponent
+  ],
   imports: [
+    CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
-    PagesModule,
-    NgbModule,
+    HttpClientModule,
     NgxWebstorageModule.forRoot({prefix: 'kke-pro', separator: '-'}),
-    routing,
-    LoaderBarModule,
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
-  ],
-  declarations: [
-    AppComponent,
-    VulLoaderComponent
-  ],
-  exports: [
-    VulLoaderComponent
+    AppRoutingModule,
+    NgbModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production})
   ],
   providers: [
-    VulLoaderService
+    AlertService,
+    AuthGuard,
+    httpFactoryProvider(),
+    [{
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true,
+    }],
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  endPoint: 'http://foods.kraken.bo:8445/'
+  endPoint: 'http://localhost:8080/'
 };

@@ -1,38 +1,32 @@
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
-import { NgbAccordionModule, NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {NgbCarouselModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
-import { DashboardComponent } from './dashboard.component';
-import { SharedModule } from '../../shared/shared.module';
+import {DashboardRoutingModule} from './dashboard-routing.module';
+import {DashboardComponent} from './dashboard.component';
+import {
+  TimelineComponent,
+  NotificationComponent,
+  ChatComponent
+} from './components';
+import {StatModule} from '../../shared';
 
-import { InvoiceService } from '../../shared/service/invoice.service';
-import { ProductService } from '../../shared/service/product.service';
-import { BoxService } from '../../shared/service/box.service';
-import {NgBusyModule} from 'ng-busy';
-import {ReportService} from '../../shared/service/report.service';
-
-export const routes: Routes = [
-  { path: '', component: DashboardComponent }
-];
+import {PushComponent} from '../../shared/components/push.component';
 
 @NgModule({
   imports: [
-    FormsModule,
-    NgbTabsetModule,
-    SharedModule,
-    NgbAccordionModule,
-    RouterModule.forChild(routes),
-    NgBusyModule
+    CommonModule,
+    NgbCarouselModule.forRoot(),
+    NgbAlertModule.forRoot(),
+    DashboardRoutingModule,
+    StatModule
   ],
   declarations: [
-    DashboardComponent
-  ],
-  providers: [
-    InvoiceService,
-    ProductService,
-    BoxService,
-    ReportService
+    DashboardComponent,
+    TimelineComponent,
+    NotificationComponent,
+    ChatComponent,
+    PushComponent
   ]
 })
 export class DashboardModule {

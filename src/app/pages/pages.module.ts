@@ -1,31 +1,32 @@
-import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {routing} from './pages.routing';
-import {Pages} from './pages.component';
-import {LayoutModule} from '../layout/layout.module';
-import {PagesGuard} from './pages.guard';
-import {UserBindService} from '../shared/service/userBind.service';
-import {CompanyBindService} from '../shared/service/companyBind.service';
-import {ErrorComponent} from '../layout/error/error.component';
-import {BranchService} from '../shared/service/branch.service';
+import {NgbCollapseModule, NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
+
+import {PagesRoutingModule} from './pages-routing.module';
+import {PagesComponent} from './pages.component';
+import {SidebarComponent} from './components/sidebar/sidebar.component';
+import {HeaderComponent} from './components/header/header.component';
+import {CuentaService} from '../shared/services/cuenta.service';
+import {MateriaService} from '../shared/services/materia.service';
+
 
 @NgModule({
   imports: [
     CommonModule,
-    LayoutModule,
-    routing
+    PagesRoutingModule,
+    NgbDropdownModule.forRoot(),
+    NgbCollapseModule
   ],
   declarations: [
-    Pages,
-    ErrorComponent
+    PagesComponent,
+    SidebarComponent,
+    HeaderComponent
   ],
   providers: [
-    PagesGuard,
-    UserBindService,
-    CompanyBindService,
-    BranchService
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    CuentaService,
+    MateriaService
+  ]
 })
 export class PagesModule {
 }
+
