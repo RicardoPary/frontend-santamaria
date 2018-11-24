@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { routerTransition } from '../router.animations';
+import {ActividadCivicaService} from '../shared/services/actividad-civica.service';
+import {ReunionService} from '../shared/services/reunion.service';
 import {LoginService} from '../shared/auth';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {LoginModalComponent} from './login-modal/login-modal.component';
+import {DocenteFilter} from '../shared/models/docente';
+import {ReunionFilter} from '../shared/models/reunion';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
   animations: [routerTransition()]
 })
-export class LoginComponent implements OnInit {
+export class HomeComponent implements OnInit {
 
   public sliders: Array<any> = [];
   viewLogin = false;
@@ -21,6 +24,8 @@ export class LoginComponent implements OnInit {
   actividadesCivicas: any = [];
 
   constructor(public router: Router,
+              private actividadCivicaService: ActividadCivicaService,
+              private reunionService: ReunionService,
               private loginService: LoginService,
               private modalService: NgbModal) {
     this.sliders.push(
@@ -46,7 +51,17 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
+    this.actividadCivicaService.getAllActividadesCivicas(new DocenteFilter()).subscribe(
+      res => {
+        this.actividadesCivicas = res.body;
+      }
+    );
 
+    this.reunionService.getAllReuniones(new ReunionFilter).subscribe(
+      res => {
+        this.reuniones = res.body;
+      }
+    );
 
   }
 
@@ -66,7 +81,6 @@ export class LoginComponent implements OnInit {
   }
 
   openModal() {
-    this.modalService.open(LoginModalComponent, );
   }
 
 }

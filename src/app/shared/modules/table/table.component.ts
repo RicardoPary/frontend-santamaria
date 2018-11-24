@@ -3,7 +3,8 @@ import {
   Input,
   Output,
   EventEmitter,
-  OnChanges
+  OnChanges,
+  NgZone, OnInit, DoCheck, ViewChild, ElementRef
 } from '@angular/core';
 
 import * as _ from 'underscore';
@@ -13,7 +14,13 @@ import * as _ from 'underscore';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent implements OnChanges {
+export class TableComponent implements OnChanges, OnInit, DoCheck {
+
+  @Input() selectedRow = 0;
+
+  queueType = 'assigned';
+  internalNeedActionBox = false;
+  rowExpandIndex = -1;
 
   @Input() headers: any;
   @Input() data: any;
@@ -21,7 +28,8 @@ export class TableComponent implements OnChanges {
   @Input() page: number;
   @Input() total: number;
   @Input() filtersColumns: any;
-  @Input() minHeight: any = '500px';
+  @Input() minHeight: any = '450px';
+  @Input() viewPagesDates = true;
 
   @Output() clickRow = new EventEmitter<any>();
   @Output() clickButton = new EventEmitter<any>();
@@ -29,17 +37,58 @@ export class TableComponent implements OnChanges {
   @Output() clickSort = new EventEmitter<any>();
   @Output() clickSubmit = new EventEmitter<any>();
 
+  @Output() CheckboxChange = new EventEmitter<any>();
+  @Input() showReviewerMapping: boolean;
+  InternalShowReviewerMapping: boolean;
+
   listPerPage: number;
-  internalHeaders: any;
-  internalData: any;
+  internalHeaders = [];
+  internalData = [];
 
   colFilterIndex = -1;
   column = '';
   isDesc = false;
   pager: any = {};
   pagedItems: any[] = [];
+  @ViewChild('table') table: ElementRef;
 
-  constructor() {
+  listCheck: any[] = [];
+
+  constructor(private ngZone: NgZone) {
+
+    window.onresize = (e) => {
+      this.ngZone.run(() => {
+        if (this.table.nativeElement.scrollWidth > this.table.nativeElement.clientWidth) {
+          for (let i = this.internalHeaders.length - 1; i >= 0; i--) {
+            if (this.internalHeaders[i].responsive === false || this.internalHeaders[i].responsive === null) {
+              this.internalHeaders[i].responsive = true;
+              this.internalHeaders[i].responsiveSize = this.table.nativeElement.scrollWidth;
+              break;
+            }
+          }
+        } else {
+          this.internalHeaders.map(item => item.responsiveSize < this.table.nativeElement.clientWidth ? item.responsive = false : '');
+        }
+      });
+    };
+
+  }
+
+  ngOnInit() {
+  }
+
+  ngDoCheck() {
+    if (this.table.nativeElement.scrollWidth > this.table.nativeElement.clientWidth) {
+      for (let i = this.internalHeaders.length - 1; i >= 0; i--) {
+        if (this.internalHeaders[i].responsive === false || this.internalHeaders[i].responsive === null) {
+          this.internalHeaders[i].responsive = true;
+          this.internalHeaders[i].responsiveSize = this.table.nativeElement.scrollWidth;
+          break;
+        }
+      }
+    } else {
+      this.internalHeaders.map(item => item.responsiveSize < this.table.nativeElement.clientWidth ? item.responsive = false : '');
+    }
   }
 
   ngOnChanges(changes: any): void {
@@ -59,13 +108,19 @@ export class TableComponent implements OnChanges {
         this.internalHeaders.map(item => item.value = this.filtersColumns[item.name]);
         this.internalHeaders.map(item => item.statusFilter = item.value !== '' ? true : false);
       }
+      this.internalHeaders.map(item => item.responsive = null);
+      this.internalHeaders.map(item => item.responsiveSize = null);
     }
 
     if (changes !== undefined && changes.data !== undefined && changes.data.currentValue) {
+      this.selectedRow = 0;
       this.internalData = changes.data.currentValue;
       if (changes.data.currentValue instanceof Array) {
         this.pagedItems = changes.data.currentValue;
       }
+      this.internalData.map(
+        item => JSON.stringify(this.listCheck).indexOf(JSON.stringify(item)) !== -1 ? item.isChecked = true : ''
+      );
     }
 
     if (changes !== undefined && changes.pageSize !== undefined && changes.pageSize.currentValue) {
@@ -74,14 +129,20 @@ export class TableComponent implements OnChanges {
     }
 
     if (this.pager.totalItems <= 0) {
-      const page = this.pager.currentPage;
-      this.pager = this.getPager(this.total, page, this.listPerPage);
-      if (this.pager.totalItems > 0)
+      const currentPage = this.pager.currentPage;
+      this.pager = this.getPager(this.total, currentPage, this.listPerPage);
+      if (this.pager.totalItems > 0) {
         this.pager.currentPage = 1;
+      }
     }
 
     const page = this.pager.currentPage = this.page + 1;
     this.pager = this.getPager(this.total, page, this.listPerPage);
+
+
+    if (changes !== undefined && changes.showReviewerMapping !== undefined) {
+      this.InternalShowReviewerMapping = changes.showReviewerMapping.currentValue;
+    }
   }
 
   updateSort(item: any) {
@@ -97,8 +158,9 @@ export class TableComponent implements OnChanges {
     this.colFilterIndex = -1;
   }
 
-  selectedRow(item: any, col: any, index: number, e: any) {
-    this.clickRow.emit({item: item, col: col, i: index, event: e});
+  selectRow(item: any, index: number, e: any) {
+    this.selectedRow = index;
+    this.clickRow.emit({item: item, i: index, event: e});
   }
 
   clickButtonRow(item, col, i, event, description) {
@@ -129,7 +191,43 @@ export class TableComponent implements OnChanges {
     this.updatePagination(1);
   }
 
-  getPager(totalItems: number, currentPage: number = 1, pageSize: number = 11) {
+  ShowExpand(index: number) {
+    this.rowExpandIndex = index;
+    /*this.showActionBox = false;
+
+    this.plusExpande.emit({rowExpanded: true});*/
+  }
+
+  ShowExpandMinus() {
+    this.rowExpandIndex = -1;
+    /*this.showActionBox = false;
+
+    this.plusExpande.emit({rowExpanded: false});*/
+  }
+
+  verifyResponsive() {
+    let status = false;
+    this.internalHeaders.map(item => item.responsive ? status = true : '');
+    return status;
+  }
+
+  AssignCasesToCart(e: any, item: any) {
+
+    if (e.target.checked) {
+      (this.listCheck.indexOf(item) === -1) ? this.listCheck.push(item) : '';
+    } else {
+      delete item.isChecked;
+      for (let i = 0; i < this.listCheck.length; i++) {
+        if (JSON.stringify(this.listCheck[i]) === JSON.stringify(item)) {
+          this.listCheck.splice(i, 1);
+        }
+      }
+    }
+
+    this.CheckboxChange.emit(this.listCheck);
+  }
+
+  getPager(totalItems: number = 10, currentPage: number = 1, pageSize: number = 7) {
     const totalPages = Math.ceil(totalItems / pageSize);
     let startPage: number, endPage: number;
     if (totalPages <= 10) {
@@ -163,4 +261,5 @@ export class TableComponent implements OnChanges {
       pages: pages
     };
   }
+
 }

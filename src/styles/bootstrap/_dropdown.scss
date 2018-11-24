@@ -111,7 +111,7 @@
     background-color: transparent;
     // Remove CSS gradients if they're enabled
     @if $enable-gradients {
-      background-image: none;
+      background-images: none;
     }
   }
 }

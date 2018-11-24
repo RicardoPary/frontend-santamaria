@@ -12,6 +12,7 @@ import {NgxWebstorageModule} from 'ngx-webstorage';
 import {httpFactoryProvider, RequestInterceptor} from './shared/interceptor';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {AlertService} from './shared/components/alert/alert.service';
+import {LoginService} from './shared/services/login.service';
 
 // AoT requires an exported function for factories
 
@@ -38,7 +39,7 @@ import {AlertService} from './shared/components/alert/alert.service';
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptor,
       multi: true,
-    }],
+    }]
   ],
   bootstrap: [AppComponent]
 })

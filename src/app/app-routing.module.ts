@@ -5,6 +5,7 @@ import { AuthGuard } from './shared';
 
 const routes: Routes = [
   { path: '', loadChildren: './pages/pages.module#PagesModule'},
+  { path: 'home', loadChildren: './home/home.module#HomeModule' },
   { path: 'login', loadChildren: './login/login.module#LoginModule' },
   { path: 'signup', loadChildren: './signup/signup.module#SignupModule' },
   { path: 'error', loadChildren: './server-error/server-error.module#ServerErrorModule' },

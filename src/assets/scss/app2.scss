@@ -1,0 +1,106 @@
+
+.tabla_pdf th
+{
+ padding: 0px;
+ border: 0px;
+}
+.tabla_pdf td
+{
+ padding: 0px;
+ border: 0px;
+}
+.login-img{
+  background: url(/images/0011.jpg)no-repeat center top;
+  color: rgb(0, 123, 255);
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.carosel1{
+  background: url(/images/0033.jpeg)no-repeat center top;
+  color: rgb(0, 123, 255);
+  background-size: cover;
+  height: 91vh;
+  display: flex;
+  flex-direction: column;
+}
+.carosel2{
+  background: url(/images/0022.jpeg)no-repeat center top;
+  color: #000;
+  background-size: cover;
+  height: 91vh;
+  display: flex;
+  flex-direction: column;
+}
+.carosel3{
+  background: url(/images/0011.jpg)no-repeat center top;
+  color: #fff;
+  background-size: cover;
+  height: 91vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-left-la{
+  background: url(/images/11.jpg)no-repeat center top;
+  background-size: cover;
+  height: 100vh;
+  
+}
+
+
+.nav-col-ta{
+  background-color: #000;
+}
+
+.nav-col-ta h3{
+  color: #fff;
+}
+
+
+.ir-arriba{
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 3rem;
+  color: rgb(0, 123, 255);
+  text-decoration: none;
+  z-index: 99999;
+  line-height: 0;
+  transition: all .5s ease;
+}
+
+
+
+.contenedor-bloque-buscar
+{
+ display: flex;
+ width: 180px;
+ height: 50px;
+
+
+}
+
+.contenedor-bloque-buscar input[type="text"]
+{
+  
+  border-radius: 5px 0 0 5px;
+  padding: 1rem;
+  flex: 1 1 auto;
+}
+
+.contenedor-bloque-buscar input[type="submit"]
+{
+  border: 0;
+  flex:0 1 auto;
+  border-radius: 0 5px 5px 0;
+  background: rgb(0, 123, 255);
+  color: #fff;
+  padding: 0 1rem;
+}
+
+
+
+
+

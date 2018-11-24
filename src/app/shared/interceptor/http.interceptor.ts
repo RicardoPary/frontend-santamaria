@@ -135,7 +135,7 @@ export class InterceptedHttp extends Http {
    */
   private requestInterceptor(): void {
     // console.info('show loader box');
-    // $('#loader-box').css('display', 'inline-block');
+    // $('#loader-box').scss('display', 'inline-block');
   }
 
   /**
@@ -143,7 +143,7 @@ export class InterceptedHttp extends Http {
    */
   private responseInterceptor(): void {
     // console.info('hide loader box');
-    // $('#loader-box').css('display', 'none');
+    // $('#loader-box').scss('display', 'none');
   }
 
   /**

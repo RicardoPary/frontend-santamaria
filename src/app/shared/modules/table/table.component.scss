@@ -88,7 +88,7 @@ td.footable-sortable.foo_filter.footable-asc > span.fooicon, td.footable-sortabl
 
 .pagination li.disabled {
   opacity: 0.5;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  -ms-filter: "progid:DXimagesTransform.Microsoft.Alpha(Opacity=50)";
   filter: alpha(opacity=50);
 }
 
@@ -2104,7 +2104,7 @@ table.footable > tfoot > tr.footable-paging > td > span.label {
   display: inline-block;
 }
 
-/*Mailbox css*/
+/*Mailbox scss*/
 .mail-modal .modal-header .close.close_modal {
   margin-top: 10px;
 }
@@ -2582,7 +2582,7 @@ ul.fieldlist > li.summernotewrap {
   left: 0;
   margin: 0;
   opacity: 0;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  -ms-filter: "progid:DXimagesTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
   padding: 0;
   position: absolute;
@@ -2708,12 +2708,12 @@ tags-input .tags .tag-item {
   color: #676a6c;
 }
 
-.file .icon, .file .image {
+.file .icon, .file .images {
   height: 75px;
   overflow: hidden;
 }
 
-.file .icon, .file .image img {
+.file .icon, .file .images img {
   margin: auto;
 }
 
@@ -2837,8 +2837,8 @@ ul.downarrowul > li a {
   border: 1px solid #fff !important;
 }
 
-/*Mailbox css*/
-/*-------------- screening css here ---------------------*/
+/*Mailbox scss*/
+/*-------------- screening scss here ---------------------*/
 .flaticon-symbol-1.flagicon {
   bottom: -7px;
   left: 8px;
@@ -4191,7 +4191,7 @@ table tr td table .risk_score_color span        { font-size: 20px; height: 90px;
   line-height: 1.42857143;
   color: #666e7a;
   background-color: #fff;
-  background-image: none;
+  background-images: none;
   border: 1px solid #ccc;
   border-radius: 4px;
   -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
@@ -4517,7 +4517,7 @@ textarea.form-control {
   left: auto;
 }
 
-/*---------- master check css start ------------- */
+/*---------- master check scss start ------------- */
 .masterchk_wrap {
   padding-bottom: 0.938em;
 }
@@ -4754,8 +4754,8 @@ textarea.form-control {
   font-size: 0.750em
 }
 
-/*-------------- family start css here ---------------------- */
-/* flexible slider css*/
+/*-------------- family start scss here ---------------------- */
+/* flexible slider scss*/
 #flexiselDemo3 {
   display: none;
 }
@@ -5142,7 +5142,7 @@ ul.downarrowul.foundtab > li.active > a:hover {
   color: #dfae46;
 }
 
-.resolution_ac .icon-court .icon-image2vectortab2:before {
+.resolution_ac .icon-court .icon-images2vectortab2:before {
   color: #dfae46;
 }
 
@@ -5160,7 +5160,7 @@ ul.downarrowul.foundtab > li.active > a:hover {
   margin-left: -6px;
 }
 
-.resolution_body .icon-image2vectortab2:before {
+.resolution_body .icon-images2vectortab2:before {
   color: #00CED1;
 }
 
@@ -5378,7 +5378,7 @@ ul.downarrowul.foundtab > li.active > a:hover {
   padding: 0.857em 1.143em;
 }
 
-/*--------------------------- resolution_tab strat css here -------------------*/
+/*--------------------------- resolution_tab strat scss here -------------------*/
 .resolution_Tab {
   overflow: hidden
 }
@@ -5668,7 +5668,7 @@ textarea.form-control.textmsg:focus {
   padding: 4px 7px 5px;
 }
 
-/* ---- when fill addresolution css here ---- */
+/* ---- when fill addresolution scss here ---- */
 .fill_panel {
 }
 
@@ -5713,7 +5713,7 @@ textarea.form-control.textmsg:focus {
   padding: 2.5em 0
 }
 
-/*history css*/
+/*history scss*/
 .history_head {
   border: none;
 }
@@ -6140,7 +6140,7 @@ textarea.form-control.msgbox:focus {
   border-color: #ef5552;
 }
 
-/* -------------- attchement popup css here --------- */
+/* -------------- attchement popup scss here --------- */
 .table_Rattched {
 }
 
@@ -6244,7 +6244,7 @@ textarea.form-control.msgbox:focus {
   font-weight: 500
 }
 
-/*search popup css*/
+/*search popup scss*/
 
 .searchbox {
   position: relative;
@@ -9245,7 +9245,7 @@ a.disabled {
   margin-left: 0px;
 }
 
-/* Added the css for no record in summary for person and organization */
+/* Added the scss for no record in summary for person and organization */
 .noRecord {
   color: #666e7a;
   font-size: 0.813em;
@@ -9264,7 +9264,7 @@ textarea.ng-valid {
 
 /* textarea.ng-untouched{border-left:5px solid green !important;} */
 
-/* Custom css for organization master list*/
+/* Custom scss for organization master list*/
 span.leftAlign {
   width: calc(100% - 71px);
   margin: 0;

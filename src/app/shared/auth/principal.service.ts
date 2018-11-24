@@ -87,7 +87,7 @@ export class Principal {
     return this.authenticationState.asObservable();
   }
 
-  getImageUrl(): String {
-    return this.isIdentityResolved() ? this.userIdentity.imageUrl : null;
+  getimagesUrl(): String {
+    return this.isIdentityResolved() ? this.userIdentity.imagesUrl : null;
   }
 }
