@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { routerTransition } from '../router.animations';
 import {LoginService} from '../shared/auth';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {LoginModalComponent} from './login-modal/login-modal.component';
 
 @Component({
   selector: 'app-login',
@@ -66,7 +65,6 @@ export class LoginComponent implements OnInit {
   }
 
   openModal() {
-    this.modalService.open(LoginModalComponent, );
   }
 
 }

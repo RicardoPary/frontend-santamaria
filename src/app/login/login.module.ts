@@ -9,7 +9,6 @@ import {FormsModule} from '@angular/forms';
 import {AccountService, AuthStorage, LoginService} from '../shared/auth';
 import {AuthServerProvider} from '../shared/auth/auth-jwt.service';
 import {Principal} from '../shared/auth/principal.service';
-import { LoginModalComponent } from './login-modal/login-modal.component';
 
 @NgModule({
   imports: [
@@ -20,11 +19,7 @@ import { LoginModalComponent } from './login-modal/login-modal.component';
     NgbModalModule
   ],
   declarations: [
-    LoginComponent,
-    LoginModalComponent
-  ],
-  entryComponents: [
-    LoginModalComponent
+    LoginComponent
   ],
   providers: [
     ActividadCivicaService,
