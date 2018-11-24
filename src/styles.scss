@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@import '../node_modules/mdi/css/materialdesignicons.css';
+//@import '../node_modules/bourbon/app/assets/stylesheets/_bourbon';
+$output-bourbon-deprecation-warnings: false;
+@import '../node_modules/bootstrap/scss/bootstrap';
+@import 'assets/themes/material';
+
+/* SweetAler2 */
+@import '../node_modules/sweetalert2/src/sweetalert2';
+@import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";

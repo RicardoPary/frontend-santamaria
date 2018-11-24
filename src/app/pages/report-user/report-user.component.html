@@ -1,0 +1,85 @@
+<div class="table-content" [ngClass]="status ? 'toogled' : ' '">
+  <h3>VENTA DE PRODUCTO
+    <div class="btn-options">
+      <a class="btn btn-link" (click)="clickEvent()" placement="bottom" ngbTooltip="Buscar..."><i
+        [ngClass]="status ? 'icon-search' : 'icon-chevron-right'"></i></a>
+    </div>
+  </h3>
+  <div class="invoice-empty text-center" style="display: none;">
+    <img class="logo" src="../../../assets/themes/materia/images/Invoice-Empty.png"/><br/>
+    <p><i>Aún no se han registrado facturas a tu nombre</i></p>
+  </div>
+  <div class="table-box">
+    <div [ngBusy]="{busy: subscriptionTable, message: 'Cargando...'}">
+      <app-table
+        [data]="products"
+        [headers]="headersColumns"
+        [total]="totalProducts"
+        [pageSize]="pageSize"
+        [filtersColumns]="filtersColumns"
+        [page]="page"
+        (clickPagination)="clickPagination($event)"
+        (clickSort)="clickSort($event)">
+      </app-table>
+    </div>
+  </div>
+</div>
+<div class="filter-content" [ngClass]="status ? 'toogled' : ' '">
+  <div class="filter-box">
+    <form>
+      <div class="form-group">
+        <div class="input-group">
+          <label>Desde:</label>
+        </div>
+        <div class="input-group">
+          <input class="form-control"
+                 placeholder="dd/MM/yyyy"
+                 name="dateFrom"
+                 ngbDatepicker
+                 #dateFromDate="ngbDatepicker"
+                 [maxDate]="date"
+                 (ngModelChange)="submitFromDate($event)"
+                 [(ngModel)]="fromDate"
+                 readonly="readonly"
+                 style="background: white;">
+          <div class="input-group-addon" (click)="dateFromDate.toggle(); dateToDate.isOpen()?dateToDate.toggle():''">
+            <i class="icon-calendar"></i>
+          </div>
+        </div>
+        <div class="mt-3 input-group">
+          <label>Hasta:</label>
+        </div>
+        <div class="input-group">
+          <input class="form-control"
+                 placeholder="dd/MM/yyyy"
+                 name="dateTo"
+                 ngbDatepicker
+                 #dateToDate="ngbDatepicker"
+                 [maxDate]="date"
+                 [minDate]="minDateTo"
+                 (ngModelChange)="submitToDate($event)"
+                 [(ngModel)]="toDate"
+                 readonly="readonly"
+                 style="background: white;">
+          <div class="input-group-addon" (click)="dateToDate.toggle();dateFromDate.isOpen()?dateFromDate.toggle():''">
+            <i class="icon-calendar"></i>
+          </div>
+        </div>
+        <div class="input_group">
+          <label >Nº de Orden</label>
+          <form (ngSubmit)="submitOrderNumber(formOrderNumber)" #formOrderNumber="ngForm" autocomplete="off">
+          <input class="form-control"
+                 name="orderNumber"
+                 id="orderNumber"
+                 placeholder="Ingrese un numero"
+                 [ngModel]="orderNumberValue"
+                 type="number">
+          </form>
+        </div>
+      </div>
+      <div class="reset-button" *ngIf="statusReset" (click)="reset()">
+        <button type="button" class="btn btn-default">Resetear Filtros</button>
+      </div>
+    </form>
+  </div>
+</div>

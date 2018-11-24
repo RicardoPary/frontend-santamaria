@@ -1,0 +1,274 @@
+<div class="table-content" [ngClass]="status ? 'toogled' : ' '">
+  <h3>PRODUCTOS
+    <span class="btn-options">
+      <a class="btn btn-sm btn-outline-secondary btn-icon-space" routerLink="/pages/product-enter"><i
+        class="icon-user-plus"></i> Nuevo Producto</a>
+      <a class="btn btn-link" placement="bottom" ngbTooltip="Buscar..." (click)="clickEvent()">
+        <i [ngClass]="status ? 'icon-search' : 'icon-chevron-right'"></i>
+      </a>
+    </span>
+  </h3>
+
+  <div class="table-box">
+    <div [ngBusy]="{busy: subscriptionTable, message: 'Cargando...'}">
+      <app-table
+        [data]="products"
+        [headers]="headersColumns"
+        [total]="totalProducts"
+        [pageSize]="pageSize"
+        [filtersColumns]="filtersColumns"
+        [page]="page"
+        (clickPagination)="clickPagination($event)"
+        (clickSort)="clickSort($event)"
+        (clickButton)="clickButton($event)">
+      </app-table>
+    </div>
+  </div>
+</div>
+
+<div class="filter-content" [ngClass]="status ? 'toogled' : ' '">
+  <div class="filter-box">
+    <div class="form-search">
+      <form (ngSubmit)="submitName(formName)" #formName="ngForm" autocomplete="off">
+        <input type="text"
+               id="nameFilter"
+               name="nameFilter"
+               class="form-control form-control-sm"
+               #nameFilter="ngModel"
+               pattern="[0-9A-Za-z-]{1,15}"
+               placeholder="nombre producto"
+               [ngModel]="nameValue">
+        <i class="icon-search"></i>
+        <div *ngIf="!formName.valid" style="color: #a94442; font-size: 12px; font-weight: normal;">
+          texto incorrecto.
+        </div>
+      </form>
+    </div>
+    <br>
+
+    <form (ngSubmit)="submitStock(formStock)" #formStock="ngForm" autocomplete="off">
+      <label for="stockFilter">Stock</label>
+      <input name="stockFilter"
+             id="stockFilter"
+             class="form-control"
+             [(ngModel)]="stockValue"
+             type="text">
+    </form>
+
+    <br>
+    <form (ngSubmit)="submitSalePrice(formSalePrice)" #formSalePrice="ngForm" autocomplete="off">
+      <label for="salePriceFilter">Precio de venta Bs.</label>
+      <input name="salePriceFilter"
+             id="salePriceFilter"
+             class="form-control"
+             [(ngModel)]="salePriceValue"
+             type="text">
+    </form>
+
+    <br>
+    <div class="">
+      <span style="font-size: 14px;">Inventario</span> <br>
+      <br>
+
+      <div class="container">
+
+        <div class="form-check">
+          <input class="form-check-input"
+                 name="inventory"
+                 type="radio"
+                 id="conStock"
+                 [checked]="valueInventory === true ? true : false"
+                 (change)="changeInventory('conStock')"
+                 #conStock>
+          <label class="form-check-label" for="conStock">Con stock</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input"
+                 name="inventory"
+                 type="radio"
+                 id="sinStock"
+                 [checked]="valueInventory === false ? true : false"
+                 (change)="changeInventory('sinStock')"
+                 #sinStock>
+          <label class="form-check-label" for="sinStock">Sin stock</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input"
+                 name="inventory"
+                 type="radio"
+                 id="ninguno"
+                 [checked]="valueInventory === null ? true : false"
+                 (change)="changeInventory('ambos')"
+                 #ambos>
+          <label class="form-check-label" for="ninguno">Ambos</label>
+        </div>
+
+      </div>
+
+
+      <div class="reset-button" *ngIf="statusReset" (click)="reset()">
+        <button type="button" class="btn btn-default"><i class="mdi mdi-refresh" style="margin-left: -15px;"></i>
+          Resetear Filtros
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <ng-template #modalProductEdit>
+    <form class="mb-0" (ngSubmit)="modifyProduct(form)" #form="ngForm">
+      <div class="modal-header">
+        <h4 class="modal-title">Editar Producto</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group mb-3">
+                <label for="name">Nombre</label>
+                <input id="name"
+                       name="name"
+                       type="text"
+                       class="form-control"
+                       [ngModel]="product?.name"/>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group mb-3">
+                <label for="type">Tipo</label>
+                <input id="type"
+                       name="type"
+                       type="text"
+                       class="form-control"
+                       [ngModel]="product?.type"/>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group mb-3">
+                <label for="description">Descripción</label>
+                <input id="description"
+                       name="description"
+                       type="text"
+                       class="form-control"
+                       [ngModel]="product?.description"/>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group mb-3">
+                <label for="sale_price">Precio de venta</label>
+                <input id="sale_price"
+                       name="sale_price"
+                       type="text"
+                       class="form-control"
+                       [ngModel]="product?.salePrice"/>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group mb-3">
+                <label for="wholesale_price">Precio por mayor</label>
+                <input id="wholesale_price"
+                       name="wholesale_price"
+                       type="text"
+                       class="form-control"
+                       [ngModel]="product?.wholesalePrice"/>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group mb-3">
+                <label for="purchase_price">Precio de compra</label>
+                <input id="purchase_price"
+                       name="purchase_price"
+                       type="text"
+                       class="form-control"
+                       [ngModel]="product?.purchasePrice"/>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group mb-3">
+                <label for="marke">Marca</label>
+                <input id="marke"
+                       name="marke"
+                       type="text"
+                       class="form-control"
+                       [ngModel]="product?.marke"/>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group mb-3">
+                <label for="discount">Descuento</label>
+                <input id="discount"
+                       name="discount"
+                       type="text"
+                       class="form-control"
+                       [ngModel]="product?.discount"/>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group mb-3">
+                <label for="barcode">Codigo de barras</label>
+                <input id="barcode"
+                       name="barcode"
+                       type="text"
+                       class="form-control"
+                       [ngModel]="product?.barcode"/>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group mb-3">
+                <label>Categoría</label>
+                <mat-form-field>
+                  <mat-select [ngModel]="product?.category?.id"
+                              id="category"
+                              name="category"
+                              #role="ngModel"
+                              required>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="role.hasError('required')">debe seleccionar una categoria.</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="pb-2">Inventario</label>
+                <span>No</span>
+                <mat-slide-toggle
+                  class="px-2"
+                  id="inventory"
+                  name="inventory"
+                  style="line-height: 14px;"
+                  [ngModel]="product?.inventory"
+                  #inventory>
+                </mat-slide-toggle>
+                <span>Si</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">
+          Cancelar
+        </button>
+        <button type="submit" class="btn btn-primary">
+          Editar
+        </button>
+      </div>
+    </form>
+  </ng-template>

@@ -1,0 +1,172 @@
+<div class="table-style">
+  <div class="" [style.min-height]="minHeight">
+    <table class="table">
+      <thead>
+      <tr style="box-sizing: border-box;">
+        <ng-template ngFor let-item [ngForOf]="this.internalHeaders" let-i="index">
+          <th class="cabeza">
+               <span class="update-sort">
+               {{item.displayName}}
+               </span>
+
+            <span (click)="updateSort(item)" class="update-sort" *ngIf="item.canSort">
+               <img src="../../../../assets/image/sort.png" style="width: 18px; height: 18px; margin-top: -5px;"
+                    *ngIf="item.canSort && column != item.name">
+               <i class="mdi mdi-sort-ascending mdi-18px" aria-hidden="true" style="color: black;"
+                  *ngIf="item.canSort && column == item.name && !isDesc"></i>
+               <i class="mdi mdi-sort-descending mdi-18px" aria-hidden="true" style="color: black;"
+                  *ngIf="item.canSort && column == item.name && isDesc"></i>
+               </span>
+            <span *ngIf="item.canFilter"
+                  [ngClass]="{ 'icon-funnel1': item.statusFilter === false,
+               'icon-funnel2': item.statusFilter === true}"
+                  class="iconmoon icon-funnel filter"
+                  (click)="clickFilterIcon(i)" style="cursor: pointer;text-align: left;">
+               <i class="mdi mdi-filter-outline mdi-18px" aria-hidden="true"
+                  *ngIf="item.statusFilter === false" style="color: #ffd775;"></i>
+              <i class="mdi mdi-filter mdi-18px" aria-hidden="true"
+                 *ngIf="item.statusFilter === true" style="color: #ffd775;"></i>
+               </span>
+            <div *ngIf="colFilterIndex == i" class="fitlerBox" style="text-align: left;">
+              <app-filter-column
+                [filterValue]="item.value"
+                [filterName]="item.name"
+                [pattern]="item.pattern"
+                [optionsSelect]="item.optionsSelect?item.optionsSelect:null"
+                [messageError]="item.messageError"
+                (clickCloseFilter)="closeFilter()"
+                (clickSubmit)="submitFilter($event)">
+              </app-filter-column>
+            </div>
+          </th>
+        </ng-template>
+      </tr>
+      </thead>
+
+
+      <tbody>
+      <ng-template ngFor let-item [ngForOf]="this.pagedItems" let-i="index">
+        <tr class="tr-style">
+          <ng-template ngFor let-col [ngForOf]="this.internalHeaders" let-i="index">
+            <td (click)="selectedRow(item,col,i,$event)">
+
+              <div *ngIf="col.type === 'image'">
+                <img alt="Card image cap"
+                     style="width: 68px;"
+                     src="../../../../assets/themes/materia/images/image.png">
+              </div>
+              <div *ngIf="col.type === 'money'">{{ item[col.name] | number:'1.2' || '' }} Bs</div>
+
+              <div *ngIf="col.type === 'productActions'">
+                <i class="mdi mdi-pencil mdi-24px" (click)="clickButtonRow(item,col,i,$event,'editProduct')"></i>
+                <i class="mdi mdi-delete mdi-24px" (click)="clickButtonRow(item,col,i,$event,'deleteProduct')"></i>
+              </div>
+
+              <div *ngIf="col.type === 'actions'">
+                <i class="mdi mdi-pencil mdi-24px" (click)="clickButtonRow(item,col,i,$event,'edit')"></i>
+                <i class="mdi mdi-delete mdi-24px" (click)="clickButtonRow(item,col,i,$event,'delete')"></i>
+                <i class="mdi mdi-eye mdi-24px" (click)="clickButtonRow(item,col,i,$event,'view')"></i>
+              </div>
+
+
+              <div *ngIf="col.type === 'userActions'">
+                <button class="btn btn-sm btn-outline-info"
+                        [disabled]="item.id === idUser"
+                        (click)="clickButtonRow(item,col,i,$event,'editUser')">
+                  <i class="mdi mdi-lead-pencil"></i> Editar
+                </button>
+                <button class="btn btn-sm btn-outline-secondary"
+                        [disabled]="item.id === idUser"
+                        (click)="clickButtonRow(item,col,i,$event,'resetUser')">
+                  <i class="mdi mdi-redo-variant"></i> Resetear Contraseña
+                </button>
+              </div>
+
+              <div *ngIf="col.type === 'actionsInventory'">
+                <i class="mdi mdi-delete mdi-24px" (click)="clickButtonRow(item,col,i,$event,'delete')"></i>
+                <i class="mdi mdi-eye mdi-24px" (click)="clickButtonRow(item,col,i,$event,'view')"></i>
+              </div>
+
+              <div *ngIf="col.type === 'statusUser'">
+                <button class="btn btn-sm btn-danger"
+                        [disabled]="item.id === idUser"
+                        *ngIf="!item[col.name]"
+                        (click)="clickButtonRow(item,col,i,$event,'desactivado')">
+                  Desactivado
+                </button>
+                <button class="btn btn-sm btn-success"
+                        [disabled]="item.id === idUser"
+                        *ngIf="item[col.name]"
+                        (click)="clickButtonRow(item,col,i,$event,'activado')">
+                  Activado
+                </button>
+              </div>
+              <div *ngIf="col.type === 'rolUserObject'">
+                <span class="badge badge-default">{{item[col.name] ? item[col.name][col.index] : 'ninguno'}}</span>
+              </div>
+              <div *ngIf="col.type === 'object'">{{item[col.name] ? item[col.name][col.index] : 'ninguno'}}</div>
+              <div *ngIf="col.type === 'text'">{{item[col.name] || 'Ninguno'}}</div>
+              <div *ngIf="col.type === 'number'">{{item[col.name] || 0}}</div>
+              <div *ngIf="col.type === 'numberPorcent'">{{item[col.name] ? item[col.name] + ' %' : '0 %'}}</div>
+              <div *ngIf="col.type === 'date'">{{item[col.name] | date:'dd/MM/yyyy'}}</div>
+              <div *ngIf="col.type === 'dateTime'">{{item[col.name] | date:'dd/MM/yyyy hh:mm:ss '}}</div>
+              <div *ngIf="col.type === 'boolean'">{{item[col.name]?'Si':'No'}}</div>
+              <div *ngIf="col.type === 'booleanInventory'">
+                <i class="mdi mdi-check mdi-24px" *ngIf="item[col.name]"></i>
+                <i class="mdi mdi-close mdi-24px" *ngIf="!item[col.name]"></i>
+              </div>
+            </td>
+          </ng-template>
+        </tr>
+      </ng-template>
+      </tbody>
+    </table>
+    <tfoot *ngIf="total === 0">
+    <span style="font-family: Arial; font-size: 15px; text-align: center;">
+      No existen registros.
+      </span>
+    </tfoot>
+  </div>
+</div>
+
+<div class="VDtable_footer" *ngIf="total > 0">
+  <div class="row">
+    <div class="col-sm-12" style="float: left;">
+         <span class="label label-default">
+         {{pager.currentPage}} de {{pager.totalPages}}, Registros Totales - {{pager.totalItems}}
+         </span>
+    </div>
+
+    <div class="col-sm-12 d-flex justify-content-center mb-3 registration-text">
+      <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+        <li class="page-item">
+          <button [disabled]="pager.currentPage === 1" (click)="updatePagination(1)"
+                  style="background: none; border: none; margin-top: 4px;">
+            <i class="mdi mdi-chevron-double-left" aria-hidden="true"></i>
+          </button>
+        </li>
+        <li class="page-item">
+          <button [disabled]="pager.currentPage === 1" (click)="updatePagination(pager.currentPage - 1)"
+                  style="background: none; border: none; margin-top: 4px;">
+            <i class="mdi mdi-chevron-left" aria-hidden="true"></i>
+          </button>
+        </li>
+        <li class="page-item" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+          <a class="page-link" (click)="updatePagination(page)">{{page}}</a>
+        </li>
+        <li class="page-item">
+          <button [disabled]="pager.currentPage === pager.totalPages" (click)="updatePagination(pager.currentPage + 1)"
+                  style="background: none; border: none; margin-top: 4px;">
+            <i class="mdi mdi-chevron-right" aria-hidden="true"></i>
+          </button>
+        </li>
+        <li class="page-item">
+          <button [disabled]="pager.currentPage >= pager.totalPages" (click)="updatePagination(pager.totalPages)"
+                  style="background: none; border: none; margin-top: 4px;">
+            <i class="mdi mdi-chevron-double-right" aria-hidden="true"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

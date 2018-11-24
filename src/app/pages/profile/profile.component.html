@@ -1,0 +1,151 @@
+<h3>EDITAR PERFIL</h3>
+<div class="container-fluid no-paddings">
+
+  <ngb-tabset class="nav-center">
+    <ngb-tab title="Datos del Perfil">
+      <ng-template ngbTabContent>
+        <div *ngIf="user" class="row no-gutters">
+          <div class="col-md-3 card-list text-center">
+            <div class="image-profile-container">
+              <img class="card-img-top" src="{{user.imageUrl || '../../../assets/themes/materia/images/Avatar-User.png'}}" alt="Card image cap">
+              <button class="btn btn-primary btn-circle" (click)="open()"><i class="mdi mdi-pencil"></i></button>
+            </div>
+            <p class="alert alert-info alert-sm"><i class="mdi mdi-info"></i> Tamaño de Foto recomendado:<br/>100px x 100px</p>
+            <p><i class="mdi mdi-history"></i>Usuario desde<br/>{{user.createdDate | vulDateStringMonth }}</p>
+          </div>
+          <div class="col-md-9">
+            <form class="profile-form" (ngSubmit)="saveUserForm()" #userForm="ngForm" >
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="firstName">Nombre</label>
+                    <input id="firstName" type="text" class="form-control form-control-big" placeholder="Ejm. Juan"
+                           required minlength="3" maxlength="24"
+                           [(ngModel)]="user.firstName" name="firstName">
+                    <div *ngIf="userFormErrors.firstName">
+                      <small class="form-text text-danger">
+                        {{ userFormErrors.firstName }}
+                      </small>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="lastName">Apellido</label>
+                    <input id="lastName" type="text" class="form-control form-control-big" placeholder="Ejm. Perez"
+                           required minlength="3" maxlength="24"
+                           [(ngModel)]="user.lastName" name="lastName">
+                    <div *ngIf="userFormErrors.lastName">
+                      <small class="form-text text-danger">
+                        {{ userFormErrors.lastName }}
+                      </small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input id="email"
+                           type="text"
+                           class="form-control"
+                           placeholder="Ejm. juan@mail.com"
+                           required
+                           minlength="4"
+                           maxlength="40"
+                           email
+                           #email="ngModel"
+                           [(ngModel)]="user.email"
+                           name="email">
+                    <div *ngIf="userFormErrors.email || email.invalid">
+                      <small class="form-text text-danger">
+                        {{ userFormErrors.email }}
+                      </small>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="login">Nombre de Usuario</label>
+                    <input id="login" type="text" class="form-control" placeholder="Ejm. juan" readonly
+                           [(ngModel)]="user.login" name="login">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="offset-md-2 col-md-6 text-center">
+                  <button type="submit" class="btn btn-primary"
+                          [disabled]="!userForm.form.valid">GUARDAR CAMBIOS</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab >
+      <ng-template ngbTabTitle>
+        <div>Cambiar Contraseña</div>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <form #changePasswordForm="ngForm" class=" profile-form" (ngSubmit)="saveChangePassForm()">
+          <div class="row">
+            <div class="offset-md-3 col-md-6">
+              <div class="form-group">
+                <label for="newPassword">Nueva Contraseña</label>
+                <input type="password" id="newPassword" class="form-control"
+                       minlength=4 maxlength=50 required name="newPassword"
+                       [(ngModel)]="newPassword" #inputPassword="ngModel">
+                <div *ngIf="inputPassword.dirty && inputPassword.invalid">
+                  <small class="form-text text-danger"
+                         *ngIf="inputPassword?.errors.required">
+                    La contraseña es requerido.
+                  </small>
+                  <small class="form-text text-danger"
+                         *ngIf="inputPassword?.errors.minlength">
+                    La contraseña debe tener al menos 4 caracteres.
+                  </small>
+                  <small class="form-text text-danger"
+                         *ngIf="inputPassword?.errors.maxlength">
+                    La contraseña no puede tener más de 50 caracteres.
+                  </small>
+                </div>
+                <vul-password-strength-bar [passwordToCheck]="newPassword"></vul-password-strength-bar>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="offset-md-3 col-md-6">
+              <div class="form-group">
+                <label for="confirmPassword">Verificar Contraseña</label>
+                <input type="password" id="confirmPassword" class="form-control"
+                       minlength=4 maxlength=50 required
+                       [(ngModel)]="confirmPassword" name="confirmPassword" #confirmInputPassword="ngModel">
+                <div *ngIf="confirmInputPassword.dirty && confirmInputPassword.invalid">
+                  <small class="form-text text-danger"
+                         *ngIf="confirmInputPassword?.errors.required">
+                    La confirmación de contraseña es requerida.
+                  </small>
+                  <small class="form-text text-danger"
+                         *ngIf="confirmInputPassword?.errors.minlength">
+                    La confirmación de contraseña debe tener al menos 4 caracteres.
+                  </small>
+                  <small class="form-text text-danger"
+                         *ngIf="confirmInputPassword?.errors.maxlength">
+                    La confirmación de contraseña no puede tener más de 50 caracteres.
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="offset-md-3 col-md-6 text-center">
+              <button type="submit" class="btn btn-primary" [disabled]="!changePasswordForm.form.valid">GUARDAR CAMBIOS</button>
+            </div>
+          </div>
+        </form>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div>

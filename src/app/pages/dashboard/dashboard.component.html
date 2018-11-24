@@ -1,0 +1,95 @@
+<div class="document-content">
+  <h3 class="py-2 px-4">DASHBOARD
+    <span class="form-inline form-title">
+      <select class="form-control" name="monthFilter" [ngModel]="monthCurrent" (change)="changeMonth(month.value)"
+              #month>
+        <option *ngFor="let month of months" [value]="month.value">
+          <small>{{month.description}}</small>
+        </option>
+      </select>      &nbsp;&nbsp;
+      <select #anio class="form-control" name="yearFilter" [ngModel]="yearCurrent" (change)="changeYear(year.value)"
+              #year>
+        <option *ngFor="let year of years" [value]="year">
+          <small>{{year}}</small>
+        </option>
+      </select>
+    </span>
+  </h3>
+  <div class="invoice-empty text-center" style="display: none;">
+    <img class="logo" src="../../../assets/themes/materia/images/Invoice-Empty.png"/><br/>
+    <p><i>Aún no se han registrado facturas a tu nombre</i></p>
+  </div>
+  <div class="document-box dashboard container-fluid">
+    <div class="variables-box row">
+      <div class="col-md-3">
+        <div class="card card-default card-green text-center">
+          <div class="card-block">
+            <h2>BOB {{total}}</h2>
+            <p>Ventas del dia</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card card-default card-blue text-center">
+          <div class="card-block">
+            <h2>{{count}}</h2>
+            <p>Pedidos del dia</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card card-default card-orange text-center">
+          <div class="card-block">
+            <h2>{{countP}}</h2>
+            <p>Items registrados</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card card-default card-yellow text-center">
+          <div class="card-block">
+            <h2>{{countC}}</h2>
+            <p>Vendedores activos</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cards-box row">
+
+      <div class="col-xl-12 col-md-12 col-sm-12 col-xs-12 pb-3">
+        <div class="card card-default card-full">
+          <div class="card-block">
+            <h6 class="card-title">Ventas por Hora del Día Actual</h6>
+            <div [ngBusy]="{busy: subscriptionSalesReportPerHour, message: 'Cargando...'}">
+              <div id="chart1" style="width: 100%; height: 100%; margin: 0 auto"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12">
+        <div class="card card-default card-full">
+          <div class="card-block">
+            <h6 class="card-title">Ventas Mensuales del Año {{ yearCurrent }}</h6>
+            <div [ngBusy]="{busy: subscriptionMonthSaleReport, message: 'Cargando...'}">
+              <div id="chart2" style="width: 100%; height: 100%; margin: 0 auto"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12">
+        <div class="card card-default card-full">
+          <div class="card-block">
+            <h6 class="card-title">Ventas Diarias del Mes de {{convertMonth(monthCurrent)}} del {{yearCurrent}}</h6>
+            <div [ngBusy]="{busy: subscriptionReportDailySale, message: 'Cargando...'}">
+              <div id="chart3" style="width: 100%; height: 100%; margin: 0 auto"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
