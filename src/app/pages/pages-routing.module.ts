@@ -22,7 +22,8 @@ const routes: Routes = [
       {path: 'inscripcion', loadChildren: './inscripcion/inscripcion.module#InscripcionModule'},
       {path: 'curso', loadChildren: './curso/curso.module#CursoModule'},
       {path: 'actividad-civica', loadChildren: './actividad-civica/actividad-civica.module#ActividadCivicaModule'},
-      {path: 'plantel-administrativo', loadChildren: './plantel-administrativo/plantel-administrativo.module#PlantelAdministrativoModule'}
+      {path: 'plantel-administrativo', loadChildren: './plantel-administrativo/plantel-administrativo.module#PlantelAdministrativoModule'},
+      {path: 'user', loadChildren: './user/user.module#UserModule'},
     ]
   }
 ];
