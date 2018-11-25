@@ -11,3 +11,4 @@ export * from './role.service';
 export * from './staff.service';
 export * from './type-attention.service';
 export * from './supply.service';
+export * from './provider.service';

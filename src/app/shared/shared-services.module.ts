@@ -14,7 +14,8 @@ import {
   InventoryService,
   MedicalHistoryService,
   TypeAttentionService,
-  SupplyService
+  SupplyService,
+  ProviderService
 } from './services';
 
 import {RequestInterceptor} from './blocks/intercertor/request.interceptor';
@@ -44,6 +45,7 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
     TypeAttentionService,
     SupplyService,
     AlertService,
+    ProviderService,
     NgbActiveModal
   ]
 })

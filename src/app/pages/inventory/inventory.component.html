@@ -8,14 +8,14 @@
   </h3>
   <div class="table-box">
     <app-table
-      [data]="aulas"
+      [data]="data"
       [headers]="headersColumns"
-      [total]="totalAulas"
+      [total]="totalData"
       [pageSize]="pageSize"
-      [filtersColumns]="filtersColumns"
       [page]="page"
       (clickPagination)="clickPagination($event)"
-      (clickSort)="clickSort($event)">
+      (clickSort)="clickSort($event)"
+      (clickButton)="clickButtonRow($event)">
     </app-table>
   </div>
 </div>
