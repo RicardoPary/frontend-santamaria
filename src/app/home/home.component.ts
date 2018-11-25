@@ -1,12 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { routerTransition } from '../router.animations';
-import {ActividadCivicaService} from '../shared/services/actividad-civica.service';
-import {ReunionService} from '../shared/services/reunion.service';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {routerTransition} from '../router.animations';
 import {LoginService} from '../shared/auth';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {DocenteFilter} from '../shared/models/docente';
-import {ReunionFilter} from '../shared/models/reunion';
 
 @Component({
   selector: 'app-login',
@@ -24,8 +20,6 @@ export class HomeComponent implements OnInit {
   actividadesCivicas: any = [];
 
   constructor(public router: Router,
-              private actividadCivicaService: ActividadCivicaService,
-              private reunionService: ReunionService,
               private loginService: LoginService,
               private modalService: NgbModal) {
     this.sliders.push(
@@ -51,18 +45,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-    this.actividadCivicaService.getAllActividadesCivicas(new DocenteFilter()).subscribe(
-      res => {
-        this.actividadesCivicas = res.body;
-      }
-    );
-
-    this.reunionService.getAllReuniones(new ReunionFilter).subscribe(
-      res => {
-        this.reuniones = res.body;
-      }
-    );
-
   }
 
   onLoggedin() {
@@ -70,14 +52,14 @@ export class HomeComponent implements OnInit {
   }
 
 
-  login (form) {
-    this.loginService.login ({
+  login(form) {
+    this.loginService.login({
       username: form.value.username,
       password: form.value.password,
       rememberMe: false
-    }).then (() => {
-      this.router.navigate (['/dashboard']);
-    }).catch ((e) => console.log(e));
+    }).then(() => {
+      this.router.navigate(['/dashboard']);
+    }).catch((e) => console.log(e));
   }
 
   openModal() {
