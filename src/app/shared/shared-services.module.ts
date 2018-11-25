@@ -19,6 +19,7 @@ import {
 
 import {RequestInterceptor} from './blocks/intercertor/request.interceptor';
 import {AlertService} from './components/alert/alert.service';
+import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   providers: [
@@ -42,7 +43,8 @@ import {AlertService} from './components/alert/alert.service';
     MedicalHistoryService,
     TypeAttentionService,
     SupplyService,
-    AlertService
+    AlertService,
+    NgbActiveModal
   ]
 })
 export class SharedServicesModule {

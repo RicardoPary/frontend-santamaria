@@ -5,6 +5,7 @@ import {LocalStorageService} from 'ngx-webstorage';
 import {Subscription} from 'rxjs/index';
 import {StaffService} from '../../shared/services';
 import {AlertService} from '../../shared/components/alert/alert.service';
+import {CategoryFilter} from '../../shared/models/category.model';
 
 @Component({
   templateUrl: './category.component.html',
@@ -14,25 +15,45 @@ import {AlertService} from '../../shared/components/alert/alert.service';
 export class CategoryComponent implements OnInit, OnDestroy {
 
   modal: NgbModalRef;
-  categories: any = [];
   title = '';
   type = '';
   category: any;
   idBranch: any;
   subscriptionBranchService: Subscription = new Subscription();
+
+
   subscriptionTable: Subscription;
+  totalData: number;
+  pageSize: number;
+  page: number;
+  data: any = [];
 
   constructor(private modalService: NgbModal,
-              private alertService: AlertService,
               private categoryService: CategoryService,
+              private alertService: AlertService,
               public activeModal: NgbActiveModal,
               private productService: StaffService,
               private $localStorage: LocalStorageService) {
 
+    this.categoryService.currentCategoryFilter().subscribe(
+      dates => {
+        this.pageSize = dates.size;
+        this.page = dates.page;
+        this.callService(dates);
+      }
+    );
 
   }
 
   ngOnInit() {
+  }
+
+  callService(categoryFilter: CategoryFilter) {
+    this.categoryService.getAllCategories(categoryFilter).subscribe(res => {
+      console.log(res);
+      this.totalData = parseFloat(res.headers.get('X-Total-Count'));
+      this.data = res.body;
+    });
   }
 
   ngOnDestroy() {
