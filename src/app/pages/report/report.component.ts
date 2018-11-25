@@ -1,14 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {EstudianteFilter} from '../../shared/models/estudiante';
 import {PersonaService} from '../../shared/services/persona.service';
-import {EstudianteService} from '../../shared/services/estudiante.service';
 import {DocenteService} from '../../shared/services/docente.service.';
 import {DocenteFilter} from '../../shared/models/docente';
 import {Subscription} from 'rxjs/index';
 
 @Component({
-  selector: 'app-docente',
   templateUrl: './report.component.html',
   styleUrls: ['./report.component.scss']
 })

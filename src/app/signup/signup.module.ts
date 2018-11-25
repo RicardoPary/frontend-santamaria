@@ -1,13 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SignupRoutingModule } from './signup-routing.module';
 import { SignupComponent } from './signup.component';
+import {RouterModule, Routes} from '@angular/router';
+
+const routes: Routes = [
+  {
+    path: '', component: SignupComponent
+  }
+];
+
 
 @NgModule({
   imports: [
     CommonModule,
-    SignupRoutingModule
+    RouterModule.forChild(routes)
   ],
   declarations: [SignupComponent]
 })

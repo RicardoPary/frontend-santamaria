@@ -2,16 +2,23 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {TableModule} from '../../shared/modules/table/table.module';
-import {MedicalHistoryRoutingModule} from './medical-history-routing.module';
 import {MedicalHistoryComponent} from './medical-history.component';
 import {ActividadCivicaService} from '../../shared/services/actividad-civica.service';
+import {RouterModule, Routes} from '@angular/router';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: MedicalHistoryComponent
+  }
+];
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     TableModule,
-    MedicalHistoryRoutingModule
+    RouterModule.forChild(routes)
   ],
   declarations: [
     MedicalHistoryComponent

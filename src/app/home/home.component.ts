@@ -5,7 +5,6 @@ import {LoginService} from '../shared/auth';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-login',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   animations: [routerTransition()]

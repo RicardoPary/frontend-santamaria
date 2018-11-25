@@ -7,7 +7,6 @@ import {Router} from '@angular/router';
 import {CursoFilter} from '../../shared/models/curso';
 
 @Component({
-  selector: 'app-curso',
   templateUrl: './staff.component.html',
   styleUrls: ['./staff.component.scss']
 })

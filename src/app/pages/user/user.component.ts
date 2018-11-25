@@ -12,7 +12,8 @@ import {Subscription} from 'rxjs/index';
 import {AccountService} from '../../shared/services/account.service';
 
 @Component({
-  templateUrl: './user.component.html'
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit, OnDestroy {
 

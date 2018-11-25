@@ -7,7 +7,6 @@ import {ProductFilter} from '../../shared/models/product';
 import {Subscription} from 'rxjs/index';
 
 @Component({
-  selector: 'app-category-details',
   templateUrl: './category-details.component.html',
   styleUrls: ['./category-details.component.scss']
 })

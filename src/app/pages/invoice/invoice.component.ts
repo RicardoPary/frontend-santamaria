@@ -16,7 +16,6 @@ import {AlertService} from '../../shared/components/alert/alert.service';
 import {ProductService} from '../../shared/services/product.service';
 
 @Component({
-  selector: 'app-point-of-sale',
   templateUrl: './invoice.component.html',
   styleUrls: ['./invoice.component.scss']
 })

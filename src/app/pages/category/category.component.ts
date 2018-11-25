@@ -8,7 +8,8 @@ import {ProductService} from '../../shared/services/product.service';
 import {AlertService} from '../../shared/components/alert/alert.service';
 
 @Component({
-  templateUrl: './category.component.html'
+  templateUrl: './category.component.html',
+  styleUrls: ['./category.component.scss']
 })
 
 export class CategoryComponent implements OnInit, OnDestroy {
@@ -65,7 +66,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
   deleteCategory(id) {
     this.alertService.showWarningQuestion({
       html: 'Al eliminar la categoria tambien se eliminaran los items de contenido.' +
-      '<br>Esta seguro de eliminar la categoria?'
+        '<br>Esta seguro de eliminar la categoria?'
     }, () => {
 
       this.productService.deleteProductByCategory(id).subscribe(

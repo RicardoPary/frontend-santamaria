@@ -10,6 +10,8 @@ import {InvoiceDetailModalComponent} from './invoice-detail-popup.component';
 import {KrakenService} from '../../shared/services/kraken.service';
 import {InvoiceComponent} from './invoice.component';
 import {BoxService} from '../../shared/services/box.service';
+import {LoaderService} from '../../shared/components/loader/loader.service';
+import {BranchService} from '../../shared/services/branch.service';
 
 export const routes: Routes = [
   {path: '', component: InvoiceComponent},
@@ -32,7 +34,9 @@ export const routes: Routes = [
     PurchaseDetailsService,
     InvoiceService,
     KrakenService,
-    BoxService
+    BoxService,
+    LoaderService,
+    BranchService
   ]
 })
 export class InvoiceModule {

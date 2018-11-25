@@ -1,175 +1,96 @@
-<button routerLink="/curso" style="border: none; background: none; font-size: 30px;">
-  <i class="fa fa-arrow-circle-left fa-lg"></i>
-</button>
-<br>
+<div class="table-content">
+  <h3 style="font-family: sans-serif;"> INSUMOS
+    <span class="btn-options pull-right">
+      <a class="btn btn-sm btn-outline-secondary btn-icon-space"
+         (click)="openModal(modalActividadCivica,'Crear Nueva Actividad Civica', 'Crear')"><i
+        class="icon-user-plus"></i> Crear actividad civica</a>
+    </span>
+  </h3>
+  <div class="table-box">
+    <app-table
+      [data]="estudiantes"
+      [headers]="headersColumns"
+      [total]="totalEstudiantes"
+      [pageSize]="pageSize"
+      [filtersColumns]="filtersColumns"
+      [page]="page"
+      (clickPagination)="clickPagination($event)"
+      (clickSort)="clickSort($event)"
+      (clickButton)="clickButtonRow($event)">
+    </app-table>
+  </div>
+</div>
+<div class="filter-content">
 
-<table width="100%" border="1" style="border: 2px solid black; font-family: Arial, Helvetica, sans-serif; font-size: 10px;">
-
-  <tr>
-    <td rowspan="2"><div style="text-align: center; font-weight: bold; font-size: 12px; font-family: Arial, Helvetica, sans-serif;">UNIDAD EDUCATIVA SIMON BOLIVAR</div></td>
-    <td>ACCIONES:</td>
-    <td>
-      <i class="fa fa-save fa-2x" (click)="saveBimestre()" style="cursor: pointer; margin-left: 10px;"></i>
-      <i class="fa fa-edit fa-2x" (click)="readonlyValue = !readonlyValue;" style="cursor: pointer; margin-left: 10px;"></i></td>
-    <td width="5%">N</td>
-    <td width="5%">1</td>
-    <td rowspan="2"><img src="../../assets/images/escudo.jpg" alt="" title="" border="1" width="80" height="70"/></td>
-  </tr>
-  <tr>
-    <td colspan="4"><div style="text-align: center; font-weight: bold; font-size: 12px; font-family: Arial, Helvetica, sans-serif;">ESTADO PLURINACIONAL DE BOLIVIA</div></td>
-  </tr>
-  <tr>
-    <td colspan="6" style="text-align: center;"><div style="text-align: center; font-weight: bold; font-size: 12px; font-family: Arial, Helvetica, sans-serif;">BOLETIN DE CALIFICACIONES</div></td>
-  </tr>
-
-</table>
-
-<br>
-
-<table width="100%" border="1" style="border: 2px solid black; font-family: Arial, Helvetica, sans-serif; font-size: 10px;">
-
-  <tr>
-    <td>APELLIDOS Y NOMBRES</td>
-    <td>MAMANI JUAN APAZA</td>
-    <td>ANO DE ESCOLARIDAD</td>
-    <td>PRIMARIA</td>
-    <td>GESTION: <select class="mdb-select"
-                         id="gestion"
-                         (change)="submitGestion(gestion.value)"
-                         #gestion="ngModel"
-                         [(ngModel)]="gestionValue">
-      <option value="2020">2020</option>
-      <option value="2019">2019</option>
-      <option value="2018">2018</option>
-      <option value="2017">2017</option>
-      <option value="2016">2016</option>
-      <option value="2015">2015</option>
-      <option value="2014">2014</option>
-      <option value="2013">2013</option>
-      <option value="2012">2012</option>
-      <option value="2011">2011</option>
-      <option value="2010">2010</option>
-    </select></td>
-  </tr>
-</table>
-
-<br>
-
-<table height="400px" width="100%" border="1" style="border: 2px solid black; font-family: Arial, Helvetica, sans-serif; font-size: 10px;">
-
-  <tr>
-    <td colspan="7" style="background: #daeef3; text-align: center; font-size: 14px; font-weight: bold; border: 2px solid black;">EVALUACION DE LAS DIMENSIONES (Ser, Saber, Hacer y Decidir)</td>
-    <td style="border: 2px solid black; background: #ffffcc;">VALORACION CUALITATIVA</td>
-  </tr>
-  <tr>
-    <td rowspan="2" style="border: 2px solid black;">CAMPOS Y SABERES Y CONOCIMIENTOS</td>
-    <td rowspan="2" style="border: 2px solid black;">AREAS CURRICULARES</td>
-    <td colspan="5" style="border: 2px solid black; background: #ffffcc;">VALORACION CUALITATIVA</td>
-    <td style="border: 2px solid black; background: #daeef3; font-weight: bold;">PRIMER BIMESTRE</td>
-  </tr>
-  <tr>
-    <td style="border: 2px solid black;">1ER BIM</td>
-    <td style="border: 2px solid black;">2DO BIM</td>
-    <td style="border: 2px solid black;">3ER BIM</td>
-    <td style="border: 2px solid black;">4TO BIM</td>
-    <td style="border: 2px solid black;">PROM ANUAL</td>
-    <td rowspan="2" height="30px;" style="border: 2px solid black;"></td>
-  </tr>
-  <tr>
-    <td rowspan="6" style="border: 2px solid black;">COMUNIDAD Y SOCIEDAD</td>
-    <td rowspan="2" style="border-right: 2px solid black;">COMUNICACIONES Y LENGUAJE (LENGUA CASTELLANA ORIGINARIA Y LENGUA EXTRANJERA)</td>
-    <td rowspan="2" style="border-top: 2px solid black;"></td>
-    <td rowspan="2" style="border-top: 2px solid black;"></td>
-    <td rowspan="2" style="border-top: 2px solid black;"></td>
-    <td rowspan="2" style="border-top: 2px solid black;"></td>
-    <td rowspan="2" style="border-top: 2px solid black;"></td>
-  </tr>
-  <tr>
-    <td style="border: 2px solid black; background: #daeef3; font-weight: bold;">SEGUNDO BIMESTRE</td>
-  </tr>
-  <tr>
-    <td style="border-right: 2px solid black;">CIENCIAS SOCIALES</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td rowspan="3" style="border: 2px solid black;"></td>
-  </tr>
-  <tr>
-    <td style="border-right: 2px solid black;">EDUCACION FISICA Y DEPORTES</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td style="border-right: 2px solid black;">EDUCACION MUSICAL</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td style="border-bottom: 2px solid black; border-right: 2px solid black;">ARTES PLASTICAS Y VISUALES</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td style="border: 2px solid black; background: #daeef3; font-weight: bold;">TERCER BIMESTRE</td>
-  </tr>
-  <tr>
-    <td rowspan="2" style="border: 2px solid black;">CIENCIA TECNOLOGIA Y PRODUCCION</td>
-    <td style="border-right: 2px solid black;">MATEMATICAS</td>
-    <td style="border-top: 2px solid black;"></td>
-    <td style="border-top: 2px solid black;"></td>
-    <td style="border-top: 2px solid black;"></td>
-    <td style="border-top: 2px solid black;"></td>
-    <td style="border-top: 2px solid black;"></td>
-    <td rowspan="3" height="50px;" style="border: 2px solid black;"></td>
-  </tr>
-  <tr>
-    <td style="border-right: 2px solid black;">TECNICA TECNOLOGIA GENERAL</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td rowspan="2" style="border: 2px solid black;">VIDA TIERRA TERRITORIO</td>
-    <td rowspan="2" style="border: 2px solid black;">CIENCIAS NATURALES</td>
-    <td rowspan="2" style="border-top: 2px solid black;"></td>
-    <td rowspan="2" style="border-top: 2px solid black;"></td>
-    <td rowspan="2" style="border-top: 2px solid black;"></td>
-    <td rowspan="2" style="border-top: 2px solid black;"></td>
-    <td rowspan="2" style="border-top: 2px solid black;"></td>
-  </tr>
-  <tr>
-    <td style="border: 2px solid black; background: #daeef3; font-weight: bold;">CUARTO BIMESTRE</td>
-  </tr>
-  <tr>
-    <td style="border: 2px solid black;">COSMOS Y PENSAMIENTO</td>
-    <td style="border: 2px solid black;">VALORES ESPIRITUALIDADES Y RELIGION</td>
-    <td style="border-top: 2px solid black;"></td>
-    <td style="border-top: 2px solid black;"></td>
-    <td style="border-top: 2px solid black;"></td>
-    <td style="border-top: 2px solid black;"></td>
-    <td style="border-top: 2px solid black;"></td>
-    <td style="border-top: 2px solid black;"></td>
-  </tr>
-</table>
+</div>
 
 
-<br>
+<ng-template #modalActividadCivica>
+  <div class="modal-header">
+    <h4 class="modal-title">{{titleModal}}</h4>
+  </div>
+
+  <form (ngSubmit)="submitEstudiante(form)" #form="ngForm">
+
+    <div class="row container">
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="cronograma">Cronograma</label>
+          <input id="cronograma"
+                 name="cronograma"
+                 type="text"
+                 class="form-control"
+                 [ngModel]="actividadCivica?.cronograma"/>
+        </div>
+
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="descripcion">Descripcion</label>
+          <input id="descripcion"
+                 name="descripcion"
+                 type="text"
+                 class="form-control"
+                 [ngModel]="actividadCivica?.descripcion"/>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="fecha">Fecha</label>
+          <input id="fecha"
+                 name="fecha"
+                 type="text"
+                 class="form-control"
+                 [ngModel]="actividadCivica?.fecha"/>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="nombre">Nombre</label>
+          <input id="nombre"
+                 name="nombre"
+                 type="string"
+                 class="form-control"
+                 [ngModel]="actividadCivica?.nombre"/>
+
+        </div>
+      </div>
 
 
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal();">
+          Cancelar
+        </button>
+        <button type="submit" class="btn btn-primary">
+          {{textButton}}
+        </button>
+      </div>
 
+    </div>
 
-
-
-
+  </form>
+</ng-template>
 

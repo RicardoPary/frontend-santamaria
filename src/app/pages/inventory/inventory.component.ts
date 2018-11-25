@@ -4,7 +4,6 @@ import {AulaService} from '../../shared/services/aula.service';
 import {AulaFilter} from '../../shared/models/aula';
 
 @Component({
-  selector: 'app-aula',
   templateUrl: './inventory.component.html',
   styleUrls: ['./inventory.component.scss']
 })

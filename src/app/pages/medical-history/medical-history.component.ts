@@ -3,12 +3,10 @@ import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {DocenteFilter} from '../../shared/models/docente';
 import {ActividadCivicaService} from '../../shared/services/actividad-civica.service';
 import {finalize} from 'rxjs/operators';
-import {EstudianteFilter} from '../../shared/models/estudiante';
 import {AlertService} from '../../shared/components/alert/alert.service';
 import {ActividadCivicaFilter} from '../../shared/models/actividad-civica';
 
 @Component({
-  selector: 'app-actividad-civica',
   templateUrl: './medical-history.component.html',
   styleUrls: ['./medical-history.component.scss']
 })

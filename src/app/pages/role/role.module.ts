@@ -4,14 +4,21 @@ import {FormsModule} from '@angular/forms';
 import {TableModule} from '../../shared/modules/table/table.module';
 import {ReunionService} from '../../shared/services/reunion.service';
 import {RoleComponent} from './role.component';
-import {RoleRoutingModule} from './role-routing.module';
+import {RouterModule, Routes} from '@angular/router';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: RoleComponent
+  }
+];
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     TableModule,
-    RoleRoutingModule
+    RouterModule.forChild(routes)
   ],
   declarations: [
     RoleComponent

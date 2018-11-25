@@ -1,14 +1,11 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {DocenteFilter} from '../../shared/models/docente';
 import {ReunionService} from '../../shared/services/reunion.service';
 import {ReunionFilter} from '../../shared/models/reunion';
 import {finalize} from 'rxjs/operators';
 import {AlertService} from '../../shared/components/alert/alert.service';
-import {ActividadCivicaFilter} from '../../shared/models/actividad-civica';
 
 @Component({
-  selector: 'app-reunion',
   templateUrl: './role.component.html',
   styleUrls: ['./role.component.scss']
 })

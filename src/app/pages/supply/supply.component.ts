@@ -1,126 +1,172 @@
-import {Component, OnInit} from '@angular/core';
-import {BimestreService} from '../../shared/services/bimestre.service';
-import {MateriaService} from '../../shared/services/materia.service';
-import {CursoService} from '../../shared/services/curso.service';
-import {ActivatedRoute} from '@angular/router';
-import {Supply} from './supply';
-import {BimestreFilter} from '../../shared/models/bimestre';
-import {Subscription} from 'rxjs/internal/Subscription';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import {DocenteFilter} from '../../shared/models/docente';
+import {ActividadCivicaService} from '../../shared/services/actividad-civica.service';
+import {finalize} from 'rxjs/operators';
 import {AlertService} from '../../shared/components/alert/alert.service';
-import {MateriaFilter} from '../../shared/models/materia';
+import {ActividadCivicaFilter} from '../../shared/models/actividad-civica';
 
 @Component({
-  selector: 'app-bimestre',
   templateUrl: './supply.component.html',
   styleUrls: ['./supply.component.scss']
 })
 export class SupplyComponent implements OnInit {
 
-  subscriptionBimestreService: Subscription = new Subscription();
-
-  materias: any = [];
-
-  bimestres: any = [];
+  @ViewChild('modalActividadCivica') modalActividadCivica: ElementRef;
+  estudiantes: any = [];
   filtersColumns: any;
-  totalBimestres: number;
+  totalEstudiantes: number;
   pageSize: number;
   page: number;
 
-  bimestreValue: any;
-  materiaValue: any;
-  gestionValue: any;
-  readonlyValue = true;
 
-  constructor(private bimestreService: BimestreService,
-              private cursoService: CursoService,
-              private route: ActivatedRoute,
-              private materiaService: MateriaService,
+  modal: NgbModalRef;
+  titleModal: any;
+  textButton: any;
+  actividadCivica: any;
+
+  headersColumns: any = [
+    {
+      name: 'cronograma',
+      displayName: 'Cronograma',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'descripcion',
+      displayName: 'Descripcion',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'fecha',
+      displayName: 'Fecha',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'nombre',
+      displayName: 'Nombre',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: '',
+      displayName: 'Acciones',
+      canSort: false,
+      canFilter: false,
+      pattern: '',
+      messageError: '',
+      type: 'actions'
+    }
+  ];
+
+  constructor(private modalService: NgbModal,
+              private actividadCivicaService: ActividadCivicaService,
               private alertService: AlertService) {
 
-    this.bimestreService.currentBimestreFilter().subscribe(
+    this.actividadCivicaService.currentActividadCivicaFilter().subscribe(
       dates => {
         this.pageSize = dates.size;
         this.page = dates.page;
-        this.bimestreValue = dates.bimestre.bimestre;
-        this.materiaValue = dates.bimestre.idMateria;
-        this.gestionValue = dates.bimestre.gestion;
         this.callService(dates);
       }
     );
-
   }
 
   ngOnInit() {
-
-    /*this.materiaService.getAllMateriasByIdCurso(this.route.snapshot.params['idCurso']).subscribe(
-      res => this.materias = res.body
-    );*/
-
-    const materiaFilter = new MateriaFilter();
-    materiaFilter.page = null;
-    materiaFilter.size = null;
-    materiaFilter.sort = null;
-
-    this.materiaService.getAllMaterias(materiaFilter).subscribe(
-      res => this.materias = res.body
-    );
-
   }
 
-  callService(bimestreFilter: BimestreFilter) {
-    this.subscriptionBimestreService = this.bimestreService.getAllBimestresByFilter(bimestreFilter).subscribe(res => {
-      console.log(res);
-      this.totalBimestres = parseFloat(res.headers.get('X-Total-Count'));
-      this.bimestres = res.body;
+  callService(docenteFilter: DocenteFilter) {
+    this.actividadCivicaService.getAllActividadesCivicas(docenteFilter).subscribe(res => {
+      this.totalEstudiantes = parseFloat(res.headers.get('X-Total-Count'));
+      this.estudiantes = res.body;
     });
   }
 
-  submitBimestre(value) {
-    console.log(value);
-    const filter = this.bimestreService.getBimestreFilter();
-    filter.bimestre.bimestre = value;
-    filter.page = 0;
-    this.bimestreService.sendBimestreFilter(filter);
-    this.page = 0;
-  }
-
-  submitMateria(value) {
-    console.log(value);
-    const filter = this.bimestreService.getBimestreFilter();
-    filter.bimestre.idMateria = value;
-    filter.page = 0;
-    this.bimestreService.sendBimestreFilter(filter);
-    this.page = 0;
-  }
-
-  submitGestion(value) {
-    console.log(value);
-    const filter = this.bimestreService.getBimestreFilter();
-    filter.bimestre.gestion = value;
-    filter.page = 0;
-    this.bimestreService.sendBimestreFilter(filter);
-    this.page = 0;
-  }
-
-  saveBimestre() {
-    this.bimestres.map(
-      item => {
-        item.serPromedio = this.getPromedio(item.notaSer1, item.notaSer2, item.notaSer3, item.notaSer4, item.notaSer5, item.notaSer6);
-        item.saberPromedio = this.getPromedio(item.notaSaber1, item.notaSaber2, item.notaSaber3, item.notaSaber4, item.notaSaber5, item.notaSaber6);
-        item.hacerPromedio = this.getPromedio(item.notaHacer1, item.notaHacer2, item.notaHacer3, item.notaHacer4, item.notaHacer5, item.notaHacer6);
-        item.decirPromedio = this.getPromedio(item.notaDecir1, item.notaDecir2, item.notaDecir3, item.notaDecir4, item.notaDecir5, item.notaDecir6);
-
-        this.bimestreService.modifyBimestre(item).subscribe(
-          res => {
-            this.alertService.showSuccess({html: 'se guardo exitosamente.'});
-            console.log(res);
-          }
+  submitEstudiante(form) {
+    const actividadCivica = {
+      'id': this.actividadCivica ? this.actividadCivica.id : null,
+      'cronograma': form.value.cronograma,
+      'descripcion': form.value.descripcion,
+      'fecha': form.value.fecha,
+      'nombre': form.value.nombre
+    };
+    if (this.textButton === 'Crear') {
+      this.actividadCivicaService.createActividadCivica(actividadCivica)
+        .pipe(finalize(() => {
+          this.actividadCivicaService.sendActividadCivicaFilter(new ActividadCivicaFilter());
+          this.modal.close();
+        }))
+        .subscribe(
+          () => this.alertService.showSuccess({html: 'actividad civica creada exitosamente.'})
         );
-      }
-    );
+    } else if (this.textButton === 'Editar') {
+      this.actividadCivicaService.modifyActividadCivica(actividadCivica)
+        .pipe(finalize(() => {
+          this.actividadCivicaService.sendActividadCivicaFilter(new ActividadCivicaFilter());
+          this.modal.close();
+        }))
+        .subscribe(
+          () => this.alertService.showSuccess({html: 'actividad civica modificada exitosamente.'})
+        );
+    }
   }
 
-  getPromedio(nota1, nota2, nota3, nota4, nota5, nota6) {
-    return (parseFloat(nota1) + parseFloat(nota2) + parseFloat(nota3) + parseFloat(nota4) + parseFloat(nota5) + parseFloat(nota6)) / 6;
+  clickPagination(event: any) {
+    const filter = this.actividadCivicaService.getActividadCivicaFilter();
+    filter.page = (event.newPage) - 1;
+    this.actividadCivicaService.sendActividadCivicaFilter(filter);
+  }
+
+  clickSort(event: any) {
+    const state = event.isDesc ? 'desc' : 'asc';
+    const filter = this.actividadCivicaService.getActividadCivicaFilter();
+    filter.sort = [event.column + ',' + state];
+    this.actividadCivicaService.sendActividadCivicaFilter(filter);
+  }
+
+  openModal(content, titleModal, textButton) {
+    this.modal = this.modalService.open(content, {backdrop: 'static', size: 'lg'});
+    this.titleModal = titleModal;
+    this.textButton = textButton;
+    if (this.textButton === 'Crear') {
+      this.actividadCivica = null;
+    }
+  }
+
+  closeModal() {
+    this.modal.close();
+  }
+
+  clickButtonRow(event) {
+    if (event.description === 'delete') {
+      this.alertService.showWarningQuestion({html: 'esta seguro de eliminar la actividad civica ?'}, isConfirm => {
+        if (isConfirm.value) {
+          console.log('true');
+          this.actividadCivicaService.deleteActividadCivica(event.item.id)
+            .pipe(finalize(() => this.actividadCivicaService.sendActividadCivicaFilter(new ActividadCivicaFilter())))
+            .subscribe(
+              res => this.alertService.showSuccess({html: 'actividad civica eliminada exitosamente.'}),
+              err => this.alertService.showError({html: 'ocurrio un error al eliminar el actividad civica.'})
+            );
+        }
+      });
+    } else if (event.description === 'edit') {
+      this.openModal(this.modalActividadCivica, 'Editar Actividad Civica', 'Editar');
+      this.actividadCivica = event.item;
+    }
   }
 }
