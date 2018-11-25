@@ -8,11 +8,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {AuthGuard} from './shared';
-import {NgxWebstorageModule} from 'ngx-webstorage';
 import {httpFactoryProvider, RequestInterceptor} from './shared/interceptor';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {AlertService} from './shared/components/alert/alert.service';
 import {LoginService} from './shared/services/login.service';
+import {Ng2Webstorage} from 'ngx-webstorage';
 
 // AoT requires an exported function for factories
 
@@ -26,7 +26,7 @@ import {LoginService} from './shared/services/login.service';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    NgxWebstorageModule.forRoot({prefix: 'kke-pro', separator: '-'}),
+    Ng2Webstorage.forRoot({prefix: 'kke-pro', separator: '-'}),
     AppRoutingModule,
     NgbModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production})
