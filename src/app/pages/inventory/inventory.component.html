@@ -19,77 +19,309 @@
     </app-table>
   </div>
 </div>
-<div class="filter-content">
+<div class="filter-content" [ngClass]="status ? 'toogled' : ' '">
 
+  <div class="filter-box">
+
+
+    <div class="form-search">
+      <form (ngSubmit)="submitCompany(formCompany)" #formCompany="ngForm" autocomplete="off">
+        <input type="text"
+               id="companyFilter"
+               name="companyFilter"
+               class="form-control form-control-sm"
+               #companyFilter="ngModel"
+               pattern="[0-9A-Za-z-]{1,10}"
+               placeholder="Compañía"
+               [ngModel]="companyValue">
+        <i class="icon-search"></i>
+        <div *ngIf="!formCompany.valid" style="color: #a94442; font-size: 12px; font-weight: normal;">
+          Texto incorrecto.
+        </div>
+      </form>
+    </div>
+    <br>
+
+    <br>
+    <form (ngSubmit)="submitName(formName)" #formName="ngForm" autocomplete="off">
+      <label for="nameFilter">Nombre</label>
+      <input name="nameFilter"
+             id="nameFilter"
+             class="form-control"
+             [(ngModel)]="nameValue"
+             type="text">
+    </form>
+    <br>
+
+    <div class="reset-button" *ngIf="statusReset" (click)="reset()">
+      <button type="button" class="btn btn-default"><i class="mdi mdi-refresh" style="margin-left: -15px;"></i> Resetear
+        Filtros
+      </button>
+    </div>
+
+  </div>
 </div>
 
 
-<ng-template #modalAula>
+<ng-template #modalInventory>
   <div class="modal-header">
-    <h4 class="modal-title">Crear Aula</h4>
+    <h4 class="modal-title">Agregar Inventario</h4>
   </div>
+  <div class="modal-body">
 
-  <form (ngSubmit)="submitEstudiante(form)" #form="ngForm">
+    <form #formEnterprise="ngForm">
+      <div class="row">
 
-    <div class="row container">
-      <div class="col-md-6">
-        <div class="form-group mb-3">
-          <label for="cronograma">Cronograma</label>
-          <input id="cronograma"
-                 name="cronograma"
+        <div class="col-md-4">
+          <div class="form-group mb-3">
+            <label for="nameEnterprise">Empresa</label>
+            <input id="nameEnterprise"
+                   name="nameEnterprise"
+                   type="text"
+                   class="form-control"
+                   [(ngModel)]="registry.company"
+                   #nameEnterprise="ngModel"
+                   autocomplete="off"
+                   minlength="3"
+                   required/>
+          </div>
+          <small *ngIf="nameEnterprise.hasError('required') && nameEnterprise.touched" class="text-danger">
+            Debe ingresar un valor.
+          </small>
+          <small *ngIf="nameEnterprise.hasError('minlength')" class="text-danger">
+            El nombre del producto debe tener al menos 3 caracteres.
+          </small>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group mb-3">
+            <label for="descriptionEnterprise">Descripción</label>
+            <input id="descriptionEnterprise"
+                   name="descriptionEnterprise"
+                   type="text"
+                   class="form-control"
+                   autocomplete="off"
+                   [(ngModel)]="registry.description"
+                   #description="ngModel"
+                   required/>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group mb-3">
+            <label for="observation">Observación</label>
+            <input id="observation"
+                   name="observation"
+                   type="text"
+                   class="form-control"
+                   autocomplete="off"
+                   [(ngModel)]="registry.observation"
+                   #observation="ngModel"
+                   required/>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group mb-3">
+            <label for="phone">Teléfono</label>
+            <input id="phone"
+                   name="phone"
+                   type="number"
+                   class="form-control"
+                   [(ngModel)]="registry.phone"
+                   autocomplete="off"
+                   minlength="7"
+                   #phone="ngModel"
+                   required/>
+            <small *ngIf="phone.hasError('minlength')" class="text-danger">
+              El teléfono debe tener al menos 7 dígitos.
+            </small>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group mb-3">
+            <label for="type">Tipo</label>
+            <input id="type"
+                   name="type"
+                   type="text"
+                   class="form-control"
+                   autocomplete="off"
+                   [(ngModel)]="registry.type"
+                   #type="ngModel"
+                   required/>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group mb-3">
+            <label for="nameProvider">Nombre Proveedor</label>
+            <input id="nameProvider"
+                   name="nameProvider"
+                   type="text"
+                   class="form-control"
+                   autocomplete="off"
+                   [(ngModel)]="registry.name"
+                   #nameProvider="ngModel"
+                   required/>
+          </div>
+        </div>
+
+      </div>
+    </form>
+
+
+    <div class="container-fluid p-0 invoice-table">
+      <div class="row invoice-table-header">
+        <div class="col-2">
+          NOMBRE
+        </div>
+        <div class="col-2">
+          CANTIDAD
+        </div>
+        <div class="col-2">
+          PRECIO
+        </div>
+        <div class="col-6">
+          DETALLE
+        </div>
+      </div>
+      <div *ngFor="let inventory of inventorisDetails; let i = index;" class="row invoice-table-row">
+        <div class="col-2">
+          <input id="name-{{i}}"
+                 name="name-{{i}}"
                  type="text"
                  class="form-control"
-                 ngModel/>
+                 title="Nombre"
+                 required
+                 [(ngModel)]="inventory.filterText"
+                 #name{{i}}="ngModel">
+          <div
+            style="overflow-y: auto; overflow-x: hidden; max-height: 100px; z-index: 9999; width: 200px; position: absolute; border: 1px solid #aeb7ca;"
+            *ngIf="inventory.filterText.length > 2 && inventory.selected && getProducts(inventory.filterText).length">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item list-group-item-action" style="cursor:pointer;"
+                  *ngFor="let product of getProducts(inventory.filterText)"
+                  (click)="selectProduct(product, inventory)">
+                <div class="media" (click)="selectProduct(product, inventory)">
+                  <div class="media-body">
+                    <h6 class="mt-0">
+                    </h6>
+                    {{ product.name }}
+                  </div>
+                </div>
+              </li>
+            </ul>
+
+          </div>
+
+          <div *ngIf="inventory.filterText.length > 2 && getProducts(inventory.filterText).length === 0"
+               style="color: red;">
+            el producto no existe.
+          </div>
+
         </div>
-
-      </div>
-
-      <div class="col-md-6">
-        <div class="form-group mb-3">
-          <label for="descripcion">Descripcion</label>
-          <input id="descripcion"
-                 name="descripcion"
-                 type="text"
+        <div class="col-2">
+          <input id="quantity-{{i}}"
+                 name="quantity-{{i}}"
+                 type="number"
                  class="form-control"
-                 ngModel/>
+                 title="Cantidad"
+                 min="1"
+                 required
+                 [(ngModel)]="inventory.quantity"
+                 #quantity{{i}}="ngModel">
         </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="form-group mb-3">
-          <label for="fecha">Fecha</label>
-          <input id="fecha"
-                 name="fecha"
-                 type="text"
+        <div class="col-2">
+          <input id="price-{{i}}"
+                 name="price-{{i}}"
+                 type="number"
+                 min="1"
                  class="form-control"
-                 ngModel/>
+                 title="Precio"
+                 required
+                 maxlength="14"
+                 [(ngModel)]="inventory.price"
+                 #price{{i}}="ngModel">
         </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="form-group mb-3">
-          <label for="nombre">Nombre</label>
-          <input id="nombre"
-                 name="nombre"
-                 type="string"
+        <div class="col-5">
+          <input type="text"
+                 id="detail-{{i}}"
+                 name="detail-{{i}}"
                  class="form-control"
-                 ngModel/>
-
+                 autocomplete="off"
+                 title="Descripción"
+                 required
+                 minlength="2"
+                 maxlength="300"
+                 [(ngModel)]="inventory.detail"
+                 #detail{{i}}>
+        </div>
+        <div class="col-1">
+          <form>
+            <button class="btn btn-danger btn-small btn-circle"
+                    (click)="removeInventory(inventory)">
+              <i class="mdi mdi-close"></i>
+            </button>
+          </form>
         </div>
       </div>
-
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="closeModal();">
-          Cancelar
-        </button>
-        <button type="submit" class="btn btn-primary">
-          Guardar
-        </button>
+      <div class="row no-gutters invoice-table-row-footer">
+        <div class="col-4">
+          <a class="btn btn-link-circle"
+             (click)="addInventory()">
+              <span class="btn btn-circle btn-primary btn-small">
+                <i class="mdi mdi-plus"></i>
+              </span>
+            <span class="btn-label">Agregar inventario</span>
+          </a>
+        </div>
+        <div class="col-7 text-right">
+          <h5><strong>Total</strong></h5>
+        </div>
       </div>
-
     </div>
 
-  </form>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="closeModal();">
+      Cancelar
+    </button>
+    <button type="submit" class="btn btn-primary"
+            [disabled]="formEnterprise.invalid || !verifyProductsSelected()"
+            (click)="saveInventories(inventorisDetails)">
+      Guardar
+    </button>
+  </div>
 </ng-template>
 
+
+<ng-template #modalRegistryDetails>
+  <div class="modal-header">
+    <h4 class="modal-title">DETALLE DE REGISTRO</h4>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <table class="table">
+      <thead>
+      <tr>
+        <th style="border-top:0;">Nombre Producto</th>
+        <th style="border-top:0;">Cantidad</th>
+        <th style="border-top:0;">Precio</th>
+        <th style="border-top:0;">Detalle</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let detail of registryDetails">
+        <td>{{detail?.product.name}}</td>
+        <td>{{detail.quantity}}</td>
+        <td>{{detail.price | number: '2.2'}} Bs.</td>
+        <td>{{detail.detail}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>

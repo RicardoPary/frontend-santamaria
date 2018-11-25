@@ -1,9 +1,10 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {AlertService} from '../../shared/components/alert/alert.service';
-import {ProviderService} from '../../shared/services';
+import {InventoryService, ProviderService} from '../../shared/services';
 import {Subscription} from 'rxjs/internal/Subscription';
 import {ProviderFilter} from '../../shared/models/provider';
+import {finalize} from 'rxjs/operators';
 
 @Component({
   templateUrl: './inventory.component.html',
@@ -13,6 +14,8 @@ export class InventoryComponent implements OnInit {
 
   @ViewChild('modalActividadCivica') modalActividadCivica: ElementRef;
   filtersColumns: any;
+  registryDetails: any = [];
+
 
   modal: NgbModalRef;
   titleModal: any;
@@ -24,6 +27,8 @@ export class InventoryComponent implements OnInit {
   pageSize: number;
   page: number;
   data: any = [];
+
+  @ViewChild('modalRegistryDetails') modalRegistryDetails: ElementRef;
 
   headersColumns: any = [
     {
@@ -111,6 +116,7 @@ export class InventoryComponent implements OnInit {
 
   constructor(private modalService: NgbModal,
               private providerService: ProviderService,
+              private inventoryService: InventoryService,
               private alertService: AlertService) {
 
     this.providerService.currentProviderFilter().subscribe(
@@ -188,22 +194,57 @@ export class InventoryComponent implements OnInit {
     this.modal.close();
   }
 
-  clickButtonRow(event) {
-    /*if (event.description === 'delete') {
-      this.alertService.showWarningQuestion({html: 'esta seguro de eliminar la actividad civica ?'}, isConfirm => {
-        if (isConfirm.value) {
-          console.log('true');
-          this.actividadCivicaService.deleteActividadCivica(event.item.id)
-            .pipe(finalize(() => this.actividadCivicaService.sendActividadCivicaFilter(new ActividadCivicaFilter())))
-            .subscribe(
-              res => this.alertService.showSuccess({html: 'actividad civica eliminada exitosamente.'}),
-              err => this.alertService.showError({html: 'ocurrio un error al eliminar el actividad civica.'})
-            );
-        }
+  clickButton(event) {
+    if (event.description === 'view') {
+      this.inventoryService.getAllByIdProvider(event.item.id).subscribe(
+        res => {
+          this.registryDetails = res.body;
+          this.modal = this.modalService.open(this.modalRegistryDetails, {backdrop: 'static', size: 'lg'});
+        }, () => this.alertService.showError({html: 'Ocurrio un error al mostrar el detalle de inventario.'})
+      );
+    } else if (event.description === 'delete') {
+      this.alertService.showWarningQuestion({html: 'Esta seguro de eliminar el inventario?'}, () => {
+        this.providerService.deleteProvider(event.item.id).pipe(finalize(() => {
+          this.providerService.sendProviderFilter(new ProviderFilter);
+        })).subscribe(
+          () => this.alertService.showSuccess({html: 'inventario eliminado exitosamente.'}),
+          () => this.alertService.showError({html: 'ocurrio un error al eliminar el producto.'})
+        );
       });
-    } else if (event.description === 'edit') {
-      this.openModal(this.modalActividadCivica, 'Editar Actividad Civica', 'Editar');
-      this.actividadCivica = event.item;
-    }*/
+    }
   }
+
+  saveInventories(inventoris) {
+    /*this.registry.idBranch = this.branchService.getIdBranch();
+    this.providerService.createProvider(this.registry).subscribe(
+      resProvider => {
+        inventoris.map(item => item.idProvider = resProvider.body.id);
+        inventoris.map(item => {
+          this.inventoryService.postInventory(item).subscribe(
+            resInventory => {
+              item.product.stock = parseFloat(item.product.stock) + parseFloat(item.quantity);
+              this.productService.modifyProduct(item.product).subscribe(
+                resProduct => this.alertService.showSuccess({html: 'Inventario creado exitosamente.'})
+              );
+            },
+            errInventory => this.alertService.showError({html: 'Ocurrio un error al crear inventario.'})
+          );
+        });
+        this.providerService.sendProviderFilter(new ProviderFilter());
+      }
+    );
+    this.closeModal();
+    this.registry = {
+      company: '',
+      description: '',
+      observation: '',
+      phone: '',
+      type: '',
+      idBranch: '',
+      name: ''
+    };
+    this.inventorisDetails = [];
+    this.addInventory();*/
+  }
+
 }
