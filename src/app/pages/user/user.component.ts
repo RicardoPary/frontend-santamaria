@@ -1,9 +1,8 @@
 import {Component, ElementRef, OnInit, ViewChild, OnDestroy} from '@angular/core';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {FormGroup} from '@angular/forms';
-import {UserService} from '../../shared/services/user.service';
-import {RoleService} from '../../shared/services/role.service';
-import {BranchService} from '../../shared/services/branch.service';
+import {UserService} from '../../shared/services';
+import {RoleService} from '../../shared/services';
 import {UserFilter} from '../../shared/models/user';
 import {LoaderService} from '../../shared/components/loader/loader.service';
 import {AlertService} from '../../shared/components/alert/alert.service';
@@ -102,7 +101,6 @@ export class UserComponent implements OnInit, OnDestroy {
 
   constructor(private userService: UserService,
               private roleService: RoleService,
-              private branchService: BranchService,
               private modalService: NgbModal,
               private loader: LoaderService,
               private alert: AlertService,

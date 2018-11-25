@@ -1,6 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {ReunionService} from '../../shared/services/reunion.service';
 import {ReunionFilter} from '../../shared/models/reunion';
 import {finalize} from 'rxjs/operators';
 import {AlertService} from '../../shared/components/alert/alert.service';
@@ -99,26 +98,25 @@ export class RoleComponent implements OnInit {
   ];
 
   constructor(private modalService: NgbModal,
-              private reunionService: ReunionService,
               private alertService: AlertService) {
 
-    this.reunionService.currentReunionFilter().subscribe(
+    /*this.reunionService.currentReunionFilter().subscribe(
       dates => {
         this.pageSize = dates.size;
         this.page = dates.page;
         this.callService(dates);
       }
-    );
+    );*/
   }
 
   ngOnInit() {
   }
 
   callService(reunionFilter: ReunionFilter) {
-    this.reunionService.getAllReuniones(reunionFilter).subscribe(res => {
+    /*this.reunionService.getAllReuniones(reunionFilter).subscribe(res => {
       this.totalEstudiantes = parseFloat(res.headers.get('X-Total-Count'));
       this.estudiantes = res.body;
-    });
+    });*/
   }
 
   openModal(content, titleModal, textButton) {
@@ -131,7 +129,7 @@ export class RoleComponent implements OnInit {
   }
 
   submitEstudiante(form) {
-    const reunion = {
+    /*const reunion = {
       'id': this.reunion ? this.reunion.id : null,
       'descripcion': form.value.descripcion,
       'detalle': form.value.detalle,
@@ -160,7 +158,7 @@ export class RoleComponent implements OnInit {
           () => this.alertService.showSuccess({html: 'role modificada exitosamente.'})
         );
     }
-
+*/
   }
 
   closeModal() {
@@ -168,20 +166,20 @@ export class RoleComponent implements OnInit {
   }
 
   clickPagination(event: any) {
-    const filter = this.reunionService.getReunionFilter();
+    /*const filter = this.reunionService.getReunionFilter();
     filter.page = (event.newPage) - 1;
-    this.reunionService.sendReunionFilter(filter);
+    this.reunionService.sendReunionFilter(filter);*/
   }
 
   clickSort(event: any) {
-    const state = event.isDesc ? 'desc' : 'asc';
+    /*const state = event.isDesc ? 'desc' : 'asc';
     const filter = this.reunionService.getReunionFilter();
     filter.sort = [event.column + ',' + state];
-    this.reunionService.sendReunionFilter(filter);
+    this.reunionService.sendReunionFilter(filter);*/
   }
 
   clickButtonRow(event) {
-    if (event.description === 'delete') {
+    /*if (event.description === 'delete') {
       this.alertService.showWarningQuestion({html: 'esta seguro de eliminar la role ?'}, isConfirm => {
         if (isConfirm.value) {
           this.reunionService.deleteReunion(event.item.id)
@@ -195,6 +193,6 @@ export class RoleComponent implements OnInit {
     } else if (event.description === 'edit') {
       this.openModal(this.modalReunion, 'Editar Reunion', 'Editar');
       this.reunion = event.item;
-    }
+    }*/
   }
 }

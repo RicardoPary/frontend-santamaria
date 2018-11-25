@@ -1,10 +1,8 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
-import {TableModule} from '../../shared/modules/table/table.module';
 import {MedicalHistoryComponent} from './medical-history.component';
-import {ActividadCivicaService} from '../../shared/services/actividad-civica.service';
 import {RouterModule, Routes} from '@angular/router';
+import {SharedLibsModule} from '../../shared/shared-libs.module';
+import {SharedServicesModule} from '../../shared/shared-services.module';
 
 const routes: Routes = [
   {
@@ -15,16 +13,12 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    TableModule,
+    SharedLibsModule,
+    SharedServicesModule,
     RouterModule.forChild(routes)
   ],
   declarations: [
     MedicalHistoryComponent
-  ],
-  providers: [
-    ActividadCivicaService
   ]
 })
 export class MedicalHistoryModule {

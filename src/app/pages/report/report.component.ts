@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {PersonaService} from '../../shared/services/persona.service';
-import {DocenteService} from '../../shared/services/docente.service.';
+import {StaffService} from '../../shared/services/staff.service';
+import {ContractService} from '../../shared/services/contract.service';
 import {DocenteFilter} from '../../shared/models/docente';
 import {Subscription} from 'rxjs/index';
 
@@ -107,8 +107,8 @@ export class ReportComponent implements OnInit {
   ];
 
   constructor(private modalService: NgbModal,
-              private docenteService: DocenteService,
-              private personaService: PersonaService) {
+              private docenteService: ContractService,
+              private personaService: StaffService) {
 
     this.docenteService.currentDocenteFilter().subscribe(
       dates => {
@@ -135,7 +135,7 @@ export class ReportComponent implements OnInit {
   }
 
   submitEstudiante(form) {
-    this.personaService.createPersona({
+    /*this.personaService.createPersona({
       'ci': form.value.ci,
       'nombre': form.value.nombre,
       'paterno': form.value.paterno,
@@ -161,7 +161,7 @@ export class ReportComponent implements OnInit {
 
 
       }
-    );
+    );*/
 
 
   }

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {AulaService} from '../../shared/services/aula.service';
+import {ConsultationDetailsService} from '../../shared/services';
 import {AulaFilter} from '../../shared/models/aula';
 
 @Component({
@@ -56,15 +56,15 @@ export class InventoryComponent implements OnInit {
   ];
 
   constructor(private modalService: NgbModal,
-              private aulaService: AulaService) {
+              private aulaService: ConsultationDetailsService) {
 
-    this.aulaService.currentAulaFilter().subscribe(
+    /*this.aulaService.currentAulaFilter().subscribe(
       dates => {
         this.pageSize = dates.size;
         this.page = dates.page;
         this.callService(dates);
       }
-    );
+    );*/
 
   }
 
@@ -72,10 +72,10 @@ export class InventoryComponent implements OnInit {
   }
 
   callService(aulaFilter: AulaFilter) {
-    this.aulaService.getAllAulas(aulaFilter).subscribe(res => {
+    /*this.aulaService.getAllAulas(aulaFilter).subscribe(res => {
       this.totalAulas = parseFloat(res.headers.get('X-Total-Count'));
       this.aulas = res.body;
-    });
+    });*/
   }
 
   openModal(content) {
@@ -91,15 +91,15 @@ export class InventoryComponent implements OnInit {
   }
 
   clickPagination(event: any) {
-    const filter = this.aulaService.getAulaFilter();
+    /*const filter = this.aulaService.getAulaFilter();
     filter.page = (event.newPage) - 1;
-    this.aulaService.sendAulaFilter(filter);
+    this.aulaService.sendAulaFilter(filter);*/
   }
 
   clickSort(event: any) {
-    const state = event.isDesc ? 'desc' : 'asc';
+    /*const state = event.isDesc ? 'desc' : 'asc';
     const filter = this.aulaService.getAulaFilter();
     filter.sort = [event.column + ',' + state];
-    this.aulaService.sendAulaFilter(filter);
+    this.aulaService.sendAulaFilter(filter);*/
   }
 }

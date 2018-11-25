@@ -6,11 +6,10 @@
   </h3>
   <div class="table-box">
     <app-table
-      [data]="estudiantes"
+      [data]="data"
       [headers]="headersColumns"
-      [total]="totalEstudiantes"
+      [total]="totalData"
       [pageSize]="pageSize"
-      [filtersColumns]="filtersColumns"
       [page]="page"
       (clickPagination)="clickPagination($event)"
       (clickSort)="clickSort($event)"

@@ -1,10 +1,9 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ActividadCivicaService} from '../../shared/services/actividad-civica.service';
-import {DocenteFilter} from '../../shared/models/docente';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {CursoService} from '../../shared/services/curso.service';
-import {Router} from '@angular/router';
-import {CursoFilter} from '../../shared/models/curso';
+import {AlertService} from '../../shared/components/alert/alert.service';
+import {StaffService} from '../../shared/services';
+import {Subscription} from 'rxjs/internal/Subscription';
+import {StaffFilter} from '../../shared/models/staff.model';
 
 @Component({
   templateUrl: './staff.component.html',
@@ -12,21 +11,24 @@ import {CursoFilter} from '../../shared/models/curso';
 })
 export class StaffComponent implements OnInit {
 
-  estudiantes: any = [];
+  @ViewChild('modalActividadCivica') modalActividadCivica: ElementRef;
   filtersColumns: any;
-  totalEstudiantes: number;
-  pageSize: number;
-  page: number;
-
-  @ViewChild('modalHorario') modalHorario: ElementRef;
-
 
   modal: NgbModalRef;
+  titleModal: any;
+  textButton: any;
+  actividadCivica: any;
+
+  subscriptionTable: Subscription;
+  totalData: number;
+  pageSize: number;
+  page: number;
+  data: any = [];
 
   headersColumns: any = [
     {
-      name: 'nombre',
-      displayName: 'Nombre',
+      name: 'id',
+      displayName: 'Id',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -34,8 +36,8 @@ export class StaffComponent implements OnInit {
       type: 'text'
     },
     {
-      name: 'tipo',
-      displayName: 'Tipo',
+      name: 'ci',
+      displayName: 'CI',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -43,8 +45,80 @@ export class StaffComponent implements OnInit {
       type: 'text'
     },
     {
-      name: 'descripcion',
-      displayName: 'Descripcion',
+      name: 'firstName',
+      displayName: 'Nombres',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'lastName',
+      displayName: 'Apellidos',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'gender',
+      displayName: 'Genero',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'nationality',
+      displayName: 'Nacionalidad',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'email',
+      displayName: 'E-mail',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'phone',
+      displayName: 'Celular',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'address',
+      displayName: 'Direccion',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'speciality',
+      displayName: 'Especialidad',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'profession',
+      displayName: 'Profesion',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -58,52 +132,83 @@ export class StaffComponent implements OnInit {
       canFilter: false,
       pattern: '',
       messageError: '',
-      type: 'actionsInscripcion'
+      type: 'actions'
     }
   ];
 
   constructor(private modalService: NgbModal,
-              private actividadCivicaService: ActividadCivicaService,
-              private cursoService: CursoService,
-              private router: Router) {
+              private staffService: StaffService,
+              private alertService: AlertService) {
 
-    this.cursoService.currentCursoFilter().subscribe(
+    this.staffService.currentStaffFilter().subscribe(
       dates => {
         this.pageSize = dates.size;
         this.page = dates.page;
         this.callService(dates);
       }
     );
-
   }
 
   ngOnInit() {
   }
 
-  callService(cursoFilter: CursoFilter) {
-    this.cursoService.getAllCursos(cursoFilter).subscribe(res => {
-      this.totalEstudiantes = parseFloat(res.headers.get('X-Total-Count'));
-      this.estudiantes = res.body;
+  callService(staffFilter: StaffFilter) {
+    this.staffService.getAllStaff(staffFilter).subscribe(res => {
+      console.log(res);
+      this.totalData = parseFloat(res.headers.get('X-Total-Count'));
+      this.data = res.body;
     });
   }
 
-  openModal(content) {
-    this.modal = this.modalService.open(content, {backdrop: 'static', size: 'lg'});
+  clickPagination(event: any) {
+    const filter = this.staffService.getStaffFilter();
+    filter.page = (event.newPage) - 1;
+    this.staffService.sendStaffFilter(filter);
+  }
+
+  clickSort(event: any) {
+    const state = event.isDesc ? 'desc' : 'asc';
+    const filter = this.staffService.getStaffFilter();
+    filter.sort = [event.column + ',' + state];
+    this.staffService.sendStaffFilter(filter);
   }
 
   submitEstudiante(form) {
-    this.actividadCivicaService.modifyActividadCivica({
+    /*const actividadCivica = {
+      'id': this.actividadCivica ? this.actividadCivica.id : null,
       'cronograma': form.value.cronograma,
       'descripcion': form.value.descripcion,
       'fecha': form.value.fecha,
       'nombre': form.value.nombre
-    }).subscribe(
-      res => {
-        this.actividadCivicaService.sendActividadCivicaFilter(new DocenteFilter());
-        this.actividadCivicaService.sendActividadCivicaFilter(new DocenteFilter());
-        this.modal.close();
-      }
-    );
+    };
+    if (this.textButton === 'Crear') {
+      this.actividadCivicaService.createActividadCivica(actividadCivica)
+        .pipe(finalize(() => {
+          this.actividadCivicaService.sendActividadCivicaFilter(new ActividadCivicaFilter());
+          this.modal.close();
+        }))
+        .subscribe(
+          () => this.alertService.showSuccess({html: 'actividad civica creada exitosamente.'})
+        );
+    } else if (this.textButton === 'Editar') {
+      this.actividadCivicaService.modifyActividadCivica(actividadCivica)
+        .pipe(finalize(() => {
+          this.actividadCivicaService.sendActividadCivicaFilter(new ActividadCivicaFilter());
+          this.modal.close();
+        }))
+        .subscribe(
+          () => this.alertService.showSuccess({html: 'actividad civica modificada exitosamente.'})
+        );
+    }*/
+  }
+
+  openModal(content, titleModal, textButton) {
+    this.modal = this.modalService.open(content, {backdrop: 'static', size: 'lg'});
+    this.titleModal = titleModal;
+    this.textButton = textButton;
+    if (this.textButton === 'Crear') {
+      this.actividadCivica = null;
+    }
   }
 
   closeModal() {
@@ -111,25 +216,21 @@ export class StaffComponent implements OnInit {
   }
 
   clickButtonRow(event) {
-    if (event.description === 'view') {
-      this.router.navigate(['/supply', event.item.id, 2]);
-    } else if (event.description === 'horario') {
-      this.openModal(this.modalHorario);
-    }
-
+    /*if (event.description === 'delete') {
+      this.alertService.showWarningQuestion({html: 'esta seguro de eliminar la actividad civica ?'}, isConfirm => {
+        if (isConfirm.value) {
+          console.log('true');
+          this.actividadCivicaService.deleteActividadCivica(event.item.id)
+            .pipe(finalize(() => this.actividadCivicaService.sendActividadCivicaFilter(new ActividadCivicaFilter())))
+            .subscribe(
+              res => this.alertService.showSuccess({html: 'actividad civica eliminada exitosamente.'}),
+              err => this.alertService.showError({html: 'ocurrio un error al eliminar el actividad civica.'})
+            );
+        }
+      });
+    } else if (event.description === 'edit') {
+      this.openModal(this.modalActividadCivica, 'Editar Actividad Civica', 'Editar');
+      this.actividadCivica = event.item;
+    }*/
   }
-
-  clickPagination(event: any) {
-    const filter = this.cursoService.getCursoFilter();
-    filter.page = (event.newPage) - 1;
-    this.cursoService.sendCursoFilter(filter);
-  }
-
-  clickSort(event: any) {
-    const state = event.isDesc ? 'desc' : 'asc';
-    const filter = this.cursoService.getCursoFilter();
-    filter.sort = [event.column + ',' + state];
-    this.cursoService.sendCursoFilter(filter);
-  }
-
 }

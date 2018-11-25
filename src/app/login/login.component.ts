@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { routerTransition } from '../router.animations';
-import {LoginService} from '../shared/auth';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {LoginService} from '../core';
 
 @Component({
   selector: 'app-login',

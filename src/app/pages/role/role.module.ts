@@ -1,10 +1,8 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
-import {TableModule} from '../../shared/modules/table/table.module';
-import {ReunionService} from '../../shared/services/reunion.service';
 import {RoleComponent} from './role.component';
 import {RouterModule, Routes} from '@angular/router';
+import {SharedServicesModule} from '../../shared/shared-services.module';
+import {SharedLibsModule} from '../../shared/shared-libs.module';
 
 const routes: Routes = [
   {
@@ -15,16 +13,12 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    TableModule,
+    SharedServicesModule,
+    SharedLibsModule,
     RouterModule.forChild(routes)
   ],
   declarations: [
     RoleComponent
-  ],
-  providers: [
-    ReunionService
   ]
 })
 export class RoleModule {
