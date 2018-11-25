@@ -1,43 +1,40 @@
 
-.tabla_pdf th {
+.tabla_pdf th
+{
   padding: 0px;
   border: 0px;
 }
-
-.tabla_pdf td {
+.tabla_pdf td
+{
   padding: 0px;
   border: 0px;
 }
-
-.login-img {
-  background: url(/images/0011.jpg) no-repeat center top;
+.login-img{
+  background: url(/image/0011.jpg)no-repeat center top;
   color: rgb(0, 123, 255);
   background-size: cover;
   height: 100vh;
   display: flex;
   flex-direction: column;
 }
-
-.carosel1 {
-  background: url(/images/0033.jpeg) no-repeat center top;
+.carosel1{
+  background: url(/image/0033.jpeg)no-repeat center top;
   color: rgb(0, 123, 255);
   background-size: cover;
   height: 91vh;
   display: flex;
   flex-direction: column;
 }
-
-.carosel2 {
-  background: url(/images/0022.jpeg) no-repeat center top;
+.carosel2{
+  background: url(/image/0022.jpeg)no-repeat center top;
   color: #000;
   background-size: cover;
   height: 91vh;
   display: flex;
   flex-direction: column;
 }
-
-.carosel3 {
-  background: url(/images/0011.jpg) no-repeat center top;
+.carosel3{
+  background: url(/image/0011.jpg)no-repeat center top;
   color: #fff;
   background-size: cover;
   height: 91vh;
@@ -45,22 +42,28 @@
   flex-direction: column;
 }
 
-.menu-left-la {
-  background: url(/images/11.jpg) no-repeat center top;
+.menu-left-la{
+  background: url(/image/11.jpg)no-repeat center top;
   background-size: cover;
   height: 100vh;
 
+
 }
 
-.nav-col-ta {
-  background-color: #000;
+
+.nav-col-ta{
+  background-color: #28a745;
+}
+.nav-col-te{
+  background-color: #29a837;
 }
 
-.nav-col-ta h3 {
+.nav-col-ta h3{
   color: #fff;
 }
 
-.ir-arriba {
+
+.ir-arriba{
   position: fixed;
   bottom: 1rem;
   right: 1rem;
@@ -72,23 +75,29 @@
   transition: all .5s ease;
 }
 
-.contenedor-bloque-buscar {
+
+
+.contenedor-bloque-buscar
+{
   display: flex;
   width: 180px;
   height: 50px;
 
+
 }
 
-.contenedor-bloque-buscar input[type="text"] {
+.contenedor-bloque-buscar input[type="text"]
+{
 
   border-radius: 5px 0 0 5px;
   padding: 1rem;
   flex: 1 1 auto;
 }
 
-.contenedor-bloque-buscar input[type="submit"] {
+.contenedor-bloque-buscar input[type="submit"]
+{
   border: 0;
-  flex: 0 1 auto;
+  flex:0 1 auto;
   border-radius: 0 5px 5px 0;
   background: rgb(0, 123, 255);
   color: #fff;

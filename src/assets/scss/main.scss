@@ -1,10 +1,11 @@
 
-html {
+html
+{
   background-size: 15px;
 }
 
-.bienvenidos {
-  background: url(/images/0033.jpeg) no-repeat center top;
+.bienvenidos{
+  background: url(/image/0033.jpeg)no-repeat center top;
   color: rgb(0, 123, 255);
   background-size: cover;
   background-attachment: fixed;
@@ -12,78 +13,92 @@ html {
   display: flex;
   flex-direction: column;
 
+
 }
 
-.bienvenidos p {
+.bienvenidos p{
   color: #000;
 }
 
-.encabezado {
-  background-color: rgb(0, 123, 255);
-  color: white;
+
+.encabezado
+{
+  background-color:rgb(0, 123, 255);
+  background-color: #29a837;
   padding: .4rem;
+
 
 }
 
-.texto-encabezado {
+.texto-encabezado{
   flex: 1 1 auto;
   display: flex;
   align-items: center;
 }
 
-.encabezado .conteiner {
+.encabezado .conteiner
+{
   display: flex;
   align-items: center;
   flex-wrap: wrap;
 
 }
 
-.encabezado .logo img {
+.encabezado .logo img
+{
   width: 200px;
   height: 50px;
   margin: 0px;
 
 }
 
-#bloque-buscar {
+
+
+#bloque-buscar
+{
   flex: 1 1 100%;
 }
 
-.contenedor-bloque-buscar {
+.contenedor-bloque-buscar
+{
   display: flex;
   height: 3rem;
   margin: 1rem 0;
 
 }
 
-.contenedor-bloque-buscar input[type="text"] {
+.contenedor-bloque-buscar input[type="text"]
+{
   border: 0;
   border-radius: 5px 0 0 5px;
   padding: 1rem;
   flex: 1 1 auto;
 }
 
-.contenedor-bloque-buscar input[type="submit"] {
+.contenedor-bloque-buscar input[type="submit"]
+{
   border: 0;
-  flex: 0 1 auto;
+  flex:0 1 auto;
   border-radius: 0 5px 5px 0;
   background: #12AFAF;
   color: #fff;
   padding: 0 1rem;
 }
 
-#menu-principal {
+
+#menu-principal{
   flex: 1 1 100%;
 
 }
 
-#menu-principal ul {
+
+#menu-principal ul{
   list-style: none;
   padding: 0;
   margin: 1rem 0 0 0;
 }
 
-#menu-principal ul a {
+#menu-principal ul a{
   display: block;
   padding: .8rem 0;
   text-align: center;
@@ -93,15 +108,14 @@ html {
   text-decoration: none;
 }
 
-#menu-principal ul a:hover, #menu-principal ul li.active a {
-  color: #000;
+#menu-principal ul a:hover, #menu-principal ul li.active a{
+  color:#000;
 }
 
-.texto-encabezado .display-4 {
+.texto-encabezado .display-4{
   margin-top: 4rem;
 }
-
-.texto-encabezado .btn-primary {
+.texto-encabezado .btn-primary{
   background: rgb(0, 123, 255);
   border-color: transparent;
   margin-top: .2rem;
@@ -109,26 +123,26 @@ html {
 
 }
 
-.btn-primary {
+
+.btn-primary{
   background: rgb(0, 123, 255);
   border-color: transparent;
   transition: all .5s ease;
   margin-bottom: 1rem;
 }
-
-.btn-secondary {
+.btn-secondary{
   border-color: transparent;
   transition: all .5s ease;
   margin-bottom: 1rem;
 }
 
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active:hover {
-  background-color: #009500;
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active:hover{
+  background-color:#009500;
   border-color: transparent;
 
 }
 
-.flecha-bajar a {
+.flecha-bajar a{
   display: inline-block;
   color: #fff;
   font-size: 5rem;
@@ -137,40 +151,43 @@ html {
 
 }
 
-@keyframes flecha-animada {
-  from {
+@keyframes flecha-animada{
+  from{
     transform: translateY(0);
   }
-  50% {
-    transform: translateY(6px);
-  }
-  to {
+  50%{
+    transform: translateY(6px); }
+  to{
     transform: translateY(0);
   }
 
 }
 
-.boton-buscar, .boton-menu {
-  border: 0;
+
+.boton-buscar, .boton-menu{
+  border:0;
   font-size: 2rem;
   margin: 0 .5rem;
   background: transparent;
   color: #fff;
 }
 
-.boton-buscar:focus, .boton-menu:focus {
+.boton-buscar:focus, .boton-menu:focus{
   outline: 0;
 }
 
-.boton-buscar {
+.boton-buscar{
   margin-left: auto;
   margin-right: .1rem;
 }
 
+
+
+
 /*-------------------------------------------
 pie de pagina
 ----------------------------------------------*/
-.piedepagina {
+.piedepagina{
   background: #111;
   color: #fff;
   text-align: center;
@@ -178,7 +195,7 @@ pie de pagina
   font-size: .9rem;
 }
 
-.piedepagina .redes-sociales {
+.piedepagina .redes-sociales{
   display: flex;
   justify-content: center;
   list-style: none;
@@ -186,7 +203,7 @@ pie de pagina
   padding: 0;
 }
 
-.piedepagina .redes-sociales a {
+.piedepagina .redes-sociales a{
   color: #fff;
   font-size: 2rem;
   margin: 0 .5rem;
@@ -194,11 +211,11 @@ pie de pagina
   transition: all .5s ease;
 }
 
-.piedepagina .redes-sociales a:hover {
+
+.piedepagina .redes-sociales a:hover{
   opacity: 1;
 }
-
-.ir-arriba {
+.ir-arriba{
   position: fixed;
   bottom: 1rem;
   right: 1rem;
@@ -210,41 +227,47 @@ pie de pagina
   transition: all .5s ease;
 }
 
+
+
+
 .ir-arriba:hover,
-.ir-arriba:focus {
+.ir-arriba:focus{
   transition: all .5s ease;
   outline: 0;
   text-decoration: none;
   color: #fff;
 }
 
+
+
 /*--------------estilos pagina nosotros-----------------*/
 
-.nosotros .bienvenidos {
+.nosotros .bienvenidos{
   height: 35vh;
 }
 
-.nosotros .ruta {
-  background: rgb(0, 123, 255);
+.nosotros .ruta{
+  background:  rgb(0, 123, 255);
   padding: 1rem;
   color: #fff;
 }
 
-.nosotros .ruta a {
+.nosotros .ruta a{
   color: #fff;
   text-decoration: underline;
 }
 
-.nosotros .ruta a:hover {
+.nosotros .ruta a:hover{
   color: #fff;
   text-decoration: none;
 }
 
-.nosotros main {
+.nosotros main{
   padding: 1rem 0 0 0;
 }
 
-.nosotros .card-header button {
+
+.nosotros .card-header  button{
   background: rgb(0, 123, 255);
   color: #fff;
   display: block;
@@ -253,19 +276,18 @@ pie de pagina
   text-decoration: none;
   transition: all 1s ease;
 }
-
-.nosotros .card-header button:hover {
+.nosotros .card-header  button:hover{
   background: #009500;
 
 }
-
 /*estilo pagina servicios*/
 
-.nosotros .lista-servicios {
+.nosotros .lista-servicios{
   background: rgb(114, 219, 186);
 }
 
-.nosotros .lista-servicios .item-servicios {
+
+.nosotros .lista-servicios .item-servicios{
   background: #ffffff;
   text-align: center;
   border: 5px solid #057705;
@@ -275,7 +297,8 @@ pie de pagina
 
 }
 
-.nosotros .lista-servicios .item-servicios .fa {
+
+.nosotros .lista-servicios .item-servicios .fa{
   font-size: 6rem;
   color: #12AFAF;
   background: #fff;
@@ -283,14 +306,17 @@ pie de pagina
   transition: all 1s ease;
 }
 
-.nosotros .lista-servicios .item-servicios:hover .fa {
+.nosotros .lista-servicios .item-servicios:hover .fa{
   transform: rotateY(360deg);
   transform-style: preserve-3d;
 }
 
+
+
+
 @media (max-width: 576px) {
 
-  .servicio article {
+  .servicio article{
     display: flex;
     align-items: center;
     margin: 1rem 0;
@@ -307,6 +333,7 @@ pie de pagina
 
 }
 
+
 @media (min-width: 430px) {
   .bienvenidos {
     height: 105vh;
@@ -320,6 +347,7 @@ pie de pagina
 
 }
 
+
 @media (min-width: 577px) {
   .bienvenidos {
     height: 92vh;
@@ -330,9 +358,13 @@ pie de pagina
 
 }
 
-@media (min-width: 768px) {
 
-  #menu-principal {
+
+
+@media (min-width: 768px){
+
+
+  #menu-principal{
     height: auto !important;
     display: block;
     flex: 0 1 auto;
@@ -340,12 +372,12 @@ pie de pagina
     order: 1;
   }
 
-  #menu-principal ul {
+  #menu-principal ul{
     display: flex;
     margin: 0px;
   }
 
-  #menu-principal ul li a {
+  #menu-principal ul li a{
     padding: .8rem;
     text-transform: capitalize;
     margin: 0 .3rem;
@@ -354,18 +386,18 @@ pie de pagina
     transition: all .5s ease;
   }
   #menu-principal ul li.active a,
-  #menu-principal ul li a:hover {
+  #menu-principal ul li a:hover{
     border-bottom: 4px solid;
     transition: all .5s ease;
   }
 
-  .boton-buscar {
-    margin-left: 1rem;
+  .boton-buscar{
+    margin-left:1rem;
     margin-right: 0px;
     order: 2;
   }
 
-  #collapseExample {
+  #collapseExample{
     order: 3;
     position: absolute;
     width: 20rem;
@@ -375,14 +407,16 @@ pie de pagina
   }
 
   /*seccion servicios*/
-  .servicio article {
+  .servicio article{
     margin: 1rem 0;
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
 
-  .servicio h3 a::after {
+
+
+  .servicio h3 a::after{
     display: none;
   }
 
@@ -392,6 +426,8 @@ pie de pagina
     flex: 0 1 auto;
 
   }
+
+
 
   .servicio a {
     margin-left: 30%;
@@ -404,57 +440,58 @@ pie de pagina
     display: block;
     width: 100%;
   }
-  .servicio p {
+  .servicio p{
     width: 100%;
   }
 
+
   /*tercera sesion*/
-  .tu-mejor-eleccion img {
-    width: 100%;
+  .tu-mejor-eleccion img{
+    width:100%;
     height: auto;
     padding: 0 5% 5% 5%;
   }
 
-  .servicio {
+  .servicio{
     height: 100vh;
   }
-  .servicio .btn-secondary {
+  .servicio .btn-secondary{
     margin-top: auto;
   }
 
   /*pagina servicio*/
-  .nosotros .lista-servicios .col-md-4 {
+  .nosotros .lista-servicios .col-md-4{
     display: flex;
 
   }
 
-  .nosotros .lista-servicios .item-servicios {
+  .nosotros .lista-servicios .item-servicios{
     display: flex;
     flex-direction: column;
     align-items: center;
 
   }
 
-  .nosotros .lista-servicios .item-servicios .btn-primary {
+  .nosotros .lista-servicios .item-servicios .btn-primary{
     margin-top: auto;
   }
 }
 
-@media (min-width: 992px) {
-  .servicio {
-    height: 80vh;
-  }
 
-  html {
+@media (min-width:992px){
+  .servicio{
+    height: 80vh;}
+
+  html{
     font-size: 16px;
   }
 
-  .tu-mejor-eleccion ul li {
+  .tu-mejor-eleccion ul li{
     display: flex;
     min-height: 8rem;
   }
 
-  .tu-mejor-eleccion ul li .fa {
+  .tu-mejor-eleccion ul li .fa{
     text-align: center;
     flex: 0 1 auto;
     margin-right: 1rem;
@@ -462,7 +499,7 @@ pie de pagina
     transition: all 1s ease;
   }
 
-  main article .fa {
+  main article .fa{
     border-radius: 50%;
     font-size: 5rem;
     width: 8rem;
@@ -470,41 +507,45 @@ pie de pagina
     line-height: 7.5rem;
   }
 
-  .tu-mejor-eleccion ul li:hover .fa {
+  .tu-mejor-eleccion ul li:hover .fa{
     transform: rotateY(360deg);
     transform-style: preserve-3d;
     background: #12AFAF;
   }
 
-  .contenedor-eleccion {
+
+
+  .contenedor-eleccion{
     flex: 1 0 0px;
   }
 
-  .tu-mejor-eleccion ul li .contenedor-eleccion h4 {
+  .tu-mejor-eleccion ul li .contenedor-eleccion h4{
     margin-top: 0px;
 
   }
 
-  .tu-mejor-eleccion ul:first-child .fa {
-    order: 1;
+  .tu-mejor-eleccion ul:first-child .fa{
+    order:1;
     margin-right: 0px;
     margin-left: 1rem;
   }
 
-  .tu-mejor-eleccion ul li p {
+  .tu-mejor-eleccion ul li p{
     font-size: .85rem;
 
   }
 
   /*segunda session*/
-  .agencia img {
+  .agencia img{
     width: 100%;
     height: auto;
   }
 
 }
 
-.texto-encabezado .display-4 {
+
+
+.texto-encabezado .display-4{
   margin-top: -40px;
   z-index: 5000;
 }
