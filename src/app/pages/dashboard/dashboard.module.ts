@@ -1,5 +1,4 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
 import {NgbCarouselModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {DashboardComponent} from './dashboard.component';
@@ -12,6 +11,7 @@ import {
 import {PushComponent} from '../../shared/components/push.component';
 import {StatModule} from '../../shared/modules';
 import {RouterModule, Routes} from '@angular/router';
+import {SharedLibsModule} from '../../shared/shared-libs.module';
 
 const routes: Routes = [
   {
@@ -21,7 +21,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule,
+    SharedLibsModule,
     NgbCarouselModule.forRoot(),
     NgbAlertModule.forRoot(),
     StatModule,

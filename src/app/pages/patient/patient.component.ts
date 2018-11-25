@@ -1,7 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {DocenteFilter} from '../../shared/models/docente';
-import {ActividadCivicaService} from '../../shared/services/actividad-civica.service';
 import {finalize} from 'rxjs/operators';
 import {AlertService} from '../../shared/components/alert/alert.service';
 import {ActividadCivicaFilter} from '../../shared/models/actividad-civica';
@@ -74,30 +73,29 @@ export class PatientComponent implements OnInit {
   ];
 
   constructor(private modalService: NgbModal,
-              private actividadCivicaService: ActividadCivicaService,
               private alertService: AlertService) {
 
-    this.actividadCivicaService.currentActividadCivicaFilter().subscribe(
+   /* this.actividadCivicaService.currentActividadCivicaFilter().subscribe(
       dates => {
         this.pageSize = dates.size;
         this.page = dates.page;
         this.callService(dates);
       }
-    );
+    );*/
   }
 
   ngOnInit() {
   }
 
   callService(docenteFilter: DocenteFilter) {
-    this.actividadCivicaService.getAllActividadesCivicas(docenteFilter).subscribe(res => {
+   /* this.actividadCivicaService.getAllActividadesCivicas(docenteFilter).subscribe(res => {
       this.totalEstudiantes = parseFloat(res.headers.get('X-Total-Count'));
       this.estudiantes = res.body;
-    });
+    });*/
   }
 
   submitEstudiante(form) {
-    const actividadCivica = {
+    /*const actividadCivica = {
       'id': this.actividadCivica ? this.actividadCivica.id : null,
       'cronograma': form.value.cronograma,
       'descripcion': form.value.descripcion,
@@ -122,20 +120,20 @@ export class PatientComponent implements OnInit {
         .subscribe(
           () => this.alertService.showSuccess({html: 'actividad civica modificada exitosamente.'})
         );
-    }
+    }*/
   }
 
   clickPagination(event: any) {
-    const filter = this.actividadCivicaService.getActividadCivicaFilter();
+    /*const filter = this.actividadCivicaService.getActividadCivicaFilter();
     filter.page = (event.newPage) - 1;
-    this.actividadCivicaService.sendActividadCivicaFilter(filter);
+    this.actividadCivicaService.sendActividadCivicaFilter(filter);*/
   }
 
   clickSort(event: any) {
-    const state = event.isDesc ? 'desc' : 'asc';
+    /*const state = event.isDesc ? 'desc' : 'asc';
     const filter = this.actividadCivicaService.getActividadCivicaFilter();
     filter.sort = [event.column + ',' + state];
-    this.actividadCivicaService.sendActividadCivicaFilter(filter);
+    this.actividadCivicaService.sendActividadCivicaFilter(filter);*/
   }
 
   openModal(content, titleModal, textButton) {
@@ -152,7 +150,7 @@ export class PatientComponent implements OnInit {
   }
 
   clickButtonRow(event) {
-    if (event.description === 'delete') {
+    /*if (event.description === 'delete') {
       this.alertService.showWarningQuestion({html: 'esta seguro de eliminar la actividad civica ?'}, isConfirm => {
         if (isConfirm.value) {
           console.log('true');
@@ -167,6 +165,6 @@ export class PatientComponent implements OnInit {
     } else if (event.description === 'edit') {
       this.openModal(this.modalActividadCivica, 'Editar Actividad Civica', 'Editar');
       this.actividadCivica = event.item;
-    }
+    }*/
   }
 }

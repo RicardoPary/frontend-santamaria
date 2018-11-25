@@ -1,17 +1,15 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/index';
-import { Subject } from 'rxjs/index';
+import {Injectable} from '@angular/core';
+import {Observable, Subject} from 'rxjs';
+import {AccountService} from './account.service';
 
-import { AccountService } from './account.service';
-
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class Principal {
-
   private userIdentity: any;
   private authenticated = false;
   private authenticationState = new Subject<any>();
 
-  constructor(private account: AccountService) { }
+  constructor(private account: AccountService) {
+  }
 
   authenticate(identity) {
     this.userIdentity = identity;
@@ -20,17 +18,21 @@ export class Principal {
   }
 
   hasAnyAuthority(authorities: string[]): Promise<boolean> {
+    return Promise.resolve(this.hasAnyAuthorityDirect(authorities));
+  }
+
+  hasAnyAuthorityDirect(authorities: string[]): boolean {
     if (!this.authenticated || !this.userIdentity || !this.userIdentity.authorities) {
-      return Promise.resolve(false);
+      return false;
     }
 
     for (let i = 0; i < authorities.length; i++) {
-      if (this.userIdentity.authorities.indexOf(authorities[i]) !== -1) {
-        return Promise.resolve(true);
+      if (this.userIdentity.authorities.includes(authorities[i])) {
+        return true;
       }
     }
 
-    return Promise.resolve(false);
+    return false;
   }
 
   hasAuthority(authority: string): Promise<boolean> {
@@ -38,11 +40,14 @@ export class Principal {
       return Promise.resolve(false);
     }
 
-    return this.identity().then((id) => {
-      return Promise.resolve(id.authorities && id.authorities.indexOf(authority) !== -1);
-    }, () => {
-      return Promise.resolve(false);
-    });
+    return this.identity().then(
+      id => {
+        return Promise.resolve(id.authorities && id.authorities.includes(authority));
+      },
+      () => {
+        return Promise.resolve(false);
+      }
+    );
   }
 
   identity(force?: boolean): Promise<any> {
@@ -57,22 +62,27 @@ export class Principal {
     }
 
     // retrieve the userIdentity data from the server, update the identity object, and then resolve.
-    return this.account.get().toPromise().then((account) => {
-      if (account) {
-        this.userIdentity = account;
-        this.authenticated = true;
-      } else {
+    return this.account
+      .get()
+      .toPromise()
+      .then(response => {
+        const account = response.body;
+        if (account) {
+          this.userIdentity = account;
+          this.authenticated = true;
+        } else {
+          this.userIdentity = null;
+          this.authenticated = false;
+        }
+        this.authenticationState.next(this.userIdentity);
+        return this.userIdentity;
+      })
+      .catch(err => {
         this.userIdentity = null;
         this.authenticated = false;
-      }
-      this.authenticationState.next(this.userIdentity);
-      return this.userIdentity;
-    }).catch((err) => {
-      this.userIdentity = null;
-      this.authenticated = false;
-      this.authenticationState.next(this.userIdentity);
-      return null;
-    });
+        this.authenticationState.next(this.userIdentity);
+        return null;
+      });
   }
 
   isAuthenticated(): boolean {
@@ -87,7 +97,7 @@ export class Principal {
     return this.authenticationState.asObservable();
   }
 
-  getimagesUrl(): String {
-    return this.isIdentityResolved() ? this.userIdentity.imagesUrl : null;
+  getImageUrl(): string {
+    return this.isIdentityResolved() ? this.userIdentity.imageUrl : null;
   }
 }

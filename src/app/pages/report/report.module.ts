@@ -1,11 +1,8 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
 import {ReportComponent} from './report.component';
-import {FormsModule} from '@angular/forms';
-import {TableModule} from '../../shared/modules/table/table.module';
-import {PersonaService} from '../../shared/services/persona.service';
-import {DocenteService} from '../../shared/services/docente.service.';
 import {RouterModule, Routes} from '@angular/router';
+import {SharedLibsModule} from '../../shared/shared-libs.module';
+import {SharedServicesModule} from '../../shared/shared-services.module';
 
 const routes: Routes = [
   {
@@ -16,17 +13,12 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    TableModule,
+    SharedLibsModule,
+    SharedServicesModule,
     RouterModule.forChild(routes)
   ],
   declarations: [
     ReportComponent
-  ],
-  providers: [
-    PersonaService,
-    DocenteService
   ]
 })
 export class ReportModule {

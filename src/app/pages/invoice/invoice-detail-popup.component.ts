@@ -2,7 +2,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Subscription} from 'rxjs/index';
-import {InvoiceService} from '../../shared/services/invoice.service';
 import {convertBlobToBase64} from '../../shared/utils/blob-to-base64-util';
 import {LoaderService} from '../../shared/components/loader/loader.service';
 import {finalize} from 'rxjs/internal/operators';
@@ -19,7 +18,6 @@ export class InvoiceDetailModalComponent implements OnInit, OnDestroy {
   constructor(public router: Router,
               public route: ActivatedRoute,
               private sanitizer: DomSanitizer,
-              public invoiceService: InvoiceService,
               private loader: LoaderService) {
   }
 
@@ -32,7 +30,7 @@ export class InvoiceDetailModalComponent implements OnInit, OnDestroy {
   }
 
   load(id) {
-    this.loader.show('Cargando...');
+    /*this.loader.show('Cargando...');
     this.subscriptionInvoiceService = this.invoiceService.getDownloadFileInvoiceById(id)
       .subscribe(
         resInvoice => {
@@ -45,7 +43,7 @@ export class InvoiceDetailModalComponent implements OnInit, OnDestroy {
             );
         },
         err => err
-      );
+      );*/
   }
 
   clear() {

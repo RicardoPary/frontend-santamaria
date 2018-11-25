@@ -1,10 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NgbActiveModal, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {CategoryService} from '../../shared/services/category.service';
-import {BranchService} from '../../shared/services/branch.service';
+import {CategoryService} from '../../shared/services';
 import {LocalStorageService} from 'ngx-webstorage';
 import {Subscription} from 'rxjs/index';
-import {ProductService} from '../../shared/services/product.service';
+import {StaffService} from '../../shared/services';
 import {AlertService} from '../../shared/components/alert/alert.service';
 
 @Component({
@@ -27,18 +26,10 @@ export class CategoryComponent implements OnInit, OnDestroy {
               private alertService: AlertService,
               private categoryService: CategoryService,
               public activeModal: NgbActiveModal,
-              private branchService: BranchService,
-              private productService: ProductService,
+              private productService: StaffService,
               private $localStorage: LocalStorageService) {
 
-    this.subscriptionBranchService = this.branchService.currentIdBranch().subscribe(
-      idBranch => {
-        if (idBranch) {
-          this.idBranch = idBranch;
-          this.subscriptionTable = this.categoryService.getAllByIdBranch(idBranch).subscribe(res => this.categories = res.body);
-        }
-      }
-    );
+
   }
 
   ngOnInit() {
@@ -64,7 +55,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
   }
 
   deleteCategory(id) {
-    this.alertService.showWarningQuestion({
+    /*this.alertService.showWarningQuestion({
       html: 'Al eliminar la categoria tambien se eliminaran los items de contenido.' +
         '<br>Esta seguro de eliminar la categoria?'
     }, () => {
@@ -81,7 +72,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
           );
         }, () => this.alertService.showError({html: 'ocurrio un error al eliminar la categoria.'})
       );
-    });
+    });*/
   }
 
   deleteCategoryArray(categories, id) {
@@ -95,7 +86,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
   }
 
   submit(form) {
-    if (this.type === 'crear') {
+    /*if (this.type === 'crear') {
       this.categoryService.postCategory({
         'description': form.value.description,
         'idBranch': this.branchService.getIdBranch() ? this.branchService.getIdBranch() : this.$localStorage.retrieve('branchId'),
@@ -133,6 +124,6 @@ export class CategoryComponent implements OnInit, OnDestroy {
         err => this.alertService.showError({html: 'ocurrio un error al editar la categoria.'})
       );
     }
-    this.activeModal.close();
+    this.activeModal.close();*/
   }
 }

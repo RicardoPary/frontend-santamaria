@@ -1,14 +1,10 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
 import {HomeComponent} from './home.component';
-import {NgbCarouselModule, NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
-import {ActividadCivicaService} from '../shared/services/actividad-civica.service';
-import {ReunionService} from '../shared/services/reunion.service';
-import {FormsModule} from '@angular/forms';
-import {AccountService, AuthStorage, LoginService} from '../shared/auth';
-import {AuthServerProvider} from '../shared/auth/auth-jwt.service';
-import {Principal} from '../shared/auth/principal.service';
+import {NgbCarouselModule} from '@ng-bootstrap/ng-bootstrap';
 import {RouterModule, Routes} from '@angular/router';
+import {SharedLibsModule} from '../shared/shared-libs.module';
+import {SharedServicesModule} from '../shared/shared-services.module';
+import {CoreModule} from '../core';
 
 const routes: Routes = [
   {
@@ -19,24 +15,14 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule,
+    SharedLibsModule,
+    SharedServicesModule,
+    CoreModule,
     RouterModule.forChild(routes),
-    FormsModule,
-    NgbCarouselModule.forRoot(),
-    NgbModalModule
+    NgbCarouselModule.forRoot()
   ],
   declarations: [
     HomeComponent
-  ],
-  providers: [
-    ActividadCivicaService,
-    ReunionService,
-    LoginService,
-    AuthServerProvider,
-    Principal,
-    AccountService,
-    AuthServerProvider,
-    AuthStorage
   ]
 })
 export class HomeModule {

@@ -1,19 +1,16 @@
 import {Component, ElementRef, OnInit, ViewChild, DoCheck} from '@angular/core';
 import {Invoice, PurchaseDetails} from '../../shared/models/invoice';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {ClientService} from '../../shared/services/client.service';
-import {PurchaseDetailsService} from '../../shared/services/purchase-details.service';
-import {InvoiceService} from '../../shared/services/invoice.service';
+import {ConsultationService} from '../../shared/services';
+import {ConsultationDetailsService} from '../../shared/services';
+
 import {Router} from '@angular/router';
 import {LocalStorageService} from 'ngx-webstorage';
-import {KrakenService} from '../../shared/services/kraken.service';
-import {BoxService} from '../../shared/services/box.service';
 import {LoaderService} from '../../shared/components/loader/loader.service';
 import {ProductFilter} from '../../shared/models/product';
 import {finalize} from 'rxjs/internal/operators';
-import {BranchService} from '../../shared/services/branch.service';
 import {AlertService} from '../../shared/components/alert/alert.service';
-import {ProductService} from '../../shared/services/product.service';
+import {StaffService} from '../../shared/services';
 
 @Component({
   templateUrl: './invoice.component.html',
@@ -35,31 +32,27 @@ export class InvoiceComponent implements OnInit, DoCheck {
 
   @ViewChild('modalBox') modalBox: ElementRef;
 
-  constructor(private productService: ProductService,
+  constructor(private productService: StaffService,
               private modalService: NgbModal,
-              private clientService: ClientService,
-              private invoiceService: InvoiceService,
-              private purchaseDetailsService: PurchaseDetailsService,
+              private clientService: ConsultationService,
+              private purchaseDetailsService: ConsultationDetailsService,
               private alertService: AlertService,
               private $localStorage: LocalStorageService,
-              private krakenService: KrakenService,
-              private boxService: BoxService,
               private router: Router,
-              private loader: LoaderService,
-              private branchService: BranchService) {
+              private loader: LoaderService) {
 
-   /* this.maskNumber = createNumberMask({
-      prefix: '',
-      suffix: '',
-      includeThousandsSeparator: false,
-      allowDecimal: false,
-    });
-*/
+    /* this.maskNumber = createNumberMask({
+       prefix: '',
+       suffix: '',
+       includeThousandsSeparator: false,
+       allowDecimal: false,
+     });
+ */
   }
 
   ngOnInit() {
 
-    this.krakenService.getAllEconomicActivitis().subscribe(res => {
+    /*this.krakenService.getAllEconomicActivitis().subscribe(res => {
       this.economicActivities = res.body;
       if (res.body.length > 0) {
         this.invoice.idEconomicActivity = res.body[0].id;
@@ -79,7 +72,7 @@ export class InvoiceComponent implements OnInit, DoCheck {
     productFilter.product.idBranch = this.branchService.getIdBranch() ? this.branchService.getIdBranch() : this.$localStorage.retrieve('branchId');
     this.productService.getAllProductsByFilter(productFilter).subscribe(res => {
       this.products = res.body;
-    });
+    });*/
   }
 
   ngDoCheck() {
@@ -138,7 +131,7 @@ export class InvoiceComponent implements OnInit, DoCheck {
   }
 
   submitCloseBox(form) {
-    this.boxService.updateBoxDTO({
+    /*this.boxService.updateBoxDTO({
       'idBranch': this.branchService.getIdBranch() ? this.branchService.getIdBranch() : this.$localStorage.retrieve('branchId'),
       'closingNote': form.value.closingNote,
       'lossAmount': form.value.lossAmount ? form.value.lossAmount : 0
@@ -153,11 +146,11 @@ export class InvoiceComponent implements OnInit, DoCheck {
         this.modal.close();
         this.alertService.showError({html: 'ocurrio un error durante el cierre de caja.'});
       }
-    );
+    );*/
   }
 
   generateInvoice(invoice: Invoice, delibery: any) {
-    this.loader.show('Cargando...');
+    /*this.loader.show('Cargando...');
     invoice.idBranch = this.branchService.getIdBranch() ? this.branchService.getIdBranch() : this.$localStorage.retrieve('branchId');
     this.invoice.delibery = delibery ? true : false;
     invoice.purchaseDetails.map(item => {
@@ -184,7 +177,7 @@ export class InvoiceComponent implements OnInit, DoCheck {
           this.alertService.showError({html: 'error al crear la factura.'});
           this.modal.close();
         }
-      );
+      );*/
   }
 
   getTotalAmount(invoice) {
@@ -197,7 +190,7 @@ export class InvoiceComponent implements OnInit, DoCheck {
   }
 
   submitBox(form) {
-    this.boxService.createBoxDTO({
+    /*this.boxService.createBoxDTO({
       'idBranch': this.branchService.getIdBranch() ? this.branchService.getIdBranch() : this.$localStorage.retrieve('branchId'),
       'type': form.value.type,
       'name': form.value.name,
@@ -212,7 +205,7 @@ export class InvoiceComponent implements OnInit, DoCheck {
       },
       err => this.alertService.showError({html: 'ocurrio un error durante la apertura de caja.'})
     );
-    this.modal.close();
+    this.modal.close();*/
   }
 
   checkDelibery(value) {

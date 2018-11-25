@@ -3,7 +3,7 @@ import {Observable} from 'rxjs/index';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 
 @Injectable()
-export class PersonaService {
+export class StaffService {
 
   private urlResource = 'api/personas';
 

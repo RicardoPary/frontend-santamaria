@@ -1,8 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ActividadCivicaService} from '../../shared/services/actividad-civica.service';
 import {DocenteFilter} from '../../shared/models/docente';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {CursoService} from '../../shared/services/curso.service';
 import {Router} from '@angular/router';
 import {CursoFilter} from '../../shared/models/curso';
 
@@ -63,17 +61,15 @@ export class StaffComponent implements OnInit {
   ];
 
   constructor(private modalService: NgbModal,
-              private actividadCivicaService: ActividadCivicaService,
-              private cursoService: CursoService,
               private router: Router) {
 
-    this.cursoService.currentCursoFilter().subscribe(
+    /*this.cursoService.currentCursoFilter().subscribe(
       dates => {
         this.pageSize = dates.size;
         this.page = dates.page;
         this.callService(dates);
       }
-    );
+    );*/
 
   }
 
@@ -81,10 +77,10 @@ export class StaffComponent implements OnInit {
   }
 
   callService(cursoFilter: CursoFilter) {
-    this.cursoService.getAllCursos(cursoFilter).subscribe(res => {
+   /* this.cursoService.getAllCursos(cursoFilter).subscribe(res => {
       this.totalEstudiantes = parseFloat(res.headers.get('X-Total-Count'));
       this.estudiantes = res.body;
-    });
+    });*/
   }
 
   openModal(content) {
@@ -92,7 +88,7 @@ export class StaffComponent implements OnInit {
   }
 
   submitEstudiante(form) {
-    this.actividadCivicaService.modifyActividadCivica({
+    /*this.actividadCivicaService.modifyActividadCivica({
       'cronograma': form.value.cronograma,
       'descripcion': form.value.descripcion,
       'fecha': form.value.fecha,
@@ -103,7 +99,7 @@ export class StaffComponent implements OnInit {
         this.actividadCivicaService.sendActividadCivicaFilter(new DocenteFilter());
         this.modal.close();
       }
-    );
+    );*/
   }
 
   closeModal() {
@@ -120,16 +116,16 @@ export class StaffComponent implements OnInit {
   }
 
   clickPagination(event: any) {
-    const filter = this.cursoService.getCursoFilter();
+    /*const filter = this.cursoService.getCursoFilter();
     filter.page = (event.newPage) - 1;
-    this.cursoService.sendCursoFilter(filter);
+    this.cursoService.sendCursoFilter(filter);*/
   }
 
   clickSort(event: any) {
-    const state = event.isDesc ? 'desc' : 'asc';
+/*    const state = event.isDesc ? 'desc' : 'asc';
     const filter = this.cursoService.getCursoFilter();
     filter.sort = [event.column + ',' + state];
-    this.cursoService.sendCursoFilter(filter);
+    this.cursoService.sendCursoFilter(filter);*/
   }
 
 }

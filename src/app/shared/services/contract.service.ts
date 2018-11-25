@@ -6,7 +6,7 @@ import {createRequestOption} from '../models/extras/request-util';
 import {DocenteFilter} from '../models/docente';
 
 @Injectable()
-export class DocenteService {
+export class ContractService {
 
   private urlResource = 'api/docentes';
   private docenteFilter = new BehaviorSubject<any>(new DocenteFilter);

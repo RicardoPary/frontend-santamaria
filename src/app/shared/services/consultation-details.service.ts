@@ -3,7 +3,7 @@ import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs/index';
 
 @Injectable()
-export class PurchaseDetailsService {
+export class ConsultationDetailsService {
 
   private urlResource = 'api/purchase-details';
 

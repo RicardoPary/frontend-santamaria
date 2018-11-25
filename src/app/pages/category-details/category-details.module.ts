@@ -1,11 +1,10 @@
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
 import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {CategoryDetailsComponent} from './category-details.component';
-import {ProductService} from '../../shared/services/product.service';
-import {NgBusyModule} from 'ng-busy';
+import {SharedLibsModule} from '../../shared/shared-libs.module';
+import {SharedServicesModule} from '../../shared/shared-services.module';
 
 export const routes: Routes = [
   {path: '', component: CategoryDetailsComponent}
@@ -13,16 +12,13 @@ export const routes: Routes = [
 
 @NgModule({
   imports: [
-    FormsModule,
+    SharedLibsModule,
+    SharedServicesModule,
     NgbPaginationModule,
-    RouterModule.forChild(routes),
-    NgBusyModule
+    RouterModule.forChild(routes)
   ],
   declarations: [
     CategoryDetailsComponent
-  ],
-  providers: [
-    ProductService
   ]
 })
 export class CategoryDetailsModule {

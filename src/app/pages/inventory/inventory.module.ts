@@ -1,10 +1,8 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {TableModule} from '../../shared/modules/table/table.module';
-import {FormsModule} from '@angular/forms';
 import {InventoryComponent} from './inventory.component';
-import {AulaService} from '../../shared/services/aula.service';
 import {RouterModule, Routes} from '@angular/router';
+import {SharedLibsModule} from '../../shared/shared-libs.module';
+import {SharedServicesModule} from '../../shared/shared-services.module';
 
 const routes: Routes = [
   {path: '', component: InventoryComponent}
@@ -12,16 +10,12 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    TableModule,
+    SharedLibsModule,
+    SharedServicesModule,
     RouterModule.forChild(routes)
   ],
   declarations: [
     InventoryComponent
-  ],
-  providers: [
-    AulaService
   ]
 })
 export class InventoryModule {

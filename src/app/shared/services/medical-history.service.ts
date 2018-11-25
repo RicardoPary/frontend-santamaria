@@ -1,12 +1,11 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs/index';
 import {HttpClient, HttpResponse} from '@angular/common/http';
-import {MateriaFilter} from '../models/materia';
 import {createRequestOption} from '../models/extras/request-util';
 import {HorarioFilter} from '../models/horario';
 
 @Injectable()
-export class HorarioService {
+export class MedicalHistoryService {
 
   private urlResource = 'api/horarios';
   private horarioFilter = new BehaviorSubject<any>(new HorarioFilter);

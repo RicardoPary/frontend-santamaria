@@ -6,7 +6,7 @@ import {EstudianteFilter} from '../models/estudiante';
 import {createRequestOption} from '../models/extras/request-util';
 
 @Injectable()
-export class EstudianteService {
+export class TypeAttentionService {
 
   private urlResource = 'api/estudiantes';
   private estudianteFilter = new BehaviorSubject<any>(new EstudianteFilter);
