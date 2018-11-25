@@ -1,9 +1,9 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {DocenteFilter} from '../../shared/models/docente';
-import {finalize} from 'rxjs/operators';
 import {AlertService} from '../../shared/components/alert/alert.service';
-import {ActividadCivicaFilter} from '../../shared/models/actividad-civica';
+import {SupplyService} from '../../shared/services';
+import {Subscription} from 'rxjs/internal/Subscription';
+import {SupplyFilter} from '../../shared/models/supply.model';
 
 @Component({
   templateUrl: './supply.component.html',
@@ -12,22 +12,23 @@ import {ActividadCivicaFilter} from '../../shared/models/actividad-civica';
 export class SupplyComponent implements OnInit {
 
   @ViewChild('modalActividadCivica') modalActividadCivica: ElementRef;
-  estudiantes: any = [];
   filtersColumns: any;
-  totalEstudiantes: number;
-  pageSize: number;
-  page: number;
-
 
   modal: NgbModalRef;
   titleModal: any;
   textButton: any;
   actividadCivica: any;
 
+  subscriptionTable: Subscription;
+  totalData: number;
+  pageSize: number;
+  page: number;
+  data: any = [];
+
   headersColumns: any = [
     {
-      name: 'cronograma',
-      displayName: 'Cronograma',
+      name: 'id',
+      displayName: 'Id',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -35,7 +36,34 @@ export class SupplyComponent implements OnInit {
       type: 'text'
     },
     {
-      name: 'descripcion',
+      name: 'name',
+      displayName: 'Nombre',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'type',
+      displayName: 'Tipo',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'marke',
+      displayName: 'Marca',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'description',
       displayName: 'Descripcion',
       canSort: true,
       canFilter: true,
@@ -44,8 +72,8 @@ export class SupplyComponent implements OnInit {
       type: 'text'
     },
     {
-      name: 'fecha',
-      displayName: 'Fecha',
+      name: 'inventory',
+      displayName: 'Inventario',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -53,8 +81,53 @@ export class SupplyComponent implements OnInit {
       type: 'text'
     },
     {
-      name: 'nombre',
-      displayName: 'Nombre',
+      name: 'stock',
+      displayName: 'Stock',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'salePrice',
+      displayName: 'Precio de Venta',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'purchasePrice',
+      displayName: 'Precio de Compra',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'wholesalePrice',
+      displayName: 'Precio por Mayor',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'discount',
+      displayName: 'Descuento',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'barcode',
+      displayName: 'Codigo de Barra',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -73,25 +146,40 @@ export class SupplyComponent implements OnInit {
   ];
 
   constructor(private modalService: NgbModal,
+              private supplyService: SupplyService,
               private alertService: AlertService) {
 
-    /*this.actividadCivicaService.currentActividadCivicaFilter().subscribe(
+    this.supplyService.currentSupplyFilter().subscribe(
       dates => {
         this.pageSize = dates.size;
         this.page = dates.page;
         this.callService(dates);
       }
-    );*/
+    );
   }
 
   ngOnInit() {
   }
 
-  callService(docenteFilter: DocenteFilter) {
-    /*this.actividadCivicaService.getAllActividadesCivicas(docenteFilter).subscribe(res => {
-      this.totalEstudiantes = parseFloat(res.headers.get('X-Total-Count'));
-      this.estudiantes = res.body;
-    });*/
+  callService(supplyFilter: SupplyFilter) {
+    this.supplyService.getAllSupplies(supplyFilter).subscribe(res => {
+      console.log(res);
+      this.totalData = parseFloat(res.headers.get('X-Total-Count'));
+      this.data = res.body;
+    });
+  }
+
+  clickPagination(event: any) {
+    const filter = this.supplyService.getSupplyFilter();
+    filter.page = (event.newPage) - 1;
+    this.supplyService.sendSupplyFilter(filter);
+  }
+
+  clickSort(event: any) {
+    const state = event.isDesc ? 'desc' : 'asc';
+    const filter = this.supplyService.getSupplyFilter();
+    filter.sort = [event.column + ',' + state];
+    this.supplyService.sendSupplyFilter(filter);
   }
 
   submitEstudiante(form) {
@@ -121,19 +209,6 @@ export class SupplyComponent implements OnInit {
           () => this.alertService.showSuccess({html: 'actividad civica modificada exitosamente.'})
         );
     }*/
-  }
-
-  clickPagination(event: any) {
-    /*const filter = this.actividadCivicaService.getActividadCivicaFilter();
-    filter.page = (event.newPage) - 1;
-    this.actividadCivicaService.sendActividadCivicaFilter(filter);*/
-  }
-
-  clickSort(event: any) {
-    /*const state = event.isDesc ? 'desc' : 'asc';
-    const filter = this.actividadCivicaService.getActividadCivicaFilter();
-    filter.sort = [event.column + ',' + state];
-    this.actividadCivicaService.sendActividadCivicaFilter(filter);*/
   }
 
   openModal(content, titleModal, textButton) {

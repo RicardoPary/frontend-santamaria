@@ -13,7 +13,8 @@ import {
   ContractService,
   InventoryService,
   MedicalHistoryService,
-  TypeAttentionService
+  TypeAttentionService,
+  SupplyService
 } from './services';
 
 import {RequestInterceptor} from './blocks/intercertor/request.interceptor';
@@ -40,6 +41,7 @@ import {AlertService} from './components/alert/alert.service';
     InventoryService,
     MedicalHistoryService,
     TypeAttentionService,
+    SupplyService,
     AlertService
   ]
 })

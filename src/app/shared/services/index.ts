@@ -10,3 +10,4 @@ export * from './patient.service';
 export * from './role.service';
 export * from './staff.service';
 export * from './type-attention.service';
+export * from './supply.service';
