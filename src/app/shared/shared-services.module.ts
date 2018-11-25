@@ -17,6 +17,7 @@ import {
 } from './services';
 
 import {RequestInterceptor} from './blocks/intercertor/request.interceptor';
+import {AlertService} from './components/alert/alert.service';
 
 @NgModule({
   providers: [
@@ -38,7 +39,8 @@ import {RequestInterceptor} from './blocks/intercertor/request.interceptor';
     ContractService,
     InventoryService,
     MedicalHistoryService,
-    TypeAttentionService
+    TypeAttentionService,
+    AlertService
   ]
 })
 export class SharedServicesModule {

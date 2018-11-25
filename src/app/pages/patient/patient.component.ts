@@ -1,9 +1,9 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {DocenteFilter} from '../../shared/models/docente';
-import {finalize} from 'rxjs/operators';
 import {AlertService} from '../../shared/components/alert/alert.service';
-import {ActividadCivicaFilter} from '../../shared/models/actividad-civica';
+import {PatientService} from '../../shared/services';
+import {PatientFilter} from '../../shared/models/patient.model';
+import {Subscription} from 'rxjs/internal/Subscription';
 
 @Component({
   templateUrl: './patient.component.html',
@@ -12,22 +12,23 @@ import {ActividadCivicaFilter} from '../../shared/models/actividad-civica';
 export class PatientComponent implements OnInit {
 
   @ViewChild('modalActividadCivica') modalActividadCivica: ElementRef;
-  estudiantes: any = [];
   filtersColumns: any;
-  totalEstudiantes: number;
-  pageSize: number;
-  page: number;
-
 
   modal: NgbModalRef;
   titleModal: any;
   textButton: any;
   actividadCivica: any;
 
+  subscriptionTable: Subscription;
+  totalData: number;
+  pageSize: number;
+  page: number;
+  data: any = [];
+
   headersColumns: any = [
     {
-      name: 'cronograma',
-      displayName: 'Cronograma',
+      name: 'id',
+      displayName: 'Id',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -35,8 +36,8 @@ export class PatientComponent implements OnInit {
       type: 'text'
     },
     {
-      name: 'descripcion',
-      displayName: 'Descripcion',
+      name: 'ci',
+      displayName: 'CI',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -44,8 +45,8 @@ export class PatientComponent implements OnInit {
       type: 'text'
     },
     {
-      name: 'fecha',
-      displayName: 'Fecha',
+      name: 'firstName',
+      displayName: 'Nombres',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -53,8 +54,62 @@ export class PatientComponent implements OnInit {
       type: 'text'
     },
     {
-      name: 'nombre',
-      displayName: 'Nombre',
+      name: 'lastName',
+      displayName: 'Apellidos',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'gender',
+      displayName: 'Genero',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'nationality',
+      displayName: 'Nacionalidad',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'email',
+      displayName: 'E-mail',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'phone',
+      displayName: 'Celular',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'address',
+      displayName: 'Direccion',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'birthdate',
+      displayName: 'Fecha de Nacimiento',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -73,25 +128,40 @@ export class PatientComponent implements OnInit {
   ];
 
   constructor(private modalService: NgbModal,
+              private patientService: PatientService,
               private alertService: AlertService) {
 
-   /* this.actividadCivicaService.currentActividadCivicaFilter().subscribe(
+    this.patientService.currentPatientFilter().subscribe(
       dates => {
         this.pageSize = dates.size;
         this.page = dates.page;
         this.callService(dates);
       }
-    );*/
+    );
   }
 
   ngOnInit() {
   }
 
-  callService(docenteFilter: DocenteFilter) {
-   /* this.actividadCivicaService.getAllActividadesCivicas(docenteFilter).subscribe(res => {
-      this.totalEstudiantes = parseFloat(res.headers.get('X-Total-Count'));
-      this.estudiantes = res.body;
-    });*/
+  callService(patientFilter: PatientFilter) {
+    this.patientService.getAllPatients(patientFilter).subscribe(res => {
+      console.log(res);
+      this.totalData = parseFloat(res.headers.get('X-Total-Count'));
+      this.data = res.body;
+    });
+  }
+
+  clickPagination(event: any) {
+    const filter = this.patientService.getPatientFilter();
+    filter.page = (event.newPage) - 1;
+    this.patientService.sendPatientFilter(filter);
+  }
+
+  clickSort(event: any) {
+    const state = event.isDesc ? 'desc' : 'asc';
+    const filter = this.patientService.getPatientFilter();
+    filter.sort = [event.column + ',' + state];
+    this.patientService.sendPatientFilter(filter);
   }
 
   submitEstudiante(form) {
@@ -121,19 +191,6 @@ export class PatientComponent implements OnInit {
           () => this.alertService.showSuccess({html: 'actividad civica modificada exitosamente.'})
         );
     }*/
-  }
-
-  clickPagination(event: any) {
-    /*const filter = this.actividadCivicaService.getActividadCivicaFilter();
-    filter.page = (event.newPage) - 1;
-    this.actividadCivicaService.sendActividadCivicaFilter(filter);*/
-  }
-
-  clickSort(event: any) {
-    /*const state = event.isDesc ? 'desc' : 'asc';
-    const filter = this.actividadCivicaService.getActividadCivicaFilter();
-    filter.sort = [event.column + ',' + state];
-    this.actividadCivicaService.sendActividadCivicaFilter(filter);*/
   }
 
   openModal(content, titleModal, textButton) {

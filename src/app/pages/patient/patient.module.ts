@@ -3,6 +3,7 @@ import {PatientComponent} from './patient.component';
 import {RouterModule, Routes} from '@angular/router';
 import {SharedServicesModule} from '../../shared/shared-services.module';
 import {SharedLibsModule} from '../../shared/shared-libs.module';
+import {CoreModule} from '../../core';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
   imports: [
     SharedServicesModule,
     SharedLibsModule,
+    CoreModule,
     RouterModule.forChild(routes)
   ],
   declarations: [

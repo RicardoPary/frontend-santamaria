@@ -1,5 +1,5 @@
 <div class="table-content">
-  <h3 style="font-family: sans-serif;"> INSUMOS
+  <h3 style="font-family: sans-serif;"> PACIENTES
     <span class="btn-options pull-right">
       <a class="btn btn-sm btn-outline-secondary btn-icon-space"
          (click)="openModal(modalActividadCivica,'Crear Nueva Actividad Civica', 'Crear')"><i
@@ -8,11 +8,10 @@
   </h3>
   <div class="table-box">
     <app-table
-      [data]="estudiantes"
+      [data]="data"
       [headers]="headersColumns"
-      [total]="totalEstudiantes"
+      [total]="totalData"
       [pageSize]="pageSize"
-      [filtersColumns]="filtersColumns"
       [page]="page"
       (clickPagination)="clickPagination($event)"
       (clickSort)="clickSort($event)"

@@ -135,7 +135,7 @@ export class ReportComponent implements OnInit {
   }
 
   submitEstudiante(form) {
-    this.personaService.createPersona({
+    /*this.personaService.createPersona({
       'ci': form.value.ci,
       'nombre': form.value.nombre,
       'paterno': form.value.paterno,
@@ -161,7 +161,7 @@ export class ReportComponent implements OnInit {
 
 
       }
-    );
+    );*/
 
 
   }

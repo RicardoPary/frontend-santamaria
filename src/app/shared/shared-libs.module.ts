@@ -4,13 +4,15 @@ import {CommonModule} from '@angular/common';
 import {NgbModalModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from '@angular/common/http';
 import {NgBusyModule} from 'ng-busy';
+import {TableModule} from './modules/table/table.module';
 
 @NgModule({
   imports: [
     NgbModule,
     HttpClientModule,
     NgbModalModule,
-    NgBusyModule
+    NgBusyModule,
+    TableModule
   ],
   exports: [
     NgbModule,
@@ -19,7 +21,8 @@ import {NgBusyModule} from 'ng-busy';
     CommonModule,
     NgbModalModule,
     NgBusyModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TableModule
   ]
 })
 export class SharedLibsModule {
