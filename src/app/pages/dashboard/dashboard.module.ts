@@ -9,9 +9,9 @@ import {
   NotificationComponent,
   ChatComponent
 } from './components';
-import {StatModule} from '../../shared';
 
 import {PushComponent} from '../../shared/components/push.component';
+import {StatModule} from '../../shared/modules';
 
 @NgModule({
   imports: [

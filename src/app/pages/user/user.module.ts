@@ -10,7 +10,7 @@ import {RoleService} from '../../shared/services/role.service';
 import {NgBusyModule} from 'ng-busy';
 import {AccountService} from '../../shared/services/account.service';
 import {BranchService} from '../../shared/services/branch.service';
-import {VulLoaderService} from '../../shared/components/loader/vul-loader.service';
+import {LoaderService} from '../../shared/components/loader/loader.service';
 
 export const routes: Routes = [
   {path: '', component: UserComponent}
@@ -35,7 +35,7 @@ export const routes: Routes = [
     RoleService,
     AccountService,
     BranchService,
-    VulLoaderService
+    LoaderService
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

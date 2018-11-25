@@ -7,12 +7,12 @@ import {CommonModule} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
-import {AuthGuard} from './shared';
 import {httpFactoryProvider, RequestInterceptor} from './shared/interceptor';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {AlertService} from './shared/components/alert/alert.service';
 import {LoginService} from './shared/services/login.service';
 import {Ng2Webstorage} from 'ngx-webstorage';
+import {AuthGuard} from './shared/guard';
 
 // AoT requires an exported function for factories
 

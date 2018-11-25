@@ -5,7 +5,7 @@ import {UserService} from '../../shared/services/user.service';
 import {RoleService} from '../../shared/services/role.service';
 import {BranchService} from '../../shared/services/branch.service';
 import {UserFilter} from '../../shared/models/user';
-import {VulLoaderService} from '../../shared/components/loader/vul-loader.service';
+import {LoaderService} from '../../shared/components/loader/loader.service';
 import {AlertService} from '../../shared/components/alert/alert.service';
 import {finalize} from 'rxjs/internal/operators';
 import {Subscription} from 'rxjs/index';
@@ -103,7 +103,7 @@ export class UserComponent implements OnInit, OnDestroy {
               private roleService: RoleService,
               private branchService: BranchService,
               private modalService: NgbModal,
-              private loader: VulLoaderService,
+              private loader: LoaderService,
               private alert: AlertService,
               private accountService: AccountService) {
 
