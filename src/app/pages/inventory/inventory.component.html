@@ -15,7 +15,7 @@
       [page]="page"
       (clickPagination)="clickPagination($event)"
       (clickSort)="clickSort($event)"
-      (clickButton)="clickButtonRow($event)">
+      (clickButton)="clickButton($event)">
     </app-table>
   </div>
 </div>
@@ -308,7 +308,7 @@
     <table class="table">
       <thead>
       <tr>
-        <th style="border-top:0;">Nombre Producto</th>
+        <th style="border-top:0;">Nombre Insumo</th>
         <th style="border-top:0;">Cantidad</th>
         <th style="border-top:0;">Precio</th>
         <th style="border-top:0;">Detalle</th>
@@ -316,10 +316,10 @@
       </thead>
       <tbody>
       <tr *ngFor="let detail of registryDetails">
-        <td>{{detail?.product.name}}</td>
-        <td>{{detail.quantity}}</td>
-        <td>{{detail.price | number: '2.2'}} Bs.</td>
-        <td>{{detail.detail}}</td>
+        <td>{{detail?.supply?.name}}</td>
+        <td>{{detail?.quantity}}</td>
+        <td>{{detail?.price | number: '2.2'}} Bs.</td>
+        <td>{{detail?.detail}}</td>
       </tr>
       </tbody>
     </table>

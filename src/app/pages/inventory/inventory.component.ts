@@ -110,7 +110,7 @@ export class InventoryComponent implements OnInit {
       canFilter: false,
       pattern: '',
       messageError: '',
-      type: 'actions'
+      type: 'actionsView'
     }
   ];
 
@@ -196,6 +196,7 @@ export class InventoryComponent implements OnInit {
 
   clickButton(event) {
     if (event.description === 'view') {
+      console.log('asdasdasdasd');
       this.inventoryService.getAllByIdProvider(event.item.id).subscribe(
         res => {
           this.registryDetails = res.body;

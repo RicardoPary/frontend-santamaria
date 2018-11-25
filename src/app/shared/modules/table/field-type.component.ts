@@ -122,15 +122,15 @@ import {
       <ul *ngFor="let rol of value" style="list-style: none;" class="form-control">
         <li>
           <table>
-          <tr>
-            <td>Menu: {{rol.menu}}</td>
-            <td>Enlace: {{rol.enlace}}</td>
-            <td>Obtener: {{rol.get}}</td>
-            <td>Crear: {{rol.post}}</td>
-            <td>Modificar: {{rol.put}}</td>
-            <td>Eliminar: {{rol.delete}}</td>
-            <td>Imprimir: {{rol.print}}</td>           
-          </tr>
+            <tr>
+              <td>Menu: {{rol.menu}}</td>
+              <td>Enlace: {{rol.enlace}}</td>
+              <td>Obtener: {{rol.get}}</td>
+              <td>Crear: {{rol.post}}</td>
+              <td>Modificar: {{rol.put}}</td>
+              <td>Eliminar: {{rol.delete}}</td>
+              <td>Imprimir: {{rol.print}}</td>
+            </tr>
           </table>
         </li>
       </ul>

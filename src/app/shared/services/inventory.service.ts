@@ -48,6 +48,6 @@ export class InventoryService {
   }
 
   getAllByIdProvider(id: any): Observable<HttpResponse<any>> {
-    return this.http.get(`${this.urlResource}/${id}/personal`, {observe: 'response'});
+    return this.http.get(`${this.urlResource}/${id}/provider`, {observe: 'response'});
   }
 }
