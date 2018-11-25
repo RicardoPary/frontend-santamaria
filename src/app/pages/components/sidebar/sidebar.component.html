@@ -116,6 +116,23 @@
       <div class="nested-menu">
         <a class="list-group-item" (click)="isCollapsedDatosAcademicos = !isCollapsedDatosAcademicos"
            [attr.aria-expanded]="!isCollapsedDatosAcademicos" aria-controls="collapse">
+          <span><i class="fa fa-plus"></i>Insumos</span>
+        </a>
+        <ul [ngbCollapse]="isCollapsedDatosAcademicos" class="submenu">
+          <li>
+            <a href="javascript:void(0)" [routerLink]="['/category']" [routerLinkActive]="['router-link-active']">
+              <span>Categorias</span></a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" [routerLink]="['/user']" [routerLinkActive]="['router-link-active']">
+              <span>Lista de Insumos</span></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="nested-menu">
+        <a class="list-group-item" (click)="isCollapsedDatosAcademicos = !isCollapsedDatosAcademicos"
+           [attr.aria-expanded]="!isCollapsedDatosAcademicos" aria-controls="collapse">
           <span><i class="fa fa-plus"></i>Cerrar Sesion</span>
         </a>
         <ul [ngbCollapse]="isCollapsedDatosAcademicos" class="submenu">

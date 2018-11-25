@@ -24,6 +24,11 @@ const routes: Routes = [
       {path: 'actividad-civica', loadChildren: './actividad-civica/actividad-civica.module#ActividadCivicaModule'},
       {path: 'plantel-administrativo', loadChildren: './plantel-administrativo/plantel-administrativo.module#PlantelAdministrativoModule'},
       {path: 'user', loadChildren: './user/user.module#UserModule'},
+      {path: 'category', loadChildren: './category/category.module#CategoryModule'},
+      {
+        path: 'category-details/:idBranch/:idCategory',
+        loadChildren: './category-details/category-details.module#CategoryDetailsModule'
+      },
     ]
   }
 ];
