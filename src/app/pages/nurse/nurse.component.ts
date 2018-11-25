@@ -1,16 +1,18 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {AlertService} from '../../shared/components/alert/alert.service';
-import {InventoryService, ProviderService} from '../../shared/services';
+import {ConsultationDetailsService, ConsultationService, InventoryService} from '../../shared/services';
 import {Subscription} from 'rxjs/internal/Subscription';
-import {ProviderFilter} from '../../shared/models/provider';
 import {finalize} from 'rxjs/operators';
+import {ConsultationDetailsFilter} from '../../shared/models/consultation-details.model';
+import {ConsultationFilter} from '../../shared/models/consultation.model';
+import {Router} from '@angular/router';
 
 @Component({
-  templateUrl: './inventory.component.html',
-  styleUrls: ['./inventory.component.scss']
+  templateUrl: './nurse.component.html',
+  styleUrls: ['./nurse.component.scss']
 })
-export class InventoryComponent implements OnInit {
+export class NurseComponent implements OnInit {
 
   @ViewChild('modalActividadCivica') modalActividadCivica: ElementRef;
   filtersColumns: any;
@@ -41,26 +43,8 @@ export class InventoryComponent implements OnInit {
       type: 'text'
     },
     {
-      name: 'name',
-      displayName: 'Nombre',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'description',
-      displayName: 'Descripcion',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'company',
-      displayName: 'Empresa',
+      name: 'detail',
+      displayName: 'Detalles',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -77,8 +61,8 @@ export class InventoryComponent implements OnInit {
       type: 'text'
     },
     {
-      name: 'observation',
-      displayName: 'Observacion',
+      name: 'diagnosis',
+      displayName: 'Diagnostico',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -86,17 +70,8 @@ export class InventoryComponent implements OnInit {
       type: 'text'
     },
     {
-      name: 'phone',
-      displayName: 'Celular',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'type',
-      displayName: 'Tipo',
+      name: 'date',
+      displayName: 'Fecha',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -115,11 +90,13 @@ export class InventoryComponent implements OnInit {
   ];
 
   constructor(private modalService: NgbModal,
-              private providerService: ProviderService,
               private inventoryService: InventoryService,
-              private alertService: AlertService) {
+              private alertService: AlertService,
+              private consultationService: ConsultationService,
+              private consultationDetailsService: ConsultationDetailsService,
+              private router: Router) {
 
-    this.providerService.currentProviderFilter().subscribe(
+    this.consultationService.currentConsultationFilter().subscribe(
       dates => {
         this.pageSize = dates.size;
         this.page = dates.page;
@@ -131,24 +108,24 @@ export class InventoryComponent implements OnInit {
   ngOnInit() {
   }
 
-  callService(providerFilter: ProviderFilter) {
-    this.providerService.getAllProviders(providerFilter).subscribe(res => {
+  callService(consultationFilter: ConsultationFilter) {
+    this.consultationService.getAllConsultations(consultationFilter).subscribe(res => {
       this.totalData = parseFloat(res.headers.get('X-Total-Count'));
       this.data = res.body;
     });
   }
 
   clickPagination(event: any) {
-    const filter = this.providerService.getProviderFilter();
+    const filter = this.consultationService.getConsultationFilter();
     filter.page = (event.newPage) - 1;
-    this.providerService.sendProviderFilter(filter);
+    this.consultationService.sendConsultationFilter(filter);
   }
 
   clickSort(event: any) {
     const state = event.isDesc ? 'desc' : 'asc';
-    const filter = this.providerService.getProviderFilter();
+    const filter = this.consultationService.getConsultationFilter();
     filter.sort = [event.column + ',' + state];
-    this.providerService.sendProviderFilter(filter);
+    this.consultationService.sendConsultationFilter(filter);
   }
 
   submitEstudiante(form) {
@@ -195,16 +172,17 @@ export class InventoryComponent implements OnInit {
 
   clickButton(event) {
     if (event.description === 'view') {
-      this.inventoryService.getAllByIdProvider(event.item.id).subscribe(
+      this.router.navigate(['/assign', event.item.id]);
+      /*this.consultationDetailsService.getAllByIdConsultation(event.item.id).subscribe(
         res => {
           this.registryDetails = res.body;
           this.modal = this.modalService.open(this.modalRegistryDetails, {backdrop: 'static', size: 'lg'});
         }, () => this.alertService.showError({html: 'Ocurrio un error al mostrar el detalle de inventario.'})
-      );
+      );*/
     } else if (event.description === 'delete') {
       this.alertService.showWarningQuestion({html: 'Esta seguro de eliminar el inventario?'}, () => {
-        this.providerService.deleteProvider(event.item.id).pipe(finalize(() => {
-          this.providerService.sendProviderFilter(new ProviderFilter);
+        this.consultationDetailsService.deleteConsultationDetails(event.item.id).pipe(finalize(() => {
+          this.consultationDetailsService.sendConsultationDetailsFilter(new ConsultationDetailsFilter());
         })).subscribe(
           () => this.alertService.showSuccess({html: 'inventario eliminado exitosamente.'}),
           () => this.alertService.showError({html: 'ocurrio un error al eliminar el producto.'})

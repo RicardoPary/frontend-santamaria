@@ -1,10 +1,10 @@
 import {Component, ElementRef, OnInit, ViewChild, DoCheck} from '@angular/core';
-import {Invoice, PurchaseDetails} from '../../shared/models/invoice';
+import {Invoice} from '../../shared/models/invoice';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {ConsultationService} from '../../shared/services';
 import {ConsultationDetailsService} from '../../shared/services';
 
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {LocalStorageService} from 'ngx-webstorage';
 import {LoaderService} from '../../shared/components/loader/loader.service';
 import {ProductFilter} from '../../shared/models/product';
@@ -13,10 +13,10 @@ import {AlertService} from '../../shared/components/alert/alert.service';
 import {StaffService} from '../../shared/services';
 
 @Component({
-  templateUrl: './invoice.component.html',
-  styleUrls: ['./invoice.component.scss']
+  templateUrl: './assign.component.html',
+  styleUrls: ['./assign.component.scss']
 })
-export class InvoiceComponent implements OnInit, DoCheck {
+export class AssignComponent implements OnInit, DoCheck {
 
   date = new Date();
   products = [];
@@ -35,11 +35,14 @@ export class InvoiceComponent implements OnInit, DoCheck {
   constructor(private productService: StaffService,
               private modalService: NgbModal,
               private clientService: ConsultationService,
-              private purchaseDetailsService: ConsultationDetailsService,
+              private consultationDetailsService: ConsultationDetailsService,
               private alertService: AlertService,
               private $localStorage: LocalStorageService,
               private router: Router,
-              private loader: LoaderService) {
+              private loader: LoaderService,
+              private route: ActivatedRoute) {
+
+
 
     /* this.maskNumber = createNumberMask({
        prefix: '',
@@ -52,10 +55,19 @@ export class InvoiceComponent implements OnInit, DoCheck {
 
   ngOnInit() {
 
+    this.consultationDetailsService.getAllByIdConsultation(this.route.snapshot.params.idConsultation).subscribe(
+      res => {
+        this.invoice = res.body;
+        /*this.registryDetails = res.body;*/
+        /*this.modal = this.modalService.open(this.modalRegistryDetails, {backdrop: 'static', size: 'lg'});*/
+      }, () => this.alertService.showError({html: 'Ocurrio un error al mostrar el detalle de inventario.'})
+    );
+
+
     /*this.krakenService.getAllEconomicActivitis().subscribe(res => {
       this.economicActivities = res.body;
       if (res.body.length > 0) {
-        this.invoice.idEconomicActivity = res.body[0].id;
+        this.assign.idEconomicActivity = res.body[0].id;
       }
     });
     this.boxService.getBoxDTO().subscribe(
@@ -76,11 +88,11 @@ export class InvoiceComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck() {
-    this.invoice.purchaseDetails.map(
+   /* this.invoice.purchaseDetails.map(
       item => {
         item.subtotal = item.quantity * item.price;
       }
-    );
+    );*/
   }
 
   increaseQuantity(detail, stock) {
@@ -105,7 +117,7 @@ export class InvoiceComponent implements OnInit, DoCheck {
   }
 
   selectProduct(product, delibery) {
-    this.filterProduct = product.name;
+    /*this.filterProduct = product.name;
     const purchaseDetail = new PurchaseDetails();
     purchaseDetail.idProduct = product.id;
     purchaseDetail.product = product;
@@ -115,11 +127,11 @@ export class InvoiceComponent implements OnInit, DoCheck {
     }
 
     this.invoice.purchaseDetails.push(purchaseDetail);
-    this.statusOpenSmart = false;
+    this.statusOpenSmart = false;*/
   }
 
   deteleProduct(detail) {
-    this.invoice.purchaseDetails = this.invoice.purchaseDetails.filter(item => item !== detail);
+    /*this.invoice.purchaseDetails = this.invoice.purchaseDetails.filter(item => item !== detail);*/
   }
 
   openModal(content) {
@@ -151,21 +163,21 @@ export class InvoiceComponent implements OnInit, DoCheck {
 
   generateInvoice(invoice: Invoice, delibery: any) {
     /*this.loader.show('Cargando...');
-    invoice.idBranch = this.branchService.getIdBranch() ? this.branchService.getIdBranch() : this.$localStorage.retrieve('branchId');
-    this.invoice.delibery = delibery ? true : false;
-    invoice.purchaseDetails.map(item => {
+    assign.idBranch = this.branchService.getIdBranch() ? this.branchService.getIdBranch() : this.$localStorage.retrieve('branchId');
+    this.assign.delibery = delibery ? true : false;
+    assign.purchaseDetails.map(item => {
       item.typeMethod = item.statusTypeMethod ? 'LLevar' : 'Mesa';
       item.detail = item.product.name;
       item.price = item.product.salePrice;
       item.subtotal = (item.product.salePrice * item.quantity) - ((item.product.salePrice * item.quantity) * (item.discount / 100));
       item.inventory = item.product.inventory;
     });
-    this.invoiceService.postInvoiceDTO(invoice)
+    this.invoiceService.postInvoiceDTO(assign)
       .pipe(finalize(() => this.loader.hide()))
       .subscribe(
         res => {
           this.alertService.showSuccess({text: `facturado correctamente.`});
-          this.invoice = new Invoice();
+          this.assign = new Invoice();
           this.filterProduct = '';
           const productFilter = new ProductFilter();
           productFilter.product.idBranch = this.branchService.getIdBranch() ? this.branchService.getIdBranch() : this.$localStorage.retrieve('branchId');
@@ -182,10 +194,10 @@ export class InvoiceComponent implements OnInit, DoCheck {
 
   getTotalAmount(invoice) {
     let total = 0;
-    invoice.purchaseDetails.map(
+    /*invoice.purchaseDetails.map(
       item => total = total + (item.product.salePrice * item.quantity) - ((item.product.salePrice * item.quantity) * (item.discount / 100))
     );
-    invoice.totalAmount = total;
+    invoice.totalAmount = total;*/
     return total;
   }
 
@@ -209,10 +221,10 @@ export class InvoiceComponent implements OnInit, DoCheck {
   }
 
   checkDelibery(value) {
-    if (value) {
+    /*if (value) {
       this.invoice.purchaseDetails.map(item => {
         item.statusTypeMethod = true;
       });
-    }
+    }*/
   }
 }

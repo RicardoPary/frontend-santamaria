@@ -3,7 +3,7 @@
     <button routerLink="/" class="btn-icon icon-title" type="submit" placement="bottom">
       <i class="icon-arrow-left"></i>
     </button>
-    PUNTO DE VENTA
+    Asignar Medicamentos
     <span class="logo-animated">
          <div class="icon-kraken" placement="bottom" ngbTooltip="Hola! Soy Kraken"></div>
          <div class="text-kraken"></div>
@@ -15,123 +15,22 @@
       <div class="row">
         <div class="col-3">
           <div class="form-group">
-            <label>Fecha de Emisión</label>
+            <label>Fecha de Asignacion</label>
             <h5 class="m-0">{{date | date:'d MMMM, y'}}</h5>
-          </div>
-        </div>
-
-        <div class="col-3">
-          <div class="form-group">
-            <label>Caja</label>
-            <h5 class="m-0">{{statusBox ? 'Caja Abierta : ' + boxCurrent?.id : 'Caja Cerrada'}}</h5>
-            <!--<button class="btn btn-secondary" (click)="openModal(modalCloseBox)" *ngIf="statusBox">cerrar caja</button>-->
           </div>
         </div>
         <div class="col-3"></div>
         <div class="col-3 text-right">
           <div class="pt-2">
-            <button class="btn btn-secondary" (click)="openModal(modalBox)" *ngIf="!statusBox">abrir caja</button>
+            <!--<button class="btn btn-secondary" (click)="openModal(modalBox)" *ngIf="!statusBox">abrir caja</button>-->
           </div>
           <div class="pt-2">
-            <button class="btn btn-secondary" (click)="openModal(modalCloseBox)" *ngIf="statusBox">cerrar caja</button>
+            <!--<button class="btn btn-secondary" (click)="openModal(modalCloseBox)" *ngIf="statusBox">cerrar caja</button>-->
           </div>
         </div>
       </div>
 
       <div class="row">
-
-        <div class="col-3">
-          <div class="form-group">
-            <label>NIT/CI</label>
-            <div class="input-group autocomplete" id="ngbdropdown">
-              <!-- class="margin-top-minus form-control form-control-big" -->
-              <input id="dropdownBasic1"
-                     type="text"
-                     class="form-control"
-                     placeholder="5476427"
-                     aria-describedby="basic-addon2"
-                     name="nit"
-                     maxlength="9"
-                     [(ngModel)]="invoice.client.nit"
-                     ngControl="nit"
-                     title="NIT/CI"
-                     required
-                     #nit="ngModel">
-            </div>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="form-group">
-            <label for="nameToBill">Señor(es)</label>
-            <input type="text"
-                   id="nameToBill"
-                   name="nameToBill"
-                   class="form-control"
-                   autocomplete="off"
-                   placeholder="Ejm. Quispe"
-                   maxlength="40"
-                   required
-                   minlength="3"
-                   pattern="[A-Za-z]{3,40}"
-                   [(ngModel)]="invoice.client.name"
-                   #nameToBill="ngModel">
-            <div *ngIf="nameToBill.invalid && (nameToBill.dirty || nameToBill.touched)"
-                 class="form-text text-danger">
-              <div *ngIf="nameToBill?.errors.minlength">
-                El texto debe tener al menos 3 caracteres.
-              </div>
-              <div *ngIf="nameToBill?.errors.maxlength">
-                El texto no puede tener más de 40 caracteres.
-              </div>
-              <div *ngIf="nameToBill.invalid">
-                El texto no es valido.
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input id="email"
-                   type="email"
-                   class="form-control"
-                   placeholder="Ejm. juan@mail.com"
-                   name="email"
-                   [(ngModel)]="invoice.client.email"
-                   #email="ngModel"
-                   email
-                   required
-                   title="Email">
-            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="form-text text-danger">
-              <div *ngIf="email?.errors.required">
-                Email es requerido.
-              </div>
-              <div *ngIf="email?.errors.minlength">
-                El email debe tener al menos 5 caracteres.
-              </div>
-              <div *ngIf="email?.errors.maxlength">
-                El email no puede tener más de 100 caracteres.
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="col-3">
-          <div class="form-group">
-            <label for="email">Actividad económica</label>
-            <select class="form-control"
-                    name="branchFilter"
-                    [(ngModel)]="invoice.idEconomicActivity"
-                    #branch="ngModel">
-              <option *ngFor="let economicActivity of economicActivities" [value]="economicActivity.id">
-                <small>{{economicActivity.description}}</small>
-              </option>
-            </select>
-          </div>
-        </div>
-
-
       </div>
 
       <div class="upload-file card container-fluid p-0 mb-2">
@@ -139,7 +38,7 @@
           <div class="col-md-3">
             <!--<img  class="card-img-top my-0" src="../../../assets/themes/materia/images/Upload-Document.png">-->
             <div class="form-search ml-2 mb-2">
-              <input class="form-control ng-pristine ng-valid ng-touched"
+              <!--<input class="form-control ng-pristine ng-valid ng-touched"
                      id="inputFilter"
                      name="inputFilter"
                      placeholder="Buscar..."
@@ -148,9 +47,9 @@
                      (blur)="selectedProduct ? statusOpenSmart = true : statusOpenSmart = false"
                      [(ngModel)]="filterProduct"
                      #filter="ngModel">
-              <i class="icon-search"></i>
+              <i class="icon-search"></i>-->
             </div>
-            <div class="col-md-12" *ngIf="filterProduct.length > 2 && statusOpenSmart"
+            <!--<div class="col-md-12" *ngIf="filterProduct.length > 2 && statusOpenSmart"
                  style=" overflow-y: auto;
                       overflow-x: hidden;
                       height: auto;
@@ -179,7 +78,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div>-->
 
             <div *ngIf="filterProduct.length > 2 && statusOpenSmart && getProducts(filterProduct).length === 0"
                  style=" overflow-y: auto;
@@ -205,8 +104,6 @@
               <div class="col-md-2"> Cantidad</div>
               <div class="col-md-2"> Precio</div>
               <div class="col-md-2"> Sub Total</div>
-              <div class="col-md-2"> Tipo</div>
-              <div class="col-md-2"> Acción</div>
             </div>
           </div>
         </div>
@@ -215,53 +112,41 @@
 
       <div>
         <div class="upload-file card container-fluid p-0 mb-2"
-             *ngFor="let detail of invoice.purchaseDetails; let i = index">
+             *ngFor="let detail of invoice; let i = index">
           <div class="row py-0 no-gutters">
             <div class="col-md-3">
 
               <div class="row">
-                <div class="col-md-4">
-                  <img class="img-graph my-0" src="../../../assets/themes/materia/images/item1.jpg">
-                </div>
-                <div class="col-md-8">
-                  <p class="pt-3 pb-3 mb-0 mt-1">{{detail.product?.name}}</p>
+                <div class="col-md-12">
+                  <p class="pt-3 pb-3 mb-0 mt-1">{{detail.supply?.name}}</p>
                 </div>
               </div>
             </div>
             <div class="col-md-9 text-center size-icon">
               <div class="row p-0 pt-3 pb-2 mb-0">
                 <!--<div class="col-md-1"></div>-->
-                <div class="col-md-2 c-price">{{detail.product?.inventory ? detail.product?.stock : 'ilimitado'}}</div>
+                <div class="col-md-2 c-price">{{detail.supply?.inventory ? detail.supply?.stock : 'ilimitado'}}</div>
                 <div class="col-md-2">
 
                   <div class="box-quantity">
                     <div class="number-input full-field">
-                      <i class="icon-minus-circle"
+                      <i class="fa fa-minus"
                          onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
                          (click)="decreaseQuantity(detail)"></i>
-                      <input class="quantity" min="0" [max]="detail.product?.stock" name="quantity" value="1"
+                      <input class="quantity" min="0" [max]="detail.supply?.stock" name="quantity" value="1"
                              type="number"
                              [(ngModel)]="detail.quantity">
-                      <i class="icon-plus-circle"
+                      <i class="fa fa-plus"
                          onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                         (click)="increaseQuantity(detail, detail.product?.stock)"></i>
+                         (click)="increaseQuantity(detail, detail.supply?.stock)"></i>
                     </div>
                   </div>
 
                 </div>
-                <div class="col-md-2 c-price">{{detail.product?.salePrice | number: '2.2'}} Bs.</div>
-                <div class="col-md-2 c-price">{{(detail.quantity * detail.product.salePrice) - ((detail.quantity *
-                  detail.product.salePrice)*(detail.discount / 100)) | number: '2.2'}} Bs.
+                <div class="col-md-2 c-price">{{detail.supply?.salePrice | number: '2.2'}} Bs.</div>
+                <div class="col-md-2 c-price">{{(detail.quantity * detail.supply.salePrice) - ((detail.quantity *
+                  detail.supply.salePrice)*(detail.supply.discount / 100)) | number: '2.2'}} Bs.
                 </div>
-                <div class="col-md-2">
-                  <span class="tipo-toggle" style="font-size: 12px;">Mesa</span>
-                  <span>
-                   <!-- <mat-slide-toggle [(ngModel)]="detail.statusTypeMethod" [disabled]="delibery.checked">
-                    <span style="font-size: 12px;">LLevar</span>
-                  </mat-slide-toggle>-->
-                  </span>
-                </div>
-                <div class="col-md-2 "><i class="icon-trash-2" (click)="deteleProduct(detail)"></i></div>
               </div>
             </div>
           </div>
@@ -269,7 +154,7 @@
         </div>
       </div>
 
-      <div [hidden]="invoice.purchaseDetails.length === 0">
+      <div>
 
         <div class="upload-file card container-fluid p-0 mb-2 bg-primary">
           <div class="row py-0 no-gutters">
@@ -286,74 +171,11 @@
         </div>
 
         <div class="row">
-          <div class="col-md-12 mt-1">
-            <div class="form-group">
-              <label class="c-text">Nota:</label>
-              <input class="form-control" placeholder="" type="text" [(ngModel)]="invoice.note">
-            </div>
-          </div>
-          <div class="col-md-6 ">
-            <div class="row box-check">
-              <form novalidate="" class="ng-untouched ng-pristine ng-valid">
-                <fieldset class="form-group">
-                  <div class="form-check pl-5 pt-1">
-                    <input class="form-check-input"
-                           type="radio"
-                           name="methodType"
-                           id="exampleRadios1"
-                           value="option1"
-                           checked
-                           value="EFECTIVO"
-                           [(ngModel)]="invoice.methodType">
-                    <label class="form-check-label" for="exampleRadios1">
-                      EFECTIVO
-                    </label>
-                  </div>
-                  <div class="form-check pl-5 pt-1">
-                    <input class="form-check-input"
-                           type="radio"
-                           name="methodType"
-                           id="exampleRadios2"
-                           value="TARJETA"
-                           [(ngModel)]="invoice.methodType">
-                    <label class="form-check-label" for="exampleRadios2">
-                      TARJETA
-                    </label>
-                  </div>
-                  <div class="form-check pl-5 pt-1">
-                    <input class="form-check-input"
-                           type="radio"
-                           name="methodType"
-                           id="exampleRadios3"
-                           value="OTRO"
-                           [(ngModel)]="invoice.methodType">
-                    <label class="form-check-label" for="exampleRadios3">
-                      OTRO
-                    </label>
-                  </div>
-                </fieldset>
-              </form>
-            </div>
-          </div>
-          <div class="col-md-3 text-center">
-            <div class="form-check pl-5 pt-1">
-              <input class="form-check-input"
-                     type="checkbox"
-                     name="delibery"
-                     id="delibery"
-                     #delibery
-                     (click)="checkDelibery(delibery.checked)">
-              <label class="form-check-label" for="exampleRadios3">
-                DELIVERY
-              </label>
-            </div>
-          </div>
           <div class="col-md-3 text-right">
             <button class="btn btn-primary"
-                    [disabled]="nit.invalid || nameToBill.invalid || email.invalid || invoice.idEconomicActivity === undefined"
                     type="button"
                     (click)="generateInvoice(invoice, delibery.checked)">
-              FACTURAR
+              ASIGNAR
             </button>
           </div>
         </div>

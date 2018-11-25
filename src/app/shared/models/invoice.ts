@@ -1,57 +1,53 @@
 export class Invoice {
-  client: Client = new Client();
-  discount = 0;
-  idBox: number;
-  idBranch: number;
-  idEconomicActivity: number;
-  note = '';
-  observation = '';
-  delibery = false;
-  methodType = 'EFECTIVO';
-  purchaseDate = '';
-  purchaseDetails: PurchaseDetails[] = [];
-  purchaseType = '';
-  totalAmount = 0;
-  type = '';
+  detail: string;
+  id: number;
+  idConsultation: number;
+  name: string;
+  quantity: 0;
+  staff: Staff = new Staff();
+  supply: Supply = new Supply();
 }
 
-export class Client {
-  email: String;
-  name: String;
-  nit = '';
+export class Staff {
+  address: string;
+  birthdate: string;
+  ci: number;
+  email: string;
+  firstName: string;
+  gender: string;
+  id: 0;
+  lastName: string;
+  nationality: string;
+  phone: number;
+  profession: string;
+  speciality: string;
 }
 
-export class Product {
-  barcode: String;
-  description: String;
+export class Category {
+  description: string;
+  id: 0;
+  imageCache: string;
+  imageName: string;
+  imageUrl: string;
+  name: string;
+  type: string;
+}
+
+export class Supply {
+  barcode: string;
+  category: Category = new Category();
+  description: string;
   discount: number;
   id: number;
-  idBranch: number;
-  idCategory: number;
-  imageCache: String;
-  imageName: String;
-  inventory: boolean;
-  marke: String;
-  name: String;
+  imageCache: string;
+  imageName: string;
+  inventory: true;
+  marke: string;
+  name: string;
   purchasePrice: number;
   salePrice: number;
   stock: number;
-  type: String;
-  urlImage: String;
+  type: string;
+  urlImage: string;
   wholesalePrice: number;
-}
-
-export class PurchaseDetails {
-  detail: String = '';
-  discount = 0;
-  idProduct: number;
-  product: Product = new Product();
-  name = '';
-  observation = '';
-  price = 0;
-  quantity = 0;
-  subtotal = 0;
-  statusTypeMethod = false;
-  typeMethod = '';
-  inventory: boolean;
 }

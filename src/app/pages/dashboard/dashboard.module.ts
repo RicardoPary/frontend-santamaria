@@ -8,7 +8,6 @@ import {
   ChatComponent
 } from './components';
 
-import {PushComponent} from '../../shared/components/push.component';
 import {StatModule} from '../../shared/modules';
 import {RouterModule, Routes} from '@angular/router';
 import {SharedLibsModule} from '../../shared/shared-libs.module';
@@ -31,8 +30,7 @@ const routes: Routes = [
     DashboardComponent,
     TimelineComponent,
     NotificationComponent,
-    ChatComponent,
-    PushComponent
+    ChatComponent
   ]
 })
 export class DashboardModule {

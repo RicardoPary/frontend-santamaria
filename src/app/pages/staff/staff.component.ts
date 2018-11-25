@@ -154,7 +154,6 @@ export class StaffComponent implements OnInit {
 
   callService(staffFilter: StaffFilter) {
     this.staffService.getAllStaff(staffFilter).subscribe(res => {
-      console.log(res);
       this.totalData = parseFloat(res.headers.get('X-Total-Count'));
       this.data = res.body;
     });
@@ -219,7 +218,6 @@ export class StaffComponent implements OnInit {
     /*if (event.description === 'delete') {
       this.alertService.showWarningQuestion({html: 'esta seguro de eliminar la actividad civica ?'}, isConfirm => {
         if (isConfirm.value) {
-          console.log('true');
           this.actividadCivicaService.deleteActividadCivica(event.item.id)
             .pipe(finalize(() => this.actividadCivicaService.sendActividadCivicaFilter(new ActividadCivicaFilter())))
             .subscribe(

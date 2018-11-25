@@ -14,12 +14,14 @@ import {
   InventoryService,
   MedicalHistoryService,
   TypeAttentionService,
-  SupplyService
+  SupplyService,
+  ProviderService
 } from './services';
 
 import {RequestInterceptor} from './blocks/intercertor/request.interceptor';
 import {AlertService} from './components/alert/alert.service';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {LoaderService} from './components/loader/loader.service';
 
 @NgModule({
   providers: [
@@ -44,7 +46,9 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
     TypeAttentionService,
     SupplyService,
     AlertService,
-    NgbActiveModal
+    ProviderService,
+    NgbActiveModal,
+    LoaderService
   ]
 })
 export class SharedServicesModule {
