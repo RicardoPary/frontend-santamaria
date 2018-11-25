@@ -1,66 +1,19 @@
 <nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
   <div class="list-group" style="background: #252e4f;">
     <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
-      <i class="fa fa-fw fa-dashboard"></i>Principal
-    </a>
-    <a [routerLink]="['/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-      <i class="fa fa-fw fa-bar-chart-o"></i>Metricas
+      <i class="fa fa-fw fa-dashboard"></i>Usuario
     </a>
     <div class="list-group" style="background: #252e4f;">
 
       <div class="nested-menu">
-        <a class="list-group-item" (click)="isCollapsedUsuarios = !isCollapsedUsuarios"
-           [attr.aria-expanded]="!isCollapsedUsuarios" aria-controls="collapse">
-          <span><i class="fa fa-plus"></i>Usuarios</span>
+        <a class="list-group-item" (click)="isCollapsedDatosAcademicos = !isCollapsedDatosAcademicos"
+           [attr.aria-expanded]="!isCollapsedDatosAcademicos" aria-controls="collapse">
+          <span><i class="fa fa-plus"></i>Historia Clinica</span>
         </a>
-        <ul [ngbCollapse]="isCollapsedUsuarios" class="submenu">
+        <ul [ngbCollapse]="isCollapsedDatosAcademicos" class="submenu">
           <li>
-            <a href="javascript:void(0)" [routerLink]="['/tutor']" [routerLinkActive]="['router-link-active']">
-              <span>Tutor</span></a>
-          </li>
-          <li>
-            <a href="javascript:void(0)" [routerLink]="['/estudiante']" [routerLinkActive]="['router-link-active']">
-              <span>Estudiante</span></a>
-          </li>
-          <li>
-            <a href="javascript:void(0)" [routerLink]="['/docente']" [routerLinkActive]="['router-link-active']">
-              <span>Docente</span></a>
-          </li>
-          <li>
-            <a href="javascript:void(0)" [routerLink]="['/plantel-administrativo']" [routerLinkActive]="['router-link-active']">
-              <span>Plantel Administrativo</span></a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="nested-menu">
-        <a class="list-group-item" (click)="isCollapsedRegistros = !isCollapsedRegistros"
-           [attr.aria-expanded]="!isCollapsedRegistros" aria-controls="collapse">
-          <span><i class="fa fa-plus"></i>Registros</span>
-        </a>
-        <ul [ngbCollapse]="isCollapsedRegistros" class="submenu">
-          <li>
-            <a href="javascript:void(0)" [routerLink]="['/inscripcion']" [routerLinkActive]="['router-link-active']"><span>Inscripcion</span></a>
-          </li>
-          <li>
-            <a href="javascript:void(0)"><span>Filiacion</span></a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="nested-menu">
-        <a class="list-group-item" (click)="isCollapsedActividades = !isCollapsedActividades"
-           [attr.aria-expanded]="!isCollapsedActividades" aria-controls="collapse">
-          <span><i class="fa fa-plus"></i>Actividades</span>
-        </a>
-        <ul [ngbCollapse]="isCollapsedActividades" class="submenu">
-          <li>
-            <a href="javascript:void(0)" [routerLink]="['/actividad-civica']" [routerLinkActive]="['router-link-active']">
-              <span>Actividades Civicas</span></a>
-          </li>
-          <li>
-            <a href="javascript:void(0)" [routerLink]="['/reunion']" [routerLinkActive]="['router-link-active']">
-              <span>Reuniones</span></a>
+            <a href="javascript:void(0)" [routerLink]="['/materia']" [routerLinkActive]="['router-link-active']">
+              <span>Lista de Historial</span></a>
           </li>
         </ul>
       </div>
@@ -68,35 +21,112 @@
       <div class="nested-menu">
         <a class="list-group-item" (click)="isCollapsedDatosAcademicos = !isCollapsedDatosAcademicos"
            [attr.aria-expanded]="!isCollapsedDatosAcademicos" aria-controls="collapse">
-          <span><i class="fa fa-plus"></i>Datos Academicos</span>
+          <span><i class="fa fa-plus"></i>Inventario</span>
         </a>
         <ul [ngbCollapse]="isCollapsedDatosAcademicos" class="submenu">
           <li>
             <a href="javascript:void(0)" [routerLink]="['/materia']" [routerLinkActive]="['router-link-active']">
-              <span>Materia</span></a>
+              <span>Lista de Inventario</span></a>
           </li>
-          <li>
-            <a href="javascript:void(0)" [routerLink]="['/horario']" [routerLinkActive]="['router-link-active']">
-              <span>Horario</span></a>
-          </li>
-          <li>
-            <a href="javascript:void(0)" [routerLink]="['/aula']" [routerLinkActive]="['router-link-active']">
-              <span>Aula</span></a>
-          </li>
-          <li>
-            <a href="javascript:void(0)" [routerLink]="['/curso']" [routerLinkActive]="['router-link-active']">
-              <span>Curso</span></a>
-          </li>
-          <!--<li>-->
-            <!--<a href="javascript:void(0)">-->
-              <!--<span>Plan Pedagogico</span></a>-->
-          <!--</li>-->
-          <!--<li>-->
-            <!--<a href="javascript:void(0)">-->
-              <!--<span>Boletin</span></a>-->
-          <!--</li>-->
         </ul>
       </div>
+
+      <div class="nested-menu">
+        <a class="list-group-item" (click)="isCollapsedDatosAcademicos = !isCollapsedDatosAcademicos"
+           [attr.aria-expanded]="!isCollapsedDatosAcademicos" aria-controls="collapse">
+          <span><i class="fa fa-plus"></i>Material</span>
+        </a>
+        <ul [ngbCollapse]="isCollapsedDatosAcademicos" class="submenu">
+          <li>
+            <a href="javascript:void(0)" [routerLink]="['/materia']" [routerLinkActive]="['router-link-active']">
+              <span>Lista de Material</span></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="nested-menu">
+        <a class="list-group-item" (click)="isCollapsedDatosAcademicos = !isCollapsedDatosAcademicos"
+           [attr.aria-expanded]="!isCollapsedDatosAcademicos" aria-controls="collapse">
+          <span><i class="fa fa-plus"></i>Pacientes</span>
+        </a>
+        <ul [ngbCollapse]="isCollapsedDatosAcademicos" class="submenu">
+          <li>
+            <a href="javascript:void(0)" [routerLink]="['/materia']" [routerLinkActive]="['router-link-active']">
+              <span>Lista de Pacientes</span></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="nested-menu">
+        <a class="list-group-item" (click)="isCollapsedDatosAcademicos = !isCollapsedDatosAcademicos"
+           [attr.aria-expanded]="!isCollapsedDatosAcademicos" aria-controls="collapse">
+          <span><i class="fa fa-plus"></i>Personal</span>
+        </a>
+        <ul [ngbCollapse]="isCollapsedDatosAcademicos" class="submenu">
+          <li>
+            <a href="javascript:void(0)" [routerLink]="['/materia']" [routerLinkActive]="['router-link-active']">
+              <span>Personal Administrativo</span></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="nested-menu">
+        <a class="list-group-item" (click)="isCollapsedDatosAcademicos = !isCollapsedDatosAcademicos"
+           [attr.aria-expanded]="!isCollapsedDatosAcademicos" aria-controls="collapse">
+          <span><i class="fa fa-plus"></i>Reportes</span>
+        </a>
+        <ul [ngbCollapse]="isCollapsedDatosAcademicos" class="submenu">
+          <li>
+            <a href="javascript:void(0)" [routerLink]="['/materia']" [routerLinkActive]="['router-link-active']">
+              <span>Lista de Reportes</span></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="nested-menu">
+        <a class="list-group-item" (click)="isCollapsedDatosAcademicos = !isCollapsedDatosAcademicos"
+           [attr.aria-expanded]="!isCollapsedDatosAcademicos" aria-controls="collapse">
+          <span><i class="fa fa-plus"></i>Roles</span>
+        </a>
+        <ul [ngbCollapse]="isCollapsedDatosAcademicos" class="submenu">
+          <li>
+            <a href="javascript:void(0)" [routerLink]="['/materia']" [routerLinkActive]="['router-link-active']">
+              <span>Lista de Roles</span></a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" [routerLink]="['/materia']" [routerLinkActive]="['router-link-active']">
+              <span>Asignar Rol</span></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="nested-menu">
+        <a class="list-group-item" (click)="isCollapsedDatosAcademicos = !isCollapsedDatosAcademicos"
+           [attr.aria-expanded]="!isCollapsedDatosAcademicos" aria-controls="collapse">
+          <span><i class="fa fa-plus"></i>Usuarios</span>
+        </a>
+        <ul [ngbCollapse]="isCollapsedDatosAcademicos" class="submenu">
+          <li>
+            <a href="javascript:void(0)" [routerLink]="['/materia']" [routerLinkActive]="['router-link-active']">
+              <span>Lista de Usuarios</span></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="nested-menu">
+        <a class="list-group-item" (click)="isCollapsedDatosAcademicos = !isCollapsedDatosAcademicos"
+           [attr.aria-expanded]="!isCollapsedDatosAcademicos" aria-controls="collapse">
+          <span><i class="fa fa-plus"></i>Cerrar Sesion</span>
+        </a>
+        <ul [ngbCollapse]="isCollapsedDatosAcademicos" class="submenu">
+          <li>
+            <a href="javascript:void(0)" [routerLink]="['/materia']" [routerLinkActive]="['router-link-active']">
+              <span>Cerrar</span></a>
+          </li>
+        </ul>
+      </div>
+
+
     </div>
   </div>
 </nav>
