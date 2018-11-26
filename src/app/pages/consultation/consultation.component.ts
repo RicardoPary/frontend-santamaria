@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild, DoCheck} from '@angular/core';
 import {Invoice} from '../../shared/models/invoice';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {ConsultationService} from '../../shared/services';
+import {ConsultationService, SupplyService} from '../../shared/services';
 import {ConsultationDetailsService} from '../../shared/services';
 
 import {ActivatedRoute, Router} from '@angular/router';
@@ -11,28 +11,29 @@ import {ProductFilter} from '../../shared/models/product';
 import {finalize} from 'rxjs/internal/operators';
 import {AlertService} from '../../shared/components/alert/alert.service';
 import {StaffService} from '../../shared/services';
+import {SupplyFilter} from '../../shared/models/supply.model';
 
 @Component({
-  templateUrl: './assign.component.html',
-  styleUrls: ['./assign.component.scss']
+  templateUrl: './consultation.component.html',
+  styleUrls: ['./consultation.component.scss']
 })
-export class AssignComponent implements OnInit, DoCheck {
+export class ConsultationComponent implements OnInit, DoCheck {
 
   date = new Date();
-  products = [];
+  supplies = [];
   economicActivities: any;
-  filterProduct = '';
+  filterSupply = '';
   invoice: Invoice = new Invoice();
   modal: NgbModalRef;
   boxCurrent: any;
   statusBox: boolean;
   statusOpenSmart = false;
-  selectedProduct = false;
+  selectedSupply = false;
   maskNumber: any;
 
   @ViewChild('modalBox') modalBox: ElementRef;
 
-  constructor(private productService: StaffService,
+  constructor(private supplyService: SupplyService,
               private modalService: NgbModal,
               private clientService: ConsultationService,
               private consultationDetailsService: ConsultationDetailsService,
@@ -55,19 +56,19 @@ export class AssignComponent implements OnInit, DoCheck {
 
   ngOnInit() {
 
-    this.consultationDetailsService.getAllByIdConsultation(this.route.snapshot.params.idConsultation).subscribe(
+    /*this.consultationDetailsService.getAllByIdConsultation(this.route.snapshot.params.idConsultation).subscribe(
       res => {
         this.invoice = res.body;
-        /*this.registryDetails = res.body;*/
-        /*this.modal = this.modalService.open(this.modalRegistryDetails, {backdrop: 'static', size: 'lg'});*/
+        /!*this.registryDetails = res.body;*!/
+        /!*this.modal = this.modalService.open(this.modalRegistryDetails, {backdrop: 'static', size: 'lg'});*!/
       }, () => this.alertService.showError({html: 'Ocurrio un error al mostrar el detalle de inventario.'})
-    );
+    );*/
 
 
     /*this.krakenService.getAllEconomicActivitis().subscribe(res => {
       this.economicActivities = res.body;
       if (res.body.length > 0) {
-        this.assign.idEconomicActivity = res.body[0].id;
+        this.consultation.idEconomicActivity = res.body[0].id;
       }
     });
     this.boxService.getBoxDTO().subscribe(
@@ -85,14 +86,19 @@ export class AssignComponent implements OnInit, DoCheck {
     this.productService.getAllProductsByFilter(productFilter).subscribe(res => {
       this.products = res.body;
     });*/
+
+    const supplyFilter = new SupplyFilter();
+    this.supplyService.getAllSupplies(supplyFilter).subscribe(res => {
+      this.supplies = res.body;
+    });
   }
 
   ngDoCheck() {
-   /* this.invoice.purchaseDetails.map(
-      item => {
-        item.subtotal = item.quantity * item.price;
-      }
-    );*/
+    /* this.invoice.purchaseDetails.map(
+       item => {
+         item.subtotal = item.quantity * item.price;
+       }
+     );*/
   }
 
   increaseQuantity(detail, stock) {
@@ -107,8 +113,8 @@ export class AssignComponent implements OnInit, DoCheck {
     }
   }
 
-  getProducts(filter) {
-    return this.products.filter((v) => {
+  getSupplies(filter) {
+    return this.supplies.filter((v) => {
       if (v.name.toLowerCase().indexOf(filter.toLowerCase()) >= 0 && filter.length > 2) {
         return true;
       }
@@ -116,7 +122,7 @@ export class AssignComponent implements OnInit, DoCheck {
     });
   }
 
-  selectProduct(product, delibery) {
+  selectSupply(product) {
     /*this.filterProduct = product.name;
     const purchaseDetail = new PurchaseDetails();
     purchaseDetail.idProduct = product.id;
@@ -163,21 +169,21 @@ export class AssignComponent implements OnInit, DoCheck {
 
   generateInvoice(invoice: Invoice, delibery: any) {
     /*this.loader.show('Cargando...');
-    assign.idBranch = this.branchService.getIdBranch() ? this.branchService.getIdBranch() : this.$localStorage.retrieve('branchId');
-    this.assign.delibery = delibery ? true : false;
-    assign.purchaseDetails.map(item => {
+    consultation.idBranch = this.branchService.getIdBranch() ? this.branchService.getIdBranch() : this.$localStorage.retrieve('branchId');
+    this.consultation.delibery = delibery ? true : false;
+    consultation.purchaseDetails.map(item => {
       item.typeMethod = item.statusTypeMethod ? 'LLevar' : 'Mesa';
       item.detail = item.product.name;
       item.price = item.product.salePrice;
       item.subtotal = (item.product.salePrice * item.quantity) - ((item.product.salePrice * item.quantity) * (item.discount / 100));
       item.inventory = item.product.inventory;
     });
-    this.invoiceService.postInvoiceDTO(assign)
+    this.invoiceService.postInvoiceDTO(consultation)
       .pipe(finalize(() => this.loader.hide()))
       .subscribe(
         res => {
           this.alertService.showSuccess({text: `facturado correctamente.`});
-          this.assign = new Invoice();
+          this.consultation = new Invoice();
           this.filterProduct = '';
           const productFilter = new ProductFilter();
           productFilter.product.idBranch = this.branchService.getIdBranch() ? this.branchService.getIdBranch() : this.$localStorage.retrieve('branchId');

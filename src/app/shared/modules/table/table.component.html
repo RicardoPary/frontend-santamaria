@@ -181,6 +181,7 @@
             <td *ngIf="!col.responsive">
               <app-field-type
                 [type]="col.type"
+                [col]="col"
                 [value]="item[col.name]"
                 (clickButton)="clickButtonRow(item,col,i,$event.event,$event.description)">
               </app-field-type>
@@ -203,6 +204,7 @@
                   <td style="border: none; padding: 0px; margin: 0px;">
                     <app-field-type
                       [type]="col.type"
+                      [col]="col"
                       [value]="item[col.name]"
                       (clickButton)="clickButtonRow(item,col,i,$event.event,$event.description)">
                     </app-field-type>

@@ -1,4 +1,4 @@
-export class Invoice {
+export class ConsultationDetails {
   detail: string;
   id: number;
   idConsultation: number;
@@ -50,4 +50,35 @@ export class Supply {
   type: string;
   urlImage: string;
   wholesalePrice: number;
+}
+
+
+export class Invoice {
+  date: string;
+  detail: string;
+  diagnosis: string;
+  id: number;
+  patient: Patient = new Patient();
+  staff: Staff = new Staff();
+  typeAttention: TypeAttention = new TypeAttention();
+  consultationDetails: ConsultationDetails [] = [];
+}
+
+export class Patient {
+  address: string;
+  birthdate: string;
+  ci: number;
+  email: string;
+  firstName: string;
+  gender: string;
+  id: number;
+  lastName: string;
+  nationality: string;
+  phone: number;
+}
+
+export class TypeAttention {
+  description: string;
+  id: number;
+  name: string;
 }

@@ -43,6 +43,56 @@ export class NurseComponent implements OnInit {
       type: 'text'
     },
     {
+      name: 'patient',
+      displayName: 'Nombres',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'object',
+      index: 'firstName'
+    },
+    {
+      name: 'patient',
+      displayName: 'Apellidos',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'object',
+      index: 'lastName'
+    },
+    {
+      name: 'staff',
+      displayName: 'Asignado por',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'object',
+      index: 'firstName'
+    },
+    {
+      name: 'staff',
+      displayName: 'Asignado por',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'object',
+      index: 'lastName'
+    },
+    {
+      name: 'typeAttention',
+      displayName: 'Tipo de Atencion',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'object',
+      index: 'name'
+    },
+    {
       name: 'detail',
       displayName: 'Detalles',
       canSort: true,
@@ -63,15 +113,6 @@ export class NurseComponent implements OnInit {
     {
       name: 'diagnosis',
       displayName: 'Diagnostico',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'date',
-      displayName: 'Fecha',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -172,13 +213,12 @@ export class NurseComponent implements OnInit {
 
   clickButton(event) {
     if (event.description === 'view') {
-      this.router.navigate(['/assign', event.item.id]);
-      /*this.consultationDetailsService.getAllByIdConsultation(event.item.id).subscribe(
+      this.consultationDetailsService.getAllByIdConsultation(event.item.id).subscribe(
         res => {
           this.registryDetails = res.body;
           this.modal = this.modalService.open(this.modalRegistryDetails, {backdrop: 'static', size: 'lg'});
         }, () => this.alertService.showError({html: 'Ocurrio un error al mostrar el detalle de inventario.'})
-      );*/
+      );
     } else if (event.description === 'delete') {
       this.alertService.showWarningQuestion({html: 'Esta seguro de eliminar el inventario?'}, () => {
         this.consultationDetailsService.deleteConsultationDetails(event.item.id).pipe(finalize(() => {

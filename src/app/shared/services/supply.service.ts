@@ -30,7 +30,12 @@ export class SupplyService {
     const params = createRequestOption({
       'page': supplyFilter.page,
       'size': supplyFilter.size,
-      'sort': supplyFilter.sort
+      'sort': supplyFilter.sort,
+      'name.contains': supplyFilter.supply.name,
+      'stock.equals': supplyFilter.supply.stock,
+      'salePrice.equals' : supplyFilter.supply.salePrice,
+      'inventory.equals': supplyFilter.supply.inventory,
+      'categoryId.equals': supplyFilter.supply.idCategory
     });
     return this.http.get(`${this.urlResource}`, {params: params, observe: 'response'});
   }

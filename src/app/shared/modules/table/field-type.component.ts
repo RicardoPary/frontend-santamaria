@@ -91,7 +91,7 @@ import {
     </div>
 
     <div *ngIf="type === 'object'" style="padding-left: 15px;">
-      {{value ? item[col.name][col.index] : 'ninguno'}}
+      {{value ? value[this.col.index] : 'ninguno'}}
     </div>
 
     <div *ngIf="type === 'text'" style="padding-left: 15px;">
@@ -141,6 +141,7 @@ export class FieldTypeComponent {
 
   @Input() type: any;
   @Input() value: any;
+  @Input() col: any;
   @Output() clickButton = new EventEmitter<any>();
 
   constructor() {

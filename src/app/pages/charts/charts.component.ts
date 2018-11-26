@@ -152,7 +152,7 @@ export class ChartsComponent implements OnInit {
          * (My guess), for Angular to recognize the change in the dataset
          * it has to change the dataset variable directly,
          * so one way around it, is to clone the data, change it and then
-         * assign it;
+         * consultation it;
          */
     }
 

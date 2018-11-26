@@ -1,5 +1,14 @@
 export class Supply {
-  name: String;
+  name = '';
+  category = '';
+  inventory = null;
+  stock = '';
+  marke = '';
+  salePrice = '';
+  purchasePrice = '';
+  wholesalePrice = '';
+  discount = '';
+  idCategory: number;
 }
 
 export class SupplyFilter {

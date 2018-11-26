@@ -8,7 +8,7 @@ import {finalize} from 'rxjs/internal/operators';
 
 @Component({
   selector: 'app-book-sale-detail',
-  templateUrl: './assign-detail-popup.component.html'
+  templateUrl: './consultation-detail-popup.component.html'
 })
 export class InvoiceDetailModalComponent implements OnInit, OnDestroy {
 
@@ -47,6 +47,6 @@ export class InvoiceDetailModalComponent implements OnInit, OnDestroy {
   }
 
   clear() {
-    this.router.navigate(['/assign']);
+    this.router.navigate(['/consultation']);
   }
 }
