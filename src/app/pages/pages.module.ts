@@ -29,7 +29,8 @@ const routes: Routes = [
         path: 'category-details/:idBranch/:idCategory',
         loadChildren: './category-details/category-details.module#CategoryDetailsModule'
       },
-      {path: 'invoice', loadChildren: './invoice/invoice.module#InvoiceModule'}
+      {path: 'invoice', loadChildren: './invoice/invoice.module#InvoiceModule'},
+      {path: 'nurse', loadChildren: './nurse/nurse.module#NurseModule'}
     ]
   }
 ];
