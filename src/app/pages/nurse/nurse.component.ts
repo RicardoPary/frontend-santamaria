@@ -6,6 +6,7 @@ import {Subscription} from 'rxjs/internal/Subscription';
 import {finalize} from 'rxjs/operators';
 import {ConsultationDetailsFilter} from '../../shared/models/consultation-details.model';
 import {ConsultationFilter} from '../../shared/models/consultation.model';
+import {Router} from '@angular/router';
 
 @Component({
   templateUrl: './nurse.component.html',
@@ -92,7 +93,8 @@ export class NurseComponent implements OnInit {
               private inventoryService: InventoryService,
               private alertService: AlertService,
               private consultationService: ConsultationService,
-              private consultationDetailsService: ConsultationDetailsService) {
+              private consultationDetailsService: ConsultationDetailsService,
+              private router: Router) {
 
     this.consultationService.currentConsultationFilter().subscribe(
       dates => {
@@ -108,7 +110,6 @@ export class NurseComponent implements OnInit {
 
   callService(consultationFilter: ConsultationFilter) {
     this.consultationService.getAllConsultations(consultationFilter).subscribe(res => {
-      console.log(res);
       this.totalData = parseFloat(res.headers.get('X-Total-Count'));
       this.data = res.body;
     });
@@ -171,13 +172,13 @@ export class NurseComponent implements OnInit {
 
   clickButton(event) {
     if (event.description === 'view') {
-      console.log('asdasdasdasd');
-      this.consultationDetailsService.getAllByIdConsultation(event.item.id).subscribe(
+      this.router.navigate(['/assign', event.item.id]);
+      /*this.consultationDetailsService.getAllByIdConsultation(event.item.id).subscribe(
         res => {
           this.registryDetails = res.body;
           this.modal = this.modalService.open(this.modalRegistryDetails, {backdrop: 'static', size: 'lg'});
         }, () => this.alertService.showError({html: 'Ocurrio un error al mostrar el detalle de inventario.'})
-      );
+      );*/
     } else if (event.description === 'delete') {
       this.alertService.showWarningQuestion({html: 'Esta seguro de eliminar el inventario?'}, () => {
         this.consultationDetailsService.deleteConsultationDetails(event.item.id).pipe(finalize(() => {

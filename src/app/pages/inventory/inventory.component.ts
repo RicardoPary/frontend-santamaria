@@ -133,7 +133,6 @@ export class InventoryComponent implements OnInit {
 
   callService(providerFilter: ProviderFilter) {
     this.providerService.getAllProviders(providerFilter).subscribe(res => {
-      console.log(res);
       this.totalData = parseFloat(res.headers.get('X-Total-Count'));
       this.data = res.body;
     });
@@ -196,7 +195,6 @@ export class InventoryComponent implements OnInit {
 
   clickButton(event) {
     if (event.description === 'view') {
-      console.log('asdasdasdasd');
       this.inventoryService.getAllByIdProvider(event.item.id).subscribe(
         res => {
           this.registryDetails = res.body;

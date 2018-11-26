@@ -50,7 +50,6 @@ export class CategoryComponent implements OnInit, OnDestroy {
 
   callService(categoryFilter: CategoryFilter) {
     this.categoryService.getAllCategories(categoryFilter).subscribe(res => {
-      console.log(res);
       this.totalData = parseFloat(res.headers.get('X-Total-Count'));
       this.data = res.body;
     });

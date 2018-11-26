@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {InvoiceDetailModalComponent} from './invoice-detail-popup.component';
-import {InvoiceComponent} from './invoice.component';
+import {InvoiceDetailModalComponent} from './assign-detail-popup.component';
+import {AssignComponent} from './assign.component';
 import {SharedServicesModule} from '../../shared/shared-services.module';
 import {SharedLibsModule} from '../../shared/shared-libs.module';
 
 export const routes: Routes = [
-  {path: '', component: InvoiceComponent},
+  {path: '', component: AssignComponent},
   {path: 'detail/:id/:x_data', component: InvoiceDetailModalComponent}
 ];
 
@@ -17,9 +17,9 @@ export const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [
-    InvoiceComponent,
+    AssignComponent,
     InvoiceDetailModalComponent
   ]
 })
-export class InvoiceModule {
+export class AssignModule {
 }
