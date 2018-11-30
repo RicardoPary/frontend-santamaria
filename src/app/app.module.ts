@@ -4,7 +4,7 @@ import {AppComponent} from './app.component';
 import {environment} from '../environments/environment';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ServiceWorkerModule} from '@angular/service-worker';
-import {Ng2Webstorage} from 'ngx-webstorage';
+import {NgxWebstorageModule} from 'ngx-webstorage';
 import {RouterModule, Routes} from '@angular/router';
 import {SharedLibsModule} from './shared/shared-libs.module';
 import {SharedServicesModule} from './shared/shared-services.module';
@@ -29,7 +29,7 @@ const routes: Routes = [
     SharedServicesModule,
     BrowserModule,
     BrowserAnimationsModule,
-    Ng2Webstorage.forRoot({prefix: 'kke-pro', separator: '-'}),
+    NgxWebstorageModule.forRoot({prefix: 'kke-pro', separator: '-'}),
     RouterModule.forRoot(routes),
     ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production})
   ],

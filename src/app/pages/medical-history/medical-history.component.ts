@@ -3,7 +3,7 @@ import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {DocenteFilter} from '../../shared/models/docente';
 import {finalize} from 'rxjs/operators';
 import {AlertService} from '../../shared/components/alert/alert.service';
-import {ActividadCivicaFilter} from '../../shared/models/actividad-civica';
+import {ActividadCivicaFilter} from '../../shared/models/actividad-civica.model';
 
 @Component({
   templateUrl: './medical-history.component.html',
