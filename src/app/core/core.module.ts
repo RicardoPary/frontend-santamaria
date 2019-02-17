@@ -1,15 +1,15 @@
-import {NgModule} from '@angular/core';
-import {UserService, LoginService, AccountService, AuthServerProvider, StateStorageService, Principal} from './';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MediaReplayService } from './utils/media-replay.service';
+import { LayoutModule } from './layout/layout.module';
 
 @NgModule({
+  imports: [
+    CommonModule,
+    LayoutModule
+  ],
   providers: [
-    UserService,
-    LoginService,
-    AccountService,
-    AuthServerProvider,
-    Principal,
-    StateStorageService
+    MediaReplayService
   ]
 })
-export class CoreModule {
-}
+export class CoreModule { }

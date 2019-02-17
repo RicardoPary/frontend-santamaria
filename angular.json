@@ -3,11 +3,11 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "santa-maria": {
+    "elastic-ui": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "app",
+      "prefix": "elastic",
       "schematics": {
         "@schematics/angular:component": {
           "styleext": "scss"
@@ -17,33 +17,19 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/santa-maria",
+            "outputPath": "dist/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets",
-              "src/manifest.json"
+              "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/font-awesome/css/font-awesome.min.css",
-              "node_modules/ng-busy/src/style/busy.css",
-              "node_modules/sweetalert2/dist/sweetalert2.min.css",
-              "src/assets/scss/animate.min.scss",
-              "src/assets/scss/app.scss",
-              "src/assets/scss/app2.scss",
-              "src/assets/scss/main.scss"
+              "src/styles.scss"
             ],
-            "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "node_modules/popper.js/dist/umd/popper.min.js",
-              "node_modules/sweetalert2/dist/sweetalert2.min.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -62,25 +48,31 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "serviceWorker": true
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "santa-maria:build"
+            "browserTarget": "elastic-ui:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "santa-maria:build:production"
+              "browserTarget": "elastic-ui:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "santa-maria:build"
+            "browserTarget": "elastic-ui:build"
           }
         },
         "test": {
@@ -91,14 +83,12 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "styles.css"
+              "src/styles.scss"
             ],
             "scripts": [],
             "assets": [
               "src/favicon.ico",
-              "src/assets",
-              "src/manifest.json",
-              "src/manifest.json"
+              "src/assets"
             ]
           }
         },
@@ -113,18 +103,43 @@
               "**/node_modules/**"
             ]
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/server",
+            "main": "src/main.server.ts",
+            "tsConfig": "src/tsconfig.server.json",
+            "sourceMap": false
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
         }
       }
     },
-    "santa-maria-e2e": {
+    "elastic-ui-e2e": {
       "root": "e2e/",
       "projectType": "application",
+      "prefix": "",
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "santa-maria:serve"
+            "devServerTarget": "elastic-ui:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "elastic-ui:serve:production"
+            }
           }
         },
         "lint": {
@@ -139,5 +154,5 @@
       }
     }
   },
-  "defaultProject": "santa-maria"
+  "defaultProject": "elastic-ui"
 }

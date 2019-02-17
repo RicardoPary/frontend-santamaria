@@ -1,37 +1,31 @@
-import {NgModule} from '@angular/core';
-import {NgbCarouselModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
-
-import {DashboardComponent} from './dashboard.component';
-import {
-  TimelineComponent,
-  NotificationComponent,
-  ChatComponent
-} from './components';
-
-import {StatModule} from '../../shared/modules';
-import {RouterModule, Routes} from '@angular/router';
-import {SharedLibsModule} from '../../shared/shared-libs.module';
-
-const routes: Routes = [
-  {
-    path: '', component: DashboardComponent
-  }
-];
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { DashboardComponent } from './dashboard.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatButtonModule, MatIconModule, MatTabsModule } from '@angular/material';
+import { FormsModule } from '@angular/forms';
+import { ScrollbarModule } from '../../core/scrollbar/scrollbar.module';
+import { DashboardCrmModule } from './dashboard-crm/dashboard-crm.module';
+import { DashboardStatisticsModule } from './dashboard-statistics/dashboard-statistics.module';
+import { DashboardRoutingModule } from './dashboard.routing';
 
 @NgModule({
   imports: [
-    SharedLibsModule,
-    NgbCarouselModule.forRoot(),
-    NgbAlertModule.forRoot(),
-    StatModule,
-    RouterModule.forChild(routes),
+    CommonModule,
+    DashboardRoutingModule,
+    FormsModule,
+    FlexLayoutModule,
+    MatIconModule,
+    MatTabsModule,
+    MatButtonModule,
+    ScrollbarModule,
+
+    // Dashboards
+    DashboardCrmModule,
+    DashboardStatisticsModule
   ],
   declarations: [
-    DashboardComponent,
-    TimelineComponent,
-    NotificationComponent,
-    ChatComponent
+    DashboardComponent
   ]
 })
-export class DashboardModule {
-}
+export class DashboardModule { }

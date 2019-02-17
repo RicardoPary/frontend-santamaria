@@ -1,14 +1,14 @@
-import { AppPage } from './app.po';
+import { BlankDiamondPage } from './app.po';
 
-describe('frontend App', () => {
-  let page: AppPage;
+describe('blank-diamond App', () => {
+  let page: BlankDiamondPage;
 
   beforeEach(() => {
-    page = new AppPage();
+    page = new BlankDiamondPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display message saying app works', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    expect(page.getParagraphText()).toEqual('app works!');
   });
 });
