@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { SidenavItem } from '../sidenav/sidenav-item/sidenav-item.model';
+import {Component, OnInit} from '@angular/core';
+import {SidenavItem} from '../sidenav/sidenav-item/sidenav-item.model';
 import * as fromRoot from '../../reducers/index';
 import * as fromSidenav from '../sidenav/shared/sidenav.action';
-import { SetCurrentlyOpenByRouteAction } from '../sidenav/shared/sidenav.action';
-import { Store } from '@ngrx/store';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { SelectLayoutAction, SetCardElevationAction } from '../layout/shared/layout.action';
+import {SetCurrentlyOpenByRouteAction} from '../sidenav/shared/sidenav.action';
+import {Store} from '@ngrx/store';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {SelectLayoutAction, SetCardElevationAction} from '../layout/shared/layout.action';
 
 @Component({
   selector: 'elastic-route-handler',
@@ -18,7 +18,8 @@ export class RouteHandlerComponent implements OnInit {
     private store: Store<fromRoot.State>,
     private router: Router,
     private route: ActivatedRoute
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     // Set Sidenav Currently Open on Page load
@@ -63,7 +64,7 @@ export class RouteHandlerComponent implements OnInit {
     const dashboard = new SidenavItem({
       name: 'Dashboard',
       icon: 'dashboard',
-      subItems: [ ],
+      subItems: [],
       position: 1
     });
 
@@ -74,7 +75,7 @@ export class RouteHandlerComponent implements OnInit {
         name: 'Dashboard',
         route: '/',
         parent: dashboard,
-        subItems: [ ],
+        subItems: [],
         position: 1,
         routerLinkActiveOptions: {
           exact: true
@@ -84,14 +85,14 @@ export class RouteHandlerComponent implements OnInit {
         name: 'All-In-One Board',
         route: '/dashboard/all-in-one',
         parent: dashboard,
-        subItems: [ ],
+        subItems: [],
         position: 1
       }),
       new SidenavItem({
         name: 'CRM Dashboard',
         route: '/dashboard/crm',
         parent: dashboard,
-        subItems: [ ],
+        subItems: [],
         position: 1
       }),
     ];
@@ -103,7 +104,7 @@ export class RouteHandlerComponent implements OnInit {
       name: 'Inbox',
       icon: 'mail',
       route: '/apps/inbox',
-      subItems: [ ],
+      subItems: [],
       position: 1
     });
 
@@ -111,7 +112,7 @@ export class RouteHandlerComponent implements OnInit {
       name: 'Chat',
       icon: 'message',
       route: '/apps/chat',
-      subItems: [ ],
+      subItems: [],
       position: 1
     });
 
@@ -119,7 +120,7 @@ export class RouteHandlerComponent implements OnInit {
       name: 'Forms',
       icon: 'assignment',
       route: null,
-      subItems: [ ],
+      subItems: [],
       position: 1
     });
 
@@ -128,7 +129,7 @@ export class RouteHandlerComponent implements OnInit {
         name: 'Form Elements',
         route: '/forms/form-elements',
         parent: forms,
-        subItems: [ ],
+        subItems: [],
         position: 1
       }),
 
@@ -136,7 +137,7 @@ export class RouteHandlerComponent implements OnInit {
         name: 'Form Wizard',
         route: '/forms/form-wizard',
         parent: forms,
-        subItems: [ ],
+        subItems: [],
         position: 1
       })
     ];
@@ -146,7 +147,7 @@ export class RouteHandlerComponent implements OnInit {
     const pages = new SidenavItem({
       name: 'Pages',
       icon: 'library_books',
-      subItems: [ ],
+      subItems: [],
       position: 1
     });
 
@@ -155,21 +156,21 @@ export class RouteHandlerComponent implements OnInit {
         name: 'Profile',
         route: '/pages/profile',
         parent: pages,
-        subItems: [ ],
+        subItems: [],
         position: 1
       }),
       new SidenavItem({
         name: 'Projects',
         route: '/pages/projects',
         parent: pages,
-        subItems: [ ],
+        subItems: [],
         position: 1
       }),
       new SidenavItem({
         name: 'Project Details',
         route: '/pages/project-details',
         parent: pages,
-        subItems: [ ],
+        subItems: [],
         position: 1
       }),
     ];
@@ -180,7 +181,7 @@ export class RouteHandlerComponent implements OnInit {
       name: 'Auth',
       icon: 'person_pin',
       route: null,
-      subItems: [ ],
+      subItems: [],
       position: 1
     });
 
@@ -189,21 +190,21 @@ export class RouteHandlerComponent implements OnInit {
         name: 'Login',
         route: '/auth/login',
         parent: auth,
-        subItems: [ ],
+        subItems: [],
         position: 1
       }),
       new SidenavItem({
         name: 'Register',
         route: '/auth/register',
         parent: auth,
-        subItems: [ ],
+        subItems: [],
         position: 1
       }),
       new SidenavItem({
         name: 'Forgot Password',
         route: '/auth/forgot-password',
         parent: auth,
-        subItems: [ ],
+        subItems: [],
         position: 1
       }),
     ];
@@ -214,7 +215,7 @@ export class RouteHandlerComponent implements OnInit {
       name: 'Components',
       icon: 'layers',
       route: '/components',
-      subItems: [ ],
+      subItems: [],
       position: 1
     });
 
@@ -222,7 +223,7 @@ export class RouteHandlerComponent implements OnInit {
       name: 'Tables',
       icon: 'format_line_spacing',
       route: null,
-      subItems: [ ],
+      subItems: [],
       position: 1
     });
 
@@ -231,42 +232,42 @@ export class RouteHandlerComponent implements OnInit {
         name: 'Simple Table',
         route: '/tables/simple-table',
         parent: tables,
-        subItems: [ ],
+        subItems: [],
         position: 1
       }),
       new SidenavItem({
         name: 'Table Pagination',
         route: '/tables/table-pagination',
         parent: tables,
-        subItems: [ ],
+        subItems: [],
         position: 1
       }),
       new SidenavItem({
         name: 'Table Sorting',
         route: '/tables/table-sorting',
         parent: tables,
-        subItems: [ ],
+        subItems: [],
         position: 1
       }),
       new SidenavItem({
         name: 'Table Filtering',
         route: '/tables/table-filtering',
         parent: tables,
-        subItems: [ ],
+        subItems: [],
         position: 1
       }),
       new SidenavItem({
         name: 'Datatable',
         route: '/tables/datatable',
         parent: tables,
-        subItems: [ ],
+        subItems: [],
         position: 1
       }),
       new SidenavItem({
         name: 'All-In-One Table',
         route: '/tables/all-in-one-table',
         parent: tables,
-        subItems: [ ],
+        subItems: [],
         position: 1
       })
     ];
@@ -285,7 +286,7 @@ export class RouteHandlerComponent implements OnInit {
       name: 'Drag & Drop',
       icon: 'mouse',
       route: '/drag-and-drop',
-      subItems: [ ],
+      subItems: [],
       position: 1
     });
 
@@ -293,7 +294,7 @@ export class RouteHandlerComponent implements OnInit {
       name: 'Maps',
       icon: 'map',
       route: '/maps/google-maps',
-      subItems: [ ],
+      subItems: [],
       position: 1
     });
 
@@ -301,63 +302,237 @@ export class RouteHandlerComponent implements OnInit {
       name: 'Material Icons',
       icon: 'grade',
       route: '/material-icons',
-      subItems: [ ],
+      subItems: [],
       position: 1
     });
 
-    const multiLevelMenu = new SidenavItem({
-      name: 'Multi-Level Menu',
-      icon: 'menu',
-      route: null,
-      subItems: [ ],
+
+
+
+
+
+    const clinicHistory = new SidenavItem({
+      name: 'Historia Clinica',
+      icon: 'grade',
+      route: '/material-icons',
+      subItems: [],
       position: 1
     });
 
-    const multiLevelMenuLevel1 = new SidenavItem({
-      name: 'Level 1',
-      route: null,
-      parent: multiLevelMenu,
-      subItems: [ ],
+
+    const clinicHistorySubItems1 = [
+      new SidenavItem({
+        name: 'Lista de Historial',
+        route: '/forms/form-elements',
+        parent: forms,
+        subItems: [],
+        position: 1
+      })
+    ];
+
+    clinicHistory.subItems.push(...clinicHistorySubItems1);
+
+
+    const inventory = new SidenavItem({
+      name: 'Inventario',
+      icon: 'grade',
+      route: '/material-icons',
+      subItems: [],
       position: 1
     });
 
-    const multiLevelMenuLevel2 = new SidenavItem({
-      name: 'Level 2',
-      route: null,
-      parent: multiLevelMenuLevel1,
-      subItems: [ ],
+    const inventorySubItems = [
+      new SidenavItem({
+        name: 'Lista de Historial',
+        route: '/forms/form-elements',
+        parent: forms,
+        subItems: [],
+        position: 1
+      })
+    ];
+
+    inventory.subItems.push(...inventorySubItems);
+
+    const material = new SidenavItem({
+      name: 'Material',
+      icon: 'grade',
+      route: '/material-icons',
+      subItems: [],
       position: 1
     });
 
-    const multiLevelMenuLevel3 = new SidenavItem({
-      name: 'Level 3',
-      route: null,
-      parent: multiLevelMenuLevel2,
-      subItems: [ ],
+    const materialSubItems = [
+      new SidenavItem({
+        name: 'Lista de Material',
+        route: '/forms/form-elements',
+        parent: forms,
+        subItems: [],
+        position: 1
+      })
+    ];
+
+    material.subItems.push(...materialSubItems);
+
+    const patient = new SidenavItem({
+      name: 'Pacientes',
+      icon: 'grade',
+      route: '/material-icons',
+      subItems: [],
       position: 1
     });
 
-    const multiLevelMenuLevel4 = new SidenavItem({
-      name: 'Level 4',
-      route: null,
-      parent: multiLevelMenuLevel3,
-      subItems: [ ],
+    const patientSubItems = [
+      new SidenavItem({
+        name: 'Lista de Pacientes',
+        route: '/forms/form-elements',
+        parent: forms,
+        subItems: [],
+        position: 1
+      })
+    ];
+
+    patient.subItems.push(...patientSubItems);
+
+    const staff = new SidenavItem({
+      name: 'Personal',
+      icon: 'grade',
+      route: '/material-icons',
+      subItems: [],
       position: 1
     });
 
-    const multiLevelMenuLevel5 = new SidenavItem({
-      name: 'Level 5',
-      route: null,
-      parent: multiLevelMenuLevel4,
-      subItems: [ ],
+    const staffSubItems = [
+      new SidenavItem({
+        name: 'Personal Administrativo',
+        route: '/forms/form-elements',
+        parent: forms,
+        subItems: [],
+        position: 1
+      })
+    ];
+
+    staff.subItems.push(...staffSubItems);
+
+    const report = new SidenavItem({
+      name: 'Reportes',
+      icon: 'grade',
+      route: '/material-icons',
+      subItems: [],
       position: 1
     });
 
-    multiLevelMenu.subItems.push(multiLevelMenuLevel1);
-    multiLevelMenuLevel1.subItems.push(multiLevelMenuLevel2);
-    multiLevelMenuLevel2.subItems.push(multiLevelMenuLevel3);
-    multiLevelMenuLevel3.subItems.push(multiLevelMenuLevel4);
-    multiLevelMenuLevel4.subItems.push(multiLevelMenuLevel5);
+    const reportSubItems = [
+      new SidenavItem({
+        name: 'Lista Reportes',
+        route: '/forms/form-elements',
+        parent: forms,
+        subItems: [],
+        position: 1
+      })
+    ];
+
+    report.subItems.push(...reportSubItems);
+
+    const role = new SidenavItem({
+      name: 'Roles',
+      icon: 'grade',
+      route: '/material-icons',
+      subItems: [],
+      position: 1
+    });
+
+    const roleSubItems = [
+      new SidenavItem({
+        name: 'Lista de Roles',
+        route: '/forms/form-elements',
+        parent: forms,
+        subItems: [],
+        position: 1
+      }),
+      new SidenavItem({
+        name: 'Asignar Rol',
+        route: '/forms/form-elements',
+        parent: forms,
+        subItems: [],
+        position: 1
+      })
+    ];
+
+    role.subItems.push(...roleSubItems);
+
+    const user = new SidenavItem({
+      name: 'Usuarios',
+      icon: 'grade',
+      route: '/material-icons',
+      subItems: [],
+      position: 1
+    });
+
+    const userSubItems = [
+      new SidenavItem({
+        name: 'Lista Usuarios',
+        route: '/forms/form-elements',
+        parent: forms,
+        subItems: [],
+        position: 1
+      })
+    ];
+
+    user.subItems.push(...userSubItems);
+
+    const input = new SidenavItem({
+      name: 'Insumos',
+      icon: 'grade',
+      route: '/material-icons',
+      subItems: [],
+      position: 1
+    });
+
+    const inputSubItems = [
+      new SidenavItem({
+        name: 'Categorias',
+        route: '/forms/form-elements',
+        parent: forms,
+        subItems: [],
+        position: 1
+      }),
+      new SidenavItem({
+        name: 'Lista de Insumos',
+        route: '/forms/form-elements',
+        parent: forms,
+        subItems: [],
+        position: 1
+      })
+    ];
+
+    input.subItems.push(...inputSubItems);
+
+    const medicineAsigned = new SidenavItem({
+      name: 'Medicamentos Asignados',
+      icon: 'grade',
+      route: '/material-icons',
+      subItems: [],
+      position: 1
+    });
+
+    const medicineAsignedSubItems = [
+      new SidenavItem({
+        name: 'Medicamentos Asignados',
+        route: '/forms/form-elements',
+        parent: forms,
+        subItems: [],
+        position: 1
+      }),
+      new SidenavItem({
+        name: 'Crear Consulta',
+        route: '/forms/form-elements',
+        parent: forms,
+        subItems: [],
+        position: 1
+      })
+    ];
+
+    medicineAsigned.subItems.push(...medicineAsignedSubItems);
 
     // Send the created Menu structure to Redux/ngrx (you only need to send the Top Level Item, all dropdown items will be added automatically)
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(dashboard));
@@ -372,7 +547,21 @@ export class RouteHandlerComponent implements OnInit {
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(dragAndDrop));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(maps));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(icons));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(multiLevelMenu));
+
+
+
+
+    this.store.dispatch(new fromSidenav.AddSidenavItemAction(clinicHistory));
+    this.store.dispatch(new fromSidenav.AddSidenavItemAction(inventory));
+    this.store.dispatch(new fromSidenav.AddSidenavItemAction(material));
+    this.store.dispatch(new fromSidenav.AddSidenavItemAction(patient));
+    this.store.dispatch(new fromSidenav.AddSidenavItemAction(staff));
+    this.store.dispatch(new fromSidenav.AddSidenavItemAction(report));
+    this.store.dispatch(new fromSidenav.AddSidenavItemAction(role));
+    this.store.dispatch(new fromSidenav.AddSidenavItemAction(user));
+    this.store.dispatch(new fromSidenav.AddSidenavItemAction(input));
+    this.store.dispatch(new fromSidenav.AddSidenavItemAction(medicineAsigned));
+
   }
 
 }
