@@ -26,42 +26,6 @@ const routes: Routes = [
         loadChildren: 'app/pages/forms/forms.module#FormModule'
       },
       {
-        path: 'pages/profile',
-        loadChildren: 'app/pages/profile/profile.module#ProfileModule'
-      },
-      {
-        path: 'tables/simple-table',
-        loadChildren: 'app/pages/tables/simple-table/simple-table.module#SimpleTableModule'
-      },
-      {
-        path: 'tables/table-pagination',
-        loadChildren: 'app/pages/tables/table-pagination/table-pagination.module#TablePaginationModule'
-      },
-      {
-        path: 'tables/table-sorting',
-        loadChildren: 'app/pages/tables/table-sorting/table-sorting.module#TableSortingModule'
-      },
-      {
-        path: 'tables/table-filtering',
-        loadChildren: 'app/pages/tables/table-filtering/table-filtering.module#TableFilteringModule'
-      },
-      {
-        path: 'tables/datatable',
-        loadChildren: 'app/pages/tables/datatable/datatable.module#DatatableModule'
-      },
-      {
-        path: 'tables/all-in-one-table',
-        loadChildren: 'app/pages/tables/all-in-one-table/all-in-one-table.module#AllInOneTableModule'
-      },
-      {
-        path: 'pages/projects',
-        loadChildren: 'app/pages/projects/projects.module#ProjectsModule'
-      },
-      {
-        path: 'pages/project-details',
-        loadChildren: 'app/pages/project-details/project-details.module#ProjectDetailsModule'
-      },
-      {
         path: 'editor',
         loadChildren: 'app/pages/editor/editor.module#EditorModule'
       },

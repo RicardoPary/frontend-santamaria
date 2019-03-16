@@ -129,95 +129,6 @@ export class RouteHandlerComponent implements OnInit {
 
     forms.subItems.push(...formsSubItems);
 
-    const pages = new SidenavItem({
-      name: 'Pages',
-      icon: 'library_books',
-      subItems: [],
-      position: 1
-    });
-
-    const pagesSubItems = [
-      new SidenavItem({
-        name: 'Profile',
-        route: '/pages/profile',
-        parent: pages,
-        subItems: [],
-        position: 1
-      }),
-      new SidenavItem({
-        name: 'Projects',
-        route: '/pages/projects',
-        parent: pages,
-        subItems: [],
-        position: 1
-      }),
-      new SidenavItem({
-        name: 'Project Details',
-        route: '/pages/project-details',
-        parent: pages,
-        subItems: [],
-        position: 1
-      }),
-    ];
-
-    pages.subItems.push(...pagesSubItems);
-
-    const tables = new SidenavItem({
-      name: 'Tables',
-      icon: 'format_line_spacing',
-      route: null,
-      subItems: [],
-      position: 1
-    });
-
-    const tablesSubItems = [
-      new SidenavItem({
-        name: 'Simple Table',
-        route: '/tables/simple-table',
-        parent: tables,
-        subItems: [],
-        position: 1
-      }),
-      new SidenavItem({
-        name: 'Table Pagination',
-        route: '/tables/table-pagination',
-        parent: tables,
-        subItems: [],
-        position: 1
-      }),
-      new SidenavItem({
-        name: 'Table Sorting',
-        route: '/tables/table-sorting',
-        parent: tables,
-        subItems: [],
-        position: 1
-      }),
-      new SidenavItem({
-        name: 'Table Filtering',
-        route: '/tables/table-filtering',
-        parent: tables,
-        subItems: [],
-        position: 1
-      }),
-      new SidenavItem({
-        name: 'Datatable',
-        route: '/tables/datatable',
-        parent: tables,
-        subItems: [],
-        position: 1
-      }),
-      new SidenavItem({
-        name: 'All-In-One Table',
-        route: '/tables/all-in-one-table',
-        parent: tables,
-        subItems: [],
-        position: 1
-      })
-    ];
-
-    tables.subItems.push(...tablesSubItems);
-
-
     const clinicHistory = new SidenavItem({
       name: 'Historia Clinica',
       icon: 'grade',
@@ -444,8 +355,6 @@ export class RouteHandlerComponent implements OnInit {
     // Send the created Menu structure to Redux/ngrx (you only need to send the Top Level Item, all dropdown items will be added automatically)
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(dashboard));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(forms));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(tables));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(pages));
 
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(clinicHistory));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(inventory));
