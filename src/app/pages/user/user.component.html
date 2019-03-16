@@ -1,0 +1,255 @@
+<div class="table-content" [ngClass]="status ? 'toogled' : ' '">
+  <h3>USUARIOS
+    <span class="btn-options">
+      <a class="btn btn-sm btn-outline-secondary btn-icon-space" (click)="showModalUserNew(modalUserNewEdit)"><i
+        class="icon-user-plus"></i> Nuevo Usuario</a>
+      <a class="btn btn-link" placement="bottom" ngbTooltip="Buscar..." (click)="clickEvent()"><i
+        [ngClass]="status ? 'icon-search' : 'icon-chevron-right'"></i></a>
+    </span>
+  </h3>
+  <div class="invoice-empty text-center" style="display: none;">
+    <img class="logo" src="../../../assets/themes/materia/images/Invoice-Empty.png"/><br/>
+    <p><i>Aún no se han registrado facturas a tu nombre</i></p>
+  </div>
+  <div class="table-box" [ngBusy]="{busy: subscriptionTable, message: 'Cargando...'}">
+    <app-table
+      [data]="users"
+      [headers]="headersColumns"
+      [total]="totalUsers"
+      [pageSize]="pageSize"
+      [filtersColumns]="filtersColumns"
+      [page]="page"
+      (clickPagination)="clickPagination($event)"
+      (clickSort)="clickSort($event)"
+      [idUser]="currentUser?.id"
+      (clickButton)="clickButton($event)">
+    </app-table>
+  </div>
+</div>
+<div class="filter-content" [ngClass]="status ? 'toogled' : ' '">
+  <div class="filter-box">
+    <form>
+      <div class="form-search">
+        <input name="inputFilter"
+               class="form-control"
+               [(ngModel)]="inputFilter "
+               type="text"
+               placeholder="Buscar...">
+        <i class="icon-search"></i>
+      </div>
+      <div class="reset-button">
+        <button type="button" class="btn btn-default">Resetear Filtros</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<ng-template #modalUserNewEdit>
+  <form class="mb-0" (ngSubmit)="saveUser(formCreate)" #formCreate="ngForm">
+    <div class="modal-header">
+      <h4 class="modal-title">{{titleModal}}</h4>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-md-6">
+            <div class="form-group mb-3">
+              <label for="firstName">Nombres</label>
+              <input id="firstName"
+                     name="firstName"
+                     type="text"
+                     class="form-control"
+                     [ngModel]="user?.firstName"
+                     #firstName="ngModel"
+                     maxlength="50"
+                     minlength="3"
+                     required/>
+
+              <div class="form-text text-danger" *ngIf="firstName.invalid && firstName.dirty">
+                <small *ngIf="firstName.hasError('required')">
+                  Nombres es requerido.
+                </small>
+                <small *ngIf="firstName.hasError('minlength')">
+                  Nombres debe tener al menos 3 caracteres.
+                </small>
+                <small *ngIf="firstName.hasError('maxlength')">
+                  Nombres no puede tener más de 50 caracteres.
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group mb-3">
+              <label for="lastName">Apellidos</label>
+              <input id="lastName"
+                     name="lastName"
+                     type="text"
+                     class="form-control"
+                     [ngModel]="user?.lastName"
+                     #lastName="ngModel"
+                     minlength="3"
+                     maxlength="50"
+                     required/>
+              <div class="form-text text-danger" *ngIf="lastName.invalid && lastName.dirty">
+                <small *ngIf="lastName.hasError('required')">
+                  Apellidos es requerido.
+                </small>
+                <small *ngIf="lastName.hasError('minlength')">
+                  Apellidos debe tener al menos 3 caracteres.
+                </small>
+                <small *ngIf="lastName.hasError('maxlength')">
+                  Apellidos no puede tener más de 50 caracteres.
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group mb-3">
+              <label for="login">Nombre de usuario</label>
+              <input id="login"
+                     name="login"
+                     type="email"
+                     class="form-control"
+                     [ngModel]="user?.login"
+                     #login="ngModel"
+                     required email
+                     [disabled]="titleModal === 'Editar Usuario'"/>
+              <div class="form-text text-danger" *ngIf="login.invalid && login.dirty">
+                <small *ngIf="login.hasError('required')">
+                  Nombre de usuario es requerido.
+                </small>
+                <small *ngIf="login.hasError('email') && login.value.length > 0">
+                  Nombre de usuario formato invalido ejemplo: login@kraken.bo
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6" *ngIf="!user?.id">
+            <div class="form-group mb-3">
+              <label for="passwordnew">Contraseña</label>
+              <input id="passwordnew"
+                     name="password"
+                     type="password"
+                     class="form-control"
+                     [ngModel]="user?.password"
+                     #password="ngModel"
+                     minlength="4"
+                     maxlength="50"/>
+              <div class="form-text text-danger" *ngIf="password.invalid && password.dirty">
+                <small *ngIf="password.hasError('required')">
+                  Contraseña es requerido.
+                </small>
+                <small *ngIf="password.hasError('minlength')">
+                  Contraseña debe tener al menos 4 caracteres.
+                </small>
+                <small *ngIf="password.hasError('maxlength')">
+                  Contraseña no puede tener más de 50 caracteres.
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="form-group mb-3">
+              <label>Rol</label>
+              <!--<mat-form-field>
+                <mat-select [ngModel]="user?.role?.id"
+                            name="role"
+                            #role="ngModel"
+                            required>
+                  <mat-option>&#45;&#45;</mat-option>
+                  <mat-option *ngFor="let rol of roles" [value]="rol.id">{{rol.name}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="role.hasError('required')">debe seleccionar un Rol.</mat-error>
+              </mat-form-field>-->
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" aria-label="Close" (click)="closeModal()">
+        Cancelar
+      </button>
+      <button class="btn btn-primary" aria-label="Close" [disabled]="formCreate.invalid">
+        {{ titleModal === 'Editar Usuario' ? 'Actualizar' : 'Guardar' }}
+      </button>
+    </div>
+  </form>
+</ng-template>
+
+
+<ng-template #modalUserReset>
+  <form class="mb-0" (ngSubmit)="savePassword(formReset)" #formReset="ngForm">
+    <div class="modal-header">
+      <h4 class="modal-title">Reestablecer Contraseña de Usuario: {{user?.login}}</h4>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+
+        <div class="form-group" style="text-align: left">
+          <input id="password"
+                 name="password"
+                 type="password"
+                 class="form-control"
+                 placeholder="Ingresa nueva contraseña"
+                 size="50"
+                 maxlength="50"
+                 minlength="4"
+                 required
+                 ngModel
+                 #password="ngModel">
+          <div *ngIf="password.invalid && password.dirty"
+               class="form-text text-danger">
+            <small *ngIf="password.hasError('required')">
+              La contraseña es requerido.
+            </small>
+            <small *ngIf="password.hasError('minlength')">
+              La contraseña debe tener al menos 4 caracteres.
+            </small>
+            <small *ngIf="password.hasError('maxlength')">
+              La contraseña no puede tener más de 50 caracteres.
+            </small>
+          </div>
+          <!--<vul-password-strength-bar [passwordToCheck]="password.value">
+          </vul-password-strength-bar>-->
+        </div>
+
+        <div class="form-group" style="text-align: left">
+          <input id="confirmPassword"
+                 name="confirmPassword"
+                 type="password"
+                 class="form-control"
+                 placeholder="Re escribe contraseña"
+                 required
+                 ngModel
+                 #confirmPassword="ngModel">
+          <div *ngIf="confirmPassword.invalid && confirmPassword.dirty"
+               class="form-text text-danger">
+            <small *ngIf="confirmPassword.hasError('required')">
+              La confirmación de contraseña es requerido.
+            </small>
+          </div>
+          <small *ngIf="(password.value !== confirmPassword.value)  && (confirmPassword.dirty || confirmPassword.touched)"
+                 class="form-text text-danger">
+            Las contraseñas no son iguales.
+          </small>
+        </div>
+
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" aria-label="Close" (click)="closeModal()">
+        Cancelar
+      </button>
+      <button class="btn btn-primary" aria-label="Close" [disabled]="formReset.invalid || (password.value !== confirmPassword.value)">Guardar</button>
+    </div>
+  </form>
+</ng-template>

@@ -1,0 +1,95 @@
+<div class="table-content">
+  <h3 style="font-family: sans-serif;"> PACIENTES
+    <span class="btn-options pull-right">
+      <a class="btn btn-sm btn-outline-secondary btn-icon-space"
+         (click)="openModal(modalActividadCivica,'Crear Nueva Actividad Civica', 'Crear')"><i
+        class="icon-user-plus"></i> Crear actividad civica</a>
+    </span>
+  </h3>
+  <div class="table-box">
+    <app-table
+      [data]="data"
+      [headers]="headersColumns"
+      [total]="totalData"
+      [pageSize]="pageSize"
+      [page]="page"
+      (clickPagination)="clickPagination($event)"
+      (clickSort)="clickSort($event)"
+      (clickButton)="clickButtonRow($event)">
+    </app-table>
+  </div>
+</div>
+<div class="filter-content">
+
+</div>
+
+
+<ng-template #modalActividadCivica>
+  <div class="modal-header">
+    <h4 class="modal-title">{{titleModal}}</h4>
+  </div>
+
+  <form (ngSubmit)="submitEstudiante(form)" #form="ngForm">
+
+    <div class="row container">
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="cronograma">Cronograma</label>
+          <input id="cronograma"
+                 name="cronograma"
+                 type="text"
+                 class="form-control"
+                 [ngModel]="actividadCivica?.cronograma"/>
+        </div>
+
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="descripcion">Descripcion</label>
+          <input id="descripcion"
+                 name="descripcion"
+                 type="text"
+                 class="form-control"
+                 [ngModel]="actividadCivica?.descripcion"/>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="fecha">Fecha</label>
+          <input id="fecha"
+                 name="fecha"
+                 type="text"
+                 class="form-control"
+                 [ngModel]="actividadCivica?.fecha"/>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="nombre">Nombre</label>
+          <input id="nombre"
+                 name="nombre"
+                 type="string"
+                 class="form-control"
+                 [ngModel]="actividadCivica?.nombre"/>
+
+        </div>
+      </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal();">
+          Cancelar
+        </button>
+        <button type="submit" class="btn btn-primary">
+          {{textButton}}
+        </button>
+      </div>
+
+    </div>
+
+  </form>
+</ng-template>
+

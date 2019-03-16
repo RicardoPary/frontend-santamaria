@@ -100,22 +100,6 @@ export class RouteHandlerComponent implements OnInit {
     // Push the just created Sub Items into the Top Level Item
     dashboard.subItems.push(...dashboardSubItems);
 
-    const inbox = new SidenavItem({
-      name: 'Inbox',
-      icon: 'mail',
-      route: '/apps/inbox',
-      subItems: [],
-      position: 1
-    });
-
-    const chat = new SidenavItem({
-      name: 'Chat',
-      icon: 'message',
-      route: '/apps/chat',
-      subItems: [],
-      position: 1
-    });
-
     const forms = new SidenavItem({
       name: 'Forms',
       icon: 'assignment',
@@ -177,48 +161,6 @@ export class RouteHandlerComponent implements OnInit {
 
     pages.subItems.push(...pagesSubItems);
 
-    const auth = new SidenavItem({
-      name: 'Auth',
-      icon: 'person_pin',
-      route: null,
-      subItems: [],
-      position: 1
-    });
-
-    const authSubItems = [
-      new SidenavItem({
-        name: 'Login',
-        route: '/auth/login',
-        parent: auth,
-        subItems: [],
-        position: 1
-      }),
-      new SidenavItem({
-        name: 'Register',
-        route: '/auth/register',
-        parent: auth,
-        subItems: [],
-        position: 1
-      }),
-      new SidenavItem({
-        name: 'Forgot Password',
-        route: '/auth/forgot-password',
-        parent: auth,
-        subItems: [],
-        position: 1
-      }),
-    ];
-
-    auth.subItems.push(...authSubItems);
-
-    const components = new SidenavItem({
-      name: 'Components',
-      icon: 'layers',
-      route: '/components',
-      subItems: [],
-      position: 1
-    });
-
     const tables = new SidenavItem({
       name: 'Tables',
       icon: 'format_line_spacing',
@@ -274,40 +216,6 @@ export class RouteHandlerComponent implements OnInit {
 
     tables.subItems.push(...tablesSubItems);
 
-    /*const editor = new SidenavItem({
-      name: 'Editor',
-      icon: 'format_shapes',
-      route: '/editor',
-      subItems: [ ],
-      position: 1
-    });*/
-
-    const dragAndDrop = new SidenavItem({
-      name: 'Drag & Drop',
-      icon: 'mouse',
-      route: '/drag-and-drop',
-      subItems: [],
-      position: 1
-    });
-
-    const maps = new SidenavItem({
-      name: 'Maps',
-      icon: 'map',
-      route: '/maps/google-maps',
-      subItems: [],
-      position: 1
-    });
-
-    const icons = new SidenavItem({
-      name: 'Material Icons',
-      icon: 'grade',
-      route: '/material-icons',
-      subItems: [],
-      position: 1
-    });
-
-
-
 
 
 
@@ -323,7 +231,7 @@ export class RouteHandlerComponent implements OnInit {
     const clinicHistorySubItems1 = [
       new SidenavItem({
         name: 'Lista de Historial',
-        route: '/forms/form-elements',
+        route: '/medical-history',
         parent: forms,
         subItems: [],
         position: 1
@@ -364,7 +272,7 @@ export class RouteHandlerComponent implements OnInit {
     const materialSubItems = [
       new SidenavItem({
         name: 'Lista de Material',
-        route: '/forms/form-elements',
+        route: '/supply',
         parent: forms,
         subItems: [],
         position: 1
@@ -536,20 +444,9 @@ export class RouteHandlerComponent implements OnInit {
 
     // Send the created Menu structure to Redux/ngrx (you only need to send the Top Level Item, all dropdown items will be added automatically)
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(dashboard));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(inbox));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(chat));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(forms));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(components));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(tables));
-    // this.store.dispatch(new fromSidenav.AddSidenavItemAction(editor));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(auth));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(pages));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(dragAndDrop));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(maps));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(icons));
-
-
-
 
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(clinicHistory));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(inventory));

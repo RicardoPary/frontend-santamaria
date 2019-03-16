@@ -1,0 +1,179 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
+  <div class="list-group" style="background: #252e4f;">
+    <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <i class="fa fa-fw fa-dashboard"></i>Usuario
+    </a>
+    <div class="list-group" style="background: #252e4f;">
+
+      <div class="nested-menu">
+        <a class="list-group-item" data-toggle="collapse" data-target="#medical-history">
+          <span><i class="fa fa-desktop"></i>Historia Clinica</span>
+        </a>
+        <div class="collapse" id="medical-history">
+          <ul class="submenu">
+            <li>
+              <a href="javascript:void(0)" [routerLink]="['/medical-history']"
+                 [routerLinkActive]="['router-link-active']">
+                <span>Lista de Historial</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="nested-menu">
+        <a class="list-group-item" data-toggle="collapse" data-target="#inventory">
+          <span><i class="fa fa-desktop"></i>Inventario</span>
+        </a>
+        <div class="collapse" id="inventory">>
+          <ul class="submenu">
+            <li>
+              <a href="javascript:void(0)" [routerLink]="['/inventory']" [routerLinkActive]="['router-link-active']">
+                <span>Lista de Inventario</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="nested-menu">
+        <a class="list-group-item" data-toggle="collapse" data-target="#supply">
+          <span><i class="fa fa-desktop"></i>Material</span>
+        </a>
+        <div class="collapse" id="supply">
+          <ul class="submenu">
+            <li>
+              <a href="javascript:void(0)" [routerLink]="['/supply']" [routerLinkActive]="['router-link-active']">
+                <span>Lista de Material</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="nested-menu">
+        <a class="list-group-item" data-toggle="collapse" data-target="#patient">
+          <span><i class="fa fa-desktop"></i>Pacientes</span>
+        </a>
+        <div class="collapse" id="patient">
+          <ul class="submenu">
+            <li>
+              <a href="javascript:void(0)" [routerLink]="['/patient']" [routerLinkActive]="['router-link-active']">
+                <span>Lista de Pacientes</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="nested-menu">
+        <a class="list-group-item" data-toggle="collapse" data-target="#staff">
+          <span><i class="fa fa-desktop"></i>Personal</span>
+        </a>
+        <div class="collapse" id="staff">
+          <ul class="submenu">
+            <li>
+              <a href="javascript:void(0)" [routerLink]="['/staff']" [routerLinkActive]="['router-link-active']">
+                <span>Personal Administrativo</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="nested-menu">
+        <a class="list-group-item" data-toggle="collapse" data-target="#report">
+          <span><i class="fa fa-desktop"></i>Reportes</span>
+        </a>
+        <div class="collapse" id="report">
+          <ul class="submenu">
+            <li>
+              <a href="javascript:void(0)" [routerLink]="['/report']" [routerLinkActive]="['router-link-active']">
+                <span>Lista de Reportes</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="nested-menu">
+        <a class="list-group-item" data-toggle="collapse" data-target="#role">
+          <span><i class="fa fa-desktop"></i>Roles</span>
+        </a>
+        <div class="collapse" id="role">
+          <ul class="submenu">
+            <li>
+              <a href="javascript:void(0)" [routerLink]="['/role']" [routerLinkActive]="['router-link-active']">
+                <span>Lista de Roles</span></a>
+            </li>
+            <li>
+              <a href="javascript:void(0)" [routerLink]="['/role']" [routerLinkActive]="['router-link-active']">
+                <span>Asignar Rol</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="nested-menu">
+        <a class="list-group-item" data-toggle="collapse" data-target="#user">
+          <span><i class="fa fa-desktop"></i>Usuarios</span>
+        </a>
+        <div class="collapse" id="user">
+          <ul class="submenu">
+            <li>
+              <a href="javascript:void(0)" [routerLink]="['/user']" [routerLinkActive]="['router-link-active']">
+                <span>Lista de Usuarios</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="nested-menu">
+        <a class="list-group-item" data-toggle="collapse" data-target="#category">
+          <span><i class="fa fa-desktop"></i>Insumos</span>
+        </a>
+        <div class="collapse" id="category">
+          <ul class="submenu">
+            <li>
+              <a href="javascript:void(0)" [routerLink]="['/category']" [routerLinkActive]="['router-link-active']">
+                <span>Categorias</span></a>
+            </li>
+            <li>
+              <a href="javascript:void(0)" [routerLink]="['/supply']" [routerLinkActive]="['router-link-active']">
+                <span>Lista de Insumos</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="nested-menu">
+        <a class="list-group-item" data-toggle="collapse" data-target="#invoice">
+          <span><i class="fa fa-desktop"></i>Medicamentos Asignados</span>
+        </a>
+        <div class="collapse" id="invoice">
+          <ul class="submenu">
+            <li>
+              <a href="javascript:void(0)" [routerLink]="['/nurse']" [routerLinkActive]="['router-link-active']">
+                <span>Medicamentos Asignados</span></a>
+            </li>
+            <li>
+              <a href="javascript:void(0)" [routerLink]="['/consultation']" [routerLinkActive]="['router-link-active']">
+                <span>Crear Consulta</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="nested-menu">
+        <a class="list-group-item" data-toggle="collapse" data-target="#home">
+          <span><i class="fa fa-close"></i>Cerrar Sesion</span>
+        </a>
+        <div class="collapse" id="home">
+          <ul class="submenu">
+            <li>
+              <a href="javascript:void(0)" [routerLink]="['/home']" [routerLinkActive]="['router-link-active']">
+                <span>Cerrar Sesion</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</nav>

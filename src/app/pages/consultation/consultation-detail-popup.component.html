@@ -1,0 +1,16 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    <h3>FACTURA : {{this.route.snapshot.params['id']}}</h3>
+  </h4>
+  <button type="button" class="close" aria-label="Close" (click)="clear()">
+    <span aria-hidden="true">x</span>
+  </button>
+</div>
+<div class="modal-body" style="height:1050px;">
+  <div>
+    <object *ngIf="invoiceB64" [data]="invoiceB64" type="application/pdf" width="100%" height="1050px">
+      <p><b>Example fallback content</b>: This browser does not support PDFs. Please download the PDF to view it:
+        <a [href]="invoiceB64">Download PDF</a>.</p>
+    </object>
+  </div>
+</div>

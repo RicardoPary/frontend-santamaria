@@ -1,28 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ROUTE_TRANSITION } from '../../../app.animation';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {ROUTE_TRANSITION} from '../../../app.animation';
+import {LoginService} from '../../../core2';
 
 @Component({
   selector: 'elastic-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   animations: [...ROUTE_TRANSITION],
-  host: { '[@routeTransition]': '' }
+  host: {'[@routeTransition]': ''}
 })
 export class LoginComponent implements OnInit {
 
   email: string;
   password: string;
 
-  constructor(
-    private router: Router
-  ) { }
+  constructor(private loginService: LoginService,
+              private router: Router) {
+  }
 
   ngOnInit() {
   }
 
   login() {
-    this.router.navigate(['/']);
+    this.loginService.login({
+      username: this.email,
+      password: this.password,
+      rememberMe: false
+    }).then(() => {
+      this.router.navigate(['/']);
+    }).catch((e) => console.log(e));
   }
 
 }

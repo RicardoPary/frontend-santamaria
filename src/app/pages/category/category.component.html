@@ -1,0 +1,106 @@
+<div class="document-content">
+  <h3>CATEGORÍAS
+    <span class="btn-options">
+      <a class="btn btn-sm btn-outline-secondary btn-icon-space"
+         (click)="openModal(modalCategory, 'Agregar nueva categoría', 'crear', null)">
+        <i class="icon-file-plus"></i> Agregar nueva categoría
+      </a>
+    </span>
+  </h3>
+  <div class="document-box container-fluid " [ngBusy]="{busy: subscriptionTable, message: 'Cargando...'}">
+    <div class="cards-box row bg-box-card p-5">
+      <div class="col-lg-4 col-md-6 card-half gutter-bottom text-center" *ngFor="let category of data"
+           style="height: 350px;">
+        <div class="card card-default card-full">
+          <div class="card-block">
+            <h6 class="card-title c-text">{{category.name | uppercase}}
+              <div class="text-right icon-category size-icon">
+                <i class="mdi mdi-lead-pencil"
+                   (click)="openModal(modalCategory,'Editar categoría', 'editar', category)"></i>
+                <i class="icon-trash-2" (click)="deleteCategory(category.id)"></i>
+              </div>
+            </h6>
+            <button class="btn btn-primary btn-circle btn-category" (click)="openModalUpdateImage(category)">
+              <i class="mdi mdi-pencil"></i>
+            </button>
+            <div class="card-content" [routerLink]="['../../category-details', idBranch, category.id]">
+              <img class="img-graph m-2" src="../../../assets/images/supply.jpg"/>
+              <div>
+                <h6 class="text-description" style="">
+                  {{category?.description || 'ninguno'}}
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #modalCategory>
+  <form class="mb-0" (ngSubmit)="submit(form)" #form="ngForm">
+
+    <div class="modal-header">
+      <h4 class="modal-title"><b>{{title}}</b></h4>
+        <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+      <div class="container">
+        <div class="form-group">
+          <label for="name">Nombre</label>
+          <input class="form-control"
+                name="name"
+                id="name"
+                autocomplete="off"
+                placeholder="Ejm. Gaseosas"
+                type="text"
+                [ngModel]="category?.name"
+                #name="ngModel"
+                maxlength="50"
+                minlength="5"
+                required/>
+          <div class="form-text text-danger" *ngIf="name.invalid && name.dirty">
+              <small *ngIf="name.hasError('required')">
+                  Nombre es requerido.
+                </small>
+                <small *ngIf="name.hasError('minlength')">
+                  Nombre debe tener al menos 5 caracteres.
+                </small>
+                <small *ngIf="name.hasError('maxlength')">
+                  Nombre no puede tener más de 50 caracteres.
+                </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Descripción</label>
+          <textarea class="form-control"
+                    name="description"
+                    id="description"
+                    autocomplete="off"
+                    rows="3"
+                    maxlength="200"
+                    minlength="5"
+                    required
+                    [ngModel]="category?.description">
+          </textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-secondary btn-icon-space" (click)="closeModal()">
+        <i class="icon-x"></i>Cancelar
+      </button>
+
+      <button class="btn btn-primary btn-icon-space" type="submit" [disabled]="form.invalid">
+        <i class="mdi mdi-cart-plus"></i>{{type === 'crear' ? 'Crear' : 'Editar'}}
+      </button>
+    </div>
+
+  </form>
+</ng-template>

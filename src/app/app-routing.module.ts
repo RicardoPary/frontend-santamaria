@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { LayoutComponent } from './core/layout/layout.component';
-import { authRoutes } from './pages/auth/auth.routing';
+import {NgModule} from '@angular/core';
+import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
+import {LayoutComponent} from './core/layout/layout.component';
+import {authRoutes} from './pages/auth/auth.routing';
 
 const routes: Routes = [
   {
@@ -22,20 +22,8 @@ const routes: Routes = [
         loadChildren: 'app/pages/dashboard/dashboard-crm/dashboard-crm.module#DashboardCrmModule'
       },
       {
-        path: 'apps/chat',
-        loadChildren: 'app/pages/chat/chat.module#ChatModule'
-      },
-      {
-        path: 'components',
-        loadChildren: 'app/pages/components/components.module#ComponentsModule'
-      },
-      {
         path: 'forms',
         loadChildren: 'app/pages/forms/forms.module#FormModule'
-      },
-      {
-        path: 'apps/inbox',
-        loadChildren: 'app/pages/inbox/inbox.module#InboxModule'
       },
       {
         path: 'pages/profile',
@@ -66,10 +54,6 @@ const routes: Routes = [
         loadChildren: 'app/pages/tables/all-in-one-table/all-in-one-table.module#AllInOneTableModule'
       },
       {
-        path: 'maps/google-maps',
-        loadChildren: 'app/pages/google-maps/google-maps.module#GoogleMapsModule'
-      },
-      {
         path: 'pages/projects',
         loadChildren: 'app/pages/projects/projects.module#ProjectsModule'
       },
@@ -78,16 +62,56 @@ const routes: Routes = [
         loadChildren: 'app/pages/project-details/project-details.module#ProjectDetailsModule'
       },
       {
-        path: 'material-icons',
-        loadChildren: 'app/pages/icon/icon.module#IconModule'
-      },
-      {
         path: 'editor',
         loadChildren: 'app/pages/editor/editor.module#EditorModule'
       },
       {
-        path: 'drag-and-drop',
-        loadChildren: 'app/pages/drag-and-drop/drag-and-drop.module#DragAndDropModule'
+        path: 'medical-history',
+        loadChildren: 'app/pages/medical-history/medical-history.module#MedicalHistoryModule'
+      },
+      {
+        path: 'inventory',
+        loadChildren: 'app/pages/inventory/inventory.module#InventoryModule'
+      },
+      {
+        path: 'supply',
+        loadChildren: 'app/pages/supply/supply.module#SupplyModule'
+      },
+      {
+        path: 'patient',
+        loadChildren: 'app/pages/patient/patient.module#PatientModule'
+      },
+      {
+        path: 'staff',
+        loadChildren: 'app/pages/staff/staff.module#StaffModule'
+      },
+      {
+        path: 'report',
+        loadChildren: 'app/pages/report/report.module#ReportModule'
+      },
+      {
+        path: 'role',
+        loadChildren: 'app/pages/role/role.module#RoleModule'
+      },
+      {
+        path: 'user',
+        loadChildren: 'app/pages/user/user.module#UserModule'
+      },
+      {
+        path: 'category',
+        loadChildren: 'app/pages/category/category.module#CategoryModule'
+      },
+      {
+        path: 'category-details/:idBranch/:idCategory',
+        loadChildren: 'app/pages/category-details/category-details.module#CategoryDetailsModule'
+      },
+      {
+        path: 'consultation',
+        loadChildren: 'app/pages/consultation/consultation.module#ConsultationModule'
+      },
+      {
+        path: 'nurse',
+        loadChildren: 'app/pages/nurse/nurse.module#NurseModule'
       }
     ]
   },
@@ -107,4 +131,5 @@ const routes: Routes = [
   })],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

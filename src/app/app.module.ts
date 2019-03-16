@@ -14,6 +14,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { AgmCoreModule } from '@agm/core';
 import { RouteHandlerModule } from './core/route-handler/route-handler.module';
 import { HttpClientModule } from '@angular/common/http';
+import {NgxWebstorageModule} from 'ngx-webstorage';
+import {SharedServicesModule} from './shared/shared-services.module';
+import {AccountService, Core2Module} from './core2';
 
 @NgModule({
   imports: [
@@ -29,7 +32,11 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     CoreModule,
     PagesModule,
-    RouteHandlerModule
+    RouteHandlerModule,
+
+    NgxWebstorageModule.forRoot({prefix: 'kke-pro', separator: '-'}),
+    SharedServicesModule,
+    Core2Module
   ],
   providers: [],
   declarations: [AppComponent],

@@ -1,0 +1,107 @@
+$topnav-background-color: #222;
+:host {
+    .navbar {
+        background-color: #28a745;
+        .navbar-brand {
+            color: #fff;
+        }
+        .nav-item > a {
+            color: white;
+            &:hover {
+                color: #fff;
+            }
+        }
+    }
+    .messages {
+        width: 300px;
+        .media {
+            border-bottom: 1px solid #ddd;
+            padding: 5px 10px;
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+        .media-body {
+            h5 {
+                font-size: 13px;
+                font-weight: 600;
+            }
+            .small {
+                margin: 0;
+            }
+            .last {
+                font-size: 12px;
+                margin: 0;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body {
+  font-size: 91%;
+  padding-top: 60px;
+}
+
+body.scrolled .navbar-right {
+  margin-top: 0.6em;
+}
+
+body .navbar-brand {
+  height: 58px;
+  padding: 10px;
+}
+
+.navbar-primary {
+  height: 60px;
+}
+
+.navbar-primary .nav.mainmenu li a span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.navbar-primary .nav.mainmenu li a i.flaticon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.navbar-primary .nav.mainmenu {
+  margin: 0;
+}
+
+.navbar-primary .nav.mainmenu li a {
+  text-align: left;
+}
+
+.navbar-primary .nav.mainmenu li a span {
+  display: inline-block;
+  margin: 0;
+}
+
+.kybmainbox-sm .kybleftbox {
+  position: relative;
+  padding-bottom: 105px;
+  width: 100%;
+  padding-left: 0;
+  left: 0;
+  top: 0;
+}
