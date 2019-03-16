@@ -9,8 +9,9 @@ import {SelectLayoutAction, SetCardElevationAction} from '../layout/shared/layou
 
 @Component({
   selector: 'elastic-route-handler',
-  templateUrl: './route-handler.component.html',
-  styleUrls: ['./route-handler.component.scss']
+  template: `
+    <router-outlet></router-outlet>
+  `
 })
 export class RouteHandlerComponent implements OnInit {
 
@@ -37,24 +38,24 @@ export class RouteHandlerComponent implements OnInit {
       switch (layout) {
         case 'alpha': {
           this.store.dispatch(new SelectLayoutAction('alpha'));
-          break
+          break;
         }
 
         case 'beta': {
           this.store.dispatch(new SelectLayoutAction('beta'));
-          break
+          break;
         }
 
         case 'gamma': {
           this.store.dispatch(new SelectLayoutAction('gamma'));
-          break
+          break;
         }
       }
 
       const elevation = params.get('elevation');
 
       if (elevation) {
-        this.store.dispatch(new SetCardElevationAction('card-elevation-z' + elevation))
+        this.store.dispatch(new SetCardElevationAction('card-elevation-z' + elevation));
       }
     });
 
@@ -215,8 +216,6 @@ export class RouteHandlerComponent implements OnInit {
     ];
 
     tables.subItems.push(...tablesSubItems);
-
-
 
 
     const clinicHistory = new SidenavItem({

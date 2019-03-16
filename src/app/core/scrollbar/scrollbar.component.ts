@@ -6,8 +6,7 @@ import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'elastic-scrollbar',
-  templateUrl: './scrollbar.component.html',
-  styleUrls: ['./scrollbar.component.scss']
+  templateUrl: './scrollbar.component.html'
 })
 export class ScrollbarComponent implements OnInit, OnDestroy {
 
