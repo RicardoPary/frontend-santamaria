@@ -161,8 +161,8 @@ export class RouteHandlerComponent implements OnInit {
 
     const inventorySubItems = [
       new SidenavItem({
-        name: 'Lista de Historial',
-        route: '/forms/form-elements',
+        name: 'Lista de Inventarios',
+        route: '/inventory',
         parent: forms,
         subItems: [],
         position: 1

@@ -1,64 +1,35 @@
-<div class="table-content">
-  <h3 style="font-family: sans-serif;"> Inventario
-    <span class="btn-options pull-right">
-      <a class="btn btn-sm btn-outline-secondary btn-icon-space"
-         (click)="openModal(modalAula)"><i
-        class="icon-user-plus"></i> Crear Aula</a>
-    </span>
-  </h3>
-  <div class="table-box">
-    <app-table
-      [data]="data"
-      [headers]="headersColumns"
-      [total]="totalData"
-      [pageSize]="pageSize"
-      [page]="page"
-      (clickPagination)="clickPagination($event)"
-      (clickSort)="clickSort($event)"
-      (clickButton)="clickButton($event)">
-    </app-table>
-  </div>
-</div>
-<div class="filter-content" [ngClass]="status ? 'toogled' : ' '">
+<div class="table-pagination">
 
-  <div class="filter-box">
+  <elastic-page-header [height]="'146px'" background="url(/assets/img/demo/headers/pattern-3.png)"
+                       [reverse]="true"></elastic-page-header>
 
+  <div class="container">
 
-    <div class="form-search">
-      <form (ngSubmit)="submitCompany(formCompany)" #formCompany="ngForm" autocomplete="off">
-        <input type="text"
-               id="companyFilter"
-               name="companyFilter"
-               class="form-control form-control-sm"
-               #companyFilter="ngModel"
-               pattern="[0-9A-Za-z-]{1,10}"
-               placeholder="Compañía"
-               [ngModel]="companyValue">
-        <i class="icon-search"></i>
-        <div *ngIf="!formCompany.valid" style="color: #a94442; font-size: 12px; font-weight: normal;">
-          Texto incorrecto.
-        </div>
-      </form>
+    <elastic-breadcrumbs [currentPage]="'Table Pagination'" [names]="['Tables']"
+                         [header]="'primary'"></elastic-breadcrumbs>
+
+    <div class="mat-elevation-z8">
+
+      <div class="header">
+        <span class="btn-options pull-right">
+          <a class="btn btn-sm btn-outline-secondary btn-icon-space"
+             (click)="openModal(modalAula)">
+            <i class="icon-user-plus"></i> Crear Aula</a>
+        </span>
+      </div>
+
+      <app-table
+        [data]="data"
+        [headers]="headersColumns"
+        [total]="totalData"
+        [pageSize]="pageSize"
+        [page]="page"
+        (clickPagination)="clickPagination($event)"
+        (clickSort)="clickSort($event)"
+        (clickButton)="clickButton($event)">
+      </app-table>
+
     </div>
-    <br>
-
-    <br>
-    <form (ngSubmit)="submitName(formName)" #formName="ngForm" autocomplete="off">
-      <label for="nameFilter">Nombre</label>
-      <input name="nameFilter"
-             id="nameFilter"
-             class="form-control"
-             [(ngModel)]="nameValue"
-             type="text">
-    </form>
-    <br>
-
-    <div class="reset-button" *ngIf="statusReset" (click)="reset()">
-      <button type="button" class="btn btn-default"><i class="mdi mdi-refresh" style="margin-left: -15px;"></i> Resetear
-        Filtros
-      </button>
-    </div>
-
   </div>
 </div>
 
