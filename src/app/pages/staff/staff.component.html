@@ -1,24 +1,35 @@
-<div class="table-content">
-  <h3 style="font-family: sans-serif;"> PERSONAL
-    <span class="btn-options pull-right">
-      <button type="button" class="btn btn-sm btn-secondary" (click)="openModal(modalEstudiante)">Agregar nuevo Personal</button>
-    </span>
-  </h3>
-  <div class="table-box">
-    <app-table
-      [data]="data"
-      [headers]="headersColumns"
-      [total]="totalData"
-      [pageSize]="pageSize"
-      [page]="page"
-      (clickPagination)="clickPagination($event)"
-      (clickSort)="clickSort($event)"
-      (clickButton)="clickButtonRow($event)">
-    </app-table>
-  </div>
-</div>
-<div class="filter-content">
+<div class="table-pagination">
 
+  <elastic-page-header [height]="'146px'" background="url(/assets/img/demo/headers/pattern-3.png)"
+                       [reverse]="true"></elastic-page-header>
+
+  <div class="container">
+
+    <elastic-breadcrumbs [currentPage]="'Table Pagination'" [names]="['Tables']"
+                         [header]="'primary'"></elastic-breadcrumbs>
+
+    <div class="mat-elevation-z8">
+
+      <div class="header">
+        <span class="btn-options pull-right">
+      <button type="button" class="btn btn-sm btn-secondary"
+              (click)="openModal(modalEstudiante)">Agregar nuevo Personal</button>
+    </span>
+      </div>
+
+      <app-table
+        [data]="data"
+        [headers]="headersColumns"
+        [total]="totalData"
+        [pageSize]="pageSize"
+        [page]="page"
+        (clickPagination)="clickPagination($event)"
+        (clickSort)="clickSort($event)"
+        (clickButton)="clickButtonRow($event)">
+      </app-table>
+
+    </div>
+  </div>
 </div>
 
 
