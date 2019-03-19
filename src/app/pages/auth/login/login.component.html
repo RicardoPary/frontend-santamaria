@@ -1,7 +1,7 @@
 <div fxLayout="row" fxLayoutAlign="center center" style="height: 100%;">
   <div class="login mat-elevation-z12">
     <div class="login-header" fxLayout="column" fxLayoutAlign="center center">
-      <img class="logo" src="assets/img/logo2x.png">
+      <img class="logo" src="assets/img/csmFon1.png">
     </div>
     <form #form="ngForm" (ngSubmit)="login()">
       <div class="login-content" fxLayout="column" fxLayoutAlign="start stretch">
@@ -9,14 +9,14 @@
           <input matInput placeholder="E-Mail" name="email" required [(ngModel)]="email">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Password" type="password" name="password" required [(ngModel)]="password">
+          <input matInput placeholder="Contraseña" type="password" name="password" required [(ngModel)]="password">
         </mat-form-field>
         <div class="extra-options" fxLayout="row" fxLayoutAlign="space-between center">
-          <mat-checkbox class="remember-me">Remember Me</mat-checkbox>
-          <a class="forgot-password" [routerLink]="['/auth/forgot-password']">Forgot Password?</a>
+          <mat-checkbox class="remember-me">Recordar Contraseña</mat-checkbox>
+          <a class="forgot-password" [routerLink]="['/auth/forgot-password']">Olvido Su Contraseña?</a>
         </div>
-        <button color="primary" mat-raised-button [disabled]="!form.valid">SIGN IN</button>
-        <p class="note">Don't have an account?<br/> <a [routerLink]="['/auth/register']">Click here to create one</a></p>
+        <button color="row" mat-raised-button [disabled]="!form.valid">INGRESAR</button>
+        <p class="note">¿No tienes una cuenta?<br/> <a [routerLink]="['/auth/register']">Haga clic aquí para crear una</a></p>
       </div>
     </form>
   </div>

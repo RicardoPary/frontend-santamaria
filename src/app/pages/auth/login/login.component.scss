@@ -2,10 +2,10 @@
 
 :host {
   display: block;
-  background: #fff url('/assets/img/demo/backgrounds/pattern-1.jpg') no-repeat center center fixed;
+  background: #fff url('/assets/img/csm2.jpg') no-repeat center center fixed;
   background-size: cover;
-  height: 100%;
-  width: 100%;
+  height: 200%;
+  width: 200%;
 }
 
 .login {
@@ -13,17 +13,18 @@
   width: 380px;
 
   .login-header {
-    background: $layout-alpha__background-color__sidenav-item;
+    //background: $layout-alpha__background-color__sidenav-item;
+    background: #008000;
     padding: 24px;
 
     .logo {
-      height: 25px;
+      height: 75px;
       width: auto;
     }
   }
 
   .login-content {
-    padding: 24px 42px 42px;
+    padding: 24px 10px 10px;
 
     .mat-form-field {
       width: 100%;
