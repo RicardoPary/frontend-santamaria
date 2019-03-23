@@ -139,26 +139,6 @@ export class RouteHandlerComponent implements OnInit {
 
     inventory.subItems.push(...inventorySubItems);
 
-    const material = new SidenavItem({
-      name: 'Material',
-      icon: 'grade',
-      route: '/material-icons',
-      subItems: [],
-      position: 1
-    });
-
-    const materialSubItems = [
-      new SidenavItem({
-        name: 'Lista de Material',
-        route: '/supply',
-        parent: material,
-        subItems: [],
-        position: 1
-      })
-    ];
-
-    material.subItems.push(...materialSubItems);
-
     const staff = new SidenavItem({
       name: 'Personal',
       icon: 'grade',
@@ -178,26 +158,6 @@ export class RouteHandlerComponent implements OnInit {
     ];
 
     staff.subItems.push(...staffSubItems);
-
-    const report = new SidenavItem({
-      name: 'Reportes',
-      icon: 'grade',
-      route: '/material-icons',
-      subItems: [],
-      position: 1
-    });
-
-    const reportSubItems = [
-      new SidenavItem({
-        name: 'Lista Reportes',
-        route: '/forms/form-elements',
-        parent: report,
-        subItems: [],
-        position: 1
-      })
-    ];
-
-    report.subItems.push(...reportSubItems);
 
     const role = new SidenavItem({
       name: 'Roles',
@@ -274,7 +234,7 @@ export class RouteHandlerComponent implements OnInit {
     input.subItems.push(...inputSubItems);
 
     const medicineAsigned = new SidenavItem({
-      name: 'Medicamentos Asignados',
+      name: 'Medicamentos',
       icon: 'grade',
       route: '/material-icons',
       subItems: [],
@@ -306,9 +266,7 @@ export class RouteHandlerComponent implements OnInit {
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(patient));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(clinicHistory));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(inventory));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(material));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(staff));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(report));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(input));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(medicineAsigned));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(role));
