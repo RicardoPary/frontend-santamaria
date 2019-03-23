@@ -71,7 +71,7 @@ export class RouteHandlerComponent implements OnInit {
 
     const patient = new SidenavItem({
       name: 'Pacientes',
-      icon: 'grade',
+      icon: 'group',
       route: '/material-icons',
       subItems: [],
       position: 1
@@ -91,33 +91,17 @@ export class RouteHandlerComponent implements OnInit {
         parent: patient,
         subItems: [],
         position: 1
-      })
-    ];
-
-    patient.subItems.push(...patientSubItems);
-
-
-    const clinicHistory = new SidenavItem({
-      name: 'Historia Clinica',
-      icon: 'grade',
-      route: '/material-icons',
-      subItems: [],
-      position: 1
-    });
-
-
-    const clinicHistorySubItems1 = [
+      }),
       new SidenavItem({
-        name: 'Lista de Pacientes',
-        route: '/medical-history',
-        parent: clinicHistory,
+        name: 'Historia Clinica',
+        route: '/patient',
+        parent: patient,
         subItems: [],
         position: 1
       })
     ];
 
-    clinicHistory.subItems.push(...clinicHistorySubItems1);
-
+    patient.subItems.push(...patientSubItems);
 
     const inventory = new SidenavItem({
       name: 'Inventario',
@@ -161,7 +145,7 @@ export class RouteHandlerComponent implements OnInit {
 
     const user = new SidenavItem({
       name: 'Usuarios',
-      icon: 'grade',
+      icon: 'person',
       route: '/material-icons',
       subItems: [],
       position: 1
@@ -251,7 +235,6 @@ export class RouteHandlerComponent implements OnInit {
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(dashboard));
 
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(patient));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(clinicHistory));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(inventory));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(staff));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(input));
