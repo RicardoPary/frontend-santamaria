@@ -100,7 +100,7 @@ $background-color: #FAFAFA;
 $height__toolbar: 64px;
 $padding-left__toolbar: 24px;
 
-$layout-alpha__background__toolbar: white;
+$layout-alpha__background__toolbar:green;
 $layout-alpha__color__toolbar: $color__text-darker;
 
 $layout-beta__background__toolbar: mat-color($color-primary, 900);
@@ -120,8 +120,8 @@ $width__sidenav-collapsed: 270px;
 $padding-left__sidenav-item: 36px;
 $padding-right__sidenav-item: 24px;
 
-$layout-alpha__background__sidenav: #303441;
-$layout-alpha__background__sidenav_header: #2b303c;
+$layout-alpha__background__sidenav: #000000;
+$layout-alpha__background__sidenav_header: #008000;
 
 $layout-beta__background__sidenav: white;
 
