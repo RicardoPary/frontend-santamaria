@@ -17,9 +17,7 @@ import {Component, Input, OnInit} from '@angular/core';
         </div>
       </div>
     </div>
-
-  `,
-  styleUrls: ['./breadcrumbs.component.scss']
+  `
 })
 export class BreadcrumbsComponent implements OnInit {
 

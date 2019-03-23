@@ -3,8 +3,7 @@ import * as moment from 'moment';
 
 @Component({
   selector: 'elastic-quickpanel',
-  templateUrl: './quickpanel.component.html',
-  styleUrls: ['./quickpanel.component.scss']
+  templateUrl: './quickpanel.component.html'
 })
 export class QuickpanelComponent implements OnInit {
 

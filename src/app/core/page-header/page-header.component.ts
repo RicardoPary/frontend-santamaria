@@ -12,8 +12,7 @@ import {Component, Input, OnInit} from '@angular/core';
          [class.reverse-padding-bottom]="reverseDir[2]"
          [class.reverse-padding-left]="reverseDir[3]"
          [style.margin-bottom]="margin"></div>
-  `,
-  styleUrls: ['./page-header.component.scss']
+  `
 })
 export class PageHeaderComponent implements OnInit {
 
