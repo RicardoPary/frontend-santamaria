@@ -2,7 +2,7 @@
 
 :host {
   display: block;
-  width: 100%;
+  width: 500%;
 }
 
 input[type="search"] {
@@ -11,13 +11,13 @@ input[type="search"] {
 
 .search-wrapper {
   position: relative;
-  width: 100%;
+  width: 500%;
 
   .search-icon {
     position: absolute;
     font-size: 24px;
     top: 6px;
-    left: 24px;
+    left: 14px;
     transition: color 0.2s ease;
   }
 
@@ -32,11 +32,11 @@ input[type="search"] {
     appearance: textfield;
     font-weight: 300;
     outline: none;
-    border-radius: 3px;
+    border-radius: 15px;
     box-sizing: border-box;
     color: currentColor;
     background: rgba(255, 255, 255, 0.2);
-    width: 100%;
+    width: 500%;
 
     &:hover {
       background: rgba(255, 255, 255, 0.5);

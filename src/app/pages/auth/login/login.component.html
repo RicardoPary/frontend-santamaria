@@ -11,11 +11,13 @@
         <mat-form-field>
           <input matInput placeholder="Contraseña" type="password" name="password" required [(ngModel)]="password">
         </mat-form-field>
+        <button color="row" mat-raised-button [disabled]="!form.valid">INGRESAR</button>
+        <br>
+
         <div class="extra-options" fxLayout="row" fxLayoutAlign="space-between center">
           <mat-checkbox class="remember-me">Recordar Contraseña</mat-checkbox>
           <a class="forgot-password" [routerLink]="['/auth/forgot-password']">Olvido Su Contraseña?</a>
         </div>
-        <button color="row" mat-raised-button [disabled]="!form.valid">INGRESAR</button>
         <p class="note">¿No tienes una cuenta?<br/> <a [routerLink]="['/auth/register']">Haga clic aquí para crear una</a></p>
       </div>
     </form>
