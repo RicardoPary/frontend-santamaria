@@ -17,6 +17,7 @@ $fa-font-path: "../node_modules/font-awesome/fonts";
 // that you are using.
 @include angular-material-theme($theme);
 
+@import "styles/sidenav";
 @import "styles/misc";
 @import "styles/card";
 @import "styles/boxed";
