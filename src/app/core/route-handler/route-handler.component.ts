@@ -61,73 +61,41 @@ export class RouteHandlerComponent implements OnInit {
 
     // Define Menu Items here
 
-    // Top Level Item (The item to click on so the dropdown opens)
     const dashboard = new SidenavItem({
       name: 'Dashboard',
+      route: '/',
       icon: 'dashboard',
       subItems: [],
       position: 1
     });
 
-    // Sub Items for the Top Level Item (The items shown when you clicked on the dropdown item)
-    // Note: The Top Level Item is added as "parent" in those items, here "dashboard" (variable from above)
-    const dashboardSubItems = [
-      new SidenavItem({
-        name: 'Dashboard',
-        route: '/',
-        parent: dashboard,
-        subItems: [],
-        position: 1,
-        routerLinkActiveOptions: {
-          exact: true
-        }
-      }),
-      new SidenavItem({
-        name: 'All-In-One Board',
-        route: '/dashboard/all-in-one',
-        parent: dashboard,
-        subItems: [],
-        position: 1
-      }),
-      new SidenavItem({
-        name: 'CRM Dashboard',
-        route: '/dashboard/crm',
-        parent: dashboard,
-        subItems: [],
-        position: 1
-      }),
-    ];
-
-    // Push the just created Sub Items into the Top Level Item
-    dashboard.subItems.push(...dashboardSubItems);
-
-    const forms = new SidenavItem({
-      name: 'Forms',
-      icon: 'assignment',
-      route: null,
+    const patient = new SidenavItem({
+      name: 'Pacientes',
+      icon: 'grade',
+      route: '/material-icons',
       subItems: [],
       position: 1
     });
 
-    const formsSubItems = [
+    const patientSubItems = [
       new SidenavItem({
-        name: 'Form Elements',
-        route: '/forms/form-elements',
-        parent: forms,
+        name: 'Lista de Pacientes',
+        route: '/patient',
+        parent: patient,
         subItems: [],
         position: 1
       }),
-
       new SidenavItem({
-        name: 'Form Wizard',
-        route: '/forms/form-wizard',
-        parent: forms,
+        name: 'Agregar Nuevo Paciente',
+        route: '/patient',
+        parent: patient,
         subItems: [],
         position: 1
       })
     ];
 
-    forms.subItems.push(...formsSubItems);
+    patient.subItems.push(...patientSubItems);
+
 
     const clinicHistory = new SidenavItem({
       name: 'Historia Clinica',
@@ -140,9 +108,9 @@ export class RouteHandlerComponent implements OnInit {
 
     const clinicHistorySubItems1 = [
       new SidenavItem({
-        name: 'Lista de Historial',
+        name: 'Lista de Pacientes',
         route: '/medical-history',
-        parent: forms,
+        parent: clinicHistory,
         subItems: [],
         position: 1
       })
@@ -163,7 +131,7 @@ export class RouteHandlerComponent implements OnInit {
       new SidenavItem({
         name: 'Lista de Inventarios',
         route: '/inventory',
-        parent: forms,
+        parent: inventory,
         subItems: [],
         position: 1
       })
@@ -183,33 +151,13 @@ export class RouteHandlerComponent implements OnInit {
       new SidenavItem({
         name: 'Lista de Material',
         route: '/supply',
-        parent: forms,
+        parent: material,
         subItems: [],
         position: 1
       })
     ];
 
     material.subItems.push(...materialSubItems);
-
-    const patient = new SidenavItem({
-      name: 'Pacientes',
-      icon: 'grade',
-      route: '/material-icons',
-      subItems: [],
-      position: 1
-    });
-
-    const patientSubItems = [
-      new SidenavItem({
-        name: 'Lista de Pacientes',
-        route: '/patient',
-        parent: forms,
-        subItems: [],
-        position: 1
-      })
-    ];
-
-    patient.subItems.push(...patientSubItems);
 
     const staff = new SidenavItem({
       name: 'Personal',
@@ -223,7 +171,7 @@ export class RouteHandlerComponent implements OnInit {
       new SidenavItem({
         name: 'Personal Administrativo',
         route: '/staff',
-        parent: forms,
+        parent: staff,
         subItems: [],
         position: 1
       })
@@ -243,7 +191,7 @@ export class RouteHandlerComponent implements OnInit {
       new SidenavItem({
         name: 'Lista Reportes',
         route: '/forms/form-elements',
-        parent: forms,
+        parent: report,
         subItems: [],
         position: 1
       })
@@ -263,14 +211,14 @@ export class RouteHandlerComponent implements OnInit {
       new SidenavItem({
         name: 'Lista de Roles',
         route: '/forms/form-elements',
-        parent: forms,
+        parent: role,
         subItems: [],
         position: 1
       }),
       new SidenavItem({
         name: 'Asignar Rol',
         route: '/forms/form-elements',
-        parent: forms,
+        parent: role,
         subItems: [],
         position: 1
       })
@@ -290,7 +238,7 @@ export class RouteHandlerComponent implements OnInit {
       new SidenavItem({
         name: 'Lista Usuarios',
         route: '/user',
-        parent: forms,
+        parent: user,
         subItems: [],
         position: 1
       })
@@ -310,14 +258,14 @@ export class RouteHandlerComponent implements OnInit {
       new SidenavItem({
         name: 'Categorias',
         route: '/forms/form-elements',
-        parent: forms,
+        parent: input,
         subItems: [],
         position: 1
       }),
       new SidenavItem({
         name: 'Lista de Insumos',
         route: '/forms/form-elements',
-        parent: forms,
+        parent: input,
         subItems: [],
         position: 1
       })
@@ -337,14 +285,14 @@ export class RouteHandlerComponent implements OnInit {
       new SidenavItem({
         name: 'Medicamentos Asignados',
         route: '/forms/form-elements',
-        parent: forms,
+        parent: medicineAsigned,
         subItems: [],
         position: 1
       }),
       new SidenavItem({
         name: 'Crear Consulta',
         route: '/forms/form-elements',
-        parent: forms,
+        parent: medicineAsigned,
         subItems: [],
         position: 1
       })
@@ -352,20 +300,19 @@ export class RouteHandlerComponent implements OnInit {
 
     medicineAsigned.subItems.push(...medicineAsignedSubItems);
 
-    // Send the created Menu structure to Redux/ngrx (you only need to send the Top Level Item, all dropdown items will be added automatically)
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(dashboard));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(forms));
 
+    this.store.dispatch(new fromSidenav.AddSidenavItemAction(dashboard));
+
+    this.store.dispatch(new fromSidenav.AddSidenavItemAction(patient));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(clinicHistory));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(inventory));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(material));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(patient));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(staff));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(report));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(role));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(user));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(input));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(medicineAsigned));
+    this.store.dispatch(new fromSidenav.AddSidenavItemAction(role));
+    this.store.dispatch(new fromSidenav.AddSidenavItemAction(user));
 
   }
 

@@ -18,14 +18,6 @@ const routes: Routes = [
         loadChildren: 'app/pages/dashboard/dashboard.module#DashboardModule'
       },
       {
-        path: 'dashboard/crm',
-        loadChildren: 'app/pages/dashboard/dashboard-crm/dashboard-crm.module#DashboardCrmModule'
-      },
-      {
-        path: 'forms',
-        loadChildren: 'app/pages/forms/forms.module#FormModule'
-      },
-      {
         path: 'editor',
         loadChildren: 'app/pages/editor/editor.module#EditorModule'
       },
