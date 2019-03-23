@@ -6,7 +6,6 @@ import {MatButtonModule, MatIconModule, MatRippleModule, MatSidenavModule} from 
 import {SettingsModule} from 'app/core/settings/settings.module';
 import {SidenavModule} from '../sidenav/sidenav.module';
 import {ToolbarModule} from '../toolbar/toolbar.module';
-import {QuickpanelModule} from '../quickpanel/quickpanel.module';
 import {RouterModule} from '@angular/router';
 import {ScrollbarService} from '../scrollbar/scrollbar.service';
 
@@ -19,7 +18,6 @@ import {ScrollbarService} from '../scrollbar/scrollbar.service';
     SidenavModule,
     SettingsModule,
     ToolbarModule,
-    QuickpanelModule,
     MatIconModule,
     MatRippleModule,
     MatButtonModule

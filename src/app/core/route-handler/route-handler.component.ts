@@ -199,37 +199,24 @@ export class RouteHandlerComponent implements OnInit {
         parent: input,
         subItems: [],
         position: 1
-      })
-    ];
-
-    input.subItems.push(...inputSubItems);
-
-    const medicineAsigned = new SidenavItem({
-      name: 'Medicamentos',
-      icon: 'grade',
-      route: '/material-icons',
-      subItems: [],
-      position: 1
-    });
-
-    const medicineAsignedSubItems = [
+      }),
       new SidenavItem({
-        name: 'Medicamentos Asignados',
+        name: 'Agregar Insumo',
         route: '/forms/form-elements',
-        parent: medicineAsigned,
+        parent: input,
         subItems: [],
         position: 1
       }),
       new SidenavItem({
-        name: 'Crear Consulta',
+        name: 'Medicamentos',
         route: '/forms/form-elements',
-        parent: medicineAsigned,
+        parent: input,
         subItems: [],
         position: 1
       })
     ];
 
-    medicineAsigned.subItems.push(...medicineAsignedSubItems);
+    input.subItems.push(...inputSubItems);
 
 
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(dashboard));
@@ -238,7 +225,6 @@ export class RouteHandlerComponent implements OnInit {
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(inventory));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(staff));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(input));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(medicineAsigned));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(user));
 
   }
