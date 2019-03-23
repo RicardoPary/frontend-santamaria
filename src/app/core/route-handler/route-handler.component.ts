@@ -159,33 +159,6 @@ export class RouteHandlerComponent implements OnInit {
 
     staff.subItems.push(...staffSubItems);
 
-    const role = new SidenavItem({
-      name: 'Roles',
-      icon: 'grade',
-      route: '/material-icons',
-      subItems: [],
-      position: 1
-    });
-
-    const roleSubItems = [
-      new SidenavItem({
-        name: 'Lista de Roles',
-        route: '/forms/form-elements',
-        parent: role,
-        subItems: [],
-        position: 1
-      }),
-      new SidenavItem({
-        name: 'Asignar Rol',
-        route: '/forms/form-elements',
-        parent: role,
-        subItems: [],
-        position: 1
-      })
-    ];
-
-    role.subItems.push(...roleSubItems);
-
     const user = new SidenavItem({
       name: 'Usuarios',
       icon: 'grade',
@@ -198,6 +171,20 @@ export class RouteHandlerComponent implements OnInit {
       new SidenavItem({
         name: 'Lista Usuarios',
         route: '/user',
+        parent: user,
+        subItems: [],
+        position: 1
+      }),
+      new SidenavItem({
+        name: 'Lista de Roles',
+        route: '/forms/form-elements',
+        parent: user,
+        subItems: [],
+        position: 1
+      }),
+      new SidenavItem({
+        name: 'Asignar Rol',
+        route: '/forms/form-elements',
         parent: user,
         subItems: [],
         position: 1
@@ -269,7 +256,6 @@ export class RouteHandlerComponent implements OnInit {
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(staff));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(input));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(medicineAsigned));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(role));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(user));
 
   }
