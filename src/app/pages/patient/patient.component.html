@@ -1,6 +1,6 @@
 <div class="table-pagination">
 
-  <elastic-page-header [height]="'146px'" background="url(/assets/img/demo/headers/pattern-3.png)"
+  <elastic-page-header [height]="'146px'" background="url(/assets/images/0022.jpeg)"
                        [reverse]="true"></elastic-page-header>
 
   <div class="container">
@@ -14,7 +14,7 @@
         <span class="btn-options pull-right">
           <a class="btn btn-sm btn-outline-secondary btn-icon-space"
              (click)="openModal(modal)">
-            <i class="icon-user-plus"></i> Crear Paciente</a>
+            <i class="icon-user-plus"></i> Crear Nuevo Paciente</a>
         </span>
       </div>
 
@@ -44,48 +44,130 @@
 
       <div class="col-md-6">
         <div class="form-group mb-3">
-          <label for="cronograma">Cronograma</label>
-          <input id="cronograma"
-                 name="cronograma"
+          <label for="nombres">Nombres:</label>
+          <input id="nombres"
+                 name="nombres"
                  type="text"
                  class="form-control"
-                 [ngModel]="actividadCivica?.cronograma"/>
+              placeholder='Eje. Dana July...'
+                 [ngModel]="actividadCivica?.nombres"/>
         </div>
       </div>
 
       <div class="col-md-6">
         <div class="form-group mb-3">
-          <label for="descripcion">Descripcion</label>
-          <input id="descripcion"
-                 name="descripcion"
+          <label for="apellidos">Apellidos:</label>
+          <input id="apellidos"
+                 name="apellidos"
                  type="text"
+                 placeholder='Eje. Pomier Teran...'
                  class="form-control"
-                 [ngModel]="actividadCivica?.descripcion"/>
+                 [ngModel]="actividadCivica?.apellidos"/>
         </div>
       </div>
 
       <div class="col-md-6">
         <div class="form-group mb-3">
-          <label for="fecha">Fecha</label>
-          <input id="fecha"
-                 name="fecha"
-                 type="text"
-                 class="form-control"
-                 [ngModel]="actividadCivica?.fecha"/>
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="form-group mb-3">
-          <label for="nombre">Nombre</label>
-          <input id="nombre"
-                 name="nombre"
+          <label for="ci">Cedula de Identidad:</label>
+          <input id="ci"
+                 name="ci"
                  type="string"
+                 placeholder='Eje. 64637373L.P...'
                  class="form-control"
-                 [ngModel]="actividadCivica?.nombre"/>
+                 [ngModel]="actividadCivica?.ci"/>
         </div>
       </div>
 
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="direccion">Direccion:</label>
+          <input id="direccion"
+                 name="direccion"
+                 type="string"
+                 placeholder='Eje. Av.Civica El Alto...'
+                 class="form-control"
+                 [ngModel]="actividadCivica?.direccion"/>
+        </div>
+      </div>
+
+
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="telefono">Telefono:</label>
+          <input id="telefono"
+                 name="telefono"
+                 type="number"
+                 placeholder='Eje. 7777***7...'
+                 class="form-control"
+                 [ngModel]="actividadCivica?.telefono"/>
+        </div>
+      </div>
+
+
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="fecha_naci">Fecha de Nacimiento:</label>
+          <input id="fecha_naci"
+                 name="fecha_naci"
+                 type="date"
+                 placeholder='Eje. 20/07/94...'
+                 class="form-control"
+                 [ngModel]="actividadCivica?.fecha_naci"/>
+        </div>
+      </div>
+
+
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="edad">Edad:</label>
+          <input id="edad"
+                 name="edad"
+                 type="date"
+                 placeholder='Eje.23...'
+                 class="form-control"
+                 [ngModel]="actividadCivica?.edad"/>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="responsable">Responsable:</label>
+          <input id="responsable"
+                 name="responsable"
+                 type="text"
+                 placeholder='Eje.Padre ...'
+                 class="form-control"
+                 [ngModel]="actividadCivica?.responsable"/>
+        </div>
+      </div>
+
+
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="sexo">Sexo:</label>
+          <br>
+
+          <input type="radio" name="sexo" id="sexo" value="Femenino">Femenino &nbsp;
+          <input type="radio" name="sexo" id="sexo" value="Masculino">Masculino
+        </div>
+      </div>
+
+
+<br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+
+
+
+
+
+
+
+
+    </div>
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="closeModal()">
@@ -94,7 +176,6 @@
         <button type="submit" class="btn btn-primary">
           Crear
         </button>
-      </div>
 
     </div>
 
