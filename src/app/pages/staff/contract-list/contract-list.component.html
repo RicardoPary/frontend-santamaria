@@ -1,6 +1,6 @@
 <div class="table-pagination">
 
-  <elastic-page-header [height]="'146px'" background="url(/assets/img/demo/headers/pattern-3.png)"
+  <elastic-page-header [height]="'146px'" background="url(/assets/images/0022.jpeg)"
                        [reverse]="true"></elastic-page-header>
 
   <div class="container">
@@ -14,7 +14,7 @@
         <span class="btn-options pull-right">
           <a class="btn btn-sm btn-outline-secondary btn-icon-space"
              (click)="openModal(modal)">
-            <i class="icon-user-plus"></i> Crear Inventario</a>
+            <i class="icon-user-plus"></i> Crear Nuevo Contrato</a>
         </span>
       </div>
 
@@ -34,21 +34,75 @@
 </div>
 
 
+
+
+<!--formulario -->
+
 <ng-template #modal>
   <div class="modal-header">
-    <h4 class="modal-title">Agregar Contrato</h4>
-  </div>
-  <div class="modal-body">
-
-
+    <h4 class="modal-title">Crear Tipo De Contrato</h4>
   </div>
 
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="closeModal();">
-      Cancelar
-    </button>
-    <button type="submit" class="btn btn-primary">
-      Guardar
-    </button>
-  </div>
+  <form (ngSubmit)="submit(form)" #form="ngForm">
+
+    <div class="row container">
+
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="contrato">Tipo de Contrato:</label>
+          <input id="contrato"
+                 name="contrato"
+                 type="text"
+                 class="form-control"
+                 placeholder='Eje. Eventual...'
+                 [ngModel]="actividadCivica?.contrato"/>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="sueldo">Sueldo a Pagar :</label>
+          <input id="sueldo"
+                 name="sueldo"
+                 type="text"
+                 placeholder='Eje. 2800...'
+                 class="form-control"
+                 [ngModel]="actividadCivica?.sueldo"/>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="descripcion">Descripción:</label>
+          <textarea id="descripcion"
+            name="descripcion"
+            rows="10" cols="30"
+                    type="text"
+                    placeholder='Eje. Escirba las clausulas..'
+                    class="form-control"
+                    [ngModel]="actividadCivica?.descripcion">
+          </textarea>
+        </div>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="closeModal()">
+        Cancelar
+      </button>
+      <button type="submit" class="btn btn-primary">
+        Guardar
+      </button>
+
+    </div>
+
+  </form>
 </ng-template>
+
