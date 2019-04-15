@@ -1,8 +1,8 @@
 <mat-sidenav-container class="layout-container" [ngClass]="cardElevation$ | async">
 
   <mat-sidenav class="settings-sidenav"
-              (openedStart)="openSettings()" (closedStart)="closeSettings()"
-              [opened]="settingsOpen$ | async" mode="over" position="end" #options>
+               (openedStart)="openSettings()" (closedStart)="closeSettings()"
+               [opened]="settingsOpen$ | async" mode="over" position="end" #options>
     <elastic-settings></elastic-settings>
   </mat-sidenav>
 
@@ -14,14 +14,16 @@
 
     <!-- Layout Beta -->
     <elastic-toolbar-beta *ngIf="layout === 'beta'"
-                     [quickpanelOpen]="quickpanelOpen$ | async"
-                     (toggledSidenav)="toggleSidenav()" (toggledQuickpanel)="toggleQuickpanel()"></elastic-toolbar-beta>
+                          [quickpanelOpen]="quickpanelOpen$ | async"
+                          (toggledSidenav)="toggleSidenav()"
+                          (toggledQuickpanel)="toggleQuickpanel()"></elastic-toolbar-beta>
     <!-- /Layout: Beta -->
 
     <!-- Layout Gamma -->
     <elastic-toolbar-gamma *ngIf="layout === 'gamma'"
-                      [quickpanelOpen]="quickpanelOpen$ | async"
-                      (toggledSidenav)="toggleSidenav()" (toggledQuickpanel)="toggleQuickpanel()"></elastic-toolbar-gamma>
+                           [quickpanelOpen]="quickpanelOpen$ | async"
+                           (toggledSidenav)="toggleSidenav()"
+                           (toggledQuickpanel)="toggleQuickpanel()"></elastic-toolbar-gamma>
     <!-- /Layout: Gamma -->
 
     <elastic-toolbar-navigation *ngIf="layout === 'gamma'"></elastic-toolbar-navigation>
@@ -29,27 +31,27 @@
     <mat-sidenav-container fxFlex>
 
       <mat-sidenav class="quickpanel-container"
-                  (openedStart)="openQuickpanel()" (closedStart)="closeQuickpanel()"
-                  [opened]="quickpanelOpen$ | async" [position]="quickpanelAlign" [mode]="quickpanelMode">
+                   (openedStart)="openQuickpanel()" (closedStart)="closeQuickpanel()"
+                   [opened]="quickpanelOpen$ | async" [position]="quickpanelAlign" [mode]="quickpanelMode">
         <elastic-quickpanel></elastic-quickpanel>
       </mat-sidenav>
 
       <mat-sidenav class="sidenav-container"
-                  (openedStart)="openSidenav()" (closedStart)="closeSidenav()"
-                  [opened]="sidenavOpen$ | async" [position]="sidenavAlign$ | async"
-                  [mode]="sidenavMode$ | async" [disableClose]="sidenavDisableClose$ | async"
-                  [vrSidenavCollapse]="sidenavCollapsed$ | async">
+                   (openedStart)="openSidenav()" (closedStart)="closeSidenav()"
+                   [opened]="sidenavOpen$ | async" [position]="sidenavAlign$ | async"
+                   [mode]="sidenavMode$ | async" [disableClose]="sidenavDisableClose$ | async"
+                   [vrSidenavCollapse]="sidenavCollapsed$ | async">
 
         <elastic-sidenav [layout]="layout" [collapsed]="sidenavCollapsed$ | async"
-                    (toggledSidenavCollapse)="toggleSidenavCollapse()"></elastic-sidenav>
+                         (toggledSidenavCollapse)="toggleSidenavCollapse()"></elastic-sidenav>
 
       </mat-sidenav>
 
       <div class="toolbar-container" fxLayout="column">
         <!-- Layout Alpha -->
         <elastic-toolbar-alpha *ngIf="layout === 'alpha'"
-                          [sidenavCollapsed]="sidenavCollapsed$ | async" [quickpanelOpen]="quickpanelOpen$ | async"
-                          (toggledSidenav)="toggleSidenav()" (toggledQuickpanel)="toggleQuickpanel()">
+                               [sidenavCollapsed]="sidenavCollapsed$ | async" [quickpanelOpen]="quickpanelOpen$ | async"
+                               (toggledSidenav)="toggleSidenav()" (toggledQuickpanel)="toggleQuickpanel()">
         </elastic-toolbar-alpha>
         <!-- /Layout Alpha -->
 
