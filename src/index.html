@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>CLÍNICA SANTA MARIA </title>
+  <title>Hospital Santa Maria</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,7 +18,7 @@
   })(this);
 </script>
 <style>
-  elastic-root > .background {
+  app-root > .background {
     display: block;
     position: absolute;
     top: 0;
@@ -28,13 +28,13 @@
     background: #FFF;
   }
 
-  elastic-root > .background > .wrapper {
+  app-root > .background > .wrapper {
     position: fixed;
     top: calc(50% - 30px);
     left: 50%;
   }
 
-  elastic-root > .background > .wrapper > .loading {
+  app-root > .background > .wrapper > .loading {
     margin-left: -34px;
     margin-top: 40px;
   }
@@ -91,17 +91,17 @@
 </style>
 
 <body>
-  <elastic-root>
-    <div class="background">
-      <div class="wrapper">
-        <div class="ball-scale-multiple">
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-        <div class="loading">CARGANDO</div>
+<app-root>
+  <div class="background">
+    <div class="wrapper">
+      <div class="ball-scale-multiple">
+        <div></div>
+        <div></div>
+        <div></div>
       </div>
+      <div class="loading">LOADING</div>
     </div>
-  </elastic-root>
+  </div>
+</app-root>
 </body>
 </html>

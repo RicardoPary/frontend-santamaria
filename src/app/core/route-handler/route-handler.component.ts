@@ -1,17 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {SidenavItem} from '../sidenav/sidenav-item/sidenav-item.model';
+import { Component, OnInit } from '@angular/core';
+import { SidenavItem } from '../sidenav/sidenav-item/sidenav-item.model';
 import * as fromRoot from '../../reducers/index';
 import * as fromSidenav from '../sidenav/shared/sidenav.action';
-import {SetCurrentlyOpenByRouteAction} from '../sidenav/shared/sidenav.action';
-import {Store} from '@ngrx/store';
-import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
-import {SelectLayoutAction, SetCardElevationAction} from '../layout/shared/layout.action';
+import { SetCurrentlyOpenByRouteAction } from '../sidenav/shared/sidenav.action';
+import { Store } from '@ngrx/store';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { SelectLayoutAction, SetCardElevationAction } from '../layout/shared/layout.action';
 
 @Component({
   selector: 'elastic-route-handler',
-  template: `
-    <router-outlet></router-outlet>
-  `
+  templateUrl: './route-handler.component.html',
+  styleUrls: ['./route-handler.component.scss']
 })
 export class RouteHandlerComponent implements OnInit {
 
@@ -19,8 +18,7 @@ export class RouteHandlerComponent implements OnInit {
     private store: Store<fromRoot.State>,
     private router: Router,
     private route: ActivatedRoute
-  ) {
-  }
+  ) { }
 
   ngOnInit() {
     // Set Sidenav Currently Open on Page load
@@ -38,36 +36,31 @@ export class RouteHandlerComponent implements OnInit {
       switch (layout) {
         case 'alpha': {
           this.store.dispatch(new SelectLayoutAction('alpha'));
-          break;
+          break
         }
 
         case 'beta': {
           this.store.dispatch(new SelectLayoutAction('beta'));
-          break;
+          break
         }
 
         case 'gamma': {
           this.store.dispatch(new SelectLayoutAction('gamma'));
-          break;
+          break
         }
       }
 
       const elevation = params.get('elevation');
 
       if (elevation) {
-        this.store.dispatch(new SetCardElevationAction('card-elevation-z' + elevation));
+        this.store.dispatch(new SetCardElevationAction('card-elevation-z' + elevation))
       }
     });
 
     // Define Menu Items here
 
-    const dashboard = new SidenavItem({
-      name: 'Dashboard',
-      route: '/',
-      icon: 'dashboard',
-      subItems: [],
-      position: 1
-    });
+
+    // Define Menu Items here
 
     const patient = new SidenavItem({
       name: 'Pacientes',
@@ -219,6 +212,48 @@ export class RouteHandlerComponent implements OnInit {
     input.subItems.push(...inputSubItems);
 
 
+
+    // Top Level Item (The item to click on so the dropdown opens)
+    const dashboard = new SidenavItem({
+      name: 'Dashboard',
+      icon: 'dashboard',
+      subItems: [ ],
+      position: 1
+    });
+
+    // Sub Items for the Top Level Item (The items shown when you clicked on the dropdown item)
+    // Note: The Top Level Item is added as "parent" in those items, here "dashboard" (variable from above)
+    const dashboardSubItems = [
+      new SidenavItem({
+        name: 'Dashboard',
+        route: '/',
+        parent: dashboard,
+        subItems: [ ],
+        position: 1,
+        routerLinkActiveOptions: {
+          exact: true
+        }
+      }),
+      new SidenavItem({
+        name: 'All-In-One Board',
+        route: '/dashboard/all-in-one',
+        parent: dashboard,
+        subItems: [ ],
+        position: 1
+      }),
+      new SidenavItem({
+        name: 'CRM Dashboard',
+        route: '/dashboard/crm',
+        parent: dashboard,
+        subItems: [ ],
+        position: 1
+      }),
+    ];
+
+    // Push the just created Sub Items into the Top Level Item
+    dashboard.subItems.push(...dashboardSubItems);
+
+    // Send the created Menu structure to Redux/ngrx (you only need to send the Top Level Item, all dropdown items will be added automatically)
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(dashboard));
 
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(patient));
@@ -226,7 +261,6 @@ export class RouteHandlerComponent implements OnInit {
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(staff));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(input));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(user));
-
   }
 
 }

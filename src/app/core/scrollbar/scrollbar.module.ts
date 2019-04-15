@@ -1,6 +1,7 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ScrollbarComponent} from './scrollbar.component';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ScrollbarComponent } from './scrollbar.component';
+import { ScrollbarService } from './scrollbar.service';
 
 @NgModule({
   imports: [
@@ -14,5 +15,4 @@ import {ScrollbarComponent} from './scrollbar.component';
   ]
 
 })
-export class ScrollbarModule {
-}
+export class ScrollbarModule { }

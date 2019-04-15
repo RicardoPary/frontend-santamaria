@@ -1,8 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { MatFormField } from '@angular/material';
 
 @Component({
   selector: 'elastic-search',
-  templateUrl: './search.component.html'
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
 

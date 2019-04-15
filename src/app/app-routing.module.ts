@@ -1,7 +1,7 @@
-import {NgModule} from '@angular/core';
-import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
-import {LayoutComponent} from './core/layout/layout.component';
-import {authRoutes} from './pages/auth/auth.routing';
+import { NgModule } from '@angular/core';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { LayoutComponent } from './core/layout/layout.component';
+import { authRoutes } from './pages/auth/auth.routing';
 
 const routes: Routes = [
   {
@@ -18,8 +18,8 @@ const routes: Routes = [
         loadChildren: 'app/pages/dashboard/dashboard.module#DashboardModule'
       },
       {
-        path: 'editor',
-        loadChildren: 'app/pages/editor/editor.module#EditorModule'
+        path: 'dashboard/crm',
+        loadChildren: 'app/pages/dashboard/dashboard-crm/dashboard-crm.module#DashboardCrmModule'
       },
       {
         path: 'medical-history',
@@ -87,5 +87,4 @@ const routes: Routes = [
   })],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule { }

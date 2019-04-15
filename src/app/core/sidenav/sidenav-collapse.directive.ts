@@ -1,4 +1,4 @@
-import {Directive, HostBinding, HostListener, Input} from '@angular/core';
+import { Directive, HostBinding, HostListener, Input } from '@angular/core';
 
 @Directive({
   selector: '[vrSidenavCollapse]'
@@ -26,7 +26,6 @@ export class SidenavCollapseDirective {
     }
   }
 
-  constructor() {
-  }
+  constructor() { }
 
 }

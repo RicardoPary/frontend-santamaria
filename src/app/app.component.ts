@@ -1,11 +1,10 @@
-import {Component} from '@angular/core';
-import {MediaReplayService} from './core/utils/media-replay.service';
+import { Component } from '@angular/core';
+import { MediaReplayService } from './core/utils/media-replay.service';
 
 @Component({
-  selector: 'elastic-root',
-  template: `
-    <elastic-route-handler></elastic-route-handler>
-  `
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
 

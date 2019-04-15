@@ -3,28 +3,29 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "elastic-ui": {
+    "frontend-santamaria": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "elastic",
+      "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "scss"
+          "style": "scss"
         }
       },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/browser",
+            "outputPath": "dist/frontend-santamaria",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.json"
             ],
             "styles": [
               "src/styles.scss",
@@ -37,7 +38,8 @@
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/popper.js/dist/umd/popper.min.js"
-            ]
+            ],
+            "es5BrowserSupport": true
           },
           "configurations": {
             "production": {
@@ -62,25 +64,27 @@
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "src/ngsw-config.json"
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "elastic-ui:build"
+            "browserTarget": "frontend-santamaria:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "elastic-ui:build:production"
+              "browserTarget": "frontend-santamaria:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "elastic-ui:build"
+            "browserTarget": "frontend-santamaria:build"
           }
         },
         "test": {
@@ -96,7 +100,8 @@
             "scripts": [],
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.json"
             ]
           }
         },
@@ -111,29 +116,10 @@
               "**/node_modules/**"
             ]
           }
-        },
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "dist/server",
-            "main": "src/main.server.ts",
-            "tsConfig": "src/tsconfig.server.json",
-            "sourceMap": false
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ]
-            }
-          }
         }
       }
     },
-    "elastic-ui-e2e": {
+    "frontend-santamaria-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -142,11 +128,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "elastic-ui:serve"
+            "devServerTarget": "frontend-santamaria:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "elastic-ui:serve:production"
+              "devServerTarget": "frontend-santamaria:serve:production"
             }
           }
         },
@@ -162,5 +148,5 @@
       }
     }
   },
-  "defaultProject": "elastic-ui"
+  "defaultProject": "frontend-santamaria"
 }

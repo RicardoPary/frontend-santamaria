@@ -1,18 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'elastic-page-header',
-  template: `
-    <div class="page-header"
-         [style.background-image]="background"
-         [style.height]="height"
-         [class.reverse-padding]="reverse"
-         [class.reverse-padding-top]="reverseDir[0]"
-         [class.reverse-padding-right]="reverseDir[1]"
-         [class.reverse-padding-bottom]="reverseDir[2]"
-         [class.reverse-padding-left]="reverseDir[3]"
-         [style.margin-bottom]="margin"></div>
-  `
+  templateUrl: './page-header.component.html',
+  styleUrls: ['./page-header.component.scss']
 })
 export class PageHeaderComponent implements OnInit {
 
@@ -21,14 +12,13 @@ export class PageHeaderComponent implements OnInit {
   @Input() reverse: boolean;
   @Input() reverseDirection: string[];
 
-  reverseDir: boolean[] = [];
+  reverseDir: boolean[] = [ ];
 
   get margin() {
     return '-' + this.height;
   }
 
-  constructor() {
-  }
+  constructor() { }
 
   ngOnInit() {
     this.reverseDir.push(...[false, false, false, false]);
@@ -38,22 +28,22 @@ export class PageHeaderComponent implements OnInit {
         switch (dir) {
           case 'top': {
             this.reverseDir[0] = true;
-            break;
+            break
           }
           case 'right': {
             this.reverseDir[1] = true;
-            break;
+            break
           }
           case 'bottom': {
             this.reverseDir[2] = true;
-            break;
+            break
           }
           case 'left': {
             this.reverseDir[3] = true;
-            break;
+            break
           }
         }
-      });
+      })
     }
   }
 

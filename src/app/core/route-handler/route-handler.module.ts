@@ -1,7 +1,7 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {RouteHandlerComponent} from './route-handler.component';
-import {RouterModule} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouteHandlerComponent } from './route-handler.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -11,5 +11,4 @@ import {RouterModule} from '@angular/router';
   declarations: [RouteHandlerComponent],
   exports: [RouteHandlerComponent]
 })
-export class RouteHandlerModule {
-}
+export class RouteHandlerModule { }
