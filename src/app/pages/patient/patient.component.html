@@ -5,7 +5,7 @@
 
   <div class="container">
 
-    <elastic-breadcrumbs [currentPage]="'Table Pagination'" [names]="['Tables']"
+    <elastic-breadcrumbs [currentPage]="'Lista de Pacientes'" [names]="['Pacientes']"
                          [header]="'primary'"></elastic-breadcrumbs>
 
     <div class="mat-elevation-z8">
@@ -13,8 +13,8 @@
       <div class="header">
         <span class="btn-options pull-right">
           <a class="btn btn-sm btn-outline-secondary btn-icon-space"
-             (click)="openModal(modalAula)">
-            <i class="icon-user-plus"></i> Crear Aula</a>
+             (click)="openModal(modal)">
+            <i class="icon-user-plus"></i> Crear Paciente</a>
         </span>
       </div>
 
@@ -33,14 +33,15 @@
   </div>
 </div>
 
-<ng-template #modalActividadCivica>
+<ng-template #modal>
   <div class="modal-header">
-    <h4 class="modal-title">{{titleModal}}</h4>
+    <h4 class="modal-title">Crear Paciente</h4>
   </div>
 
-  <form (ngSubmit)="submitEstudiante(form)" #form="ngForm">
+  <form (ngSubmit)="submit(form)" #form="ngForm">
 
     <div class="row container">
+
       <div class="col-md-6">
         <div class="form-group mb-3">
           <label for="cronograma">Cronograma</label>
@@ -50,7 +51,6 @@
                  class="form-control"
                  [ngModel]="actividadCivica?.cronograma"/>
         </div>
-
       </div>
 
       <div class="col-md-6">
@@ -83,17 +83,16 @@
                  type="string"
                  class="form-control"
                  [ngModel]="actividadCivica?.nombre"/>
-
         </div>
       </div>
 
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="closeModal();">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">
           Cancelar
         </button>
         <button type="submit" class="btn btn-primary">
-          {{textButton}}
+          Crear
         </button>
       </div>
 

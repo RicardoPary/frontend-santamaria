@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NgbActiveModal, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {CategoryService} from '../../shared/services';
 import {LocalStorageService} from 'ngx-webstorage';
-import {Subscription} from 'rxjs/index';
+import {Subscription} from 'rxjs';
 import {StaffService} from '../../shared/services';
 import {AlertService} from '../../shared/components/alert/alert.service';
 import {CategoryFilter} from '../../shared/models/category.model';

@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {AlertService} from '../../shared/components/alert/alert.service';
-import {PatientService} from '../../shared/services/index';
+import {PatientService} from '../../shared/services';
 import {PatientFilter} from '../../shared/models/patient.model';
 import {Subscription} from 'rxjs/internal/Subscription';
 
@@ -11,7 +11,6 @@ import {Subscription} from 'rxjs/internal/Subscription';
 })
 export class PatientComponent implements OnInit {
 
-  @ViewChild('modalActividadCivica') modalActividadCivica: ElementRef;
   filtersColumns: any;
 
   modal: NgbModalRef;
@@ -163,7 +162,7 @@ export class PatientComponent implements OnInit {
     this.patientService.sendPatientFilter(filter);
   }
 
-  submitEstudiante(form) {
+  submit(form) {
     /*const actividadCivica = {
       'id': this.actividadCivica ? this.actividadCivica.id : null,
       'cronograma': form.value.cronograma,

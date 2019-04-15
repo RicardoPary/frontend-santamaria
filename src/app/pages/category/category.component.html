@@ -2,7 +2,7 @@
   <h3>CATEGORÍAS
     <span class="btn-options">
       <a class="btn btn-sm btn-outline-secondary btn-icon-space"
-         (click)="openModal(modalCategory, 'Agregar nueva categoría', 'crear', null)">
+         (click)="openModal(modal, 'Agregar nueva categoría', 'crear', null)">
         <i class="icon-file-plus"></i> Agregar nueva categoría
       </a>
     </span>
@@ -38,7 +38,7 @@
   </div>
 </div>
 
-<ng-template #modalCategory>
+<ng-template #modal>
   <form class="mb-0" (ngSubmit)="submit(form)" #form="ngForm">
 
     <div class="modal-header">

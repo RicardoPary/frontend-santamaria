@@ -13,7 +13,7 @@
       <div class="header">
         <span class="btn-options pull-right">
           <a class="btn btn-sm btn-outline-secondary btn-icon-space"
-             (click)="openModal(modalActividadCivica,'Crear Nueva Actividad Civica', 'Crear')">
+             (click)="openModal(modal, 'Crear Nueva Actividad Civica', 'Crear')">
             <i class="icon-user-plus"></i>
             Crear actividad civica
           </a>
@@ -36,7 +36,7 @@
 </div>
 
 
-<ng-template #modalActividadCivica>
+<ng-template #modal>
   <div class="modal-header">
     <h4 class="modal-title">{{titleModal}}</h4>
   </div>

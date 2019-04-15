@@ -2,7 +2,7 @@
   <h3 style="font-family: sans-serif;"> Insumos Asignados
     <span class="btn-options pull-right">
       <a class="btn btn-sm btn-outline-secondary btn-icon-space"
-         (click)="openModal(modalAula)"><i
+         (click)="openModal(modal)"><i
         class="icon-user-plus"></i> Crear Aula</a>
     </span>
   </h3>
@@ -63,7 +63,7 @@
 </div>
 
 
-<ng-template #modalInventory>
+<ng-template #modal>
   <div class="modal-header">
     <h4 class="modal-title">Agregar Inventario</h4>
   </div>
@@ -293,35 +293,5 @@
             (click)="saveInventories(inventorisDetails)">
       Guardar
     </button>
-  </div>
-</ng-template>
-
-
-<ng-template #modalRegistryDetails>
-  <div class="modal-header">
-    <h4 class="modal-title">DETALLE DE REGISTRO</h4>
-    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <table class="table">
-      <thead>
-      <tr>
-        <th style="border-top:0;">Nombre Insumo</th>
-        <th style="border-top:0;">Cantidad</th>
-        <th style="border-top:0;">Precio</th>
-        <th style="border-top:0;">Detalle</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let detail of registryDetails">
-        <td>{{detail?.supply?.name}}</td>
-        <td>{{detail?.quantity}}</td>
-        <td>{{detail?.price | number: '2.2'}} Bs.</td>
-        <td>{{detail?.detail}}</td>
-      </tr>
-      </tbody>
-    </table>
   </div>
 </ng-template>

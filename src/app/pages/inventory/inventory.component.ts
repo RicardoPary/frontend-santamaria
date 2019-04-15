@@ -184,9 +184,6 @@ export class InventoryComponent implements OnInit {
     this.modal = this.modalService.open(content, {backdrop: 'static', size: 'lg'});
     this.titleModal = titleModal;
     this.textButton = textButton;
-    if (this.textButton === 'Crear') {
-      this.actividadCivica = null;
-    }
   }
 
   closeModal() {
