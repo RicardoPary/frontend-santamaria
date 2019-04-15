@@ -36,7 +36,7 @@
 
 <ng-template #modal>
   <div class="modal-header">
-    <h4 class="modal-title">Crear Paciente</h4>
+    <h4 class="modal-title">Crear Atención</h4>
   </div>
 
   <form (ngSubmit)="submit(form)" #form="ngForm">
@@ -45,59 +45,39 @@
 
       <div class="col-md-6">
         <div class="form-group mb-3">
-          <label for="cronograma">Cronograma</label>
-          <input id="cronograma"
-                 name="cronograma"
+          <label for="nombre">Nombre:</label>
+          <input id="nombre"
+                 name="nombre"
                  type="text"
                  class="form-control"
-                 [ngModel]="actividadCivica?.cronograma"/>
+                 placeholder='Eje. Ginocologia...'
+                 [ngModel]="actividadCivica?.nombre"/>
         </div>
       </div>
 
       <div class="col-md-6">
         <div class="form-group mb-3">
           <label for="descripcion">Descripcion</label>
-          <input id="descripcion"
-                 name="descripcion"
-                 type="text"
-                 class="form-control"
-                 [ngModel]="actividadCivica?.descripcion"/>
+          <textarea id="descripcion"
+                    name="descripcion"
+                    rows="10" cols="30"
+                    type="text"
+                    placeholder='Eje. Escirba la descripcion...'
+                    class="form-control"
+                    [ngModel]="actividadCivica?.descripcion">
+          </textarea>
         </div>
       </div>
 
-      <div class="col-md-6">
-        <div class="form-group mb-3">
-          <label for="fecha">Fecha</label>
-          <input id="fecha"
-                 name="fecha"
-                 type="text"
-                 class="form-control"
-                 [ngModel]="actividadCivica?.fecha"/>
-        </div>
-      </div>
+   </div>
 
-      <div class="col-md-6">
-        <div class="form-group mb-3">
-          <label for="nombre">Nombre</label>
-          <input id="nombre"
-                 name="nombre"
-                 type="string"
-                 class="form-control"
-                 [ngModel]="actividadCivica?.nombre"/>
-        </div>
-      </div>
-
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="closeModal()">
-          Cancelar
-        </button>
-        <button type="submit" class="btn btn-primary">
-          Crear
-        </button>
-      </div>
-
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="closeModal()">
+        Cancelar
+      </button>
+      <button type="submit" class="btn btn-success">
+        Guardar
+      </button>
     </div>
-
   </form>
 </ng-template>
