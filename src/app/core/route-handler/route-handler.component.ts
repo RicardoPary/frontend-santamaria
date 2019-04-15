@@ -59,10 +59,17 @@ export class RouteHandlerComponent implements OnInit {
       }
     });
 
-    // Define Menu Items here
-
-
-    // Define Menu Items here
+    // Top Level Item (The item to click on so the dropdown opens)
+    const dashboard = new SidenavItem({
+      name: 'Dashboard',
+      route: '/',
+      icon: 'dashboard',
+      subItems: [],
+      position: 1,
+      routerLinkActiveOptions: {
+        exact: true
+      }
+    });
 
     const patient = new SidenavItem({
       name: 'Pacientes',
@@ -213,46 +220,6 @@ export class RouteHandlerComponent implements OnInit {
 
     input.subItems.push(...inputSubItems);
 
-
-    // Top Level Item (The item to click on so the dropdown opens)
-    const dashboard = new SidenavItem({
-      name: 'Dashboard',
-      icon: 'dashboard',
-      subItems: [],
-      position: 1
-    });
-
-    // Sub Items for the Top Level Item (The items shown when you clicked on the dropdown item)
-    // Note: The Top Level Item is added as "parent" in those items, here "dashboard" (variable from above)
-    const dashboardSubItems = [
-      new SidenavItem({
-        name: 'Dashboard',
-        route: '/',
-        parent: dashboard,
-        subItems: [],
-        position: 1,
-        routerLinkActiveOptions: {
-          exact: true
-        }
-      }),
-      new SidenavItem({
-        name: 'All-In-One Board',
-        route: '/dashboard/all-in-one',
-        parent: dashboard,
-        subItems: [],
-        position: 1
-      }),
-      new SidenavItem({
-        name: 'CRM Dashboard',
-        route: '/dashboard/crm',
-        parent: dashboard,
-        subItems: [],
-        position: 1
-      }),
-    ];
-
-    // Push the just created Sub Items into the Top Level Item
-    dashboard.subItems.push(...dashboardSubItems);
 
     // Send the created Menu structure to Redux/ngrx (you only need to send the Top Level Item, all dropdown items will be added automatically)
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(dashboard));

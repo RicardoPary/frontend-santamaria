@@ -18,10 +18,6 @@ const routes: Routes = [
         loadChildren: 'app/pages/dashboard/dashboard.module#DashboardModule'
       },
       {
-        path: 'dashboard/crm',
-        loadChildren: 'app/pages/dashboard/dashboard-crm/dashboard-crm.module#DashboardCrmModule'
-      },
-      {
         path: 'medical-history',
         loadChildren: 'app/pages/medical-history/medical-history.module#MedicalHistoryModule'
       },
