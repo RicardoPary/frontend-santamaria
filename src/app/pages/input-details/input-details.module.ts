@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {PatientComponent} from './patient.component';
+import {InputDetailsComponent} from './input-details.component';
 import {RouterModule, Routes} from '@angular/router';
 import {SharedServicesModule} from '../../shared/shared-services.module';
 import {SharedLibsModule} from '../../shared/shared-libs.module';
@@ -12,7 +12,7 @@ import {BreadcrumbsModule} from '../../core/breadcrumbs/breadcrumbs.module';
 
 const routes: Routes = [
   {
-    path: '', component: PatientComponent
+    path: '', component: InputDetailsComponent
   }
 ];
 
@@ -29,8 +29,8 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [
-    PatientComponent
+    InputDetailsComponent
   ]
 })
-export class PatientModule {
+export class InputDetailsModule {
 }

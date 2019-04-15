@@ -74,7 +74,6 @@ export class RouteHandlerComponent implements OnInit {
     const patient = new SidenavItem({
       name: 'Pacientes',
       icon: 'group',
-      route: '/material-icons',
       subItems: [],
       position: 1
     });
@@ -89,21 +88,21 @@ export class RouteHandlerComponent implements OnInit {
       }),
       new SidenavItem({
         name: 'Historia Clinica',
-        route: '/patient',
+        route: '/medical-history',
         parent: patient,
         subItems: [],
         position: 2
       }),
       new SidenavItem({
         name: 'Lista de Atenciones',
-        route: '/patient',
+        route: '/list-attended',
         parent: patient,
         subItems: [],
         position: 3
       }),
       new SidenavItem({
         name: 'Detalle de Insumos',
-        route: '/patient',
+        route: '/input-details',
         parent: patient,
         subItems: [],
         position: 4

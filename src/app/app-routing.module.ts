@@ -22,6 +22,14 @@ const routes: Routes = [
         loadChildren: 'app/pages/medical-history/medical-history.module#MedicalHistoryModule'
       },
       {
+        path: 'list-attended',
+        loadChildren: 'app/pages/list-attended/list-attended.module#ListAttendedModule'
+      },
+      {
+        path: 'input-details',
+        loadChildren: 'app/pages/input-details/input-details.module#InputDetailsModule'
+      },
+      {
         path: 'inventory',
         loadChildren: 'app/pages/inventory/inventory.module#InventoryModule'
       },
