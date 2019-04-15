@@ -3,7 +3,6 @@ import {PatientComponent} from './patient.component';
 import {RouterModule, Routes} from '@angular/router';
 import {SharedServicesModule} from '../../shared/shared-services.module';
 import {SharedLibsModule} from '../../shared/shared-libs.module';
-import {Core2Module} from '../../core2';
 import {SharedMaterialModule} from '../../shared/shared-material.module';
 import {FormsModule} from '@angular/forms';
 import {FlexLayoutModule} from '@angular/flex-layout';

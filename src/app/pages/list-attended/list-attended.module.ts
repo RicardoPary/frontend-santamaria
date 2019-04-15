@@ -1,17 +1,20 @@
 import {NgModule} from '@angular/core';
-import {InventoryComponent} from './inventory.component';
+import {ListAttendedComponent} from './list-attended.component';
 import {RouterModule, Routes} from '@angular/router';
-import {SharedLibsModule} from '../../shared/shared-libs.module';
 import {SharedServicesModule} from '../../shared/shared-services.module';
+import {SharedLibsModule} from '../../shared/shared-libs.module';
+import {Core2Module} from '../../core2';
+import {SharedMaterialModule} from '../../shared/shared-material.module';
 import {FormsModule} from '@angular/forms';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {ScrollbarModule} from '../../core/scrollbar/scrollbar.module';
 import {PageHeaderModule} from '../../core/page-header/page-header.module';
 import {BreadcrumbsModule} from '../../core/breadcrumbs/breadcrumbs.module';
-import {SharedMaterialModule} from '../../shared/shared-material.module';
 
 const routes: Routes = [
-  {path: '', component: InventoryComponent}
+  {
+    path: '', component: ListAttendedComponent
+  }
 ];
 
 @NgModule({
@@ -27,8 +30,8 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [
-    InventoryComponent
+    ListAttendedComponent
   ]
 })
-export class InventoryModule {
+export class ListAttendedModule {
 }
