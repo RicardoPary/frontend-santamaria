@@ -36,7 +36,7 @@
 
 <ng-template #modal>
   <div class="modal-header">
-    <h4 class="modal-title">Crear Paciente</h4>
+    <h4 class="modal-title">Crear Insumo</h4>
   </div>
 
   <form (ngSubmit)="submit(form)" #form="ngForm">
@@ -45,25 +45,53 @@
 
       <div class="col-md-6">
         <div class="form-group mb-3">
-          <label for="cronograma">Cronograma</label>
-          <input id="cronograma"
-                 name="cronograma"
+          <label for="nombre">Nombre de Insumo:</label>
+          <input id="nombre"
+                 name="nombre"
                  type="text"
+                 placeholder='Eje. paracetamol...'
                  class="form-control"
-                 [ngModel]="actividadCivica?.cronograma"/>
+                 [ngModel]="actividadCivica?.nombre"/>
         </div>
       </div>
 
       <div class="col-md-6">
         <div class="form-group mb-3">
-          <label for="descripcion">Descripcion</label>
-          <input id="descripcion"
-                 name="descripcion"
+          <label for="marca">Marca del Insumo:</label>
+          <input id="marca"
+                 name="marca"
                  type="text"
+                 placeholder='Eje. Laboratorio INTI ...'
                  class="form-control"
-                 [ngModel]="actividadCivica?.descripcion"/>
+                 [ngModel]="actividadCivica?.marca"/>
         </div>
       </div>
+
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="tipo">Tipo de Insumo:</label>
+          <input id="tipo"
+                 name="tipo"
+                 type="text"
+                 class="form-control"
+                 placeholder='Eje. medicamento o material...'
+                 [ngModel]="actividadCivica?.tipo"/>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="fechaVenc">Fecha de Nacimiento:</label>
+          <input id="fechaVenc"
+                 name="fechaVenc"
+                 type="text"
+                 class="form-control"
+                 placeholder='Eje. medicamento o material...'
+                 [ngModel]="actividadCivica?.fechaVenc"/>
+        </div>
+      </div>
+
+
 
       <div class="col-md-6">
         <div class="form-group mb-3">
