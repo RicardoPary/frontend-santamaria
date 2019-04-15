@@ -36,8 +36,8 @@
 
 
 <ng-template #modal>
-  <div class="modal-header">
-    <h4 class="modal-title">Agregar  Personal</h4>
+  <div class="modal-header " >
+    <h4 class="modal-title ">Agregar  Personal</h4>
   </div>
 
   <div class="modal-body">
@@ -138,13 +138,16 @@
   <div class="col-md-6">
     <div class="form-group mb-3">
       <label for="tipocontrato">Tipo de Contrato:</label>
-      <input id="tipocontrato"
-             name="tipocontrato"
+      <br>
 
-             class="form-control"
+      <select name="tipocontrato" id="tipocontrato" class="form-control">
 
-             [ngModel]="actividadCivica?.tipocontrato"/>
-      <select name="" size="1">
+        <option>Coche</option>
+
+        <option>Avión</option>
+
+        <option selected>Tren</option>
+
       </select>
 
     </div>
@@ -156,7 +159,7 @@
     <button type="button" class="btn btn-secondary" (click)="closeModal();">
       Cancelar
     </button>
-    <button type="submit" class="btn btn-primary">
+    <button type="submit" class="btn btn-success">
       Guardar
     </button>
   </div>
