@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { SidenavItem } from '../sidenav/sidenav-item/sidenav-item.model';
+import {Component, OnInit} from '@angular/core';
+import {SidenavItem} from '../sidenav/sidenav-item/sidenav-item.model';
 import * as fromRoot from '../../reducers/index';
 import * as fromSidenav from '../sidenav/shared/sidenav.action';
-import { SetCurrentlyOpenByRouteAction } from '../sidenav/shared/sidenav.action';
-import { Store } from '@ngrx/store';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { SelectLayoutAction, SetCardElevationAction } from '../layout/shared/layout.action';
+import {SetCurrentlyOpenByRouteAction} from '../sidenav/shared/sidenav.action';
+import {Store} from '@ngrx/store';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {SelectLayoutAction, SetCardElevationAction} from '../layout/shared/layout.action';
 
 @Component({
   selector: 'elastic-route-handler',
-  templateUrl: './route-handler.component.html',
-  styleUrls: ['./route-handler.component.scss']
+  template: `
+    <router-outlet></router-outlet>
+  `
 })
 export class RouteHandlerComponent implements OnInit {
 
@@ -18,7 +19,8 @@ export class RouteHandlerComponent implements OnInit {
     private store: Store<fromRoot.State>,
     private router: Router,
     private route: ActivatedRoute
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     // Set Sidenav Currently Open on Page load
@@ -36,24 +38,24 @@ export class RouteHandlerComponent implements OnInit {
       switch (layout) {
         case 'alpha': {
           this.store.dispatch(new SelectLayoutAction('alpha'));
-          break
+          break;
         }
 
         case 'beta': {
           this.store.dispatch(new SelectLayoutAction('beta'));
-          break
+          break;
         }
 
         case 'gamma': {
           this.store.dispatch(new SelectLayoutAction('gamma'));
-          break
+          break;
         }
       }
 
       const elevation = params.get('elevation');
 
       if (elevation) {
-        this.store.dispatch(new SetCardElevationAction('card-elevation-z' + elevation))
+        this.store.dispatch(new SetCardElevationAction('card-elevation-z' + elevation));
       }
     });
 
@@ -212,12 +214,11 @@ export class RouteHandlerComponent implements OnInit {
     input.subItems.push(...inputSubItems);
 
 
-
     // Top Level Item (The item to click on so the dropdown opens)
     const dashboard = new SidenavItem({
       name: 'Dashboard',
       icon: 'dashboard',
-      subItems: [ ],
+      subItems: [],
       position: 1
     });
 
@@ -228,7 +229,7 @@ export class RouteHandlerComponent implements OnInit {
         name: 'Dashboard',
         route: '/',
         parent: dashboard,
-        subItems: [ ],
+        subItems: [],
         position: 1,
         routerLinkActiveOptions: {
           exact: true
@@ -238,14 +239,14 @@ export class RouteHandlerComponent implements OnInit {
         name: 'All-In-One Board',
         route: '/dashboard/all-in-one',
         parent: dashboard,
-        subItems: [ ],
+        subItems: [],
         position: 1
       }),
       new SidenavItem({
         name: 'CRM Dashboard',
         route: '/dashboard/crm',
         parent: dashboard,
-        subItems: [ ],
+        subItems: [],
         position: 1
       }),
     ];

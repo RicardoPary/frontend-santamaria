@@ -3,8 +3,9 @@ import { MediaReplayService } from './core/utils/media-replay.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  template: `
+    <elastic-route-handler></elastic-route-handler>
+  `
 })
 export class AppComponent {
 
