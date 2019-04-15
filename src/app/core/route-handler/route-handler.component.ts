@@ -81,7 +81,7 @@ export class RouteHandlerComponent implements OnInit {
     const patientSubItems = [
       new SidenavItem({
         name: 'Lista de Pacientes',
-        route: '/patient',
+        route: '/patient-list',
         parent: patient,
         subItems: [],
         position: 1
@@ -95,7 +95,7 @@ export class RouteHandlerComponent implements OnInit {
       }),
       new SidenavItem({
         name: 'Lista de Atenciones',
-        route: '/list-attended',
+        route: '/attentions-list',
         parent: patient,
         subItems: [],
         position: 3
@@ -176,14 +176,14 @@ export class RouteHandlerComponent implements OnInit {
     const userSubItems = [
       new SidenavItem({
         name: 'Lista Usuarios',
-        route: '/user',
+        route: '/user-list',
         parent: user,
         subItems: [],
         position: 1
       }),
       new SidenavItem({
         name: 'Lista de Roles',
-        route: '/forms/form-elements',
+        route: '/role-list',
         parent: user,
         subItems: [],
         position: 1

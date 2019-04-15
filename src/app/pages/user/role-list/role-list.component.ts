@@ -1,14 +1,14 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {ReunionFilter} from '../../shared/models/reunion';
+import {ReunionFilter} from '../../../shared/models/reunion';
 import {finalize} from 'rxjs/operators';
-import {AlertService} from '../../shared/components/alert/alert.service';
+import {AlertService} from '../../../shared/components/alert/alert.service';
 
 @Component({
-  templateUrl: './role.component.html',
-  styleUrls: ['./role.component.scss']
+  templateUrl: './role-list.component.html',
+  styleUrls: ['./role-list.component.scss']
 })
-export class RoleComponent implements OnInit {
+export class RoleListComponent implements OnInit {
 
   @ViewChild('modalReunion') modalReunion: ElementRef;
   estudiantes: any = [];

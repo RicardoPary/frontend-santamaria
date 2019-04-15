@@ -1,20 +1,20 @@
 import {Component, ElementRef, OnInit, ViewChild, OnDestroy} from '@angular/core';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {FormGroup} from '@angular/forms';
-import {UserService} from '../../shared/services/index';
-import {RoleService} from '../../shared/services/index';
-import {UserFilter} from '../../shared/models/user';
-import {LoaderService} from '../../shared/components/loader/loader.service';
-import {AlertService} from '../../shared/components/alert/alert.service';
+import {UserService} from '../../../shared/services/index';
+import {RoleService} from '../../../shared/services/index';
+import {UserFilter} from '../../../shared/models/user';
+import {LoaderService} from '../../../shared/components/loader/loader.service';
+import {AlertService} from '../../../shared/components/alert/alert.service';
 import {finalize} from 'rxjs/internal/operators';
 import {Subscription} from 'rxjs/index';
-import {AccountService} from '../../shared/services/account.service';
+import {AccountService} from '../../../shared/services/account.service';
 
 @Component({
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+  templateUrl: './user-list.component.html',
+  styleUrls: ['./user-list.component.scss']
 })
-export class UserComponent implements OnInit, OnDestroy {
+export class UserListComponent implements OnInit, OnDestroy {
 
   currentUser: any;
   status = true;

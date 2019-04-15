@@ -19,11 +19,11 @@ const routes: Routes = [
       },
       {
         path: 'medical-history',
-        loadChildren: 'app/pages/medical-history/medical-history.module#MedicalHistoryModule'
+        loadChildren: 'app/pages/patient/medical-history/medical-history.module#MedicalHistoryModule'
       },
       {
-        path: 'list-attended',
-        loadChildren: 'app/pages/list-attended/list-attended.module#ListAttendedModule'
+        path: 'attentions-list',
+        loadChildren: 'app/pages/patient/attentions-list/attentions-list.module#AttentionsListModule'
       },
       {
         path: 'input-list',
@@ -34,12 +34,8 @@ const routes: Routes = [
         loadChildren: 'app/pages/inventory/list-inventories/list-inventories.module#ListInventoriesModule'
       },
       {
-        path: 'supply',
-        loadChildren: 'app/pages/supply/supply.module#SupplyModule'
-      },
-      {
-        path: 'patient',
-        loadChildren: 'app/pages/patient/patient.module#PatientModule'
+        path: 'patient-list',
+        loadChildren: 'app/pages/patient/patient-list/patient-list.module#PatientListModule'
       },
       {
         path: 'staff-list',
@@ -50,28 +46,12 @@ const routes: Routes = [
         loadChildren: 'app/pages/staff/contract-list/contract-list.module#ContractListModule'
       },
       {
-        path: 'role',
-        loadChildren: 'app/pages/role/role.module#RoleModule'
+        path: 'role-list',
+        loadChildren: 'app/pages/user/role-list/role-list.module#RoleListModule'
       },
       {
-        path: 'user',
-        loadChildren: 'app/pages/user/user.module#UserModule'
-      },
-      {
-        path: 'category',
-        loadChildren: 'app/pages/category/category.module#CategoryModule'
-      },
-      {
-        path: 'category-details/:idBranch/:idCategory',
-        loadChildren: 'app/pages/category-details/category-details.module#CategoryDetailsModule'
-      },
-      {
-        path: 'consultation',
-        loadChildren: 'app/pages/consultation/consultation.module#ConsultationModule'
-      },
-      {
-        path: 'nurse',
-        loadChildren: 'app/pages/nurse/nurse.module#NurseModule'
+        path: 'user-list',
+        loadChildren: 'app/pages/user/user-list/user-list.module#UserListModule'
       }
     ]
   },

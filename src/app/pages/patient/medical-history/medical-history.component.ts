@@ -1,33 +1,33 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {AlertService} from '../../shared/components/alert/alert.service';
-import {PatientService} from '../../shared/services';
-import {PatientFilter} from '../../shared/models/patient.model';
-import {Subscription} from 'rxjs/internal/Subscription';
+import {DocenteFilter} from '../../../shared/models/docente';
+import {finalize} from 'rxjs/operators';
+import {AlertService} from '../../../shared/components/alert/alert.service';
+import {ActividadCivicaFilter} from '../../../shared/models/actividad-civica.model';
 
 @Component({
-  templateUrl: './patient.component.html',
-  styleUrls: ['./patient.component.scss']
+  templateUrl: './medical-history.component.html',
+  styleUrls: ['./medical-history.component.scss']
 })
-export class PatientComponent implements OnInit {
+export class MedicalHistoryComponent implements OnInit {
 
+  @ViewChild('modalActividadCivica') modalActividadCivica: ElementRef;
+  estudiantes: any = [];
   filtersColumns: any;
+  totalEstudiantes: number;
+  pageSize: number;
+  page: number;
+
 
   modal: NgbModalRef;
   titleModal: any;
   textButton: any;
   actividadCivica: any;
 
-  subscriptionTable: Subscription;
-  totalData: number;
-  pageSize: number;
-  page: number;
-  data: any = [];
-
   headersColumns: any = [
     {
-      name: 'id',
-      displayName: 'Id',
+      name: 'cronograma',
+      displayName: 'Cronograma',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -35,8 +35,8 @@ export class PatientComponent implements OnInit {
       type: 'text'
     },
     {
-      name: 'ci',
-      displayName: 'CI',
+      name: 'descripcion',
+      displayName: 'Descripcion',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -44,8 +44,8 @@ export class PatientComponent implements OnInit {
       type: 'text'
     },
     {
-      name: 'firstName',
-      displayName: 'Nombres',
+      name: 'fecha',
+      displayName: 'Fecha',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -53,62 +53,8 @@ export class PatientComponent implements OnInit {
       type: 'text'
     },
     {
-      name: 'lastName',
-      displayName: 'Apellidos',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'gender',
-      displayName: 'Genero',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'nationality',
-      displayName: 'Nacionalidad',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'email',
-      displayName: 'E-mail',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'phone',
-      displayName: 'Celular',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'address',
-      displayName: 'Direccion',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'birthdate',
-      displayName: 'Fecha de Nacimiento',
+      name: 'nombre',
+      displayName: 'Nombre',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -127,42 +73,28 @@ export class PatientComponent implements OnInit {
   ];
 
   constructor(private modalService: NgbModal,
-              private patientService: PatientService,
               private alertService: AlertService) {
 
-    this.patientService.currentPatientFilter().subscribe(
+   /* this.actividadCivicaService.currentActividadCivicaFilter().subscribe(
       dates => {
         this.pageSize = dates.size;
         this.page = dates.page;
         this.callService(dates);
       }
-    );
+    );*/
   }
 
   ngOnInit() {
   }
 
-  callService(patientFilter: PatientFilter) {
-    this.patientService.getAllPatients(patientFilter).subscribe(res => {
-      this.totalData = parseFloat(res.headers.get('X-Total-Count'));
-      this.data = res.body;
-    });
+  callService(docenteFilter: DocenteFilter) {
+    /*this.actividadCivicaService.getAllActividadesCivicas(docenteFilter).subscribe(res => {
+      this.totalEstudiantes = parseFloat(res.headers.get('X-Total-Count'));
+      this.estudiantes = res.body;
+    });*/
   }
 
-  clickPagination(event: any) {
-    const filter = this.patientService.getPatientFilter();
-    filter.page = (event.newPage) - 1;
-    this.patientService.sendPatientFilter(filter);
-  }
-
-  clickSort(event: any) {
-    const state = event.isDesc ? 'desc' : 'asc';
-    const filter = this.patientService.getPatientFilter();
-    filter.sort = [event.column + ',' + state];
-    this.patientService.sendPatientFilter(filter);
-  }
-
-  submit(form) {
+  submitEstudiante(form) {
     /*const actividadCivica = {
       'id': this.actividadCivica ? this.actividadCivica.id : null,
       'cronograma': form.value.cronograma,
@@ -191,6 +123,19 @@ export class PatientComponent implements OnInit {
     }*/
   }
 
+  clickPagination(event: any) {
+    /*const filter = this.actividadCivicaService.getActividadCivicaFilter();
+    filter.page = (event.newPage) - 1;
+    this.actividadCivicaService.sendActividadCivicaFilter(filter);*/
+  }
+
+  clickSort(event: any) {
+    /*const state = event.isDesc ? 'desc' : 'asc';
+    const filter = this.actividadCivicaService.getActividadCivicaFilter();
+    filter.sort = [event.column + ',' + state];
+    this.actividadCivicaService.sendActividadCivicaFilter(filter);*/
+  }
+
   openModal(content, titleModal, textButton) {
     this.modal = this.modalService.open(content, {backdrop: 'static', size: 'lg'});
     this.titleModal = titleModal;
@@ -208,6 +153,7 @@ export class PatientComponent implements OnInit {
     /*if (event.description === 'delete') {
       this.alertService.showWarningQuestion({html: 'esta seguro de eliminar la actividad civica ?'}, isConfirm => {
         if (isConfirm.value) {
+          console.log('true');
           this.actividadCivicaService.deleteActividadCivica(event.item.id)
             .pipe(finalize(() => this.actividadCivicaService.sendActividadCivicaFilter(new ActividadCivicaFilter())))
             .subscribe(
