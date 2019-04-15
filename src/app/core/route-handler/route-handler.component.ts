@@ -88,18 +88,25 @@ export class RouteHandlerComponent implements OnInit {
         position: 1
       }),
       new SidenavItem({
-        name: 'Agregar Nuevo Paciente',
-        route: '/patient',
-        parent: patient,
-        subItems: [],
-        position: 1
-      }),
-      new SidenavItem({
         name: 'Historia Clinica',
         route: '/patient',
         parent: patient,
         subItems: [],
-        position: 1
+        position: 2
+      }),
+      new SidenavItem({
+        name: 'Lista de Atenciones',
+        route: '/patient',
+        parent: patient,
+        subItems: [],
+        position: 3
+      }),
+      new SidenavItem({
+        name: 'Detalle de Insumos',
+        route: '/patient',
+        parent: patient,
+        subItems: [],
+        position: 4
       })
     ];
 
@@ -120,6 +127,13 @@ export class RouteHandlerComponent implements OnInit {
         parent: inventory,
         subItems: [],
         position: 1
+      }),
+      new SidenavItem({
+        name: 'Lista de Insumos',
+        route: '/inventory',
+        parent: inventory,
+        subItems: [],
+        position: 2
       })
     ];
 
@@ -135,11 +149,18 @@ export class RouteHandlerComponent implements OnInit {
 
     const staffSubItems = [
       new SidenavItem({
-        name: 'Personal Administrativo',
+        name: 'Lista del Personal',
         route: '/staff',
         parent: staff,
         subItems: [],
         position: 1
+      }),
+      new SidenavItem({
+        name: 'Lista de Contrato',
+        route: '/staff',
+        parent: staff,
+        subItems: [],
+        position: 2
       })
     ];
 
@@ -179,55 +200,12 @@ export class RouteHandlerComponent implements OnInit {
 
     user.subItems.push(...userSubItems);
 
-    const input = new SidenavItem({
-      name: 'Insumos',
-      icon: 'grade',
-      route: '/material-icons',
-      subItems: [],
-      position: 1
-    });
-
-    const inputSubItems = [
-      new SidenavItem({
-        name: 'Categorias',
-        route: '/forms/form-elements',
-        parent: input,
-        subItems: [],
-        position: 1
-      }),
-      new SidenavItem({
-        name: 'Lista de Insumos',
-        route: '/forms/form-elements',
-        parent: input,
-        subItems: [],
-        position: 1
-      }),
-      new SidenavItem({
-        name: 'Agregar Insumo',
-        route: '/forms/form-elements',
-        parent: input,
-        subItems: [],
-        position: 1
-      }),
-      new SidenavItem({
-        name: 'Medicamentos',
-        route: '/forms/form-elements',
-        parent: input,
-        subItems: [],
-        position: 1
-      })
-    ];
-
-    input.subItems.push(...inputSubItems);
-
-
     // Send the created Menu structure to Redux/ngrx (you only need to send the Top Level Item, all dropdown items will be added automatically)
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(dashboard));
 
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(patient));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(inventory));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(staff));
-    this.store.dispatch(new fromSidenav.AddSidenavItemAction(input));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(user));
   }
 
