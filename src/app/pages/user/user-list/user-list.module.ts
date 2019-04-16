@@ -9,6 +9,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {ScrollbarModule} from '../../../core/scrollbar/scrollbar.module';
 import {PageHeaderModule} from '../../../core/page-header/page-header.module';
 import {BreadcrumbsModule} from '../../../core/breadcrumbs/breadcrumbs.module';
+import {AccountService} from '../../../shared/services/account.service';
 
 export const routes: Routes = [
   {path: '', component: UserListComponent}
@@ -28,6 +29,9 @@ export const routes: Routes = [
   ],
   declarations: [
     UserListComponent
+  ],
+  providers:[
+    AccountService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

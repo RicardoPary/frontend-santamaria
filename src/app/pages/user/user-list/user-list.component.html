@@ -1,48 +1,40 @@
-<div class="table-content" [ngClass]="status ? 'toogled' : ' '">
-  <h3>USUARIOS
-    <span class="btn-options">
-      <a class="btn btn-sm btn-outline-secondary btn-icon-space" (click)="showModalUserNew(modalUserNewEdit)"><i
-        class="icon-user-plus"></i> Nuevo Usuario</a>
-      <a class="btn btn-link" placement="bottom" ngbTooltip="Buscar..." (click)="clickEvent()"><i
-        [ngClass]="status ? 'icon-search' : 'icon-chevron-right'"></i></a>
-    </span>
-  </h3>
-  <div class="invoice-empty text-center" style="display: none;">
-    <img class="logo" src="../../../assets/themes/materia/images/Invoice-Empty.png"/><br/>
-    <p><i>Aún no se han registrado facturas a tu nombre</i></p>
-  </div>
-  <div class="table-box" [ngBusy]="{busy: subscriptionTable, message: 'Cargando...'}">
-    <app-table
-      [data]="users"
-      [headers]="headersColumns"
-      [total]="totalUsers"
-      [pageSize]="pageSize"
-      [filtersColumns]="filtersColumns"
-      [page]="page"
-      (clickPagination)="clickPagination($event)"
-      (clickSort)="clickSort($event)"
-      [idUser]="currentUser?.id"
-      (clickButton)="clickButton($event)">
-    </app-table>
+<div class="table-pagination">
+
+  <elastic-page-header [height]="'146px'" background="url(/assets/images/0022.jpeg)"
+                       [reverse]="true"></elastic-page-header>
+
+  <div class="container">
+
+    <elastic-breadcrumbs [currentPage]="'Lista de Usuarios'" [names]="['Usuarios']"
+                         [header]="'primary'"></elastic-breadcrumbs>
+
+    <div class="mat-elevation-z8">
+
+      <div class="header">
+        <span class="btn-options pull-right">
+          <a class="btn btn-sm btn-outline-secondary btn-icon-space"
+             (click)="openModal(modal)">
+            <i class="icon-user-plus"></i> Crear Nuevo Contrato</a>
+        </span>
+      </div>
+
+      <app-table
+        [data]="users"
+        [headers]="headersColumns"
+        [total]="totalUsers"
+        [pageSize]="pageSize"
+        [filtersColumns]="filtersColumns"
+        [page]="page"
+        (clickPagination)="clickPagination($event)"
+        (clickSort)="clickSort($event)"
+        [idUser]="currentUser?.id"
+        (clickButton)="clickButton($event)">
+      </app-table>
+
+    </div>
   </div>
 </div>
-<div class="filter-content" [ngClass]="status ? 'toogled' : ' '">
-  <div class="filter-box">
-    <form>
-      <div class="form-search">
-        <input name="inputFilter"
-               class="form-control"
-               [(ngModel)]="inputFilter "
-               type="text"
-               placeholder="Buscar...">
-        <i class="icon-search"></i>
-      </div>
-      <div class="reset-button">
-        <button type="button" class="btn btn-default">Resetear Filtros</button>
-      </div>
-    </form>
-  </div>
-</div>
+
 
 <ng-template #modalUserNewEdit>
   <form class="mb-0" (ngSubmit)="saveUser(formCreate)" #formCreate="ngForm">
@@ -237,8 +229,9 @@
               La confirmación de contraseña es requerido.
             </small>
           </div>
-          <small *ngIf="(password.value !== confirmPassword.value)  && (confirmPassword.dirty || confirmPassword.touched)"
-                 class="form-text text-danger">
+          <small
+            *ngIf="(password.value !== confirmPassword.value)  && (confirmPassword.dirty || confirmPassword.touched)"
+            class="form-text text-danger">
             Las contraseñas no son iguales.
           </small>
         </div>
@@ -249,7 +242,10 @@
       <button type="button" class="btn btn-secondary" aria-label="Close" (click)="closeModal()">
         Cancelar
       </button>
-      <button class="btn btn-primary" aria-label="Close" [disabled]="formReset.invalid || (password.value !== confirmPassword.value)">Guardar</button>
+      <button class="btn btn-primary" aria-label="Close"
+              [disabled]="formReset.invalid || (password.value !== confirmPassword.value)">Guardar
+      </button>
     </div>
   </form>
 </ng-template>
+
