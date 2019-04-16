@@ -1,28 +1,37 @@
-<div class="table-content">
-  <h3 style="font-family: sans-serif;"> ROLES
-    <span class="btn-options pull-right">
-      <a class="btn btn-sm btn-outline-secondary btn-icon-space"
-         (click)="openModal(modalReunion, 'Crear Nueva Reunion', 'Crear')"><i
-        class="icon-user-plus"></i> Crear Reunion</a>
-    </span>
-  </h3>
-  <div class="table-box">
-    <app-table
-      [data]="estudiantes"
-      [headers]="headersColumns"
-      [total]="totalEstudiantes"
-      [pageSize]="pageSize"
-      [filtersColumns]="filtersColumns"
-      [page]="page"
-      (clickPagination)="clickPagination($event)"
-      (clickSort)="clickSort($event)"
-      (clickButton)="clickButtonRow($event)">>
-    </app-table>
+<div class="table-pagination">
+
+  <elastic-page-header [height]="'146px'" background="url(/assets/images/0022.jpeg)"
+                       [reverse]="true"></elastic-page-header>
+
+  <div class="container">
+
+    <elastic-breadcrumbs [currentPage]="'Lista de Roles'" [names]="['Usuarios']"
+                         [header]="'primary'"></elastic-breadcrumbs>
+
+    <div class="mat-elevation-z8">
+
+      <div class="header">
+        <span class="btn-options pull-right">
+          <a class="btn btn-sm btn-outline-secondary btn-icon-space"
+             (click)="openModal(modal)">
+            <i class="icon-user-plus"></i> Crear Nuevo Contrato</a>
+        </span>
+      </div>
+
+      <app-table
+        [data]="estudiantes"
+        [headers]="headersColumns"
+        [total]="totalEstudiantes"
+        [pageSize]="pageSize"
+        [filtersColumns]="filtersColumns"
+        [page]="page"
+        (clickPagination)="clickPagination($event)"
+        (clickSort)="clickSort($event)"
+        (clickButton)="clickButtonRow($event)">>
+      </app-table>
+
+    </div>
   </div>
-</div>
-
-<div class="filter-content">
-
 </div>
 
 
