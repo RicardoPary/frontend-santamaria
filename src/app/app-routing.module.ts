@@ -34,10 +34,6 @@ const routes: Routes = [
         loadChildren: 'app/pages/inventory/list-inventories/list-inventories.module#ListInventoriesModule'
       },
       {
-        path: 'supply',
-        loadChildren: 'app/pages/supply/supply.module#SupplyModule'
-      },
-      {
         path: 'patient-list',
         loadChildren: 'app/pages/patient/patient-list/patient-list.module#PatientListModule'
       },
@@ -56,22 +52,6 @@ const routes: Routes = [
       {
         path: 'user-list',
         loadChildren: 'app/pages/user/user-list/user-list.module#UserListModule'
-      },
-      {
-        path: 'category',
-        loadChildren: 'app/pages/category/category.module#CategoryModule'
-      },
-      {
-        path: 'category-details/:idBranch/:idCategory',
-        loadChildren: 'app/pages/category-details/category-details.module#CategoryDetailsModule'
-      },
-      {
-        path: 'consultation',
-        loadChildren: 'app/pages/consultation/consultation.module#ConsultationModule'
-      },
-      {
-        path: 'nurse',
-        loadChildren: 'app/pages/nurse/nurse.module#NurseModule'
       }
     ]
   },
