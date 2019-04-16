@@ -8,6 +8,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {ScrollbarModule} from '../../../core/scrollbar/scrollbar.module';
 import {PageHeaderModule} from '../../../core/page-header/page-header.module';
 import {BreadcrumbsModule} from '../../../core/breadcrumbs/breadcrumbs.module';
+import {SharedMaterialModule} from '../../../shared/shared-material.module';
 
 const routes: Routes = [
   {path: '', component: StaffListComponent}
@@ -17,6 +18,7 @@ const routes: Routes = [
   imports: [
     SharedLibsModule,
     SharedServicesModule,
+    SharedMaterialModule,
     FormsModule,
     FlexLayoutModule,
     ScrollbarModule,

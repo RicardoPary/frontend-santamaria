@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {AlertService} from '../../../shared/components/alert/alert.service';
-import {StaffService} from '../../../shared/services/index';
+import {StaffService} from '../../../shared/services';
 import {Subscription} from 'rxjs/internal/Subscription';
 import {StaffFilter} from '../../../shared/models/staff.model';
 
