@@ -4,7 +4,7 @@ import {CommonModule} from '@angular/common';
 import {NgbModalModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from '@angular/common/http';
 import {NgBusyModule} from 'ng-busy';
-import {TableModule} from './modules/table/table.module';
+import {TableModule} from './modules';
 
 @NgModule({
   imports: [
