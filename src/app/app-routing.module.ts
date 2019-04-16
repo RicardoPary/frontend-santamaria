@@ -26,12 +26,12 @@ const routes: Routes = [
         loadChildren: 'app/pages/list-attended/list-attended.module#ListAttendedModule'
       },
       {
-        path: 'input-details',
-        loadChildren: 'app/pages/input-details/input-details.module#InputDetailsModule'
+        path: 'input-list',
+        loadChildren: 'app/pages/inventory/input-list/input-list.module#InputListModule'
       },
       {
-        path: 'inventory',
-        loadChildren: 'app/pages/inventory/inventory.module#InventoryModule'
+        path: 'list-inventories',
+        loadChildren: 'app/pages/inventory/list-inventories/list-inventories.module#ListInventoriesModule'
       },
       {
         path: 'supply',

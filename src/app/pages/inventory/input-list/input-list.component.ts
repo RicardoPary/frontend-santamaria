@@ -1,15 +1,15 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {AlertService} from '../../shared/components/alert/alert.service';
-import {PatientService} from '../../shared/services';
-import {PatientFilter} from '../../shared/models/patient.model';
+import {AlertService} from '../../../shared/components/alert/alert.service';
+import {PatientService} from '../../../shared/services/index';
+import {PatientFilter} from '../../../shared/models/patient.model';
 import {Subscription} from 'rxjs/internal/Subscription';
 
 @Component({
-  templateUrl: './input-details.component.html',
-  styleUrls: ['./input-details.component.scss']
+  templateUrl: './input-list.component.html',
+  styleUrls: ['./input-list.component.scss']
 })
-export class InputDetailsComponent implements OnInit {
+export class InputListComponent implements OnInit {
 
   filtersColumns: any;
 

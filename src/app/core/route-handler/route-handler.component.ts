@@ -122,14 +122,14 @@ export class RouteHandlerComponent implements OnInit {
     const inventorySubItems = [
       new SidenavItem({
         name: 'Lista de Inventarios',
-        route: '/inventory',
+        route: '/list-inventories',
         parent: inventory,
         subItems: [],
         position: 1
       }),
       new SidenavItem({
         name: 'Lista de Insumos',
-        route: '/inventory',
+        route: '/input-list',
         parent: inventory,
         subItems: [],
         position: 2

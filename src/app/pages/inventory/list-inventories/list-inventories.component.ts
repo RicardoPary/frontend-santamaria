@@ -1,16 +1,16 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {AlertService} from '../../shared/components/alert/alert.service';
-import {InventoryService, ProviderService} from '../../shared/services/index';
+import {AlertService} from '../../../shared/components/alert/alert.service';
+import {InventoryService, ProviderService} from '../../../shared/services/index';
 import {Subscription} from 'rxjs/internal/Subscription';
-import {ProviderFilter} from '../../shared/models/provider';
+import {ProviderFilter} from '../../../shared/models/provider';
 import {finalize} from 'rxjs/operators';
 
 @Component({
-  templateUrl: './inventory.component.html',
-  styleUrls: ['./inventory.component.scss']
+  templateUrl: './list-inventories.component.html',
+  styleUrls: ['./list-inventories.component.scss']
 })
-export class InventoryComponent implements OnInit {
+export class ListInventoriesComponent implements OnInit {
 
   @ViewChild('modalActividadCivica') modalActividadCivica: ElementRef;
   filtersColumns: any;
