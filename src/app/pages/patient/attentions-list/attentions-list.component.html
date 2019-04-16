@@ -5,7 +5,7 @@
 
   <div class="container">
 
-    <elastic-breadcrumbs [currentPage]="'Lista de Atendidos'" [names]="['Pacientes']"
+    <elastic-breadcrumbs [currentPage]="'Lista de Atenciones'" [names]="['Pacientes']"
                          [header]="'primary'"></elastic-breadcrumbs>
 
     <div class="mat-elevation-z8">
@@ -14,7 +14,7 @@
         <span class="btn-options pull-right">
           <a class="btn btn-sm btn-outline-secondary btn-icon-space"
              (click)="openModal(modal)">
-            <i class="icon-user-plus"></i> Crear Paciente</a>
+            <i class="icon-user-plus"></i> Crear Atencion</a>
         </span>
       </div>
 
@@ -32,6 +32,7 @@
     </div>
   </div>
 </div>
+
 
 <ng-template #modal>
   <div class="modal-header">
