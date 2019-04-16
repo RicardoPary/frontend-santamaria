@@ -27,16 +27,7 @@ export class PatientListComponent implements OnInit {
   headersColumns: any = [
     {
       name: 'id',
-      displayName: 'Id',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'ci',
-      displayName: 'CI',
+      displayName: 'ID',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -45,7 +36,7 @@ export class PatientListComponent implements OnInit {
     },
     {
       name: 'firstName',
-      displayName: 'Nombres',
+      displayName: 'NOMBRES',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -54,7 +45,7 @@ export class PatientListComponent implements OnInit {
     },
     {
       name: 'lastName',
-      displayName: 'Apellidos',
+      displayName: 'APELLIDOS',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -62,35 +53,8 @@ export class PatientListComponent implements OnInit {
       type: 'text'
     },
     {
-      name: 'gender',
-      displayName: 'Genero',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'nationality',
-      displayName: 'Nacionalidad',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'email',
-      displayName: 'E-mail',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'phone',
-      displayName: 'Celular',
+      name: 'ci',
+      displayName: 'CI:',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -99,7 +63,16 @@ export class PatientListComponent implements OnInit {
     },
     {
       name: 'address',
-      displayName: 'Direccion',
+      displayName: 'DIRECCION',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'phone',
+      displayName: 'TELEFONO',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -108,12 +81,49 @@ export class PatientListComponent implements OnInit {
     },
     {
       name: 'birthdate',
-      displayName: 'Fecha de Nacimiento',
+      displayName: 'FECHA DE NACIMIENTO',
       canSort: true,
       canFilter: true,
       pattern: '',
       messageError: '',
       type: 'text'
+    },
+    {
+      name: 'birthdate',
+      displayName: 'EDAD',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'address',
+      displayName: 'RESPONSABLE',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'gender',
+      displayName: 'SEXO',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+
+    {
+      name: 'birthdate',
+      displayName: 'FECHA DE REGISTRO',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'date'
     },
     {
       name: '',
@@ -205,20 +215,20 @@ export class PatientListComponent implements OnInit {
   }
 
   clickButtonRow(event) {
-    /*if (event.description === 'delete') {
-      this.alertService.showWarningQuestion({html: 'esta seguro de eliminar la actividad civica ?'}, isConfirm => {
+     if (event.description === 'delete') {
+      this.alertService.showWarningQuestion({html: 'esta seguro de eliminar El registro del Paciente?'}, isConfirm => {
         if (isConfirm.value) {
           this.actividadCivicaService.deleteActividadCivica(event.item.id)
             .pipe(finalize(() => this.actividadCivicaService.sendActividadCivicaFilter(new ActividadCivicaFilter())))
             .subscribe(
-              res => this.alertService.showSuccess({html: 'actividad civica eliminada exitosamente.'}),
-              err => this.alertService.showError({html: 'ocurrio un error al eliminar el actividad civica.'})
+              res => this.alertService.showSuccess({html: 'Datos del Paciente Eliminada Exitosamente.'}),
+              err => this.alertService.showError({html: 'ocurrio un error al eliminar los Datos del Paciente.'})
             );
         }
       });
     } else if (event.description === 'edit') {
-      this.openModal(this.modalActividadCivica, 'Editar Actividad Civica', 'Editar');
+      this.openModal(this.modalActividadCivica, 'Editar Los Datos del Pacientes', 'Editar');
       this.actividadCivica = event.item;
-    }*/
+    }
   }
 }
