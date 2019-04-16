@@ -11,5 +11,5 @@ import {UserService, LoginService, AccountService, AuthServerProvider, StateStor
     StateStorageService
   ]
 })
-export class Core2Module {
+export class CoreAuthModule {
 }

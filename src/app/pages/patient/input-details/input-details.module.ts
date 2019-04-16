@@ -3,7 +3,7 @@ import {InputDetailsComponent} from './input-details.component';
 import {RouterModule, Routes} from '@angular/router';
 import {SharedServicesModule} from '../../../shared/shared-services.module';
 import {SharedLibsModule} from '../../../shared/shared-libs.module';
-import {Core2Module} from '../../../core2/index';
+import {CoreAuthModule} from '../../../core-auth/index';
 import {SharedMaterialModule} from '../../../shared/shared-material.module';
 import {FormsModule} from '@angular/forms';
 import {FlexLayoutModule} from '@angular/flex-layout';

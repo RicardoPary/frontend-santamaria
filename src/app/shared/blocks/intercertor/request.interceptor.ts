@@ -6,7 +6,7 @@ import {Observable, throwError} from 'rxjs';
 import {environment} from '../../../../environments/environment';
 import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
 import {catchError, map} from 'rxjs/internal/operators';
-import {LoginService} from '../../../core2';
+import {LoginService} from '../../../core-auth';
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {

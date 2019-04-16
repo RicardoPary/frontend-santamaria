@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ROUTE_TRANSITION} from '../../../app.animation';
-import {LoginService} from '../../../core2';
+import {LoginService} from '../../../core-auth';
 
 @Component({
   selector: 'elastic-login',

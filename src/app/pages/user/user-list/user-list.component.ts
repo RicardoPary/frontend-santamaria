@@ -1,8 +1,8 @@
 import {Component, ElementRef, OnInit, ViewChild, OnDestroy} from '@angular/core';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {FormGroup} from '@angular/forms';
-import {UserService} from '../../../shared/services/index';
-import {RoleService} from '../../../shared/services/index';
+import {UserService} from '../../../shared/services';
+import {RoleService} from '../../../shared/services';
 import {UserFilter} from '../../../shared/models/user';
 import {LoaderService} from '../../../shared/components/loader/loader.service';
 import {AlertService} from '../../../shared/components/alert/alert.service';
