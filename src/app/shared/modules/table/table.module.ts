@@ -5,12 +5,14 @@ import {FilterColumnComponent} from './filter-column.component';
 import {TableComponent} from './table.component';
 import {FieldTypeComponent} from './field-type.component';
 import {SharedMaterialModule} from '../../shared-material.module';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    FlexLayoutModule,
     SharedMaterialModule,
-    FormsModule
   ],
   declarations: [
     FilterColumnComponent,
@@ -19,7 +21,8 @@ import {SharedMaterialModule} from '../../shared-material.module';
   ],
   exports: [
     FilterColumnComponent,
-    TableComponent
+    TableComponent,
+    FieldTypeComponent
   ]
 })
 export class TableModule {

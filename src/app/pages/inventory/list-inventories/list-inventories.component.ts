@@ -13,6 +13,8 @@ import {finalize} from 'rxjs/operators';
 export class ListInventoriesComponent implements OnInit {
 
   @ViewChild('modalActividadCivica') modalActividadCivica: ElementRef;
+  @ViewChild('modalRegistryDetails') modalRegistryDetails: ElementRef;
+
   filtersColumns: any;
   registryDetails: any = [];
 
@@ -28,76 +30,7 @@ export class ListInventoriesComponent implements OnInit {
   page: number;
   data: any = [];
 
-  @ViewChild('modalRegistryDetails') modalRegistryDetails: ElementRef;
-
   headersColumns: any = [
-    {
-      name: 'id',
-      displayName: 'Id',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-
-    {
-      name: 'name',
-      displayName: 'Proveedor ',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'company',
-      displayName: 'Insumo',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-
-    {
-      name: ' ',
-      displayName: 'Cantidad Dejada',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'number'
-    },
-    {
-      name: ' ',
-      displayName: 'Stock',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'number'
-    },
-    {
-      name: 'date',
-      displayName: 'Fecha Registrada',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'date'
-    },
-
-    {
-      name: 'observation',
-      displayName: 'Observacion',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-
     {
       name: '',
       displayName: 'Acciones',
@@ -105,7 +38,70 @@ export class ListInventoriesComponent implements OnInit {
       canFilter: false,
       pattern: '',
       messageError: '',
-      type: 'actionsView'
+      type: 'actionsDeleteView'
+    },
+    {
+      name: 'company',
+      displayName: 'Compañía',
+      canSort: true,
+      canFilter: false,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'name',
+      displayName: 'Nombre proveedor',
+      canSort: true,
+      canFilter: false,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'date',
+      displayName: 'Fecha',
+      canSort: true,
+      canFilter: false,
+      pattern: '',
+      messageError: '',
+      type: 'date'
+    },
+    {
+      name: 'description',
+      displayName: 'Descripción',
+      canSort: true,
+      canFilter: false,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'observation',
+      displayName: 'Observación',
+      canSort: true,
+      canFilter: false,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'phone',
+      displayName: 'Teléfono',
+      canSort: true,
+      canFilter: false,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'type',
+      displayName: 'Tipo',
+      canSort: true,
+      canFilter: false,
+      pattern: '',
+      messageError: '',
+      type: 'text'
     }
   ];
 

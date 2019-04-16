@@ -13,7 +13,8 @@ import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-table',
-  templateUrl: './table.component.html'
+  templateUrl: './table.component.html',
+  styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnChanges, OnInit, DoCheck {
 

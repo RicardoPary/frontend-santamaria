@@ -31,8 +31,7 @@
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.css",
               "node_modules/font-awesome/css/font-awesome.css",
-              "node_modules/ng-busy/src/style/busy.css",
-              "src/assets/scss/table.scss"
+              "node_modules/ng-busy/src/style/busy.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
