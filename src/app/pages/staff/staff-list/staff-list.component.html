@@ -1,4 +1,4 @@
-<div class="table-pagination">
+<div class="table-pagination" xmlns="http://www.w3.org/1999/html">
 
   <elastic-page-header [height]="'146px'" background="url(/assets/images/0022.jpeg)"
                        [reverse]="true"></elastic-page-header>
@@ -39,11 +39,119 @@
   <div class="modal-header">
     <h4 class="modal-title">Agregar  Personal</h4>
   </div>
-  <div class="modal-body">
 
+  <div class="modal-body">
 
   </div>
 
+
+  <form (ngSubmit)="submit(form)" #form="ngForm">
+    <div class="row container">
+
+  <div class="col-md-6">
+    <div class="form-group mb-3">
+      <label for="nombre">Nombres:</label>
+      <input id="nombre"
+             name="nombre"
+             type="string"
+             class="form-control"
+             placeholder='Eje. Edwin Felix ...'
+             [ngModel]="actividadCivica?.nombre"/>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="form-group mb-3">
+      <label for="apellido">Apellidos:</label>
+      <input id="apellido"
+             name="apellido"
+             type="string"
+             class="form-control"
+             placeholder='Eje.Vargas Vargas...'
+             [ngModel]="actividadCivica?.nombre"/>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="form-group mb-3">
+      <label for="ci">Cedula de Identidad:</label>
+      <input id="ci"
+             name="ci"
+             type="string"
+             class="form-control"
+             placeholder='Eje.64637373L.P...'
+             [ngModel]="actividadCivica?.ci"/>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="form-group mb-3">
+      <label for="direccion">Direccion:</label>
+      <input id="direccion"
+             name="direccion"
+             type="string"
+             class="form-control"
+             placeholder='Eje.Av.Civica El Alto...'
+             [ngModel]="actividadCivica?.direccion"/>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="form-group mb-3">
+      <label for="telefono">Telefono:</label>
+      <input id="telefono"
+             name="telefono"
+             type="string"
+             class="form-control"
+             placeholder='Eje.7777***7...'
+             [ngModel]="actividadCivica?.telefono"/>
+    </div>
+  </div>
+
+
+  <div class="col-md-6">
+    <div class="form-group mb-3">
+      <label for="profecion">Profecion:</label>
+      <input id="profecion"
+             name="profecion"
+             type="string"
+             class="form-control"
+             placeholder='Eje.Doctor ...'
+             [ngModel]="actividadCivica?.profecion"/>
+    </div>
+  </div>
+
+
+  <div class="col-md-6">
+    <div class="form-group mb-3">
+      <label for="especialidad">Especialidad:</label>
+      <input id="especialidad"
+             name="especialidad"
+             type="string"
+             class="form-control"
+             placeholder='Eje.Cirujano...'
+             [ngModel]="actividadCivica?.especialidad"/>
+    </div>
+  </div>
+
+
+  <div class="col-md-6">
+    <div class="form-group mb-3">
+      <label for="tipocontrato">Tipo de Contrato:</label>
+      <input id="tipocontrato"
+             name="tipocontrato"
+
+             class="form-control"
+
+             [ngModel]="actividadCivica?.tipocontrato"/>
+      <select name="" size="1">
+      </select>
+
+    </div>
+  </div>
+
+
+</div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="closeModal();">
       Cancelar
@@ -52,4 +160,5 @@
       Guardar
     </button>
   </div>
+  </form>
 </ng-template>
