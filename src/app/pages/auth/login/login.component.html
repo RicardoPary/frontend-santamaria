@@ -16,11 +16,12 @@
 
         <button color="primary" mat-raised-button [disabled]="!form.valid">LOGIN</button>
 
+
         <div class="extra-options" fxLayout="row" fxLayoutAlign="space-between">
           <mat-checkbox class="remember-me">Recordarme</mat-checkbox>
           <a class="forgot-password" [routerLink]="['/auth/forgot-password']">Olvidaste tu password?</a>
         </div>
-        <p class="note">No tienes una cuenta?<br/> <a [routerLink]="['/auth/register']">Click aqui para crear cuenta</a></p>
+
       </div>
     </form>
 
