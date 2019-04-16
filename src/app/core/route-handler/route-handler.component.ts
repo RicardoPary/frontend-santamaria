@@ -1,25 +1,50 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SidenavItem} from '../sidenav/sidenav-item/sidenav-item.model';
 import * as fromRoot from '../../reducers/index';
 import * as fromSidenav from '../sidenav/shared/sidenav.action';
 import {SetCurrentlyOpenByRouteAction} from '../sidenav/shared/sidenav.action';
 import {Store} from '@ngrx/store';
-import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {ActivatedRoute, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router} from '@angular/router';
 import {SelectLayoutAction, SetCardElevationAction} from '../layout/shared/layout.action';
+import {Subscription} from 'rxjs';
+import {LoaderBarService} from '../../shared/modules/loader-bar/loader-bar.service';
 
 @Component({
   selector: 'elastic-route-handler',
   template: `
+    <app-loader-bar></app-loader-bar>
     <router-outlet></router-outlet>
   `
 })
-export class RouteHandlerComponent implements OnInit {
+export class RouteHandlerComponent implements OnInit, OnDestroy {
+
+  private subscriptionRouter: Subscription;
 
   constructor(
     private store: Store<fromRoot.State>,
     private router: Router,
-    private route: ActivatedRoute
-  ) {
+    private route: ActivatedRoute,
+    private loaderBar: LoaderBarService) {
+
+
+    this.subscriptionRouter = this.router.events.subscribe(
+      event => {
+        if (event instanceof NavigationStart) {
+          this.loaderBar.show();
+        } else if (event instanceof NavigationEnd || event instanceof NavigationCancel || event instanceof NavigationError) {
+          this.loaderBar.hide();
+        }
+      },
+      () => {
+        this.loaderBar.hide();
+      }
+    );
+
+
+  }
+
+  ngOnDestroy() {
+    this.subscriptionRouter.unsubscribe();
   }
 
   ngOnInit() {
