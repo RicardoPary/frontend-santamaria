@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {AlertService} from '../../../shared/components/alert/alert.service';
-import {InventoryService, ProviderService} from '../../../shared/services/index';
+import {InventoryService, ProviderService} from '../../../shared/services';
 import {Subscription} from 'rxjs/internal/Subscription';
 import {ProviderFilter} from '../../../shared/models/provider';
 import {finalize} from 'rxjs/operators';
