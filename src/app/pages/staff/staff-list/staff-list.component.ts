@@ -1,15 +1,15 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {AlertService} from '../../shared/components/alert/alert.service';
-import {StaffService} from '../../shared/services/index';
+import {AlertService} from '../../../shared/components/alert/alert.service';
+import {StaffService} from '../../../shared/services/index';
 import {Subscription} from 'rxjs/internal/Subscription';
-import {StaffFilter} from '../../shared/models/staff.model';
+import {StaffFilter} from '../../../shared/models/staff.model';
 
 @Component({
-  templateUrl: './staff.component.html',
-  styleUrls: ['./staff.component.scss']
+  templateUrl: './staff-list.component.html',
+  styleUrls: ['./staff-list.component.scss']
 })
-export class StaffComponent implements OnInit {
+export class StaffListComponent implements OnInit {
 
   @ViewChild('modalActividadCivica') modalActividadCivica: ElementRef;
   filtersColumns: any;

@@ -1,0 +1,54 @@
+<div class="table-pagination">
+
+  <elastic-page-header [height]="'146px'" background="url(/assets/img/demo/headers/pattern-3.png)"
+                       [reverse]="true"></elastic-page-header>
+
+  <div class="container">
+
+    <elastic-breadcrumbs [currentPage]="'Lista de Contratos'" [names]="['Personal']"
+                         [header]="'primary'"></elastic-breadcrumbs>
+
+    <div class="mat-elevation-z8">
+
+      <div class="header">
+        <span class="btn-options pull-right">
+          <a class="btn btn-sm btn-outline-secondary btn-icon-space"
+             (click)="openModal(modal)">
+            <i class="icon-user-plus"></i> Crear Inventario</a>
+        </span>
+      </div>
+
+      <app-table
+        [data]="data"
+        [headers]="headersColumns"
+        [total]="totalData"
+        [pageSize]="pageSize"
+        [page]="page"
+        (clickPagination)="clickPagination($event)"
+        (clickSort)="clickSort($event)"
+        (clickButton)="clickButton($event)">
+      </app-table>
+
+    </div>
+  </div>
+</div>
+
+
+<ng-template #modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Agregar Inventario</h4>
+  </div>
+  <div class="modal-body">
+
+
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="closeModal();">
+      Cancelar
+    </button>
+    <button type="submit" class="btn btn-primary">
+      Guardar
+    </button>
+  </div>
+</ng-template>

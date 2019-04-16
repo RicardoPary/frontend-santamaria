@@ -42,12 +42,12 @@ const routes: Routes = [
         loadChildren: 'app/pages/patient/patient.module#PatientModule'
       },
       {
-        path: 'staff',
-        loadChildren: 'app/pages/staff/staff.module#StaffModule'
+        path: 'staff-list',
+        loadChildren: 'app/pages/staff/staff-list/staff-list.module#StaffListModule'
       },
       {
-        path: 'report',
-        loadChildren: 'app/pages/report/report.module#ReportModule'
+        path: 'contract-list',
+        loadChildren: 'app/pages/staff/contract-list/contract-list.module#ContractListModule'
       },
       {
         path: 'role',
