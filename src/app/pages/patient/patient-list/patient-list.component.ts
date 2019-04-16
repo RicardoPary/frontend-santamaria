@@ -213,7 +213,7 @@ export class PatientListComponent implements OnInit {
   closeModal() {
     this.modal.close();
   }
-
+/*
   clickButtonRow(event) {
      if (event.description === 'delete') {
       this.alertService.showWarningQuestion({html: 'esta seguro de eliminar El registro del Paciente?'}, isConfirm => {
@@ -230,5 +230,5 @@ export class PatientListComponent implements OnInit {
       this.openModal(this.modalActividadCivica, 'Editar Los Datos del Pacientes', 'Editar');
       this.actividadCivica = event.item;
     }
-  }
+  }*/
 }

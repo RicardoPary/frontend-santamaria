@@ -2,7 +2,7 @@
 
 :host {
   display: block;
-  background: #fff url('/assets/img/demo/backgrounds/pattern-1.jpg') no-repeat center center fixed;
+  background: #3f3f3f url('/assets/images/csm2.jpg') no-repeat center center fixed;
   background-size: cover;
   height: 100%;
   width: 100%;
@@ -17,10 +17,17 @@
     padding: 24px;
 
     .logo {
-      height: 25px;
+      height: 80px;
       width: auto;
     }
   }
+
+  .color{
+    background-color:#088000;
+  }
+
+
+
 
   .login-content {
     padding: 24px 42px 42px;

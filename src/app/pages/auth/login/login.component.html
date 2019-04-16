@@ -1,8 +1,9 @@
 <div fxLayout="row" fxLayoutAlign="center center" style="height: 100%;">
   <div class="login mat-elevation-z12">
-    <div class="login-header" fxLayout="column" fxLayoutAlign="center center">
-      <img class="logo" src="assets/img/logo2x.png">
+    <div class="login-header color" fxLayout="column" fxLayoutAlign="center center">
+      <img class="logo" src="assets/images/csmFon1.png">
     </div>
+
     <form #form="ngForm" (ngSubmit)="login()">
       <div class="login-content" fxLayout="column" fxLayoutAlign="start stretch">
         <mat-form-field>
@@ -10,14 +11,18 @@
         </mat-form-field>
         <mat-form-field>
           <input matInput placeholder="Password" type="password" name="password" required [(ngModel)]="password">
+
         </mat-form-field>
+
+        <button color="primary" mat-raised-button [disabled]="!form.valid">LOGIN</button>
+
         <div class="extra-options" fxLayout="row" fxLayoutAlign="space-between">
           <mat-checkbox class="remember-me">Recordarme</mat-checkbox>
           <a class="forgot-password" [routerLink]="['/auth/forgot-password']">Olvidaste tu password?</a>
         </div>
-        <button color="primary" mat-raised-button [disabled]="!form.valid">LOGIN</button>
         <p class="note">No tienes una cuenta?<br/> <a [routerLink]="['/auth/register']">Click aqui para crear cuenta</a></p>
       </div>
     </form>
+
   </div>
 </div>
