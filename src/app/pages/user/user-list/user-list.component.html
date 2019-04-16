@@ -14,7 +14,7 @@
         <span class="btn-options pull-right">
           <a class="btn btn-sm btn-outline-secondary btn-icon-space"
              (click)="openModal(modal)">
-            <i class="icon-user-plus"></i> Crear Nuevo Contrato</a>
+            <i class="icon-user-plus"></i> Crear Usuario</a>
         </span>
       </div>
 
@@ -36,7 +36,7 @@
 </div>
 
 
-<ng-template #modalUserNewEdit>
+<ng-template #modal>
   <form class="mb-0" (ngSubmit)="saveUser(formCreate)" #formCreate="ngForm">
     <div class="modal-header">
       <h4 class="modal-title">{{titleModal}}</h4>
