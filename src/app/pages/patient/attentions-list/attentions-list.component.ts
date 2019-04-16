@@ -1,15 +1,15 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {AlertService} from '../../shared/components/alert/alert.service';
-import {PatientService} from '../../shared/services';
-import {PatientFilter} from '../../shared/models/patient.model';
+import {AlertService} from '../../../shared/components/alert/alert.service';
+import {PatientService} from '../../../shared/services/index';
+import {PatientFilter} from '../../../shared/models/patient.model';
 import {Subscription} from 'rxjs/internal/Subscription';
 
 @Component({
-  templateUrl: './list-attended.component.html',
-  styleUrls: ['./list-attended.component.scss']
+  templateUrl: './attentions-list.component.html',
+  styleUrls: ['./attentions-list.component.scss']
 })
-export class ListAttendedComponent implements OnInit {
+export class AttentionsListComponent implements OnInit {
 
   filtersColumns: any;
 
