@@ -114,7 +114,6 @@ export class RouteHandlerComponent implements OnInit {
     const inventory = new SidenavItem({
       name: 'Inventario',
       icon: 'grade',
-      route: '/material-icons',
       subItems: [],
       position: 1
     });
@@ -141,7 +140,6 @@ export class RouteHandlerComponent implements OnInit {
     const staff = new SidenavItem({
       name: 'Personal',
       icon: 'grade',
-      route: '/staff',
       subItems: [],
       position: 1
     });
@@ -168,7 +166,6 @@ export class RouteHandlerComponent implements OnInit {
     const user = new SidenavItem({
       name: 'Usuarios',
       icon: 'person',
-      route: '/material-icons',
       subItems: [],
       position: 1
     });
@@ -190,7 +187,7 @@ export class RouteHandlerComponent implements OnInit {
       }),
       new SidenavItem({
         name: 'Asignar Rol',
-        route: '/forms/form-elements',
+        route: '/assign-role',
         parent: user,
         subItems: [],
         position: 1
@@ -199,7 +196,6 @@ export class RouteHandlerComponent implements OnInit {
 
     user.subItems.push(...userSubItems);
 
-    // Send the created Menu structure to Redux/ngrx (you only need to send the Top Level Item, all dropdown items will be added automatically)
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(dashboard));
 
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(patient));
@@ -207,5 +203,4 @@ export class RouteHandlerComponent implements OnInit {
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(staff));
     this.store.dispatch(new fromSidenav.AddSidenavItemAction(user));
   }
-
 }

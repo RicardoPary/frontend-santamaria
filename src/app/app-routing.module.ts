@@ -18,14 +18,6 @@ const routes: Routes = [
         loadChildren: 'app/pages/dashboard/dashboard.module#DashboardModule'
       },
       {
-        path: 'medical-history',
-        loadChildren: 'app/pages/patient/medical-history/medical-history.module#MedicalHistoryModule'
-      },
-      {
-        path: 'attentions-list',
-        loadChildren: 'app/pages/patient/attentions-list/attentions-list.module#AttentionsListModule'
-      },
-      {
         path: 'input-list',
         loadChildren: 'app/pages/inventory/input-list/input-list.module#InputListModule'
       },
@@ -34,16 +26,32 @@ const routes: Routes = [
         loadChildren: 'app/pages/inventory/list-inventories/list-inventories.module#ListInventoriesModule'
       },
       {
+        path: 'attentions-list',
+        loadChildren: 'app/pages/patient/attentions-list/attentions-list.module#AttentionsListModule'
+      },
+      {
+        path: 'medical-history',
+        loadChildren: 'app/pages/patient/medical-history/medical-history.module#MedicalHistoryModule'
+      },
+      {
+        path: 'input-details',
+        loadChildren: 'app/pages/patient/input-details/input-details.module#InputDetailsModule'
+      },
+      {
         path: 'patient-list',
         loadChildren: 'app/pages/patient/patient-list/patient-list.module#PatientListModule'
+      },
+      {
+        path: 'contract-list',
+        loadChildren: 'app/pages/staff/contract-list/contract-list.module#ContractListModule'
       },
       {
         path: 'staff-list',
         loadChildren: 'app/pages/staff/staff-list/staff-list.module#StaffListModule'
       },
       {
-        path: 'contract-list',
-        loadChildren: 'app/pages/staff/contract-list/contract-list.module#ContractListModule'
+        path: 'assign-role',
+        loadChildren: 'app/pages/user/assign-role/assign-role.module#AssignRoleModule'
       },
       {
         path: 'role-list',
