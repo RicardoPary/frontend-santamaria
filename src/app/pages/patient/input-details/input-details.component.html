@@ -43,19 +43,44 @@
 
     <div class="row container">
 
-
-
-
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="closeModal()">
-          Cancelar
-        </button>
-        <button type="submit" class="btn btn-primary">
-          Crear
-        </button>
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="tipoatencion">Pedido de Insumo De Enfermeria:</label>
+          <br>
+          <select name="tipoatencion" id="tipoatencion" class="form-control">
+            <option>Venda</option>
+            <option>Paracetamol</option>
+            <option selected>Ambroterol</option>
+          </select>
+        </div>
       </div>
 
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="cantidad">Cantidad Adquerida:</label>
+          <input id="cantidad"
+                    name="cantidad"
+                    rows="15" cols="30"
+                    type="number"
+                    placeholder='Eje. Pedido del paciente..'
+                    class="form-control"
+                    [ngModel]="actividadCivica?.cantidad"/>
+
+        </div>
+      </div>
+
+
+
+
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="closeModal()">
+        Cancelar
+      </button>
+      <button type="submit" class="btn btn-success">
+        Guardar
+      </button>
     </div>
 
   </form>

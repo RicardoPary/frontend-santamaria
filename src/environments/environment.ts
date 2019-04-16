@@ -5,6 +5,7 @@
 
 export const environment = {
   production: false,
+  /*endPoint: 'http://localhost:8080/',*/
   endPoint: 'http://192.168.1.3:8080/',
   googleMapsApiKey: ''
 };

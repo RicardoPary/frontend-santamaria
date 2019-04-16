@@ -44,61 +44,57 @@
 
     <div class="row container">
 
+
       <div class="col-md-6">
         <div class="form-group mb-3">
-          <label for="cronograma">Cronograma</label>
-          <input id="cronograma"
-                 name="cronograma"
-                 type="text"
-                 class="form-control"
-                 [ngModel]="actividadCivica?.cronograma"/>
+          <label for="tipoatencion">Tipo de Atencion:</label>
+          <br>
+          <select name="tipoatencion" id="tipoatencion" class="form-control">
+            <option>Ginecologia</option>
+            <option>Campaña</option>
+            <option selected>Medicina General</option>
+          </select>
+        </div>
+      </div>
+
+
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="tipoatencion">Personal a Cargo:</label>
+          <br>
+          <select name="tipoatencion" id="tipoatencion" class="form-control">
+            <option>Felicidad Nina</option>
+            <option>Juanes Quiroga</option>
+            <option selected>Paola Turquez </option>
+          </select>
         </div>
       </div>
 
       <div class="col-md-6">
         <div class="form-group mb-3">
-          <label for="descripcion">Descripcion</label>
-          <input id="descripcion"
-                 name="descripcion"
-                 type="text"
-                 class="form-control"
-                 [ngModel]="actividadCivica?.descripcion"/>
+          <label for="diagnostico">Diagnostico:</label>
+          <textarea id="diagnostico"
+                    name="diagnostico"
+                    rows="15" cols="30"
+                    type="text"
+                    placeholder='Eje. Escirba el diagnostico del Paciente..'
+                    class="form-control"
+                    [ngModel]="actividadCivica?.descripcion">
+          </textarea>
         </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="form-group mb-3">
-          <label for="fecha">Fecha</label>
-          <input id="fecha"
-                 name="fecha"
-                 type="text"
-                 class="form-control"
-                 [ngModel]="actividadCivica?.fecha"/>
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="form-group mb-3">
-          <label for="nombre">Nombre</label>
-          <input id="nombre"
-                 name="nombre"
-                 type="string"
-                 class="form-control"
-                 [ngModel]="actividadCivica?.nombre"/>
-        </div>
-      </div>
-
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="closeModal()">
-          Cancelar
-        </button>
-        <button type="submit" class="btn btn-primary">
-          Crear
-        </button>
       </div>
 
     </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="closeModal()">
+        Cancelar
+      </button>
+      <button type="submit" class="btn btn-success">
+        Guardar
+      </button>
+    </div>
+
 
   </form>
 </ng-template>
