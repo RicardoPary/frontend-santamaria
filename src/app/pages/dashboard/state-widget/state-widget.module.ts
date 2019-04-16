@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { StateWidgetComponent } from './state-widget.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material';
-import { UtilsModule } from '../../../../core/utils/utils.module';
+import { UtilsModule } from '../../../core/utils/utils.module';
 
 @NgModule({
   imports: [

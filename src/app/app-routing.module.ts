@@ -10,11 +10,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: 'app/pages/dashboard/dashboard-statistics/dashboard-statistics.module#DashboardStatisticsModule',
+        loadChildren: 'app/pages/dashboard/dashboard.module#DashboardModule',
         pathMatch: 'full'
       },
       {
-        path: 'dashboard/all-in-one',
+        path: 'dashboard',
         loadChildren: 'app/pages/dashboard/dashboard.module#DashboardModule'
       },
       {

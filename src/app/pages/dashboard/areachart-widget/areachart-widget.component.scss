@@ -1,6 +1,6 @@
-@import "../../../../../styles/_var.scss";
+@import "../../../../styles/var";
 
-.barchart-widget {
+.areachart-widget {
 
   .change {
     @include responsiveMarginHalf(left);
