@@ -117,7 +117,7 @@ export class PatientListComponent implements OnInit {
     },
 
     {
-      name: 'birthdate',
+      name: 'date',
       displayName: 'FECHA DE REGISTRO',
       canSort: true,
       canFilter: true,

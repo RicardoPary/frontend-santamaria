@@ -42,7 +42,7 @@ export class ContractListComponent implements OnInit {
     },
     {
       name: 'name',
-      displayName: 'Nombre',
+      displayName: 'Tipo de Contrato',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -58,50 +58,15 @@ export class ContractListComponent implements OnInit {
       messageError: '',
       type: 'text'
     },
+
     {
-      name: 'company',
-      displayName: 'Empresa',
+      name: '',
+      displayName: 'Sueldo',
       canSort: true,
       canFilter: true,
       pattern: '',
       messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'date',
-      displayName: 'Fecha',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'observation',
-      displayName: 'Observacion',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'phone',
-      displayName: 'Celular',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'type',
-      displayName: 'Tipo',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
+      type: 'number'
     },
     {
       name: '',

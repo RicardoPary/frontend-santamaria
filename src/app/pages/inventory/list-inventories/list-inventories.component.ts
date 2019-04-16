@@ -40,18 +40,10 @@ export class ListInventoriesComponent implements OnInit {
       messageError: '',
       type: 'text'
     },
+
     {
       name: 'name',
-      displayName: 'Nombre',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'description',
-      displayName: 'Descripcion',
+      displayName: 'Proveedor ',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -60,22 +52,42 @@ export class ListInventoriesComponent implements OnInit {
     },
     {
       name: 'company',
-      displayName: 'Empresa',
+      displayName: 'Insumo',
       canSort: true,
       canFilter: true,
       pattern: '',
       messageError: '',
       type: 'text'
+    },
+
+    {
+      name: ' ',
+      displayName: 'Cantidad Dejada',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'number'
+    },
+    {
+      name: ' ',
+      displayName: 'Stock',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'number'
     },
     {
       name: 'date',
-      displayName: 'Fecha',
+      displayName: 'Fecha Registrada',
       canSort: true,
       canFilter: true,
       pattern: '',
       messageError: '',
-      type: 'text'
+      type: 'date'
     },
+
     {
       name: 'observation',
       displayName: 'Observacion',
@@ -85,24 +97,7 @@ export class ListInventoriesComponent implements OnInit {
       messageError: '',
       type: 'text'
     },
-    {
-      name: 'phone',
-      displayName: 'Celular',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'type',
-      displayName: 'Tipo',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
+
     {
       name: '',
       displayName: 'Acciones',
