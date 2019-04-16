@@ -87,7 +87,7 @@ export class RouteHandlerComponent implements OnInit, OnDestroy {
     // Top Level Item (The item to click on so the dropdown opens)
     const dashboard = new SidenavItem({
       name: 'Dashboard',
-      route: '/',
+      route: '/pages/dashboard',
       icon: 'dashboard',
       subItems: [],
       position: 1,
@@ -106,28 +106,28 @@ export class RouteHandlerComponent implements OnInit, OnDestroy {
     const patientSubItems = [
       new SidenavItem({
         name: 'Lista de Pacientes',
-        route: '/patient-list',
+        route: '/pages/patient-list',
         parent: patient,
         subItems: [],
         position: 1
       }),
       new SidenavItem({
         name: 'Historia Clinica',
-        route: '/medical-history',
+        route: '/pages/medical-history',
         parent: patient,
         subItems: [],
         position: 2
       }),
       new SidenavItem({
         name: 'Lista de Atenciones',
-        route: '/attentions-list',
+        route: '/pages/attentions-list',
         parent: patient,
         subItems: [],
         position: 3
       }),
       new SidenavItem({
         name: 'Detalle de Insumos',
-        route: '/input-details',
+        route: '/pages/input-details',
         parent: patient,
         subItems: [],
         position: 4
@@ -146,14 +146,14 @@ export class RouteHandlerComponent implements OnInit, OnDestroy {
     const inventorySubItems = [
       new SidenavItem({
         name: 'Lista de Inventarios',
-        route: '/list-inventories',
+        route: '/pages/list-inventories',
         parent: inventory,
         subItems: [],
         position: 1
       }),
       new SidenavItem({
         name: 'Lista de Insumos',
-        route: '/input-list',
+        route: '/pages/input-list',
         parent: inventory,
         subItems: [],
         position: 2
@@ -172,14 +172,14 @@ export class RouteHandlerComponent implements OnInit, OnDestroy {
     const staffSubItems = [
       new SidenavItem({
         name: 'Lista del Personal',
-        route: '/staff-list',
+        route: '/pages/staff-list',
         parent: staff,
         subItems: [],
         position: 1
       }),
       new SidenavItem({
         name: 'Lista de Contrato',
-        route: '/contract-list',
+        route: '/pages/contract-list',
         parent: staff,
         subItems: [],
         position: 2
@@ -198,21 +198,21 @@ export class RouteHandlerComponent implements OnInit, OnDestroy {
     const userSubItems = [
       new SidenavItem({
         name: 'Lista Usuarios',
-        route: '/user-list',
+        route: '/pages/user-list',
         parent: user,
         subItems: [],
         position: 1
       }),
       new SidenavItem({
         name: 'Lista de Roles',
-        route: '/role-list',
+        route: '/pages/role-list',
         parent: user,
         subItems: [],
         position: 1
       }),
       new SidenavItem({
         name: 'Asignar Rol',
-        route: '/assign-role',
+        route: '/pages/assign-role',
         parent: user,
         subItems: [],
         position: 1

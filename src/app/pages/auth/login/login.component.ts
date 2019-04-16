@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
       password: this.password,
       rememberMe: false
     }).then(() => {
-      this.router.navigate(['/']);
+      this.router.navigate(['/pages']);
     }).catch((e) => console.log(e));
   }
 
