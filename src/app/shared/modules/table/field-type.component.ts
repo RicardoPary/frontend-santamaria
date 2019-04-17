@@ -31,6 +31,19 @@ import {
       </button>
     </div>
 
+    <div *ngIf="type === 'actionsDeleteView'" style="padding-left: 15px; width: 120px;">
+      <button type="button" style="margin-left: 5px; display: inline-block;"
+              class="btn btn-danger btn-sm"
+              (click)="clickButtonRow($event,'delete')">
+        <i class="fa fa-trash-o" aria-hidden="true"></i>
+      </button>
+      <button type="button" style="margin-left: 5px; display: inline-block;"
+              class="btn btn-primary btn-sm"
+              (click)="clickButtonRow($event,'view')">
+        <i class="fa fa-eye" aria-hidden="true"></i>
+      </button>
+    </div>
+
     <div *ngIf="type === 'actionsView'" style="padding-left: 15px; width: 130px;">
       <button type="button" style="margin-left: 5px; display: inline-block; background: #3b8dd2;"
               class="btn btn-primary btn-sm"

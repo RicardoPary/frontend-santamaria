@@ -38,69 +38,67 @@ export class ListInventoriesComponent implements OnInit {
       canFilter: false,
       pattern: '',
       messageError: '',
-      type: 'actionsView'
+      type: 'actionsDeleteView'
     },
     {
-      name: 'id',
-      displayName: 'Id',
+      name: 'company',
+      displayName: 'Compañía',
       canSort: true,
-      canFilter: true,
+      canFilter: false,
       pattern: '',
       messageError: '',
       type: 'text'
     },
     {
       name: 'name',
-      displayName: 'Proveedor ',
+      displayName: 'Nombre proveedor',
       canSort: true,
-      canFilter: true,
+      canFilter: false,
       pattern: '',
       messageError: '',
       type: 'text'
-    },
-    {
-      name: 'company',
-      displayName: 'Insumo',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-
-    {
-      name: ' ',
-      displayName: 'Cantidad Dejada',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'number'
-    },
-    {
-      name: ' ',
-      displayName: 'Stock',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'number'
     },
     {
       name: 'date',
-      displayName: 'Fecha Registrada',
+      displayName: 'Fecha',
       canSort: true,
-      canFilter: true,
+      canFilter: false,
       pattern: '',
       messageError: '',
       type: 'date'
     },
-
+    {
+      name: 'description',
+      displayName: 'Descripción',
+      canSort: true,
+      canFilter: false,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
     {
       name: 'observation',
-      displayName: 'Observacion',
+      displayName: 'Observación',
       canSort: true,
-      canFilter: true,
+      canFilter: false,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'phone',
+      displayName: 'Teléfono',
+      canSort: true,
+      canFilter: false,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'type',
+      displayName: 'Tipo',
+      canSort: true,
+      canFilter: false,
       pattern: '',
       messageError: '',
       type: 'text'
