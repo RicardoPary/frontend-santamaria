@@ -13,14 +13,11 @@ import {finalize} from 'rxjs/operators';
 export class PatientListComponent implements OnInit {
 
   @ViewChild('modal') modal: ElementRef;
-
-  filtersColumns: any;
-
   modalRef: NgbModalRef;
 
   titleModal: any;
   textButton: any;
-  actividadCivica: any;
+  patient: any;
 
   subscriptionTable: Subscription;
   totalData: number;
@@ -140,63 +137,67 @@ export class PatientListComponent implements OnInit {
   }
 
   submit(form) {
-    /*const actividadCivica = {
-      'id': this.actividadCivica ? this.actividadCivica.id : null,
-      'cronograma': form.value.cronograma,
-      'descripcion': form.value.descripcion,
-      'fecha': form.value.fecha,
-      'nombre': form.value.nombre
+    const patient = {
+      'id': this.patient ? this.patient.id : null,
+      'address': form.value.direccion,
+      'birthdate': '1990-08-08',
+      'ci': form.value.ci,
+      'firstName': form.value.nombres,
+      'gender': 'masculino',
+      'lastName': form.value.apellidos,
+      'phone': form.value.telefono,
+      'responsable': form.value.responsable
     };
-    if (this.textButton === 'Crear') {
-      this.actividadCivicaService.createActividadCivica(actividadCivica)
+    if (this.textButton === 'Guardar') {
+      this.patientService.createPatient(patient)
         .pipe(finalize(() => {
-          this.actividadCivicaService.sendActividadCivicaFilter(new ActividadCivicaFilter());
-          this.modal.close();
+          this.patientService.sendPatientFilter(new PatientFilter());
+          this.modalRef.close();
         }))
         .subscribe(
-          () => this.alertService.showSuccess({html: 'actividad civica creada exitosamente.'})
+          () => this.alertService.showSuccess({html: 'paciente creado exitosamente.'})
         );
-    } else if (this.textButton === 'Editar') {
-      this.actividadCivicaService.modifyActividadCivica(actividadCivica)
+    }
+    if (this.textButton === 'Editar') {
+      this.patientService.modifyPatient(patient)
         .pipe(finalize(() => {
-          this.actividadCivicaService.sendActividadCivicaFilter(new ActividadCivicaFilter());
-          this.modal.close();
+          this.patientService.sendPatientFilter(new PatientFilter());
+          this.modalRef.close();
         }))
         .subscribe(
-          () => this.alertService.showSuccess({html: 'actividad civica modificada exitosamente.'})
+          () => this.alertService.showSuccess({html: 'paciente modificado exitosamente.'})
         );
-    }*/
+    }
+  }
+
+  clickButtonRow(event) {
+    if (event.description === 'delete') {
+      this.alertService.showWarningQuestion({html: 'Esta seguro de eliminar el paciente ?'}, isConfirm => {
+        if (isConfirm.value) {
+          this.patientService.deletePatient(event.item.id)
+            .pipe(finalize(() => this.patientService.sendPatientFilter(new PatientFilter())))
+            .subscribe(
+              () => this.alertService.showSuccess({html: 'Datos del Paciente eliminados exitosamente.'}),
+              () => this.alertService.showError({html: 'Ocurrio un error al eliminar los datos del paciente.'})
+            );
+        }
+      });
+    } else if (event.description === 'edit') {
+      this.openModal(this.modal, 'Editar los datos del paciente', 'Editar');
+      this.patient = event.item;
+    }
   }
 
   openModal(content, titleModal, textButton) {
     this.modalRef = this.modalService.open(content, {backdrop: 'static', size: 'lg'});
     this.titleModal = titleModal;
     this.textButton = textButton;
-    if (this.textButton === 'Crear') {
-      this.actividadCivica = null;
+    if (this.textButton === 'Guardar') {
+      this.patient = null;
     }
   }
 
   closeModal() {
     this.modalRef.close();
   }
-
-  /*
-    clickButtonRow(event) {
-      if (event.description === 'delete') {
-        this.alertService.showWarningQuestion({html: 'esta seguro de eliminar El registro del Paciente?'}, isConfirm => {
-          if (isConfirm.value) {
-            this.patientService.deletePatient(event.item.id)
-              .pipe(finalize(() => this.patientService.sendPatientFilter(new PatientFilter())))
-              .subscribe(
-                res => this.alertService.showSuccess({html: 'Datos del Paciente Eliminada Exitosamente.'}),
-                err => this.alertService.showError({html: 'ocurrio un error al eliminar los Datos del Paciente.'})
-              );
-          }
-        });
-      } else if (event.description === 'edit') {
-        this.openModal(this.modal, 'Editar Los Datos del Pacientes', 'Editar');
-        this.actividadCivica = event.item;
-      }
-    }*/
 }

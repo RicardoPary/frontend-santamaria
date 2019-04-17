@@ -13,8 +13,8 @@
       <div class="header">
         <span class="btn-options pull-right">
           <a class="btn btn-sm btn-outline-secondary btn-icon-space"
-             (click)="openModal(modal)">
-            <i class="icon-user-plus"></i> Crear Paciente</a>
+             (click)="openModal(modal,'Guardar Paciente', 'Guardar')">
+            <i class="fa fa-plus"></i> Crear Paciente</a>
         </span>
       </div>
 
@@ -36,7 +36,7 @@
 
 <ng-template #modal>
   <div class="modal-header">
-    <h4 class="modal-title">Crear Paciente</h4>
+    <h4 class="modal-title">{{titleModal}}</h4>
   </div>
 
   <form (ngSubmit)="submit(form)" #form="ngForm">
@@ -51,7 +51,7 @@
                  type="text"
                  class="form-control"
                  placeholder='Eje. Dana July...'
-                 [ngModel]="actividadCivica?.nombres"/>
+                 [ngModel]="patient?.firstName"/>
         </div>
       </div>
 
@@ -63,7 +63,7 @@
                  type="text"
                  placeholder='Eje. Pomier Teran...'
                  class="form-control"
-                 [ngModel]="actividadCivica?.apellidos"/>
+                 [ngModel]="patient?.lastName"/>
         </div>
       </div>
 
@@ -75,7 +75,7 @@
                  type="string"
                  placeholder='Eje. 64637373L.P...'
                  class="form-control"
-                 [ngModel]="actividadCivica?.ci"/>
+                 [ngModel]="patient?.ci"/>
         </div>
       </div>
 
@@ -87,10 +87,9 @@
                  type="string"
                  placeholder='Eje. Av.Civica El Alto...'
                  class="form-control"
-                 [ngModel]="actividadCivica?.direccion"/>
+                 [ngModel]="patient?.address"/>
         </div>
       </div>
-
 
       <div class="col-md-6">
         <div class="form-group mb-3">
@@ -100,10 +99,9 @@
                  type="number"
                  placeholder='Eje. 7777***7...'
                  class="form-control"
-                 [ngModel]="actividadCivica?.telefono"/>
+                 [ngModel]="patient?.phone"/>
         </div>
       </div>
-
 
       <div class="col-md-6">
         <div class="form-group mb-3">
@@ -113,12 +111,9 @@
                  type="date"
                  placeholder='Eje. 20/07/94...'
                  class="form-control"
-                 [ngModel]="actividadCivica?.fecha_naci"/>
+                 [ngModel]="patient?.birthdate"/>
         </div>
       </div>
-
-
-
 
       <div class="col-md-6">
         <div class="form-group mb-3">
@@ -128,28 +123,18 @@
                  type="text"
                  placeholder='Eje.Padre ...'
                  class="form-control"
-                 [ngModel]="actividadCivica?.responsable"/>
+                 [ngModel]="patient?.responsable"/>
         </div>
       </div>
-
 
       <div class="col-md-6">
         <div class="form-group mb-3">
           <label for="sexo">Sexo:</label>
           <br>
-
           <input type="radio" name="sexo" id="sexo" value="Femenino">Femenino &nbsp;
           <input type="radio" name="sexo" id="sexo" value="Masculino">Masculino
         </div>
       </div>
-
-
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
 
     </div>
 
@@ -158,10 +143,8 @@
         Cancelar
       </button>
       <button type="submit" class="btn btn-success">
-        Guardar
+        {{textButton}}
       </button>
-
     </div>
-
   </form>
 </ng-template>
