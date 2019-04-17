@@ -1,4 +1,4 @@
-<div class="table-style" #table>
+<div #table>
   <div [style.min-height]="minHeight">
     <table class="table">
       <thead>
@@ -52,14 +52,14 @@
         <tr class="tr-style" (click)="selectRow(item,i,$event)"
             [ngStyle]="{'background-color':selectedRow === i ? '#f0f0f0' : '' }">
 
-          <td *ngIf="rowExpandIndex!==i && verifyResponsive()" style="width:10px">
+          <td *ngIf="rowExpandIndex!==i && verifyResponsive()" style="width:10px; padding-left: 15px;">
             <i class="fa fa-plus-circle collapsable_btn glyphicon glyphicon-plus"
                aria-hidden="true"
                style="font-size: 22px; background: #6f6f6f; color: white;"
                (click)="ShowExpand(i)"></i>
           </td>
 
-          <td *ngIf="rowExpandIndex==i && verifyResponsive()" style="width:10px">
+          <td *ngIf="rowExpandIndex==i && verifyResponsive()" style="width:10px; padding-left: 15px;">
             <i class="fa fa-minus-circle collapsable_btn glyphicon glyphicon-minus"
                aria-hidden="true"
                style="font-size: 22px; background: #6f6f6f; color: white;"
@@ -235,7 +235,8 @@
          </span>
     </div>
 
-    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-xl-8" [ngClass]="{'col-sm-12': !viewPagesDates, 'col-sm-8': viewPagesDates}">
+    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-xl-8"
+         [ngClass]="{'col-sm-12': !viewPagesDates, 'col-sm-8': viewPagesDates}">
       <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
         <li>
           <button [disabled]="pager.currentPage === 1"
