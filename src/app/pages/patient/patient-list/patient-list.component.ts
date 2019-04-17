@@ -1,9 +1,10 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {AlertService} from '../../../shared/components/alert/alert.service';
-import {PatientService} from '../../../shared/services/index';
+import {PatientService} from '../../../shared/services';
 import {PatientFilter} from '../../../shared/models/patient.model';
 import {Subscription} from 'rxjs/internal/Subscription';
+import {finalize} from 'rxjs/operators';
 
 @Component({
   templateUrl: './patient-list.component.html',
@@ -11,9 +12,12 @@ import {Subscription} from 'rxjs/internal/Subscription';
 })
 export class PatientListComponent implements OnInit {
 
+  @ViewChild('modal') modal: ElementRef;
+
   filtersColumns: any;
 
-  modal: NgbModalRef;
+  modalRef: NgbModalRef;
+
   titleModal: any;
   textButton: any;
   actividadCivica: any;
@@ -26,8 +30,17 @@ export class PatientListComponent implements OnInit {
 
   headersColumns: any = [
     {
+      name: '',
+      displayName: 'Acciones',
+      canSort: false,
+      canFilter: false,
+      pattern: '',
+      messageError: '',
+      type: 'actions'
+    },
+    {
       name: 'id',
-      displayName: 'ID',
+      displayName: 'Id',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -36,7 +49,7 @@ export class PatientListComponent implements OnInit {
     },
     {
       name: 'firstName',
-      displayName: 'NOMBRES',
+      displayName: 'Nombres',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -45,7 +58,7 @@ export class PatientListComponent implements OnInit {
     },
     {
       name: 'lastName',
-      displayName: 'APELLIDOS',
+      displayName: 'Apellidos',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -54,7 +67,7 @@ export class PatientListComponent implements OnInit {
     },
     {
       name: 'ci',
-      displayName: 'CI:',
+      displayName: 'CI',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -63,7 +76,7 @@ export class PatientListComponent implements OnInit {
     },
     {
       name: 'address',
-      displayName: 'DIRECCION',
+      displayName: 'Direccion',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -72,7 +85,7 @@ export class PatientListComponent implements OnInit {
     },
     {
       name: 'phone',
-      displayName: 'TELEFONO',
+      displayName: 'Telefono',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -81,7 +94,7 @@ export class PatientListComponent implements OnInit {
     },
     {
       name: 'birthdate',
-      displayName: 'FECHA DE NACIMIENTO',
+      displayName: 'Fecha Nacimiento',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -90,7 +103,7 @@ export class PatientListComponent implements OnInit {
     },
     {
       name: 'birthdate',
-      displayName: 'EDAD',
+      displayName: 'Edad',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -99,7 +112,7 @@ export class PatientListComponent implements OnInit {
     },
     {
       name: 'address',
-      displayName: 'RESPONSABLE',
+      displayName: 'Responsable',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -108,7 +121,7 @@ export class PatientListComponent implements OnInit {
     },
     {
       name: 'gender',
-      displayName: 'SEXO',
+      displayName: 'Sexo',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -118,21 +131,12 @@ export class PatientListComponent implements OnInit {
 
     {
       name: 'birthdate',
-      displayName: 'FECHA DE REGISTRO',
+      displayName: 'Fecha Registro',
       canSort: true,
       canFilter: true,
       pattern: '',
       messageError: '',
       type: 'date'
-    },
-    {
-      name: '',
-      displayName: 'Acciones',
-      canSort: false,
-      canFilter: false,
-      pattern: '',
-      messageError: '',
-      type: 'actions'
     }
   ];
 
@@ -202,7 +206,7 @@ export class PatientListComponent implements OnInit {
   }
 
   openModal(content, titleModal, textButton) {
-    this.modal = this.modalService.open(content, {backdrop: 'static', size: 'lg'});
+    this.modalRef = this.modalService.open(content, {backdrop: 'static', size: 'lg'});
     this.titleModal = titleModal;
     this.textButton = textButton;
     if (this.textButton === 'Crear') {
@@ -211,15 +215,15 @@ export class PatientListComponent implements OnInit {
   }
 
   closeModal() {
-    this.modal.close();
+    this.modalRef.close();
   }
 
   clickButtonRow(event) {
-     if (event.description === 'delete') {
+    if (event.description === 'delete') {
       this.alertService.showWarningQuestion({html: 'esta seguro de eliminar El registro del Paciente?'}, isConfirm => {
         if (isConfirm.value) {
-          this.actividadCivicaService.deleteActividadCivica(event.item.id)
-            .pipe(finalize(() => this.actividadCivicaService.sendActividadCivicaFilter(new ActividadCivicaFilter())))
+          this.patientService.deletePatient(event.item.id)
+            .pipe(finalize(() => this.patientService.sendPatientFilter(new PatientFilter())))
             .subscribe(
               res => this.alertService.showSuccess({html: 'Datos del Paciente Eliminada Exitosamente.'}),
               err => this.alertService.showError({html: 'ocurrio un error al eliminar los Datos del Paciente.'})
@@ -227,7 +231,7 @@ export class PatientListComponent implements OnInit {
         }
       });
     } else if (event.description === 'edit') {
-      this.openModal(this.modalActividadCivica, 'Editar Los Datos del Pacientes', 'Editar');
+      this.openModal(this.modal, 'Editar Los Datos del Pacientes', 'Editar');
       this.actividadCivica = event.item;
     }
   }
