@@ -9,7 +9,6 @@
                          [header]="'primary'"></elastic-breadcrumbs>
 
     <div class="mat-elevation-z8">
-
       <div class="header">
         <span class="btn-options pull-right">
           <a class="btn btn-sm btn-outline-secondary btn-icon-space"
@@ -17,7 +16,6 @@
             <i class="icon-user-plus"></i> Crear Inventario</a>
         </span>
       </div>
-
       <app-table
         [data]="data"
         [headers]="headersColumns"
@@ -28,11 +26,9 @@
         (clickSort)="clickSort($event)"
         (clickButton)="clickButton($event)">
       </app-table>
-
     </div>
   </div>
 </div>
-
 
 <ng-template #modalInventory>
   <div class="modal-header">
@@ -157,7 +153,8 @@
           DETALLE
         </div>
       </div>
-      <div *ngFor="let inventory of inventorisDetails; let i = index;" class="row invoice-table-row" style="margin-bottom: 10px;">
+      <div *ngFor="let inventory of inventorisDetails; let i = index;" class="row invoice-table-row"
+           style="margin-bottom: 10px;">
         <div class="col-2">
           <input id="name-{{i}}"
                  name="name-{{i}}"
