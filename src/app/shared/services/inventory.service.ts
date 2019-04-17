@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpResponse} from '@angular/common/http';
-import {Observable, BehaviorSubject} from 'rxjs';
+import {Observable} from 'rxjs/index';
 import {FilterInventory} from '../models/inventory';
+import {BehaviorSubject} from 'rxjs/index';
 import {createRequestOption} from '../models/extras/request-util';
 
 @Injectable()

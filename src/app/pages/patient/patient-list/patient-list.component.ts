@@ -128,7 +128,6 @@ export class PatientListComponent implements OnInit {
       messageError: '',
       type: 'text'
     },
-
     {
       name: 'birthdate',
       displayName: 'Fecha Registro',

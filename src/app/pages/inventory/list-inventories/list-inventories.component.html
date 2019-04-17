@@ -4,8 +4,10 @@
                        [reverse]="true"></elastic-page-header>
 
   <div class="container">
+
     <elastic-breadcrumbs [currentPage]="'Lista de Inventarios'" [names]="['Inventario']"
                          [header]="'primary'"></elastic-breadcrumbs>
+
     <div class="mat-elevation-z8">
 
       <div class="header">
@@ -116,39 +118,4 @@
   </form>
 
 
-</ng-template>
-
-
-
-
-
-
-
-<ng-template #modalRegistryDetails>
-  <div class="modal-header">
-    <h4 class="modal-title">DETALLE DE REGISTRO</h4>
-    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <table class="table">
-      <thead>
-      <tr>
-        <th style="border-top:0;">Nombre Producto</th>
-        <th style="border-top:0;">Cantidad</th>
-        <th style="border-top:0;">Precio</th>
-        <th style="border-top:0;">Detalle</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let detail of registryDetails">
-        <td>{{detail?.product.name}}</td>
-        <td>{{detail.quantity}}</td>
-        <td>{{detail.price | number: '2.2'}} Bs.</td>
-        <td>{{detail.detail}}</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
 </ng-template>

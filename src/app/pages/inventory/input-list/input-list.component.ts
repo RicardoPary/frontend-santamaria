@@ -34,18 +34,10 @@ export class InputListComponent implements OnInit {
       messageError: '',
       type: 'text'
     },
-    {
-      name: 'ci',
-      displayName: 'CI',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
+
     {
       name: 'firstName',
-      displayName: 'Nombres',
+      displayName: 'Nombre de Insumo:',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -54,7 +46,7 @@ export class InputListComponent implements OnInit {
     },
     {
       name: 'lastName',
-      displayName: 'Apellidos',
+      displayName: 'Marca del Insumo',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -63,57 +55,33 @@ export class InputListComponent implements OnInit {
     },
     {
       name: 'gender',
-      displayName: 'Genero',
+      displayName: 'Tipo de Insumo',
       canSort: true,
       canFilter: true,
       pattern: '',
       messageError: '',
       type: 'text'
     },
-    {
-      name: 'nationality',
-      displayName: 'Nacionalidad',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'email',
-      displayName: 'E-mail',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'phone',
-      displayName: 'Celular',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'address',
-      displayName: 'Direccion',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
+
+
+
     {
       name: 'birthdate',
-      displayName: 'Fecha de Nacimiento',
+      displayName: 'Fecha de Vencimiento',
       canSort: true,
       canFilter: true,
       pattern: '',
       messageError: '',
-      type: 'text'
+      type: 'date'
+    },
+    {
+      name: '',
+      displayName: 'Precio de Insumo',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'number'
     },
     {
       name: '',

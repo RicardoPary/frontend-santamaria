@@ -46,18 +46,13 @@ export class AttentionsListComponent implements OnInit {
     },
     {
       name: 'lastName',
-      displayName: 'DESCRIPCION',
+      displayName: 'DESCRIPCIÓN',
       canSort: true,
       canFilter: true,
       pattern: '',
       messageError: '',
       type: 'text'
     },
-
-
-
-
-
     {
       name: 'birthdate',
       displayName: 'FECHA DE REGISTRO',
