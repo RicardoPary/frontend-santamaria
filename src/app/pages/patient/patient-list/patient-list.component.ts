@@ -39,15 +39,6 @@ export class PatientListComponent implements OnInit {
       type: 'actions'
     },
     {
-      name: 'id',
-      displayName: 'Id',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
       name: 'firstName',
       displayName: 'Nombres',
       canSort: true,
@@ -66,8 +57,17 @@ export class PatientListComponent implements OnInit {
       type: 'text'
     },
     {
-      name: 'ci',
-      displayName: 'CI',
+      name: 'gender',
+      displayName: 'Genero',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'birthdate',
+      displayName: 'Fecha Nacimiento',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -93,49 +93,13 @@ export class PatientListComponent implements OnInit {
       type: 'text'
     },
     {
-      name: 'birthdate',
-      displayName: 'Fecha Nacimiento',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'birthdate',
-      displayName: 'Edad',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'address',
+      name: 'responsable',
       displayName: 'Responsable',
       canSort: true,
       canFilter: true,
       pattern: '',
       messageError: '',
       type: 'text'
-    },
-    {
-      name: 'gender',
-      displayName: 'Sexo',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'birthdate',
-      displayName: 'Fecha Registro',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'date'
     }
   ];
 
@@ -216,22 +180,23 @@ export class PatientListComponent implements OnInit {
   closeModal() {
     this.modalRef.close();
   }
-/*
-  clickButtonRow(event) {
-    if (event.description === 'delete') {
-      this.alertService.showWarningQuestion({html: 'esta seguro de eliminar El registro del Paciente?'}, isConfirm => {
-        if (isConfirm.value) {
-          this.patientService.deletePatient(event.item.id)
-            .pipe(finalize(() => this.patientService.sendPatientFilter(new PatientFilter())))
-            .subscribe(
-              res => this.alertService.showSuccess({html: 'Datos del Paciente Eliminada Exitosamente.'}),
-              err => this.alertService.showError({html: 'ocurrio un error al eliminar los Datos del Paciente.'})
-            );
-        }
-      });
-    } else if (event.description === 'edit') {
-      this.openModal(this.modal, 'Editar Los Datos del Pacientes', 'Editar');
-      this.actividadCivica = event.item;
-    }
-  }*/
+
+  /*
+    clickButtonRow(event) {
+      if (event.description === 'delete') {
+        this.alertService.showWarningQuestion({html: 'esta seguro de eliminar El registro del Paciente?'}, isConfirm => {
+          if (isConfirm.value) {
+            this.patientService.deletePatient(event.item.id)
+              .pipe(finalize(() => this.patientService.sendPatientFilter(new PatientFilter())))
+              .subscribe(
+                res => this.alertService.showSuccess({html: 'Datos del Paciente Eliminada Exitosamente.'}),
+                err => this.alertService.showError({html: 'ocurrio un error al eliminar los Datos del Paciente.'})
+              );
+          }
+        });
+      } else if (event.description === 'edit') {
+        this.openModal(this.modal, 'Editar Los Datos del Pacientes', 'Editar');
+        this.actividadCivica = event.item;
+      }
+    }*/
 }

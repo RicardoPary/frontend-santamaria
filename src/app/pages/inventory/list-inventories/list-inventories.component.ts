@@ -241,8 +241,7 @@ export class ListInventoriesComponent implements OnInit {
   }
 
   saveInventories(inventoris) {
-    /*this.registry.idBranch = this.branchService.getIdBranch();
-    this.providerService.createProvider(this.registry).subscribe(
+    /*this.providerService.createProvider(this.registry).subscribe(
       resProvider => {
         inventoris.map(item => item.idProvider = resProvider.body.id);
         inventoris.map(item => {
@@ -272,5 +271,4 @@ export class ListInventoriesComponent implements OnInit {
     this.inventorisDetails = [];
     this.addInventory();*/
   }
-
 }
