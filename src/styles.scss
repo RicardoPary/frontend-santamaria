@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~normalize.css/normalize.css";
+
 $fa-font-path: "../node_modules/font-awesome/fonts";
 @import "~font-awesome/scss/font-awesome.scss";
 
@@ -37,3 +38,7 @@ $fa-font-path: "../node_modules/font-awesome/fonts";
 @import "styles/layouts/layout-beta";
 @import "styles/layouts/layout-gamma";
 @import "styles/pages/components";
+
+.modal-lg, .modal-xl {
+  max-width: 1000px !important;
+}

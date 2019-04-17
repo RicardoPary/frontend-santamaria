@@ -5,6 +5,7 @@ import {InventoryService, ProviderService} from '../../../shared/services';
 import {Subscription} from 'rxjs/internal/Subscription';
 import {ProviderFilter} from '../../../shared/models/provider';
 import {finalize} from 'rxjs/operators';
+import {Inventory} from '../../../shared/models/inventory';
 
 @Component({
   templateUrl: './list-inventories.component.html',
@@ -29,6 +30,18 @@ export class ListInventoriesComponent implements OnInit {
   pageSize: number;
   page: number;
   data: any = [];
+
+  inventorisDetails: Inventory [] = [];
+  products = [];
+  registry = {
+    company: '',
+    description: '',
+    observation: '',
+    phone: '',
+    type: '',
+    idBranch: '',
+    name: ''
+  };
 
   headersColumns: any = [
     {
@@ -172,7 +185,7 @@ export class ListInventoriesComponent implements OnInit {
   }
 
   openModal(content, titleModal, textButton) {
-    this.modal = this.modalService.open(content, {backdrop: 'static', size: 'lg'});
+    this.modal = this.modalService.open(content, {backdrop: 'static', size: 'lg', centered: true});
     this.titleModal = titleModal;
     this.textButton = textButton;
   }
@@ -181,12 +194,25 @@ export class ListInventoriesComponent implements OnInit {
     this.modal.close();
   }
 
+  addInventory() {
+    this.inventorisDetails.push(new Inventory);
+  }
+
+  removeInventory(inventory) {
+    if (this.inventorisDetails.length > 1) {
+      this.inventorisDetails = this.inventorisDetails.filter(item => item !== inventory);
+      inventory.selected = true;
+    }
+    inventory.selected = true;
+  }
+
+
   clickButton(event) {
     if (event.description === 'view') {
       this.inventoryService.getAllByIdProvider(event.item.id).subscribe(
         res => {
           this.registryDetails = res.body;
-          this.modal = this.modalService.open(this.modalRegistryDetails, {backdrop: 'static', size: 'lg'});
+          this.modal = this.modalService.open(this.modalRegistryDetails, {backdrop: 'static', size: 'lg', centered: true});
         }, () => this.alertService.showError({html: 'Ocurrio un error al mostrar el detalle de inventario.'})
       );
     } else if (event.description === 'delete') {
@@ -197,6 +223,19 @@ export class ListInventoriesComponent implements OnInit {
           () => this.alertService.showSuccess({html: 'inventario eliminado exitosamente.'}),
           () => this.alertService.showError({html: 'ocurrio un error al eliminar el producto.'})
         );
+      });
+    }
+  }
+
+  getProducts(filter) {
+    if (this.products.length > 0) {
+      return this.products.filter((v) => {
+        if (v && filter !== '' && filter !== undefined && filter !== null) {
+          if (v.name.toLowerCase().indexOf(filter.toLowerCase()) >= 0 && filter.length > 2) {
+            return true;
+          }
+        }
+        return false;
       });
     }
   }
