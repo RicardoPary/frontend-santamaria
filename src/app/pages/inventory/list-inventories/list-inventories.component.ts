@@ -13,6 +13,8 @@ import {finalize} from 'rxjs/operators';
 export class ListInventoriesComponent implements OnInit {
 
   @ViewChild('modalActividadCivica') modalActividadCivica: ElementRef;
+  @ViewChild('modalRegistryDetails') modalRegistryDetails: ElementRef;
+
   filtersColumns: any;
   registryDetails: any = [];
 
@@ -28,9 +30,16 @@ export class ListInventoriesComponent implements OnInit {
   page: number;
   data: any = [];
 
-  @ViewChild('modalRegistryDetails') modalRegistryDetails: ElementRef;
-
   headersColumns: any = [
+    {
+      name: '',
+      displayName: 'Acciones',
+      canSort: false,
+      canFilter: false,
+      pattern: '',
+      messageError: '',
+      type: 'actionsView'
+    },
     {
       name: 'id',
       displayName: 'Id',
@@ -102,15 +111,6 @@ export class ListInventoriesComponent implements OnInit {
       pattern: '',
       messageError: '',
       type: 'text'
-    },
-    {
-      name: '',
-      displayName: 'Acciones',
-      canSort: false,
-      canFilter: false,
-      pattern: '',
-      messageError: '',
-      type: 'actionsView'
     }
   ];
 
