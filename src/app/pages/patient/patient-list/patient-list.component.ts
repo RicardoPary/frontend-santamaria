@@ -36,6 +36,24 @@ export class PatientListComponent implements OnInit {
       type: 'actions'
     },
     {
+      name: 'id',
+      displayName: 'Id',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
+      name: 'ci',
+      displayName: 'CI',
+      canSort: true,
+      canFilter: true,
+      pattern: '',
+      messageError: '',
+      type: 'text'
+    },
+    {
       name: 'firstName',
       displayName: 'Nombres',
       canSort: true,
