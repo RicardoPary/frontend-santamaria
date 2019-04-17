@@ -27,25 +27,17 @@ export class AttentionsListComponent implements OnInit {
   headersColumns: any = [
     {
       name: 'id',
-      displayName: 'Id',
+      displayName: 'ID',
       canSort: true,
       canFilter: true,
       pattern: '',
       messageError: '',
       type: 'text'
     },
-    {
-      name: 'ci',
-      displayName: 'CI',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
+
     {
       name: 'firstName',
-      displayName: 'Nombres',
+      displayName: 'TIPO DE ATENCION',
       canSort: true,
       canFilter: true,
       pattern: '',
@@ -54,66 +46,26 @@ export class AttentionsListComponent implements OnInit {
     },
     {
       name: 'lastName',
-      displayName: 'Apellidos',
+      displayName: 'DESCRIPCION',
       canSort: true,
       canFilter: true,
       pattern: '',
       messageError: '',
       type: 'text'
     },
-    {
-      name: 'gender',
-      displayName: 'Genero',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'nationality',
-      displayName: 'Nacionalidad',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'email',
-      displayName: 'E-mail',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'phone',
-      displayName: 'Celular',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
-    {
-      name: 'address',
-      displayName: 'Direccion',
-      canSort: true,
-      canFilter: true,
-      pattern: '',
-      messageError: '',
-      type: 'text'
-    },
+
+
+
+
+
     {
       name: 'birthdate',
-      displayName: 'Fecha de Nacimiento',
+      displayName: 'FECHA DE REGISTRO',
       canSort: true,
       canFilter: true,
       pattern: '',
       messageError: '',
-      type: 'text'
+      type: 'date'
     },
     {
       name: '',
